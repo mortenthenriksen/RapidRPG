@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://3117kpphwgj8"]
+
+[ext_resource type="Texture2D" uid="uid://d08ufc36v2nmy" path="res://Environment/Surplus Trees.png" id="1_1wtic"]
+[ext_resource type="Script" path="res://Environment/roundTree.cs" id="1_2767x"]
+[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://groundShadow.png" id="1_ntjro"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlon5"]
+radius = 22.9946
+height = 122.009
+
+[node name="roundTree" type="StaticBody2D"]
+script = ExtResource("1_2767x")
+
+[node name="GroundShadow" type="Sprite2D" parent="."]
+modulate = Color(0.733333, 0.733333, 0.733333, 1)
+position = Vector2(-1, -21)
+scale = Vector2(1.39, 1.39)
+texture = ExtResource("1_ntjro")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(29, -118)
+scale = Vector2(1.51274, 1.51274)
+texture = ExtResource("1_1wtic")
+hframes = 5
+vframes = 5
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -25)
+rotation = 1.56569
+shape = SubResource("CapsuleShape2D_jlon5")
