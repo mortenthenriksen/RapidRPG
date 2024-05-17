@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Dave : CharacterBody2D
 {
@@ -23,21 +24,26 @@ public partial class Dave : CharacterBody2D
 	private Label healthLabel;
 	private DamageNumbers damageNumbersOrigin;
 	private Vector2 lastMoveDirection = new Vector2(0, 0);
+	private PickupBox pickupBox;
+	private ItemDrop itemDrop;
+
+	private Node playerInventory;
+
 
 	public override void _Ready()
 	{
 		damageNumbersOrigin = GetNode<DamageNumbers>("/root/DamageNumbers");
+		playerInventory = GetNode<Node>("/root/Game/UserInterface/Inventory");
 
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		customSignals.DamagePlayer += HandleDamagePlayer;
 		customSignals.HealthDepleted += HandleHealthDepleted;
 		
-
+		
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		healthBar = GetNode<ProgressBar>("HealthBar");
 		healthLabel = GetNode<Label>("HealthBar/HealthLabel");
-
-
+		pickupBox = GetNode<PickupBox>("PickupBox");
 	}
 
 	private void HandleDamagePlayer(float damageAmount) {
@@ -62,6 +68,18 @@ public partial class Dave : CharacterBody2D
 		Vector2 Move = HandleInput();
 		PlayAnimation(Move);
 		MoveAndCollide(Move*speed* (float) delta);
+
+
+		if (Input.IsActionPressed("pick_up")) 
+		{
+			if (pickupBox.GetOverlappingBodies().Count > 0) 
+			{
+				var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
+				GD.Print(itemDrop.Name);
+				itemDrop.PickupItem(this);
+				playerInventory.Call("initialize_inventory");
+			}
+		}
 	}
 
 

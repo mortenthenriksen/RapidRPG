@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://mib2hqo11ekk"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Orc.cs" id="1_sy4n5"]
-[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://groundShadow.png" id="2_fr4fu"]
+[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://HelperScenes/groundShadow.png" id="2_7nrty"]
 [ext_resource type="Texture2D" uid="uid://dv1ngbcc5vvi6" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack01.png" id="5_asduv"]
 [ext_resource type="Texture2D" uid="uid://bly5q6kl5edld" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Death.png" id="5_uknlb"]
 [ext_resource type="Texture2D" uid="uid://sryh4gi0dfp1" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Walk.png" id="6_yte1w"]
@@ -184,7 +184,7 @@ script = ExtResource("1_sy4n5")
 modulate = Color(0.733333, 0.733333, 0.733333, 1)
 position = Vector2(-9.53674e-07, -4)
 scale = Vector2(0.224219, 0.227117)
-texture = ExtResource("2_fr4fu")
+texture = ExtResource("2_7nrty")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 2

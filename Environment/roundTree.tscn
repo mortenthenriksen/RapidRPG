@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d08ufc36v2nmy" path="res://Environment/Surplus Trees.png" id="1_1wtic"]
 [ext_resource type="Script" path="res://Environment/roundTree.cs" id="1_2767x"]
-[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://groundShadow.png" id="1_ntjro"]
+[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://HelperScenes/groundShadow.png" id="1_ntjro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlon5"]
 radius = 22.9946

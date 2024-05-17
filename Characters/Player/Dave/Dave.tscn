@@ -1,7 +1,7 @@
-[gd_scene load_steps=94 format=3 uid="uid://beai64jjhwi4e"]
+[gd_scene load_steps=96 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://Characters/Player/Dave/Dave.cs" id="1_soyg5"]
-[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://groundShadow.png" id="2_ed4la"]
+[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://HelperScenes/groundShadow.png" id="2_jv5j6"]
 [ext_resource type="Texture2D" uid="uid://dg6a6tjqvgfrs" path="res://Characters/Player/Dave/SpriteSheets/Character_RollLeft.png" id="3_43swp"]
 [ext_resource type="Texture2D" uid="uid://iaqg1dpo0y4s" path="res://Characters/Player/Dave/SpriteSheets/Character_Down.png" id="3_i0xh5"]
 [ext_resource type="Texture2D" uid="uid://ch16a8kulfbqu" path="res://Characters/Player/Dave/SpriteSheets/Character_RollRight.png" id="3_mc1xi"]
@@ -18,8 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://nbqq64n0nken" path="res://Characters/Player/Dave/SpriteSheets/Character_RollUp.png" id="14_c6am2"]
 [ext_resource type="Texture2D" uid="uid://dnws0smvmr66x" path="res://Characters/Player/Dave/SpriteSheets/Character_RollUpLeft.png" id="17_8vb4a"]
 [ext_resource type="Texture2D" uid="uid://c158i2l4tac5p" path="res://Characters/Player/Dave/SpriteSheets/Character_RollUpRight.png" id="18_uouck"]
-[ext_resource type="PackedScene" uid="uid://dqoa6rbuyyevn" path="res://Weapons/ProjectileWeapons/Staff.tscn" id="19_xpo4n"]
+[ext_resource type="PackedScene" uid="uid://dqoa6rbuyyevn" path="res://Items/Weapons/ProjectileWeapons/Staff.tscn" id="19_muk2l"]
 [ext_resource type="PackedScene" uid="uid://d00andmxxbci4" path="res://HelperScenes/HealthLabel/HealthLabel.tscn" id="22_81dvy"]
+[ext_resource type="Script" path="res://Characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eu5cp"]
 radius = 9.0
@@ -668,6 +669,9 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
+radius = 31.0161
+
 [node name="Dave" type="CharacterBody2D"]
 position = Vector2(575, 328)
 script = ExtResource("1_soyg5")
@@ -676,9 +680,10 @@ script = ExtResource("1_soyg5")
 modulate = Color(0.733005, 0.733005, 0.733005, 1)
 position = Vector2(-1.19209e-07, -3)
 scale = Vector2(0.32875, 0.32875)
-texture = ExtResource("2_ed4la")
+texture = ExtResource("2_jv5j6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_eu5cp")
 
@@ -692,7 +697,8 @@ animation = &"rollLeft"
 frame = 3
 frame_progress = 0.666369
 
-[node name="Staff" parent="." instance=ExtResource("19_xpo4n")]
+[node name="Staff" parent="." instance=ExtResource("19_muk2l")]
+visible = false
 metadata/_edit_group_ = true
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -755,3 +761,15 @@ curve = SubResource("Curve2D_m784p")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(-170, -148)
 rotation = -0.00644736
+
+[node name="PickupBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("22_shs5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupBox"]
+position = Vector2(-2, -19)
+shape = SubResource("CircleShape2D_q8fy1")
+
+[connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]
+[connection signal="body_exited" from="PickupBox" to="." method="OnPickupBoxBodyExited"]

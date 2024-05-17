@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk371lr1nqjr3"]
+
+[ext_resource type="Script" path="res://InventoryGD/Item.gd" id="1_5v46b"]
+[ext_resource type="FontFile" uid="uid://c4dnmuy0biuw2" path="res://HelperScenes/Fonts/m5x7.ttf" id="2_ptrv3"]
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_5v46b")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+offset_right = 35.0
+offset_bottom = 35.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 31.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("2_ptrv3")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1

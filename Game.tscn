@@ -1,10 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=9 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Game.cs" id="1_h7ath"]
 [ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://Characters/Player/Dave/Dave.tscn" id="1_whxcv"]
 [ext_resource type="PackedScene" uid="uid://mib2hqo11ekk" path="res://Characters/Enemies/Orc.tscn" id="4_6jvny"]
-[ext_resource type="PackedScene" uid="uid://oe0xu4p8djsd" path="res://HelperScenes/Inventory/Inventory.tscn" id="4_asiu0"]
+[ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://InventoryGD/Inventory.tscn" id="4_wrd22"]
+[ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://ItemDrop.tscn" id="5_1kvvi"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://Environment/roundTree.tscn" id="5_rc03f"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_iuxnw"]
+script/source = "using Godot;
+using System;
+
+public partial class UserInterface : CanvasLayer
+{
+    public override void _Input(InputEvent @event)
+    {
+        
+    }
+}
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_biyrh"]
 font_size = 80
@@ -27,9 +41,6 @@ color = Color(0, 0.462745, 0.168627, 1)
 [node name="roundTree" parent="." instance=ExtResource("5_rc03f")]
 position = Vector2(801, 511)
 
-[node name="roundTree2" parent="." instance=ExtResource("5_rc03f")]
-position = Vector2(354, 570)
-
 [node name="roundTree3" parent="." instance=ExtResource("5_rc03f")]
 position = Vector2(750, 193)
 
@@ -39,23 +50,19 @@ position = Vector2(160, 137)
 [node name="Dave" parent="." instance=ExtResource("1_whxcv")]
 position = Vector2(576, 320)
 
-[node name="Inventory" parent="Dave" instance=ExtResource("4_asiu0")]
-z_index = 1
-z_as_relative = false
-offset_left = -576.0
-offset_top = -320.0
-offset_right = -576.0
-offset_bottom = -320.0
+[node name="UserInterface" type="CanvasLayer" parent="."]
+script = SubResource("CSharpScript_iuxnw")
+
+[node name="Inventory" parent="UserInterface" instance=ExtResource("4_wrd22")]
+position = Vector2(19, 14)
 
 [node name="Orc" parent="." instance=ExtResource("4_6jvny")]
 position = Vector2(78, 275)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.3
-autostart = true
 
 [node name="TreeTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 visible = false
@@ -82,6 +89,18 @@ text = "YOU SUCK"
 label_settings = SubResource("LabelSettings_biyrh")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ItemDrop" parent="." instance=ExtResource("5_1kvvi")]
+position = Vector2(247, 244)
+
+[node name="ItemDrop2" parent="." instance=ExtResource("5_1kvvi")]
+position = Vector2(359, 160)
+
+[node name="ItemDrop3" parent="." instance=ExtResource("5_1kvvi")]
+position = Vector2(335, 400)
+
+[node name="ItemDrop4" parent="." instance=ExtResource("5_1kvvi")]
+position = Vector2(200, 418)
 
 [connection signal="HealthDepleted" from="Dave" to="." method="OnDaveHealthDepleted"]
 [connection signal="HealthDepletedOrc" from="Orc" to="." method="OnEnemyHealthDepleted"]

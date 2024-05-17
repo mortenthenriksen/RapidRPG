@@ -4,14 +4,11 @@ using System;
 public partial class GameEngine : Node
 {
 
-    private Control inventory;
+    private Node2D inventory;
 
     public override void _Ready()
     {
-        if (inventory == null)
-        {
-            inventory = GetNode<Control>("/root/Game/Dave/Inventory");
-        }
+        inventory = GetNode<Node2D>("/root/Game/UserInterface/Inventory");
     }
 
 
@@ -19,10 +16,13 @@ public partial class GameEngine : Node
     {
         if (Input.IsActionJustPressed("open_inventory")) 
         {   
-            if (inventory.Visible == false) {
+            if (inventory.Visible == false) 
+            {
                 inventory.Visible = true;
+
             }
-            else {
+            else 
+            {
                 inventory.Visible = false;
             }
         }

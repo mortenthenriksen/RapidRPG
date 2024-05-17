@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bjnvli1evj1y4"]
+
+[ext_resource type="Texture2D" uid="uid://btmf0fqvwgoo2" path="res://Items/Weapons/Sword/Tree Branch.png" id="1_3i5t1"]
+[ext_resource type="Script" path="res://Items/Item.cs" id="1_m6nlk"]
+
+[resource]
+script = ExtResource("1_m6nlk")
+ID = 1
+Name = "TestStaff"
+PathToResource = ""
+Icon = ExtResource("1_3i5t1")
+Quantity = 1
+StackSize = 1
+IsStackable = false

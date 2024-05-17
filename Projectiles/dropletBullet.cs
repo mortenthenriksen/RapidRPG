@@ -23,7 +23,7 @@ public partial class dropletBullet : Area2D
     {
         if (body is IEnemies enemy)
         {
-            QueueFree();
+            //QueueFree();
             enemy.TakeDamage(damageAmount);
         }
     }

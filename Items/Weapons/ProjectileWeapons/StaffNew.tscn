@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1g2t1m0pe70p"]
+
+[ext_resource type="Texture2D" uid="uid://cg6fcofe424u6" path="res://Items/Weapons/32x32_PixelWeapons_Free.png" id="1_ycku8"]
+
+[node name="StaffNew" type="Sprite2D"]
+position = Vector2(13, -13)
+texture = ExtResource("1_ycku8")
+region_enabled = true
+region_rect = Rect2(66.3059, 290.033, 27.7695, 27.7695)
