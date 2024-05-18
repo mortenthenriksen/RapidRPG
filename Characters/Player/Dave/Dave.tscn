@@ -698,7 +698,6 @@ frame = 3
 frame_progress = 0.666369
 
 [node name="Staff" parent="." instance=ExtResource("19_muk2l")]
-visible = false
 metadata/_edit_group_ = true
 
 [node name="HurtBox" type="Area2D" parent="."]

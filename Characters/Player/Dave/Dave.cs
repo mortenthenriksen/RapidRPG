@@ -33,7 +33,7 @@ public partial class Dave : CharacterBody2D
 	public override void _Ready()
 	{
 		damageNumbersOrigin = GetNode<DamageNumbers>("/root/DamageNumbers");
-		playerInventory = GetNode<Node>("/root/Game/UserInterface/Inventory");
+		playerInventory = GetNode<Node>("/root/PlayerInventory");
 
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		customSignals.DamagePlayer += HandleDamagePlayer;
@@ -70,15 +70,11 @@ public partial class Dave : CharacterBody2D
 		MoveAndCollide(Move*speed* (float) delta);
 
 
-		if (Input.IsActionPressed("pick_up")) 
+		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
-			if (pickupBox.GetOverlappingBodies().Count > 0) 
-			{
-				var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
-				GD.Print(itemDrop.Name);
-				itemDrop.PickupItem(this);
-				playerInventory.Call("initialize_inventory");
-			}
+			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
+			GD.Print(itemDrop.Name);
+			itemDrop.PickupItem(this);
 		}
 	}
 

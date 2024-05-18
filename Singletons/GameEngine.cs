@@ -19,7 +19,6 @@ public partial class GameEngine : Node
             if (inventory.Visible == false) 
             {
                 inventory.Visible = true;
-
             }
             else 
             {
@@ -27,7 +26,5 @@ public partial class GameEngine : Node
             }
         }
     }
-
-
 
 }
