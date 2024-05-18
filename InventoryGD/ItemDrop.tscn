@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://4vws81fchdnm"]
 
 [ext_resource type="Texture2D" uid="uid://b8rqfyp6yqkqw" path="res://InventoryGD/ItemIcons/Slime Potion.png" id="1_62h1k"]
-[ext_resource type="Script" path="res://ItemDrop.cs" id="1_k75p7"]
+[ext_resource type="Script" path="res://InventoryGD/ItemDrop.cs" id="1_k75p7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eao43"]
 radius = 26.0192

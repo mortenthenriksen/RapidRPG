@@ -26,7 +26,6 @@ public partial class Dave : CharacterBody2D
 	private Vector2 lastMoveDirection = new Vector2(0, 0);
 	private PickupBox pickupBox;
 	private ItemDrop itemDrop;
-
 	private Node playerInventory;
 
 
@@ -73,7 +72,6 @@ public partial class Dave : CharacterBody2D
 		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
 			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
-			GD.Print(itemDrop.Name);
 			itemDrop.PickupItem(this);
 		}
 	}

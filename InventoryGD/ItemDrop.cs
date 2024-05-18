@@ -8,7 +8,7 @@ public partial class ItemDrop : CharacterBody2D
     Vector2 velocity = Vector2.Zero;
     string itemName;
     private Dave player = null;
-    public bool beingPickedUp = false;
+    public bool isBeingPickedUp = false;
     
     private Node playerInventory;
     private Node2D inventory;
@@ -22,7 +22,7 @@ public partial class ItemDrop : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (beingPickedUp) 
+        if (isBeingPickedUp) 
         {
             playerInventory.Call("add_item", itemName, 1);
             inventory.Call("initialize_inventory");
@@ -34,6 +34,6 @@ public partial class ItemDrop : CharacterBody2D
     public void PickupItem(Dave body)
     {
         player = body;
-        beingPickedUp = true;
+        isBeingPickedUp = true;
     }
 }
