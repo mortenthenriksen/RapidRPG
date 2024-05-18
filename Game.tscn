@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=8 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Game.cs" id="1_h7ath"]
 [ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://Characters/Player/Dave/Dave.tscn" id="1_whxcv"]
@@ -6,19 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://InventoryGD/Inventory.tscn" id="4_wrd22"]
 [ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://ItemDrop.tscn" id="5_1kvvi"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://Environment/roundTree.tscn" id="5_rc03f"]
-
-[sub_resource type="CSharpScript" id="CSharpScript_iuxnw"]
-script/source = "using Godot;
-using System;
-
-public partial class UserInterface : CanvasLayer
-{
-    public override void _Input(InputEvent @event)
-    {
-        
-    }
-}
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_biyrh"]
 font_size = 80
@@ -51,7 +38,6 @@ position = Vector2(160, 137)
 position = Vector2(576, 320)
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
-script = SubResource("CSharpScript_iuxnw")
 
 [node name="Inventory" parent="UserInterface" instance=ExtResource("4_wrd22")]
 position = Vector2(19, 14)
