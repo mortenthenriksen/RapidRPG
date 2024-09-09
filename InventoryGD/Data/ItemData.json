@@ -1,22 +1,36 @@
 {
- "Tree Branch": {
-	"ItemCategory": "Resource",
-	"StackSize": 99,
-	"Description": "A sturdy tree branch that can be used for crafting."
- },
- "Slime Potion": {
-	"ItemCategory": "Consumable",
-	"AddHealth": 5,
-	"AddEnergy": 32,
-	"StackSize": 99,
-	"Description": "It smells like medicine."
- },
- "Iron Sword": {
-	"ItemCategory": "Sword",
-	"ItemAttack": 3,
-	"ItemSpeed": 0.75,
-	"StackSize": 1,
-	"Description": "Quite rusty, like your mom in bed."
- }
+	"Tree Branch": {
+		"ItemCategory": "Resource",
+		"StackSize": 99,
+		"Description": "A sturdy tree branch that can be used for crafting."
+	},
+	"Slime Potion": {
+		"ItemCategory": "Consumable",
+		"AddHealth": 5,
+		"AddEnergy": 32,
+		"StackSize": 10,
+		"Description": "It smells like medicine."
+	},
+	"Iron Sword": {
+		"ItemCategory": "Sword",
+		"ItemAttack": 3,
+		"ItemSpeed": 0.75,
+		"StackSize": 1,
+		"Description": "Quite rusty, like your mom in bed."
+	},
+	"Brown Shirt": {
+		"ItemCategory": "Shirt",
+		"StackSize": 1,
+		"Description": "White shirts was sold out"
+	},
+	"Blue Jeans": {
+		"ItemCategory": "Pants",
+		"StackSize": 1,
+		"Description": "Pants! Didn't expect that"
+	},
+	"Brown Boots": {
+		"ItemCategory": "Shoes",
+		"StackSize": 1,
+		"Description": "What are those?!"
+	}
 }
- 	

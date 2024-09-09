@@ -68,7 +68,6 @@ public partial class Dave : CharacterBody2D
 		PlayAnimation(Move);
 		MoveAndCollide(Move*speed* (float) delta);
 
-
 		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
 			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();

@@ -14,8 +14,10 @@ public partial class Game : Node2D
 
 	private PackedScene mobScene = ResourceLoader.Load<PackedScene>("res://Characters/Enemies/Orc.tscn");
 	private PackedScene treeScene = ResourceLoader.Load<PackedScene>("res://Environment/roundTree.tscn");
+	private PackedScene itemDropScene = ResourceLoader.Load<PackedScene>("res://InventoryGD/ItemDrop.tscn");
 	private Dave player;
 	private Orc orc;
+	private Orc newMob;
 	private float experience;
 	private float health;
 	private PathFollow2D pathFollow2D;
@@ -24,6 +26,7 @@ public partial class Game : Node2D
 	private Label levelLabel;
 	private int levelNum = 1;
 	private CustomSignals customSignals;
+	
 
 
 	public override void _Ready()
@@ -41,14 +44,14 @@ public partial class Game : Node2D
 
 
 	private void SpawnMob() {
-		var newMob = mobScene.Instantiate() as Orc;
+		newMob = mobScene.Instantiate() as Orc;
 		Random random = new Random();
 		pathFollow2D.ProgressRatio = (float) random.NextDouble();
 		newMob.GlobalPosition = pathFollow2D.GlobalPosition;
-		
+
 		newMob.HealthDepletedOrc += OnEnemyHealthDepleted;
 
-		AddChild(newMob);
+		GetTree().Root.AddChild(newMob);
 	}
 	
 
@@ -57,7 +60,7 @@ public partial class Game : Node2D
 		Random random = new Random();
 		pathFollow2D.ProgressRatio = (float) random.NextDouble();
 		newTree.GlobalPosition = pathFollow2D.GlobalPosition;
-		AddChild(newTree);
+		GetTree().Root.AddChild(newTree);
 	}
 
 	private void OnMobTimerTimeout(){
@@ -74,9 +77,10 @@ public partial class Game : Node2D
 		GetTree().Paused = true;
 	}
 
-	public void OnEnemyHealthDepleted(float health) {
+	public void OnEnemyHealthDepleted(float health, Vector2 position) {
 		experience += 10;
 		EmitSignal(SignalName.UpdateExperienceBar, experience);
+			
 		experienceBar.Value = experience % 100;
 		if (experience % 100 == 0) 
 		{
@@ -84,5 +88,18 @@ public partial class Game : Node2D
 			levelLabel.Text = $"Level: {levelNum}";
 			EmitSignal(SignalName.UpdateLevel);
 		}
+		MakeItemDrop(position);
+	}
+
+
+	public void MakeItemDrop(Vector2 position) 
+	{
+		Random random = new Random();
+		//if (random.NextDouble() >= 0.5) 
+		
+			var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
+			newItemDrop.GlobalPosition = position;
+			GetTree().Root.CallDeferred("add_child", newItemDrop);
+		
 	}
 }

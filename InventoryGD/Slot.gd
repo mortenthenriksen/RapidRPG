@@ -11,12 +11,16 @@ var selected_style: StyleBoxTexture = null;
 var ItemClass = preload("res://InventoryGD/Item.tscn")
 var item = null;
 var slot_index
-var slot_type
 
 enum SlotType {
 	HOTBAR = 0, 
 	INVENTORY,
+	SHIRT, 
+	PANTS, 
+	SHOES,
 }
+
+var slot_type = null
 
 func _ready():
 	default_style = StyleBoxTexture.new()

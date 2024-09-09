@@ -25,7 +25,6 @@ public partial class ItemDrop : CharacterBody2D
         if (isBeingPickedUp) 
         {
             playerInventory.Call("add_item", itemName, 1);
-            inventory.Call("initialize_inventory");
             QueueFree();
         }
     }

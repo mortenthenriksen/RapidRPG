@@ -2,6 +2,7 @@ extends Node2D
 
 const SlotClass = preload("res://InventoryGD/Slot.gd")
 @onready var inventory_slots = $Panel/TextureRect/GridContainer
+# @onready var equip_slots = $Panel/TextureRect2/EquipSlots.get_children()
 
 
 func _ready():
@@ -10,15 +11,28 @@ func _ready():
 		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.INVENTORY
+
+	# for i in range(equip_slots.size()):
+	# 	equip_slots[i].gui_input.connect(slot_gui_input.bind(equip_slots[i]))
+	# 	equip_slots[i].slot_index = i
+	# equip_slots[0].slot_type = SlotClass.SlotType.SHIRT
+	# equip_slots[1].slot_type = SlotClass.SlotType.PANTS
+	# equip_slots[2].slot_type = SlotClass.SlotType.SHOES
+	
 	initialize_inventory()
-
-
-
+	# initialize_equips()
+	
 func initialize_inventory():
 	var slots = inventory_slots.get_children()
 	for i in range(slots.size()):
 		if PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
+
+
+# func initialize_equips():
+# 	for i in range(equip_slots.size()):
+# 		if PlayerInventory.equips.has(i):
+# 			equip_slots[i].initialize_item(PlayerInventory.equips[i][0], PlayerInventory.equips[i][1])
 
 
 
@@ -35,7 +49,9 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 						left_click_same_item(slot)
 			elif slot.item:
 				left_click_not_holding(slot)
-			
+
+
+
 func _input(_event):
 	if find_parent("UserInterface").holding_item:
 		find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
@@ -43,6 +59,15 @@ func _input(_event):
 
 func left_click_empty_slot(slot: SlotClass):
 	PlayerInventory.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
+
+	var inventory = PlayerInventory.get_inventory()
+	var item_value = find_parent("UserInterface").holding_item.item_name
+	var item_quantity = find_parent("UserInterface").holding_item.item_quantity
+	var item_key = slot.slot_index
+
+	inventory[item_key] = [item_value, item_quantity]
+	print(inventory)
+
 	slot.put_into_slot(find_parent("UserInterface").holding_item)
 	find_parent("UserInterface").holding_item = null
 
@@ -73,6 +98,11 @@ func left_click_same_item(slot: SlotClass):
 
 func left_click_not_holding(slot: SlotClass):
 	PlayerInventory.remove_item(slot)
+
+	# PlayerInventory.print_inventory()
 	find_parent("UserInterface").holding_item = slot.item
+	PlayerInventory.get_inventory().erase(slot.slot_index)
+	# PlayerInventory.print_inventory()
+	
 	slot.pick_from_slot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()

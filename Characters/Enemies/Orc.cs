@@ -4,7 +4,7 @@ using System;
 public partial class Orc : Enemies, IEnemies
 { 
 	[Signal]
-	public delegate void HealthDepletedOrcEventHandler(float health);   
+	public delegate void HealthDepletedOrcEventHandler(float health, Vector2 deathPosition);   
 
 	[Signal]
 	public delegate void UpdateHealthEventHandler(float health);
@@ -16,14 +16,12 @@ public partial class Orc : Enemies, IEnemies
 	private float threshold = 35;
 	
 	private bool isDead = false;
-	private bool isHurt = false;
 	private float elapsedTime;
 
 	private CustomSignals customSignals;
 	private AnimatedSprite2D animatedSprite2D; 
 	private CharacterBody2D player; 
 	private DamageNumbers damageNumbersOrigin;
-
 
 	public override void _Ready()
 	{
@@ -37,18 +35,19 @@ public partial class Orc : Enemies, IEnemies
 
 	}
 
-    public void HandleHealthOrcDepleted(float health)
-    {	
-        EmitSignal(SignalName.HealthDepletedOrc, health);
+	public void HandleHealthOrcDepleted(float health)
+	{	
+		EmitSignal(SignalName.HealthDepletedOrc, health, GlobalPosition);
 	}
 
 
-    private void OnHurtBoxBodyEntered(Node2D body) 
+	private void OnHurtBoxBodyEntered(Node2D body) 
 	{
 		if (body is Dave) 
 		{
-			if (body == null) { return; }
-			customSignals.EmitSignal(nameof(CustomSignals.DamagePlayer), damageAmount);
+			if (body == null) { return; } 
+			// No damage for the orcs B-)
+			//customSignals.EmitSignal(nameof(CustomSignals.DamagePlayer), damageAmount);
 		} else {
 			return;
 		}
@@ -75,17 +74,14 @@ public partial class Orc : Enemies, IEnemies
 
 		if (health > 0)
 		{
-			if (elapsedTime > 0.1f) {
-				isHurt = false;
-				if (distance < threshold)
-				{
-					animatedSprite2D.Play("attack");
-				}
-				else
-				{
-					animatedSprite2D.Play("run");
-				}
-			}	
+			if (distance < threshold)
+			{
+				animatedSprite2D.Play("attack");
+			}
+			else
+			{
+				animatedSprite2D.Play("run");
+			}
 		}
 		else if (health <= 0 && !animatedSprite2D.IsPlaying())
 		{
@@ -97,7 +93,6 @@ public partial class Orc : Enemies, IEnemies
 		health -= damageAmount;
 		if (health > 0) 
 		{   
-			isHurt = true;
 			elapsedTime = 0.0f;
 			damageNumbersOrigin.DisplayNumber(damageAmount, GlobalPosition, false);
 		}
@@ -109,12 +104,11 @@ public partial class Orc : Enemies, IEnemies
 		} 
 	}
 
-
 	// very important to also remove the eventhandler from the dying orc and not just the dying orc
-    protected override void Dispose(bool disposing)
-    {
+	protected override void Dispose(bool disposing)
+	{
 		customSignals.HealthDepletedEnemy -= HandleHealthOrcDepleted;
-        base.Dispose(disposing);
-    }
+		base.Dispose(disposing);
+	}
 }
 
