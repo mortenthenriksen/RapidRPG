@@ -95,11 +95,11 @@ public partial class Game : Node2D
 	public void MakeItemDrop(Vector2 position) 
 	{
 		Random random = new Random();
-		//if (random.NextDouble() >= 0.5) 
-		
+		if (random.NextDouble() >= 0.5) 
+		{
 			var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
 			newItemDrop.GlobalPosition = position;
 			GetTree().Root.CallDeferred("add_child", newItemDrop);
-		
+		}
 	}
 }

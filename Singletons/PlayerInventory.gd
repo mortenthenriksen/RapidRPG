@@ -10,9 +10,10 @@ const ItemClass = preload("res://InventoryGD/Item.gd")
 
 var inventory = {
     0: ["Iron Sword", 1],
-    1: ["Iron Sword", 1],
-    2: ["Tree Branch", 6],
-    3: ["Slime Potion", 10],
+    1: ["Tree Branch", 6],
+    2: ["Slime Potion", 2],
+    3: ["Slime Potion", 6],
+    4: ["Slime Potion", 10]
 }
 
 var hotbar = {
@@ -32,7 +33,6 @@ var equips = {
 var active_item_slot = 0
 
 func add_item(item_name, item_quantity):
-    # print(inventory)
     for item in inventory:
         if inventory[item][0] == item_name:
             var stack_size = int(JsonData.item_data[item_name]["StackSize"])
@@ -59,6 +59,7 @@ func update_slot_visual(slot_index, item_name, new_quantity):
     else:
         slot.initialize_item(item_name, new_quantity)
 
+
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
     match slot.SlotType: 
         SlotClass.SlotType.HOTBAR:
@@ -67,7 +68,6 @@ func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
             inventory[slot.slot_index] = [item.item_name, item.item_quantity]
         _: 
             equips[slot.slot_index] = [item.item_name, item.item_quantity]
-
 
 
 func remove_item(slot: SlotClass):
@@ -93,8 +93,8 @@ func add_item_quantity(slot: SlotClass, quantity_to_add: int):
 func get_inventory():
     return inventory
 
-func print_inventory():
-    print(inventory)
+func get_equips():
+    return equips
 
 func active_item_scroll_up():
     active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS

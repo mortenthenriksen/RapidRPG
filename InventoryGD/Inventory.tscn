@@ -1,11 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmvynwitiq8dv"]
+[gd_scene load_steps=11 format=3 uid="uid://dmvynwitiq8dv"]
 
 [ext_resource type="Script" path="res://InventoryGD/Inventory.gd" id="1_m4bpw"]
 [ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="2_goi3q"]
 [ext_resource type="Texture2D" uid="uid://cikaneuqykkvk" path="res://InventoryGD/Sprites/item_slot_default_background.png" id="3_63o1o"]
 [ext_resource type="Script" path="res://InventoryGD/Slot.gd" id="4_luyic"]
+[ext_resource type="Texture2D" uid="uid://cv0p25flrboe6" path="res://InventoryGD/Sprites/ShirtOverlay.png" id="6_0wo02"]
+[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://HelperScenes/Fonts/m5x7.ttf" id="6_y5d3h"]
+[ext_resource type="Texture2D" uid="uid://c6j86mgyi86q3" path="res://InventoryGD/Sprites/PantsOverlay.png" id="7_phdd6"]
+[ext_resource type="Texture2D" uid="uid://dg4xqqjtw8bcy" path="res://InventoryGD/Sprites/ShoesOverlay.png" id="8_baiyw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qol8f"]
+texture = ExtResource("3_63o1o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hymjy"]
 texture = ExtResource("3_63o1o")
 
 [node name="Inventory" type="Node2D"]
@@ -242,3 +249,67 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
 script = ExtResource("4_luyic")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 9.0
+offset_right = 319.0
+offset_bottom = 274.0
+texture = ExtResource("2_goi3q")
+
+[node name="EquipSlots" type="GridContainer" parent="Panel/TextureRect2"]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 57.0
+offset_right = 330.0
+offset_bottom = 170.0
+
+[node name="ShirtSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hymjy")
+script = ExtResource("4_luyic")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShirtSlot"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("6_0wo02")
+
+[node name="PantsSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hymjy")
+script = ExtResource("4_luyic")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/PantsSlot"]
+layout_mode = 0
+offset_right = 35.0
+offset_bottom = 34.0
+texture = ExtResource("7_phdd6")
+
+[node name="ShoesSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hymjy")
+script = ExtResource("4_luyic")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShoesSlot"]
+layout_mode = 0
+offset_right = 35.0
+offset_bottom = 35.0
+texture = ExtResource("8_baiyw")
+
+[node name="Label" type="Label" parent="Panel/TextureRect2"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 9.0
+offset_right = 281.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("6_y5d3h")
+theme_override_font_sizes/font_size = 32
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
