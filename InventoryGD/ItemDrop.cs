@@ -17,7 +17,7 @@ public partial class ItemDrop : CharacterBody2D
     {
         itemName = "Slime Potion";
         playerInventory = GetNode<Node>("/root/PlayerInventory");
-        inventory = GetNode<Node2D>("/root/Game/UserInterface/Inventory");
+        inventory = GetNode<Node2D>("/root/Game/UserInterface/CharacterSheet");
     }
 
     public override void _PhysicsProcess(double delta)

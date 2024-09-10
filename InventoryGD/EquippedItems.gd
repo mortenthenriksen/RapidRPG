@@ -1,35 +1,27 @@
-extends Node2D
+extends GridContainer
 
 const SlotClass = preload("res://InventoryGD/Slot.gd")
-@onready var hotbar = $HotbarSlots
-@onready var slots = hotbar.get_children()
-@onready var active_item_label = $ActiveItemLabel
+@onready var equip_slots = get_node("/root/Game/UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 
+var inventory = InventoryLogic.get_inventory()
+var equips = InventoryLogic.get_equips()
 
 func _ready():
-	for i in range(slots.size()):
-		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
-		# old godot: 
-		# PlayerInventory.Connect("active_item_updated, slots[i], "refresh_style)
-		# new godot method for the same thing:
-		InventoryLogic.active_item_updated.connect(slots[i].refresh_style)
-		slots[i].slot_index = i
-		slots[i].slot_type = SlotClass.SlotType.HOTBAR
+	var slotsEquip = equip_slots.get_children()
+	for i in range(slotsEquip.size()):
+		slotsEquip[i].gui_input.connect(slot_gui_input.bind(slotsEquip[i]))
+		slotsEquip[i].slot_index = i
+	slotsEquip[0].slot_type = SlotClass.SlotType.SHIRT
+	slotsEquip[1].slot_type = SlotClass.SlotType.PANTS
+	slotsEquip[2].slot_type = SlotClass.SlotType.SHOES
 
-	InventoryLogic.active_item_updated.connect(update_active_item_label)
-	initialize_hotbar()
-	update_active_item_label()
+	initialize_equips()
 
-func update_active_item_label():
-	if slots[InventoryLogic.active_item_slot].item != null:
-		active_item_label.text = slots[InventoryLogic.active_item_slot].item.item_name
-	else:
-		active_item_label.text = ""
-
-func initialize_hotbar():
-	for i in range(slots.size()):
-		if InventoryLogic.hotbar.has(i):
-			slots[i].initialize_item(InventoryLogic.hotbar[i][0], InventoryLogic.hotbar[i][1])
+func initialize_equips():
+	var slotsEquip = equip_slots.get_children()
+	for i in range(slotsEquip.size()):
+		if InventoryLogic.equips.has(i):
+			slotsEquip[i].initialize_item(InventoryLogic.equips[i][0], InventoryLogic.equips[i][1])
 
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
@@ -45,8 +37,6 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 						left_click_same_item(slot)
 			elif slot.item:
 				left_click_not_holding(slot)
-			update_active_item_label()
-
 
 func _input(_event):
 	if find_parent("UserInterface").holding_item:
@@ -54,16 +44,32 @@ func _input(_event):
 
 
 func left_click_empty_slot(slot: SlotClass):
-	InventoryLogic.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
-	slot.put_into_slot(find_parent("UserInterface").holding_item)
+	var holding_item = find_parent("UserInterface").holding_item
+	var item_category_enum = JsonData.item_data[holding_item.item_name]["ItemCategory"]
+	var item_category = slot.SlotTypeNames
 
-	var item_value = find_parent("UserInterface").holding_item.item_name
-	var item_quantity = find_parent("UserInterface").holding_item.item_quantity
-	var item_key = slot.slot_index
+	#print(item_category_enum)
+	#print(item_category.get(2))
+	print(slot.slot_type)
 
-	InventoryLogic.hotbar[item_key] = [item_value, item_quantity]
+	if item_category_enum == item_category.get(2) and slot.slot_type == 2:
+		print("yes to shirt")
+		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
+		slot.put_into_slot(holding_item)
+		find_parent("UserInterface").holding_item = null
+	elif item_category_enum == item_category.get(3) and slot.slot_type == 3:
+		print("yes to pants")
+		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
+		slot.put_into_slot(holding_item)
+		find_parent("UserInterface").holding_item = null
+	elif item_category_enum == item_category.get(4) and slot.slot_type == 4:
+		print("yes to shoes")
+		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
+		slot.put_into_slot(holding_item)
+		find_parent("UserInterface").holding_item = null
+	else:
+		print("Item cannot be placed in this slot")
 
-	find_parent("UserInterface").holding_item = null
 
 
 func left_click_different_item(event, slot: SlotClass):
@@ -79,9 +85,15 @@ func left_click_different_item(event, slot: SlotClass):
 func left_click_same_item(slot: SlotClass):
 	var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
 	var able_to_add = stack_size - slot.item.item_quantity
+	var item_quantity = find_parent("UserInterface").holding_item.item_quantity
+	var item_key = slot.slot_index
+
 	if able_to_add >= find_parent("UserInterface").holding_item.item_quantity:
 		InventoryLogic.add_item_quantity(slot, find_parent("UserInterface").holding_item.item_quantity)
 		slot.item.add_item_quantity(find_parent("UserInterface").holding_item.item_quantity)
+		
+		equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
+
 		find_parent("UserInterface").holding_item.queue_free()
 		find_parent("UserInterface").holding_item = null
 	else:
@@ -89,10 +101,15 @@ func left_click_same_item(slot: SlotClass):
 		slot.item.add_item_quantity(able_to_add)
 		find_parent("UserInterface").holding_item.decrease_item_quantity(able_to_add)
 
+		equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
+
 
 func left_click_not_holding(slot: SlotClass):
 	InventoryLogic.remove_item(slot)
 	find_parent("UserInterface").holding_item = slot.item
-	InventoryLogic.hotbar.erase(slot.slot_index)
 	slot.pick_from_slot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
+
+	InventoryLogic.get_equips().erase(slot.slot_index)
+
+    

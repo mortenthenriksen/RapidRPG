@@ -9,18 +9,24 @@ var empty_style: StyleBoxTexture = null;
 var selected_style: StyleBoxTexture = null;
 
 var ItemClass = preload("res://InventoryGD/Item.tscn")
-var item = null;
+var item = null
+var slot_type = null
 var slot_index
 
 enum SlotType {
 	HOTBAR = 0, 
 	INVENTORY,
-	SHIRT, 
-	PANTS, 
-	SHOES,
+	SHIRT, #2 
+	PANTS, #3
+	SHOES, #4
 }
 
-var slot_type = null
+var SlotTypeNames = {
+    SlotType.SHOES: "Shoes",
+    SlotType.SHIRT: "Shirt",
+    SlotType.PANTS: "Pants"
+}
+
 
 func _ready():
 	default_style = StyleBoxTexture.new()
@@ -33,8 +39,9 @@ func _ready():
 
 	refresh_style()
 
+
 func refresh_style():
-	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
+	if SlotType.HOTBAR == slot_type and InventoryLogic.active_item_slot == slot_index:
 		set("theme_override_styles/panel", selected_style)
 	elif item == null:
 		set("theme_override_styles/panel", empty_style)
@@ -52,12 +59,13 @@ func pick_from_slot():
 
 func put_into_slot(new_item):
 	item = new_item
-	item.position = Vector2(0,0)
+	item.position = Vector2(0, 0)
 	var inventoryNode = find_parent("UserInterface")
-	inventoryNode.remove_child(item)
+	if inventoryNode:
+		inventoryNode.remove_child(item)
 	add_child(item)
 	refresh_style()
-	
+
 
 func initialize_item(item_name, item_quantity):
 	if item == null:
@@ -67,3 +75,6 @@ func initialize_item(item_name, item_quantity):
 	else:
 		item.set_item(item_name, item_quantity)
 	refresh_style()
+
+func get_SlotTypeNames():
+	return SlotTypeNames

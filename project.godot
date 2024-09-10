@@ -22,6 +22,7 @@ InputConstants="*res://Singletons/InputConstants.cs"
 GameEngine="res://Singletons/GameEngine.cs"
 JsonData="*res://InventoryGD/Data/JSONData.gd"
 PlayerInventory="*res://Singletons/PlayerInventory.gd"
+InventoryLogic="*res://Singletons/InventoryLogic.gd"
 
 [display]
 

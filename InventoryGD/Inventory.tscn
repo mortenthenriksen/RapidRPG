@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmvynwitiq8dv"]
+[gd_scene load_steps=12 format=3 uid="uid://dmvynwitiq8dv"]
 
 [ext_resource type="Script" path="res://InventoryGD/Inventory.gd" id="1_m4bpw"]
 [ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="2_goi3q"]
 [ext_resource type="Texture2D" uid="uid://cikaneuqykkvk" path="res://InventoryGD/Sprites/item_slot_default_background.png" id="3_63o1o"]
 [ext_resource type="Script" path="res://InventoryGD/Slot.gd" id="4_luyic"]
+[ext_resource type="Script" path="res://InventoryGD/EquippedItems.gd" id="5_tjp47"]
 [ext_resource type="Texture2D" uid="uid://cv0p25flrboe6" path="res://InventoryGD/Sprites/ShirtOverlay.png" id="6_0wo02"]
 [ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://HelperScenes/Fonts/m5x7.ttf" id="6_y5d3h"]
 [ext_resource type="Texture2D" uid="uid://c6j86mgyi86q3" path="res://InventoryGD/Sprites/PantsOverlay.png" id="7_phdd6"]
@@ -264,6 +265,7 @@ offset_left = 265.0
 offset_top = 57.0
 offset_right = 330.0
 offset_bottom = 170.0
+script = ExtResource("5_tjp47")
 
 [node name="ShirtSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
