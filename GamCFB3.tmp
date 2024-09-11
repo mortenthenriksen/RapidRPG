@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=14 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Game.cs" id="1_h7ath"]
 [ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://Characters/Player/Dave/Dave.tscn" id="1_whxcv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://InventoryGD/Hotbar.tscn" id="5_86d7b"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://Environment/roundTree.tscn" id="5_rc03f"]
 [ext_resource type="Texture2D" uid="uid://cec5su3tdm8gk" path="res://Environment/RPG Nature Tileset.png" id="9_6wudm"]
+[ext_resource type="PackedScene" uid="uid://b6loue5ygyq7m" path="res://Items/ToolTip.tscn" id="10_ngu25"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0to2h"]
 texture = ExtResource("9_6wudm")
@@ -627,6 +628,8 @@ position = Vector2(19, 14)
 
 [node name="Hotbar" parent="UserInterface" instance=ExtResource("5_86d7b")]
 position = Vector2(-4, -4)
+
+[node name="ToolTip" parent="UserInterface" instance=ExtResource("10_ngu25")]
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4

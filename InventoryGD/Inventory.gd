@@ -48,14 +48,11 @@ func moving_items_inside_inventory(slot: SlotClass):
 	var item_key = slot.slot_index
 
 	inventory[item_key] = [item_value, item_quantity]
-	print(inventory)
 
 
 func left_click_empty_slot(slot: SlotClass):
 	InventoryLogic.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
-
 	moving_items_inside_inventory(slot)
-
 	slot.put_into_slot(find_parent("UserInterface").holding_item)
 	find_parent("UserInterface").holding_item = null
 

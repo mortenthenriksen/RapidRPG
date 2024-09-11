@@ -11,9 +11,14 @@ func _ready():
 	for i in range(slotsEquip.size()):
 		slotsEquip[i].gui_input.connect(slot_gui_input.bind(slotsEquip[i]))
 		slotsEquip[i].slot_index = i
-	slotsEquip[0].slot_type = SlotClass.SlotType.SHIRT
-	slotsEquip[1].slot_type = SlotClass.SlotType.PANTS
-	slotsEquip[2].slot_type = SlotClass.SlotType.SHOES
+	slotsEquip[0].slot_type = SlotClass.SlotType.HELMET
+	slotsEquip[1].slot_type = SlotClass.SlotType.AMULET
+	slotsEquip[2].slot_type = SlotClass.SlotType.TORSO
+	slotsEquip[3].slot_type = SlotClass.SlotType.OFFHAND
+	slotsEquip[4].slot_type = SlotClass.SlotType.PANTS
+	slotsEquip[5].slot_type = SlotClass.SlotType.RING1
+	slotsEquip[6].slot_type = SlotClass.SlotType.SHOES
+	slotsEquip[7].slot_type = SlotClass.SlotType.RING2
 
 	initialize_equips()
 
@@ -38,70 +43,79 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 			elif slot.item:
 				left_click_not_holding(slot)
 
+
 func _input(_event):
 	if find_parent("UserInterface").holding_item:
 		find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 
 
-func left_click_empty_slot(slot: SlotClass):
+func is_correct_slot_type(slot: SlotClass):
 	var holding_item = find_parent("UserInterface").holding_item
 	var item_category_enum = JsonData.item_data[holding_item.item_name]["ItemCategory"]
 	var item_category = slot.SlotTypeNames
 
-	#print(item_category_enum)
-	#print(item_category.get(2))
-	print(slot.slot_type)
-
 	if item_category_enum == item_category.get(2) and slot.slot_type == 2:
-		print("yes to shirt")
-		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
-		slot.put_into_slot(holding_item)
-		find_parent("UserInterface").holding_item = null
+		return true
 	elif item_category_enum == item_category.get(3) and slot.slot_type == 3:
-		print("yes to pants")
-		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
-		slot.put_into_slot(holding_item)
-		find_parent("UserInterface").holding_item = null
+		return true
 	elif item_category_enum == item_category.get(4) and slot.slot_type == 4:
-		print("yes to shoes")
+		return true
+	elif item_category_enum == item_category.get(5) and slot.slot_type == 5:
+		return true
+	elif item_category_enum == item_category.get(6) and slot.slot_type == 6:
+		return true
+	elif item_category_enum == item_category.get(7) and slot.slot_type == 7:
+		return true
+	elif item_category_enum == item_category.get(8) and slot.slot_type == 8:
+		return true
+	elif item_category_enum == item_category.get(9) and slot.slot_type == 9:
+		return true
+	
+	else: 
+		# you're a god, Morten :)
+		pass
+
+func left_click_empty_slot(slot: SlotClass):
+	var holding_item = find_parent("UserInterface").holding_item
+
+	if is_correct_slot_type(slot):
 		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
 		slot.put_into_slot(holding_item)
 		find_parent("UserInterface").holding_item = null
-	else:
-		print("Item cannot be placed in this slot")
-
 
 
 func left_click_different_item(event, slot: SlotClass):
-	InventoryLogic.remove_item(slot)
-	InventoryLogic.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
-	var temp_item = slot.item
-	slot.pick_from_slot()
-	temp_item.global_position = event.global_position
-	slot.put_into_slot(find_parent("UserInterface").holding_item)
-	find_parent("UserInterface").holding_item = temp_item
+	if is_correct_slot_type(slot):
+		InventoryLogic.remove_item(slot)
+		InventoryLogic.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
+		var temp_item = slot.item
+		slot.pick_from_slot()
+		temp_item.global_position = event.global_position
+		slot.put_into_slot(find_parent("UserInterface").holding_item)
+		find_parent("UserInterface").holding_item = temp_item
 
 
 func left_click_same_item(slot: SlotClass):
-	var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
-	var able_to_add = stack_size - slot.item.item_quantity
-	var item_quantity = find_parent("UserInterface").holding_item.item_quantity
-	var item_key = slot.slot_index
+	if is_correct_slot_type(slot):
+		var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
+		var able_to_add = stack_size - slot.item.item_quantity
+		var item_quantity = find_parent("UserInterface").holding_item.item_quantity
+		var item_key = slot.slot_index
 
-	if able_to_add >= find_parent("UserInterface").holding_item.item_quantity:
-		InventoryLogic.add_item_quantity(slot, find_parent("UserInterface").holding_item.item_quantity)
-		slot.item.add_item_quantity(find_parent("UserInterface").holding_item.item_quantity)
-		
-		equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
+		if able_to_add >= find_parent("UserInterface").holding_item.item_quantity:
+			InventoryLogic.add_item_quantity(slot, find_parent("UserInterface").holding_item.item_quantity)
+			slot.item.add_item_quantity(find_parent("UserInterface").holding_item.item_quantity)
+			
+			equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
 
-		find_parent("UserInterface").holding_item.queue_free()
-		find_parent("UserInterface").holding_item = null
-	else:
-		InventoryLogic.add_item_quantity(slot, find_parent("UserInterface").holding_item.item_quantity)
-		slot.item.add_item_quantity(able_to_add)
-		find_parent("UserInterface").holding_item.decrease_item_quantity(able_to_add)
+			find_parent("UserInterface").holding_item.queue_free()
+			find_parent("UserInterface").holding_item = null
+		else:
+			InventoryLogic.add_item_quantity(slot, find_parent("UserInterface").holding_item.item_quantity)
+			slot.item.add_item_quantity(able_to_add)
+			find_parent("UserInterface").holding_item.decrease_item_quantity(able_to_add)
 
-		equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
+			equips[item_key] = [slot.item.item_name, slot.item.item_quantity]
 
 
 func left_click_not_holding(slot: SlotClass):
@@ -112,4 +126,4 @@ func left_click_not_holding(slot: SlotClass):
 
 	InventoryLogic.get_equips().erase(slot.slot_index)
 
-    
+	

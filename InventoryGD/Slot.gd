@@ -16,15 +16,25 @@ var slot_index
 enum SlotType {
 	HOTBAR = 0, 
 	INVENTORY,
-	SHIRT, #2 
-	PANTS, #3
-	SHOES, #4
+	HELMET, #2
+	AMULET, #3 
+	TORSO, #4
+	OFFHAND, #5
+	PANTS, #6
+	RING1, #7
+	SHOES, #8
+	RING2, #9
 }
 
 var SlotTypeNames = {
-    SlotType.SHOES: "Shoes",
-    SlotType.SHIRT: "Shirt",
-    SlotType.PANTS: "Pants"
+	SlotType.HELMET: "Helmet",
+	SlotType.AMULET: "Amulet",
+    SlotType.TORSO: "Torso",
+	SlotType.OFFHAND: "Offhand",
+    SlotType.PANTS: "Pants",
+	SlotType.RING1: "Ring1",
+	SlotType.SHOES: "Shoes",
+	SlotType.RING2: "Ring2"
 }
 
 

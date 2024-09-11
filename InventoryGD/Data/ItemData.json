@@ -11,6 +11,7 @@
 		"StackSize": 10,
 		"Description": "It smells like medicine."
 	},
+
 	"Iron Sword": {
 		"ItemCategory": "Sword",
 		"ItemAttack": 3,
@@ -18,8 +19,40 @@
 		"StackSize": 1,
 		"Description": "Quite rusty, like your mom in bed."
 	},
+
+	"Iron Helmet": {
+		"ItemCategory": "Helmet",
+		"Defense": 4,
+		"StackSize": 1,
+		"Description": "Not the hair!"
+	},
+
+	"Iron Chestplate": {
+		"ItemCategory": "Torso",
+		"Defense": 10,
+		"StackSize": 1,
+		"Description": "So hard!"
+	},
+
+	"Iron Leggins": {
+		"ItemCategory": "Pants",
+		"Defense": 5,
+		"StackSize": 1,
+		"Description": "Nobody is getting through these!"
+	},
+
+	"Iron Boots": {
+		"ItemCategory": "Shoes",
+		"Defense": 5,
+		"StackSize": 1,
+		"Description": "Even works when stepping on nails"
+	},
+
+
+
+	
 	"Brown Shirt": {
-		"ItemCategory": "Shirt",
+		"ItemCategory": "Torso",
 		"StackSize": 1,
 		"Description": "White shirts was sold out"
 	},

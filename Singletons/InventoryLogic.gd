@@ -38,20 +38,6 @@ func add_item(item_name, item_quantity):
             return
 
 
-func is_correct_item_type(slot: SlotClass):
-    if find_parent("UserInterface").holding_item == null:
-        return true
-    var holding_item_category = JsonData.item_data[find_parent("UserInterface").holding_item.item_name]["ItemCategory"]
-
-    if slot.slotType == SlotClass.SlotType.SHIRT:
-        return holding_item_category == "Shirt"
-    elif slot.slotType == SlotClass.SlotType.PANTS:
-        return holding_item_category == "Pants"
-    elif slot.slotType == SlotClass.SlotType.SHOES:
-        return holding_item_category == "Shoes"
-    return true
-
-
 func update_slot_visual(slot_index, item_name, new_quantity):
     var slot = get_tree().root.get_node("/root/Game/UserInterface/Inventory/Panel/TextureRect/GridContainer/Slot" + str(slot_index + 1))
     if slot.item != null:

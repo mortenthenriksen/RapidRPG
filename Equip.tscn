@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rwea8yn53h3j"]
+[gd_scene load_steps=8 format=3 uid="uid://j8m63edv6mbd"]
 
 [ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="1_uaecv"]
 [ext_resource type="Texture2D" uid="uid://cikaneuqykkvk" path="res://InventoryGD/Sprites/item_slot_default_background.png" id="2_o4an4"]

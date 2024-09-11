@@ -10,8 +10,6 @@ var inventory = {
 	0: ["Iron Sword", 1],
 	1: ["Tree Branch", 6],
 	2: ["Slime Potion", 2],
-	3: ["Slime Potion", 6],
-	4: ["Slime Potion", 10]
 }
 
 var hotbar = {
@@ -22,9 +20,10 @@ var hotbar = {
 }
 
 var equips = {
-	0: ["Brown Shirt", 1],
-	1: ["Blue Jeans", 1],
-	2: ["Brown Boots", 1],
+	0: ["Iron Helmet", 1],
+	2: ["Iron Chestplate", 1],
+	4: ["Iron Leggins", 1],
+	6: ["Iron Boots", 1],
 }
 
 
