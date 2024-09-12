@@ -40,8 +40,14 @@ public partial class Game : Node2D
 
 		player = GetNode<Dave>("Dave");
 		orc = GetNode<Orc>("Orc");
+
+		// ChangeWindowSize(new Vector2(1280, 720));
 	}
 
+	private void ChangeWindowSize(Vector2 newSize)
+	{
+		GetWindow().Size = (Vector2I) newSize;
+	}
 
 	private void SpawnMob() {
 		newMob = mobScene.Instantiate() as Orc;

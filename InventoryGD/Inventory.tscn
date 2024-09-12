@@ -46,6 +46,7 @@ texture = ExtResource("3_63o1o")
 script = ExtResource("1_m4bpw")
 
 [node name="Panel" type="Panel" parent="."]
+z_index = -100
 offset_left = 788.0
 offset_top = 84.0
 offset_right = 1119.0

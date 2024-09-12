@@ -9,9 +9,9 @@
 script = ExtResource("1_r5ixa")
 
 [node name="HotbarBackground" type="TextureRect" parent="."]
-offset_left = 373.0
+offset_left = 428.0
 offset_top = 556.0
-offset_right = 583.0
+offset_right = 607.0
 offset_bottom = 606.0
 scale = Vector2(1.78086, 1.02273)
 texture = ExtResource("1_4qtai")

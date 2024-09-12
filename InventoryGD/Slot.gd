@@ -86,5 +86,6 @@ func initialize_item(item_name, item_quantity):
 		item.set_item(item_name, item_quantity)
 	refresh_style()
 
+
 func get_SlotTypeNames():
 	return SlotTypeNames
