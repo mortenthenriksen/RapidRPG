@@ -1,13 +1,19 @@
 using Godot;
-using System;
+using Game.Characters;
+using Game.Manager;
 
-public partial class dropletBullet : Area2D
+namespace Game.Projectiles;
+
+public partial class DropletBullet : Area2D
 {
-
     float travelledDistance = 0; 
     const float SPEED = 600;
     const float RANGE = 800;
-    private float damageAmount = 2.9f;
+
+    public override void _Ready()
+    {
+        
+    }
 
     public override void _PhysicsProcess(double delta) 
     {
@@ -19,12 +25,18 @@ public partial class dropletBullet : Area2D
         }
     }
 
+
     private void OnBodyEntered(Node body)
     {
-        if (body is IEnemies enemy)
+        if (body is Orc enemy)
         {
-            //QueueFree();
-            enemy.TakeDamage(damageAmount);
+            enemy.TakeDamage(GetTotalDamageAmountFromDamageManager());
         }
+    }
+    
+    
+    private float GetTotalDamageAmountFromDamageManager()
+    {
+        return DamageManager.Instance.TotalDamageAmount();
     }
 }

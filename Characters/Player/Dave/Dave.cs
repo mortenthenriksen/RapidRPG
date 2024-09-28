@@ -1,127 +1,108 @@
 using Godot;
-using System;
 using System.Linq;
+
+namespace Game.Characters;
 
 public partial class Dave : CharacterBody2D
 {
 	private float speed = 300;
 	private bool isRolling = false;
-	private float health = 50.0f;
-	
-	[Signal]
-	public delegate void UpdateHealthEventHandler(float health);
-    
-	[Signal]
-	public delegate void HealthDepletedEventHandler(float health);    
+	private float MAX_HEALTH = 75.0f;
+	private float health = 75.0f;
+	private float healthRegenAmount = 0.25f;
+	private readonly StringName MOVE_LEFT = "move_left";
+	private readonly StringName MOVE_RIGHT = "move_right";
+	private readonly StringName MOVE_UP = "move_up";
+	private readonly StringName MOVE_DOWN = "move_down";
+	private readonly StringName ROLL = "roll";
 
 	[Signal]
-    public delegate void DamageReceivedEventHandler(float damageAmount);
+	public delegate void UpdatePlayerHealthEventHandler(float health);
 
-	
-	private CustomSignals customSignals;
+	[Signal]
+	public delegate void PlayerHealthDepletedEventHandler(float health);
+
 	private AnimatedSprite2D animatedSprite2D;
 	private ProgressBar healthBar;
 	private Label healthLabel;
-	private DamageNumbers damageNumbersOrigin;
 	private Vector2 lastMoveDirection = new Vector2(0, 0);
 	private PickupBox pickupBox;
 	private ItemDrop itemDrop;
-	private Node playerInventory;
-
+	private Timer healthRegenTimer;
 
 	public override void _Ready()
 	{
-		damageNumbersOrigin = GetNode<DamageNumbers>("/root/DamageNumbers");
-		playerInventory = GetNode<Node>("/root/PlayerInventory");
-
-		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-		customSignals.DamagePlayer += HandleDamagePlayer;
-		customSignals.HealthDepleted += HandleHealthDepleted;
-		
-		
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		healthBar = GetNode<ProgressBar>("HealthBar");
 		healthLabel = GetNode<Label>("HealthBar/HealthLabel");
 		pickupBox = GetNode<PickupBox>("PickupBox");
-	}
 
-	private void HandleDamagePlayer(float damageAmount) {
-		health -= damageAmount;
-		damageNumbersOrigin.DisplayNumber(damageAmount, GlobalPosition, false);
-		EmitSignal(SignalName.UpdateHealth, health);
-		healthBar.Value = health;
-		healthLabel.Text = $"Health: {health}";
-		if (health <= 0) 
-		{
-			EmitSignal(nameof(CustomSignals.HealthDepleted), health);
-		}
-		
-	}
-
-	public void HandleHealthDepleted(float health) {
-		EmitSignal(SignalName.HealthDepleted, health);
+		UpdateHealthBar();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 Move = HandleInput();
 		PlayAnimation(Move);
-		MoveAndCollide(Move*speed* (float) delta);
+		MoveAndCollide(Move * speed * (float) delta);
 
 		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
 			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
 			itemDrop.PickupItem(this);
+			// inventory.AddItemToInventory(itemDrop.GetItemName(), 1);
 		}
 	}
 
+	public void PlayerDamageReceived(float damageAmount, Vector2 position) 
+	{
+		health -= damageAmount;
+		UpdateHealthBar();
+		if (health <= 0) 
+		{
+			EmitSignal(SignalName.PlayerHealthDepleted, health);
+		}
+	}
+
+	private void OnTimerTimeout()
+	{
+		RegenerateHealth();
+	}
+
+	private void RegenerateHealth()
+	{
+		health = Mathf.Min(health + healthRegenAmount, MAX_HEALTH);
+		UpdateHealthBar();
+	}
+	
+	private void UpdateHealthBar()
+	{
+		EmitSignal(SignalName.UpdatePlayerHealth, health);
+		healthBar.MaxValue = MAX_HEALTH;
+		healthBar.Value = health;
+		healthLabel.Text = $"Health: {health}";
+	}
 
 	private Vector2 HandleInput()
 	{
-		Vector2 Move = new Vector2(0,0);
 
-		if (Input.IsActionPressed(InputConstants.MOVE_UP))
-		{
-			Move.Y -= 1;
-			lastMoveDirection = Move;
-		}
-
-		if (Input.IsActionPressed(InputConstants.MOVE_DOWN))
-		{
-			Move.Y += 1;
-			lastMoveDirection = Move;
-		}
-
-		if (Input.IsActionPressed(InputConstants.MOVE_LEFT))
-		{
-			Move.X -= 1;
-			lastMoveDirection = Move;
-		}
-
-		if (Input.IsActionPressed(InputConstants.MOVE_RIGHT))
-		{
-			Move.X += 1;
-			lastMoveDirection = Move;
-		}
-
-
-		if (Input.IsActionPressed(InputConstants.ROLL))
-		{   
-			//Move += lastMoveDirection * 2.5f;
-		}
-
-		return Move;
+		Vector2 moveDirection =  Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
+		// if (Input.IsActionPressed(ROLL))
+		// {   
+		// 	moveDirection += lastMoveDirection + new Vector2(1, 1);
+		// }
+		return moveDirection;
 	}
 
 	private void PlayAnimation(Vector2 direction) 
 	{
 		string action;
 
-		// if (Input.IsActionPressed(InputConstants.ROLL))
-		// {
-		//     action = "roll";
-		//     direction = lastMoveDirection;
-		// }
+		if (Input.IsActionPressed(ROLL))
+		{
+		    action = ROLL;
+		    direction = lastMoveDirection;
+		}
 
 		if (direction == Vector2.Zero) 
 		{
@@ -140,24 +121,31 @@ public partial class Dave : CharacterBody2D
 			Vector2 d when d == Vector2.Down => "Down",
 			Vector2 d when d == Vector2.Left => "Left",
 			Vector2 d when d == Vector2.Right => "Right",
-			Vector2 d when d == Vector2.Up + Vector2.Right => "UpRight",
-			Vector2 d when d == Vector2.Up + Vector2.Left => "UpLeft",
-			Vector2 d when d == Vector2.Down + Vector2.Right => "DownRight",
-			Vector2 d when d == Vector2.Down + Vector2.Left => "DownLeft",
+			// slightly cursed, but i dont care :)
+			Vector2 d when d == new Vector2(-(float)0.70710677, -(float)0.70710677) => "UpLeft", 
+			Vector2 d when d == new Vector2((float)0.70710677, -(float)0.70710677) => "UpRight", 
+			Vector2 d when d == new Vector2(-(float)0.70710677, (float)0.70710677) => "DownLeft", 
+			Vector2 d when d == new Vector2((float)0.70710677, (float)0.70710677) => "DownRight", 
 			_ => ""
 		};
 
 		string animationName = action + directionSuffix;
 		animatedSprite2D.Play(animationName);
 	}
-	
+
 
 	public Vector2 GetCurrentDirection()
 	{
 		return lastMoveDirection;
 	}
 
+	public Vector2 GetCurrentPlayerPosition()
+	{
+		return GlobalPosition;
+	}
+	
 	public float GetHealth() {
 		return health;
 	}
+
 }

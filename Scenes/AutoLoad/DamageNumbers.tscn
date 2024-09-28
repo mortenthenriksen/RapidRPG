@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cporrs8hka7fd"]
+
+[ext_resource type="Script" path="res://Scenes/AutoLoad/DamageNumbers.cs" id="1_kl1gk"]
+
+[node name="DamageNumbers" type="Node"]
+script = ExtResource("1_kl1gk")

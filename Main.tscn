@@ -1,0 +1,153 @@
+[gd_scene load_steps=22 format=3 uid="uid://dcepunlnh4wgu"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
+[ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
+[ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://Characters/Player/Dave/Dave.tscn" id="2_y6x0m"]
+[ext_resource type="PackedScene" uid="uid://mib2hqo11ekk" path="res://Characters/Enemies/Orc.tscn" id="3_qk0ik"]
+[ext_resource type="Script" path="res://InventoryGD/UserInterface.gd" id="4_3b3nt"]
+[ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://Managers/DamageManager.tscn" id="4_3djjo"]
+[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://Resources/tiles.tres" id="4_bm5kl"]
+[ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://InventoryGD/ItemDrop.tscn" id="4_w44kb"]
+[ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://Scenes/AutoLoad/DamageNumbers.tscn" id="5_2a70g"]
+[ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://InventoryGD/Inventory.tscn" id="5_3ibag"]
+[ext_resource type="Script" path="res://Resources/TileMap.cs" id="5_26fb6"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_03c58"]
+[ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://InventoryGD/Hotbar.tscn" id="6_46h80"]
+[ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://Scenes/AutoLoad/CustomSignals.tscn" id="7_32r1k"]
+[ext_resource type="PackedScene" uid="uid://53ah323bj8tk" path="res://Scenes/environment/Bonfire.tscn" id="14_s20ge"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
+script/source = "using Game.Characters;
+using Godot;
+
+public partial class roundTree : StaticBody2D
+{
+    private Dave player;
+    private float maxDistance = 800; // Set this to the maximum distance you want
+
+    public override void _Ready()
+    {
+        player = GetTree().Root.GetNode<Dave>(\"/root/Game/Dave\");
+    }
+
+    public override void _Process(double delta)
+    {
+        float distance = player.GlobalPosition.DistanceTo(GlobalPosition);
+
+        if (distance > maxDistance) {
+            QueueFree();
+        }
+    }
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_em2vo"]
+load_path = "res://.godot/imported/groundShadow.png-a876e40a34e9fdf8d547a4b1e6de7f5e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_37mgx"]
+load_path = "res://.godot/imported/Surplus Trees.png-088cdd563d2e0eb0066fbed733861ed7.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlon5"]
+radius = 22.9946
+height = 122.009
+
+[sub_resource type="PackedScene" id="PackedScene_ed46r"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("roundTree", "StaticBody2D", "script", "GroundShadow", "Sprite2D", "modulate", "position", "scale", "texture", "Sprite2D", "Sprite2D", "position", "scale", "texture", "hframes", "vframes", "frame", "CollisionShape2D", "CollisionShape2D", "position", "rotation", "shape"),
+"node_count": 4,
+"node_paths": [NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 4, 5, 1, 6, 2, 7, 3, 8, 4, 0, 1073741825, 0, 10, 9, -1, 6, 11, 5, 12, 6, 13, 7, 14, 8, 15, 9, 16, 10, 0, 1073741826, 0, 18, 17, -1, 3, 19, 11, 20, 12, 21, 13, 0),
+"variants": [SubResource("CSharpScript_4khn7"), Color(0.733333, 0.733333, 0.733333, 1), Vector2(-1, -21), Vector2(1.39, 1.39), SubResource("CompressedTexture2D_em2vo"), Vector2(29, -118), Vector2(1.51274, 1.51274), SubResource("CompressedTexture2D_37mgx"), 5, 5, 4, Vector2(1, -25), 1.56569, SubResource("CapsuleShape2D_jlon5")],
+"version": 3
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_biyrh"]
+font_size = 80
+font_color = Color(1, 0, 0, 1)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player")]
+y_sort_enabled = true
+script = ExtResource("1_am2bs")
+treeScene = SubResource("PackedScene_ed46r")
+orcScene = ExtResource("3_qk0ik")
+player = NodePath("Dave")
+itemDropScene = ExtResource("4_w44kb")
+
+[node name="DamageManager" parent="." node_paths=PackedStringArray("player", "damageNumbers", "staff") instance=ExtResource("4_3djjo")]
+player = NodePath("../Dave")
+orcScene = ExtResource("3_qk0ik")
+damageNumbers = NodePath("../DamageNumbers")
+staff = NodePath("../Dave/Staff")
+
+[node name="DamageNumbers" parent="." instance=ExtResource("5_2a70g")]
+pixelKubastaFontTheme = ExtResource("6_03c58")
+
+[node name="CustomSignals" parent="." instance=ExtResource("7_32r1k")]
+
+[node name="TileMap" type="TileMap" parent="." node_paths=PackedStringArray("player")]
+tile_set = ExtResource("4_bm5kl")
+format = 2
+script = ExtResource("5_26fb6")
+player = NodePath("../Dave")
+
+[node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
+position = Vector2(580, 363)
+
+[node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
+position = Vector2(284, 242)
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+layer = 0
+script = ExtResource("4_3b3nt")
+
+[node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
+position = Vector2(19, 14)
+
+[node name="Hotbar" parent="UserInterface" instance=ExtResource("6_46h80")]
+visible = false
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="TreeTimer" type="Timer" parent="."]
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+anchors_preset = -1
+anchor_left = 0.425
+anchor_top = 0.464
+anchor_right = 0.425
+anchor_bottom = 0.464
+offset_left = -642.6
+offset_top = -351.672
+offset_right = 784.4
+offset_bottom = 426.328
+color = Color(0, 0, 0, 0.705882)
+
+[node name="Label" type="Label" parent="GameOverScreen/ColorRect"]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 248.0
+offset_right = 980.0
+offset_bottom = 471.0
+text = "YOU SUCK"
+label_settings = SubResource("LabelSettings_biyrh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bonfire" parent="." instance=ExtResource("14_s20ge")]
+position = Vector2(580, 166)
+
+[node name="roundTree" parent="." instance=ExtResource("2_n184a")]
+position = Vector2(812, 187)
+
+[node name="roundTree2" parent="." instance=ExtResource("2_n184a")]
+position = Vector2(182, 189)
+
+[connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
+[connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]

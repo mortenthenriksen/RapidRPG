@@ -1,7 +1,6 @@
 [gd_scene load_steps=96 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://Characters/Player/Dave/Dave.cs" id="1_soyg5"]
-[ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://HelperScenes/groundShadow.png" id="2_jv5j6"]
 [ext_resource type="Texture2D" uid="uid://dg6a6tjqvgfrs" path="res://Characters/Player/Dave/SpriteSheets/Character_RollLeft.png" id="3_43swp"]
 [ext_resource type="Texture2D" uid="uid://iaqg1dpo0y4s" path="res://Characters/Player/Dave/SpriteSheets/Character_Down.png" id="3_i0xh5"]
 [ext_resource type="Texture2D" uid="uid://ch16a8kulfbqu" path="res://Characters/Player/Dave/SpriteSheets/Character_RollRight.png" id="3_mc1xi"]
@@ -19,8 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://dnws0smvmr66x" path="res://Characters/Player/Dave/SpriteSheets/Character_RollUpLeft.png" id="17_8vb4a"]
 [ext_resource type="Texture2D" uid="uid://c158i2l4tac5p" path="res://Characters/Player/Dave/SpriteSheets/Character_RollUpRight.png" id="18_uouck"]
 [ext_resource type="PackedScene" uid="uid://dqoa6rbuyyevn" path="res://Items/Weapons/ProjectileWeapons/Staff.tscn" id="19_muk2l"]
-[ext_resource type="PackedScene" uid="uid://d00andmxxbci4" path="res://HelperScenes/HealthLabel/HealthLabel.tscn" id="22_81dvy"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://Characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_em2vo"]
+load_path = "res://.godot/imported/groundShadow.png-a876e40a34e9fdf8d547a4b1e6de7f5e.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eu5cp"]
 radius = 9.0
@@ -680,7 +682,7 @@ script = ExtResource("1_soyg5")
 modulate = Color(0.733005, 0.733005, 0.733005, 1)
 position = Vector2(-1.19209e-07, -3)
 scale = Vector2(0.32875, 0.32875)
-texture = ExtResource("2_jv5j6")
+texture = SubResource("CompressedTexture2D_em2vo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -694,8 +696,7 @@ position = Vector2(-1, -25)
 scale = Vector2(2.02588, 2.03125)
 sprite_frames = SubResource("SpriteFrames_0jluf")
 animation = &"rollLeft"
-frame = 3
-frame_progress = 0.666369
+frame_progress = 0.828298
 
 [node name="Staff" parent="." instance=ExtResource("19_muk2l")]
 metadata/_edit_group_ = true
@@ -720,13 +721,15 @@ max_value = 50.0
 value = 50.0
 show_percentage = false
 
-[node name="HealthLabel" parent="HealthBar" instance=ExtResource("22_81dvy")]
+[node name="HealthLabel" type="Label" parent="HealthBar"]
 layout_mode = 0
-offset_top = -14.0
-offset_right = 66.0
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = -17.0
+offset_top = -25.0
+offset_right = 95.0
+offset_bottom = 3.0
+theme = ExtResource("19_pixa1")
+theme_override_font_sizes/font_size = 32
+text = "Health: 75"
 
 [node name="ExperienceBar" type="ProgressBar" parent="."]
 z_index = 10

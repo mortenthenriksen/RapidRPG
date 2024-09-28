@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://mib2hqo11ekk"]
+[gd_scene load_steps=32 format=3 uid="uid://mib2hqo11ekk"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Orc.cs" id="1_sy4n5"]
 [ext_resource type="Texture2D" uid="uid://dv1ngbcc5vvi6" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack01.png" id="5_asduv"]
 [ext_resource type="Texture2D" uid="uid://bly5q6kl5edld" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Death.png" id="5_uknlb"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_rvdu8"]
 [ext_resource type="Texture2D" uid="uid://sryh4gi0dfp1" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Walk.png" id="6_yte1w"]
 [ext_resource type="Texture2D" uid="uid://d0by56dsydqe8" path="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Hurt.png" id="7_uj3w3"]
 
@@ -175,19 +176,36 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6kf6"]
 radius = 9.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mytl1"]
+bg_color = Color(0.22011, 0.11286, 0.15504, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0kx4"]
+bg_color = Color(0.157667, 0.86, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="Orc" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_sy4n5")
 
 [node name="GroundShadow" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.733333, 0.733333, 0.733333, 1)
 position = Vector2(-9.53674e-07, -4)
 scale = Vector2(0.224219, 0.227117)
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 position = Vector2(1, -20)
 shape = SubResource("CircleShape2D_0c8ua")
 debug_color = Color(0.894636, 0.000213508, 0.780598, 0.42)
@@ -197,13 +215,31 @@ position = Vector2(-1, -17)
 scale = Vector2(1.97688, 1.97688)
 sprite_frames = SubResource("SpriteFrames_yf0f3")
 animation = &"run"
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_q6kf6")
 
-[node name="DamageNumbersOrigin" type="Node2D" parent="."]
-position = Vector2(0, -42)
+[node name="HealthBarOrc" type="ProgressBar" parent="."]
+offset_left = -33.0
+offset_top = -54.0
+offset_right = 33.0
+offset_bottom = -47.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mytl1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v0kx4")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="HealthLabelOrc" type="Label" parent="HealthBarOrc"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -13.0
+offset_right = 64.0
+offset_bottom = 1.0
+theme = ExtResource("6_rvdu8")
 
 [connection signal="body_entered" from="HurtBox" to="." method="OnHurtBoxBodyEntered"]
 [connection signal="body_exited" from="HurtBox" to="." method="OnHurtBoxBodyExited"]

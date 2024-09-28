@@ -1,0 +1,115 @@
+using Game.Autoload;
+using Game.Characters;
+using Godot;
+using System;
+
+public partial class Main : Node2D
+{
+
+[Signal]
+	public delegate void UpdateExperienceBarEventHandler();
+
+	[Signal]
+	public delegate void UpdateLevelEventHandler();
+	
+	[Export]
+	private PackedScene treeScene;
+
+	[Export]
+	private PackedScene orcScene;
+
+	[Export]
+	private Dave player;
+
+	[Export]
+	private PackedScene itemDropScene;
+
+	[Export]
+	private DamageNumbers damageNumbers;
+
+
+	private int levelNum = 1;
+	private float experience;
+	private float health;
+	// private Orc spawnedOrc;
+	private PathFollow2D pathFollow2D;
+	private CanvasLayer gameOverScreen;
+	private ProgressBar experienceBar;
+	private Label levelLabel;
+	
+
+	public override void _Ready()
+	{
+		pathFollow2D = GetNode<PathFollow2D>("/root/Main/Dave/Path2D/PathFollow2D");
+		gameOverScreen = GetNode<CanvasLayer>("GameOverScreen");
+		experienceBar = GetNode<ProgressBar>("/root/Main/Dave/ExperienceBar");
+		levelLabel = GetNode<Label>("/root/Main/Dave/ExperienceBar/LevelLabel");
+
+		// player.PlayerHealthDepleted += OnPlayerHealthDepleted; 
+		CustomSignals.Instance.EnemyHealthDepleted += OnEnemyHealthDepleted;
+	}
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("exit"))
+		{
+			GetTree().Quit();	
+		}
+    }
+
+
+    // private void SpawnMob() {
+	// 	spawnedOrc = orcScene.Instantiate() as Orc;
+	// 	Random random = new Random();
+	// 	pathFollow2D.ProgressRatio = (float) random.NextDouble();
+	// 	spawnedOrc.GlobalPosition = pathFollow2D.GlobalPosition;
+	// 	GetTree().Root.AddChild(spawnedOrc);
+	// }
+
+
+    private void SpawnTree() {
+		var newTree = treeScene.Instantiate() as StaticBody2D;
+		Random random = new Random();
+		pathFollow2D.ProgressRatio = (float) random.NextDouble();
+		newTree.GlobalPosition = pathFollow2D.GlobalPosition;
+		GetTree().Root.AddChild(newTree);
+	}
+
+
+
+	private void OnPlayerHealthDepleted(float health) {
+		gameOverScreen.Visible = true;
+		GetTree().Paused = true;
+	}
+
+	private void OnEnemyHealthDepleted(float health, Vector2 position) {
+		experience += 10;
+		EmitSignal(SignalName.UpdateExperienceBar, experience);
+			
+		experienceBar.Value = experience % 100;
+		if (experience % 100 == 0) 
+		{
+			levelNum += 1;
+			levelLabel.Text = $"Level: {levelNum}";
+			EmitSignal(SignalName.UpdateLevel);
+		}
+		MakeItemDrop(position);
+	}
+
+	private void MakeItemDrop(Vector2 position) 
+	{
+		var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
+		newItemDrop.GlobalPosition = position;
+		GetTree().Root.CallDeferred("add_child", newItemDrop);
+	}
+
+	private void OnMobTimerTimeout()
+	{
+		// SpawnMob();
+	}
+
+	private void OnTreeTimerTimeout() 
+	{
+		SpawnTree();
+	}
+}

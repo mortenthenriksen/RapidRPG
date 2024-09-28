@@ -1,7 +1,7 @@
 extends GridContainer
 
 const SlotClass = preload("res://InventoryGD/Slot.gd")
-@onready var equip_slots = get_node("/root/Game/UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+@onready var equip_slots = get_node("/root/Main/UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 
 var inventory = InventoryLogic.get_inventory()
 var equips = InventoryLogic.get_equips()

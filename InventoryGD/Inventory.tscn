@@ -1,13 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmvynwitiq8dv"]
+[gd_scene load_steps=14 format=3 uid="uid://dmvynwitiq8dv"]
 
 [ext_resource type="Script" path="res://InventoryGD/Inventory.gd" id="1_m4bpw"]
-[ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="2_goi3q"]
-[ext_resource type="Texture2D" uid="uid://cikaneuqykkvk" path="res://InventoryGD/Sprites/item_slot_default_background.png" id="3_63o1o"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="2_lr6sy"]
 [ext_resource type="Script" path="res://InventoryGD/Slot.gd" id="4_luyic"]
 [ext_resource type="Script" path="res://InventoryGD/EquippedItems.gd" id="5_tjp47"]
 [ext_resource type="Texture2D" uid="uid://cv0p25flrboe6" path="res://InventoryGD/Sprites/ShirtOverlay.png" id="6_0wo02"]
 [ext_resource type="Texture2D" uid="uid://dcm61r0awwaej" path="res://InventoryGD/Sprites/HelmetOverlay.png" id="6_wxtqa"]
-[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://HelperScenes/Fonts/m5x7.ttf" id="6_y5d3h"]
+[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://Resources/Fonts/m5x7.ttf" id="6_y5d3h"]
 [ext_resource type="Texture2D" uid="uid://c6j86mgyi86q3" path="res://InventoryGD/Sprites/PantsOverlay.png" id="7_phdd6"]
 [ext_resource type="Texture2D" uid="uid://d2w3c0ydgorix" path="res://InventoryGD/Sprites/AmuletOverlay.png" id="7_q8nqa"]
 [ext_resource type="Texture2D" uid="uid://dg4xqqjtw8bcy" path="res://InventoryGD/Sprites/ShoesOverlay.png" id="8_baiyw"]
@@ -15,44 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://blghr5kksb5uh" path="res://InventoryGD/Sprites/Ring1Overlay.png" id="10_gxunj"]
 [ext_resource type="Texture2D" uid="uid://bhc2uhpchcxjw" path="res://InventoryGD/Sprites/Ring2Overlay.png" id="12_4ty8w"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uph75"]
-modulate_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qol8f"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nt4k"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hymjy"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dfjfh"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bb3n"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_werx0"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3s7ip"]
-texture = ExtResource("3_63o1o")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_px1ea"]
-texture = ExtResource("3_63o1o")
-
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_m4bpw")
+metadata/_edit_horizontal_guides_ = [626.0]
 
 [node name="Panel" type="Panel" parent="."]
-z_index = -100
 offset_left = 788.0
 offset_top = 84.0
 offset_right = 1119.0
 offset_bottom = 617.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_uph75")
-metadata/_edit_lock_ = true
+theme = ExtResource("2_lr6sy")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 0
@@ -60,7 +31,6 @@ offset_left = 20.0
 offset_top = 276.0
 offset_right = 324.0
 offset_bottom = 523.0
-texture = ExtResource("2_goi3q")
 metadata/_edit_lock_ = true
 
 [node name="GridContainer" type="GridContainer" parent="Panel/TextureRect"]
@@ -74,211 +44,211 @@ columns = 7
 [node name="Slot1" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot2" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot3" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot4" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot5" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot6" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot7" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot8" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot9" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot10" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot11" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot12" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot13" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot14" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot15" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot16" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot17" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot18" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot19" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot20" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot21" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot22" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot23" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot24" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot25" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot26" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot27" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot28" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot29" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot30" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot31" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot32" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot33" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot34" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot35" type="Panel" parent="Panel/TextureRect/GridContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qol8f")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect2" type="TextureRect" parent="Panel"]
@@ -287,7 +257,6 @@ offset_left = 20.0
 offset_top = 8.0
 offset_right = 324.0
 offset_bottom = 273.0
-texture = ExtResource("2_goi3q")
 metadata/_edit_lock_ = true
 
 [node name="EquipSlots" type="GridContainer" parent="Panel/TextureRect2"]
@@ -303,7 +272,7 @@ script = ExtResource("5_tjp47")
 [node name="HelmetSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0nt4k")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/HelmetSlot"]
@@ -316,7 +285,7 @@ texture = ExtResource("6_wxtqa")
 [node name="AmuletSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_hymjy")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/AmuletSlot"]
@@ -330,7 +299,7 @@ texture = ExtResource("7_q8nqa")
 [node name="ShirtSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_hymjy")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShirtSlot"]
@@ -343,7 +312,7 @@ texture = ExtResource("6_0wo02")
 [node name="OffhandSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_dfjfh")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/OffhandSlot"]
@@ -356,7 +325,7 @@ texture = ExtResource("9_u7gwy")
 [node name="PantsSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_8bb3n")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/PantsSlot"]
@@ -369,7 +338,7 @@ texture = ExtResource("7_phdd6")
 [node name="RingSlot1" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_werx0")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot1"]
@@ -382,7 +351,7 @@ texture = ExtResource("10_gxunj")
 [node name="ShoesSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_3s7ip")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShoesSlot"]
@@ -395,7 +364,7 @@ texture = ExtResource("8_baiyw")
 [node name="RingSlot2" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_px1ea")
+theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot2"]
@@ -418,3 +387,6 @@ theme_override_font_sizes/font_size = 32
 text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="mouse_exited" from="Panel/TextureRect/GridContainer" to="." method="_on_grid_container_mouse_exited"]
+[connection signal="mouse_exited" from="Panel/TextureRect/GridContainer/Slot1" to="." method="_on_slot_1_mouse_exited"]

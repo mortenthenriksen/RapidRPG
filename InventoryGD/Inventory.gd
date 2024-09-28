@@ -1,18 +1,16 @@
 extends Node2D
 
 const SlotClass = preload("res://InventoryGD/Slot.gd")
-var ToolTipClass = load("res://InventoryGD/ToolTip.tscn")
+const ItemClass = preload("res://InventoryGD/Item.gd")
+
 @onready var inventory_slots = $Panel/TextureRect/GridContainer
 
 var inventory = InventoryLogic.get_inventory()
 var equips = InventoryLogic.get_equips()
 
-var tooltip_instance
+
 
 func _ready():
-	tooltip_instance = ToolTipClass.instantiate()
-	add_child(tooltip_instance)
-
 	var slots = inventory_slots.get_children()
 	for i in range(slots.size()):
 		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
@@ -42,13 +40,23 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 			elif slot.item:
 				left_click_not_holding(slot)
 	
-	elif event is InputEventMouseMotion:
-		if slot.item:
-			tooltip_instance.UpdateToolTip(slot.item.item_name)
-			tooltip_instance.ShowToolTip()
-		if (!slot.item):
-			tooltip_instance.HideToolTip()
-		
+
+	# elif event is InputEventMouseMotion:
+	# 	if slot.item:
+	# 		var item_stats = JsonData.item_data[slot.item.item_name]
+	# 		var keys = item_stats.keys()
+	# 		print(keys)
+	# 		# tooltip_instance.ShowToolTip()
+	# 		if keys.size() > 1:
+	# 			tooltip_instance.UpdateToolTip(slot.item.item_name)
+	# 			for key in keys:
+	# 				# var stat_key = key
+	# 				# var stat_value = item_stats[stat_key]
+	# 				# tooltip_instance.UpdateStats(stat_key, str(stat_value))
+	# 	else:
+	# 		_on_slot_1_mouse_exited()
+	# else:
+	# 	_on_slot_1_mouse_exited()		
 
 func _input(_event):
 	if find_parent("UserInterface").holding_item:
@@ -114,8 +122,3 @@ func left_click_not_holding(slot: SlotClass):
 	
 	slot.pick_from_slot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
-
-
-func _exit_tree():
-	if tooltip_instance:
-		tooltip_instance.queue_free()

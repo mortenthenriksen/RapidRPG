@@ -2,6 +2,7 @@ extends Node2D
 
 var item_name
 var item_quantity
+var item_stats = {}
 
 func set_item(nm, qt):
 	item_name = nm
@@ -15,7 +16,6 @@ func set_item(nm, qt):
 		$Label.visible = true
 		$Label.text = str(item_quantity)
 
-
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add
 	$Label.text = str(item_quantity)
@@ -24,3 +24,4 @@ func add_item_quantity(amount_to_add):
 func decrease_item_quantity(amount_to_remove):
 	item_quantity -= amount_to_remove
 	$Label.text = str(item_quantity)
+

@@ -1,71 +1,73 @@
-using Godot;
-using System;
+// using Godot;
+// using Godot.Collections;
+// using System;
 
-public partial class ToolTip : Node2D
-{
-    private bool isShowing = false;
+// public partial class ToolTip : Node2D
+// {
 
-    public override void _Ready()
-    {
-        Hide(); // Hide the tooltip initially
-    }
+//     private bool isShowing = false;
 
-    public override void _Process(double delta)
-    {
-        if (isShowing)
-        {
-            FollowCursor();
-        }
-    }
+//     public override void _Ready()
+//     {
+//         Hide(); // Hide the tooltip initially
+//     }
 
-    public void UpdateToolTip(string itemName)
-    {
-        var itemNameLabel = GetNodeOrNull<Label>("TextureRect/MarginContainer/VBoxContainer/ItemName");
-        if (itemNameLabel == null)
-        {
-            GD.PrintErr("Node not found: TextureRect/MarginContainer/VBoxContainer/ItemName");
-            return;
-        }
-        itemNameLabel.Text = itemName;
-        UpdateStats("Defence", "10");
-    }
+//     public override void _Process(double delta)
+//     {
+//         // if (isShowing)
+//         // {
+//         //     FollowCursor();
+//         // }
+//     }
 
-    private void UpdateStats(string stat1, string valueOfStat1)
-    {
-        var statLabel = GetNodeOrNull<Label>("TextureRect/MarginContainer/VBoxContainer/Stat1/Stat");
-        var differenceLabel = GetNodeOrNull<Label>("TextureRect/MarginContainer/VBoxContainer/Stat1/Difference");
+//     public void UpdateToolTip(string itemName)
+//     {
+//         var itemNameLabel = GetNode<Label>("TextureRect/MarginContainer/VBoxContainer/ItemName");
+//         itemNameLabel.Text = itemName;
+//     }
 
-        if (statLabel == null || differenceLabel == null)
-        {
-            GD.PrintErr("Node not found: TextureRect/MarginContainer/VBoxContainer/Stat1/Stat or Difference");
-            return;
-        }
+//     // private void UpdateStats(string stat1, string valueOfStat1)
+//     // {
+//     //     var statLabel = GetNode<Label>("TextureRect/MarginContainer/VBoxContainer/Stat1/Stat");
+//     //     var differenceLabel = GetNode<Label>("TextureRect/MarginContainer/VBoxContainer/Stat1/Difference");
 
-        statLabel.Text = stat1; 
-        differenceLabel.Text = valueOfStat1; 
-    }
+//     //     statLabel.Text = stat1 + ": "; 
+//     //     differenceLabel.Text = valueOfStat1; 
+//     // }
 
-    private void FollowCursor()
-    {
-        Godot.Vector2 offset = new Godot.Vector2(300, 200);
-        Position = GetGlobalMousePosition() - offset;
-    }
 
-    public void ShowToolTip()
-    {
-        if (!isShowing) 
-        {
-            Show();
-            isShowing = true;
-        }
-    }
+//     public void UpdateStats(string stat, string value)
+//     {
+//         var statContainer = GetNode<VBoxContainer>("TextureRect/MarginContainer/VBoxContainer/");
+//         var statLabel = new Label();
+//         statLabel.Text = $"{stat}: {value}";
+//         statContainer.AddChild(statLabel);
+//     }
+
+
+
+
+//     private void FollowCursor()
+//     {
+//         Godot.Vector2 offset = new Godot.Vector2(300, 200);
+//         Position = GetGlobalMousePosition() - offset;
+//     }
+
+//     public void ShowToolTip()
+//     {
+//         if (!isShowing) 
+//         {
+//             Show();
+//             isShowing = true;
+//         }
+//     }
     
-    public void HideToolTip()
-    {
-        if (isShowing)
-        {
-            Hide();
-            isShowing = false;
-        }
-    }
-}
+//     public void HideToolTip()
+//     {
+//         if (isShowing)
+//         {
+//             Hide();
+//             isShowing = false;
+//         }
+//     }
+// }

@@ -1,74 +1,54 @@
+using Game.Autoload;
 using Godot; 
-using System;
 
-public partial class Orc : Enemies, IEnemies
+namespace Game.Characters;
+
+public partial class Orc : CharacterBody2D
 { 
-	[Signal]
-	public delegate void HealthDepletedOrcEventHandler(float health, Vector2 deathPosition);   
 
 	[Signal]
-	public delegate void UpdateHealthEventHandler(float health);
+	public delegate void UpdateOrcHealthEventHandler(float health);
 
 	public float damageAmount = 1;
 
 	private float speed = 200; 
-	private float health = 5; 
+	private float MAX_HEALTH = 200;
+	private float health = 200; 
 	private float threshold = 35;
+	private float damageTaken;
+	
+	private ProgressBar healthBarOrc; 
+	private Label healthLabelOrc;
 	
 	private bool isDead = false;
 	private float elapsedTime;
 
-	private CustomSignals customSignals;
 	private AnimatedSprite2D animatedSprite2D; 
-	private CharacterBody2D player; 
-	private DamageNumbers damageNumbersOrigin;
+	private Dave player; 
 
 	public override void _Ready()
 	{
-		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-		damageNumbersOrigin = GetNode<DamageNumbers>("/root/DamageNumbers");
-
-		customSignals.HealthDepletedEnemy += HandleHealthOrcDepleted;
-
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		player = GetNode<CharacterBody2D>("/root/Game/Dave");
+		healthLabelOrc = GetNode<Label>("HealthBarOrc/HealthLabelOrc");
+		healthBarOrc = GetNode<ProgressBar>("HealthBarOrc");
+		player = GetNode<Dave>("/root/Main/Dave");
 
-	}
+		UpdateHealthBar();
 
-	public void HandleHealthOrcDepleted(float health)
-	{	
-		EmitSignal(SignalName.HealthDepletedOrc, health, GlobalPosition);
-	}
-
-
-	private void OnHurtBoxBodyEntered(Node2D body) 
-	{
-		if (body is Dave) 
-		{
-			if (body == null) { return; } 
-			// No damage for the orcs B-)
-			//customSignals.EmitSignal(nameof(CustomSignals.DamagePlayer), damageAmount);
-		} else {
-			return;
-		}
-		
-	}
-
-	private void OnHurtBoxBodyExited(Node2D body) {
-		if (body == null) { return; }
+		// CustomSignals.Instance.EnemyDamageRecieved += OnEnemyDamageRecieved;
 	}
 
 
-	public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
 	{
 		elapsedTime += (float) delta;
-		var direction = GlobalPosition.DirectionTo(player.GlobalPosition);
-		var velocity = direction * speed * (float)delta;
-		var distance = GlobalPosition.DistanceTo(player.GlobalPosition);
+		var direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
+		var distance = GlobalPosition.DistanceTo(player.GetCurrentPlayerPosition());
+		// var velocity = direction * speed * (float)delta;
 
 		if (distance > threshold && health > 0)
 		{
-			MoveAndCollide(velocity);
+			// MoveAndCollide(velocity);
 		}
 
 
@@ -89,26 +69,67 @@ public partial class Orc : Enemies, IEnemies
 		}
 	}
 
-	public void TakeDamage(float damageAmount) {
+	public void TakeDamage(float damageAmount) 
+	{
 		health -= damageAmount;
+		UpdateHealthBar();	
 		if (health > 0) 
 		{   
 			elapsedTime = 0.0f;
-			damageNumbersOrigin.DisplayNumber(damageAmount, GlobalPosition, false);
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHitByBullet, Position);
 		}
 		else if (health <= 0 && !isDead) 
 		{   
 			isDead = true; 
 			animatedSprite2D.Play("death");
-			HandleHealthOrcDepleted(health);
+			OnEnemyHealthDepleted(health);
 		} 
 	}
 
-	// very important to also remove the eventhandler from the dying orc and not just the dying orc
-	protected override void Dispose(bool disposing)
+
+	private void UpdateHealthBar()
 	{
-		customSignals.HealthDepletedEnemy -= HandleHealthOrcDepleted;
-		base.Dispose(disposing);
+		EmitSignal(SignalName.UpdateOrcHealth, health);
+		healthBarOrc.MaxValue = MAX_HEALTH;
+		healthBarOrc.Value = health;
+		healthLabelOrc.Text = $"Health: {health}";
+		if (health <= 0)
+		{
+			healthBarOrc.Visible = false;
+			healthLabelOrc.Visible = false;
+		}
 	}
+
+	private void OnEnemyHealthDepleted(float health)
+	{	
+		CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHealthDepleted, health, GlobalPosition);
+	}
+
+
+	private void OnHurtBoxBodyEntered(Node2D body) 
+	{
+		if (body is Dave) 
+		{
+			if (body == null) return;
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, damageAmount);
+		} else {
+			return;
+		}
+		
+	}
+
+	public float GetHealth()
+	{
+		return health;
+	}
+
+
+    // very important to also remove the eventhandler from the dying orc and not just the dying orc
+    // protected override void Dispose(bool disposing)
+    // {
+    // 	CustomSignals.Instance.EnemyDamageRecieved -= OnEnemyDamageRecieved;
+    // 	base.Dispose(disposing);
+    // }
+
 }
 

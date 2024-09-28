@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://n63o8wyms8wm"]
 
-[ext_resource type="Texture2D" uid="uid://jw3xs8038naa" path="res://Projectiles/dropletBullet.png" id="1_iw5ml"]
-[ext_resource type="Script" path="res://Projectiles/dropletBullet.cs" id="1_p1xcw"]
+[ext_resource type="Texture2D" uid="uid://jw3xs8038naa" path="res://Projectiles/DropletBullet.png" id="1_iw5ml"]
+[ext_resource type="Script" path="res://Projectiles/DropletBullet.cs" id="1_p1xcw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y760q"]
 radius = 7.0003

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Items/Weapons/Sword/Sword.cs" id="1_o05ij"]
 [ext_resource type="Texture2D" uid="uid://xt652vpffb6y" path="res://Items/Weapons/Sword/SpriteSheetsSword/Sword_DownLeft.png" id="2_wbtpe"]
 [ext_resource type="Texture2D" uid="uid://bdhw0skm2i4mo" path="res://Items/Weapons/Sword/SpriteSheetsSword/Sword_DownRight.png" id="3_s3nom"]
-[ext_resource type="Texture2D" uid="uid://jw3xs8038naa" path="res://Projectiles/dropletBullet.png" id="3_ypj7u"]
+[ext_resource type="Texture2D" uid="uid://jw3xs8038naa" path="res://Projectiles/DropletBullet.png" id="3_ypj7u"]
 [ext_resource type="Texture2D" uid="uid://blqkrgu4s2fpa" path="res://Items/Weapons/Sword/SpriteSheetsSword/Sword_UpLeft.png" id="5_ogdim"]
 [ext_resource type="Texture2D" uid="uid://b6dwna0vk1r7k" path="res://Items/Weapons/Sword/SpriteSheetsSword/Sword_UpRight.png" id="6_d77hw"]
 

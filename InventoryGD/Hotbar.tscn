@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="1_4qtai"]
 [ext_resource type="Script" path="res://InventoryGD/Hotbar.gd" id="1_r5ixa"]
 [ext_resource type="Script" path="res://InventoryGD/Slot.gd" id="2_5x5qc"]
-[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://HelperScenes/Fonts/m5x7.ttf" id="4_47s5f"]
+[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://Resources/Fonts/m5x7.ttf" id="4_47s5f"]
 
 [node name="Hotbar" type="Node2D"]
 script = ExtResource("1_r5ixa")

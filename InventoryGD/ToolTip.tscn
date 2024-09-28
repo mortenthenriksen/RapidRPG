@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://blx67grucayvc" path="res://InventoryGD/Sprites/default_inventory_background.png" id="1_4veir"]
 [ext_resource type="Script" path="res://InventoryGD/ToolTip.cs" id="1_bx7q6"]
-[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://HelperScenes/Fonts/m5x7.ttf" id="2_b0d4t"]
+[ext_resource type="FontFile" uid="uid://dj2ahde40vnev" path="res://Resources/Fonts/m5x7.ttf" id="2_b0d4t"]
 
 [node name="ToolTip" type="Node2D"]
+visible = false
 script = ExtResource("1_bx7q6")
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
@@ -36,73 +37,3 @@ theme_override_font_sizes/font_size = 32
 text = "<Item Name>"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Stat1" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stat" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat1"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-
-[node name="Difference" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat1"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-
-[node name="Stat2" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stat" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-
-[node name="Difference" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-
-[node name="Stat3" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stat" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat3"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-
-[node name="Difference" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat3"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-
-[node name="Stat4" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stat" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat4"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-
-[node name="Difference" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat4"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-
-[node name="Stat5" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stat" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat5"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-
-[node name="Difference" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Stat5"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_b0d4t")
-theme_override_font_sizes/font_size = 32

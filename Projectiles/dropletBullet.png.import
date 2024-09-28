@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jw3xs8038naa"
-path="res://.godot/imported/dropletBullet.png-485914594529b84bdf5af1c348f32180.ctex"
+path="res://.godot/imported/DropletBullet.png-359f3bb525102a10715693b8e633e312.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectiles/dropletBullet.png"
-dest_files=["res://.godot/imported/dropletBullet.png-485914594529b84bdf5af1c348f32180.ctex"]
+source_file="res://Projectiles/DropletBullet.png"
+dest_files=["res://.godot/imported/DropletBullet.png-359f3bb525102a10715693b8e633e312.ctex"]
 
 [params]
 

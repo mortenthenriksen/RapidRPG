@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqoa6rbuyyevn"]
+[gd_scene load_steps=5 format=3 uid="uid://dqoa6rbuyyevn"]
 
 [ext_resource type="Script" path="res://Items/Weapons/ProjectileWeapons/Staff.cs" id="1_t6n37"]
-[ext_resource type="Texture2D" uid="uid://cg6fcofe424u6" path="res://Items/Weapons/32x32_PixelWeapons_Free.png" id="2_guafp"]
+[ext_resource type="Texture2D" uid="uid://cg6fcofe424u6" path="res://assets/inventory/32x32_PixelWeapons_Free.png" id="2_guafp"]
+[ext_resource type="PackedScene" uid="uid://n63o8wyms8wm" path="res://Projectiles/DropletBullet.tscn" id="2_v6a86"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_evwbp"]
 radius = 239.56
@@ -10,6 +11,7 @@ radius = 239.56
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_t6n37")
+bulletScene = ExtResource("2_v6a86")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_evwbp")
