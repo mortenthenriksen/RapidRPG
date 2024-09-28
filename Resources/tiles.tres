@@ -70,6 +70,7 @@ texture = ExtResource("1_14ftm")
 4:2/0/terrain = 0
 4:2/0/terrains_peering_bit/bottom_side = 0
 4:2/0/terrains_peering_bit/left_side = 0
+6:6/0 = 0
 
 [resource]
 terrain_set_0/mode = 2

@@ -1,25 +1,133 @@
-[gd_scene load_steps=4 format=3 uid="uid://n63o8wyms8wm"]
+[gd_scene load_steps=19 format=3 uid="uid://n63o8wyms8wm"]
 
-[ext_resource type="Texture2D" uid="uid://jw3xs8038naa" path="res://Projectiles/DropletBullet.png" id="1_iw5ml"]
+[ext_resource type="Texture2D" uid="uid://clrmpislgi10h" path="res://Projectiles/DropletBullet.png" id="1_iw5ml"]
 [ext_resource type="Script" path="res://Projectiles/DropletBullet.cs" id="1_p1xcw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y760q"]
-radius = 7.0003
+radius = 11.0
 height = 29.9994
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clrhx"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(0, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jan8"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(64, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vci21"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(128, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr5ux"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(192, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttm4s"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(256, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0leo"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(320, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0fyq"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(384, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dog2f"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(448, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7ds6"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(512, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkbsf"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(576, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8oej"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(640, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdd6u"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(704, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b4uy"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(768, 145, 64, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gby43"]
+atlas = ExtResource("1_iw5ml")
+region = Rect2(832, 145, 64, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m04t8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clrhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jan8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vci21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr5ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttm4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0leo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0fyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dog2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7ds6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkbsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8oej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdd6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b4uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gby43")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="dropletBullet" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_p1xcw")
-
-[node name="dropletBullet" type="Sprite2D" parent="."]
-position = Vector2(-22, 13)
-scale = Vector2(0.735, 0.735)
-texture = ExtResource("1_iw5ml")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 0)
 rotation = 1.5705
 shape = SubResource("CapsuleShape2D_y760q")
 one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-25, 4)
+scale = Vector2(1.15625, 2.65909)
+sprite_frames = SubResource("SpriteFrames_m04t8")
+autoplay = "default"
+frame_progress = 0.28954
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

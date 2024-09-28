@@ -10,9 +10,6 @@ public partial class CustomSignals : Node
 	public static CustomSignals Instance { get; private set; }
 
 	[Signal]
-	public delegate void ItemSlotClickedEventHandler(int index, string itemName, int quantity);
-
-	[Signal]
 	public delegate void EnemyHitByBulletEventHandler(Vector2 position);
 
 	[Signal]
@@ -23,6 +20,12 @@ public partial class CustomSignals : Node
 
 	[Signal]
 	public delegate void EnemyDamageDealtEventHandler(float damageAmount);
+
+	[Signal]
+	public delegate void UpdateExperienceBarEventHandler();
+
+	[Signal]
+	public delegate void UpdateLevelEventHandler();
 
 
 

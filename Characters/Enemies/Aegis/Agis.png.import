@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beypinqxoxt33"
-path="res://.godot/imported/Agis.png-88964c81cca856d8c9f68e5225071383.ctex"
+path="res://.godot/imported/Agis.png-464519cf5372defd2fc1713ad2d2f64b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Enemies/Aegis/Agis.png"
-dest_files=["res://.godot/imported/Agis.png-88964c81cca856d8c9f68e5225071383.ctex"]
+source_file="res://characters/Enemies/Aegis/Agis.png"
+dest_files=["res://.godot/imported/Agis.png-464519cf5372defd2fc1713ad2d2f64b.ctex"]
 
 [params]
 

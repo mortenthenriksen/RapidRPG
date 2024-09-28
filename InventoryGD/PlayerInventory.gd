@@ -9,7 +9,7 @@ const ItemClass = preload("res://InventoryGD/Item.gd")
 var inventory = {
 	14: ["Iron Sword", 1],
 	1: ["Tree Branch", 6],
-	2: ["Slime Potion", 2],
+	2: ["Slime Potion", 57],
 }
 
 var hotbar = {

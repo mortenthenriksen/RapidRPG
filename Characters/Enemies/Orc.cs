@@ -11,10 +11,10 @@ public partial class Orc : CharacterBody2D
 
 	public float damageAmount = 1;
 
-	private float speed = 200; 
-	private float MAX_HEALTH = 200;
-	private float health = 200; 
-	private float threshold = 35;
+	private float speed = 150; 
+	private float MAX_HEALTH = 150;
+	private float health = 150; 
+	private float threshold = 50;
 	private float damageTaken;
 	
 	private ProgressBar healthBarOrc; 
@@ -44,7 +44,7 @@ public partial class Orc : CharacterBody2D
 		elapsedTime += (float) delta;
 		var direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
 		var distance = GlobalPosition.DistanceTo(player.GetCurrentPlayerPosition());
-		// var velocity = direction * speed * (float)delta;
+		var velocity = direction * speed * (float)delta;
 
 		if (distance > threshold && health > 0)
 		{
@@ -56,10 +56,18 @@ public partial class Orc : CharacterBody2D
 		{
 			if (distance < threshold)
 			{
-				animatedSprite2D.Play("attack");
+				animatedSprite2D.Play("attack01");
 			}
-			else
+			else if (direction.X != 0) 
 			{
+				if (direction.X > 0)
+				{	
+					animatedSprite2D.FlipH = false;
+				}
+				else
+				{
+					animatedSprite2D.FlipH = true;
+				}
 				animatedSprite2D.Play("run");
 			}
 		}

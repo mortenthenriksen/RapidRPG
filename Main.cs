@@ -1,16 +1,11 @@
 using Game.Autoload;
 using Game.Characters;
+using Game.Manager;
 using Godot;
 using System;
 
 public partial class Main : Node2D
 {
-
-[Signal]
-	public delegate void UpdateExperienceBarEventHandler();
-
-	[Signal]
-	public delegate void UpdateLevelEventHandler();
 	
 	[Export]
 	private PackedScene treeScene;
@@ -28,24 +23,17 @@ public partial class Main : Node2D
 	private DamageNumbers damageNumbers;
 
 
-	private int levelNum = 1;
-	private float experience;
-	private float health;
-	// private Orc spawnedOrc;
+	private Orc spawnedOrc;
 	private PathFollow2D pathFollow2D;
 	private CanvasLayer gameOverScreen;
-	private ProgressBar experienceBar;
-	private Label levelLabel;
-	
+
 
 	public override void _Ready()
 	{
 		pathFollow2D = GetNode<PathFollow2D>("/root/Main/Dave/Path2D/PathFollow2D");
 		gameOverScreen = GetNode<CanvasLayer>("GameOverScreen");
-		experienceBar = GetNode<ProgressBar>("/root/Main/Dave/ExperienceBar");
-		levelLabel = GetNode<Label>("/root/Main/Dave/ExperienceBar/LevelLabel");
 
-		// player.PlayerHealthDepleted += OnPlayerHealthDepleted; 
+		player.PlayerHealthDepleted += OnPlayerHealthDepleted; 
 		CustomSignals.Instance.EnemyHealthDepleted += OnEnemyHealthDepleted;
 	}
 
@@ -58,13 +46,13 @@ public partial class Main : Node2D
     }
 
 
-    // private void SpawnMob() {
-	// 	spawnedOrc = orcScene.Instantiate() as Orc;
-	// 	Random random = new Random();
-	// 	pathFollow2D.ProgressRatio = (float) random.NextDouble();
-	// 	spawnedOrc.GlobalPosition = pathFollow2D.GlobalPosition;
-	// 	GetTree().Root.AddChild(spawnedOrc);
-	// }
+    private void SpawnMob() {
+		spawnedOrc = orcScene.Instantiate() as Orc;
+		Random random = new Random();
+		pathFollow2D.ProgressRatio = (float) random.NextDouble();
+		spawnedOrc.GlobalPosition = pathFollow2D.GlobalPosition;
+		GetTree().Root.AddChild(spawnedOrc);
+	}
 
 
     private void SpawnTree() {
@@ -83,16 +71,7 @@ public partial class Main : Node2D
 	}
 
 	private void OnEnemyHealthDepleted(float health, Vector2 position) {
-		experience += 10;
-		EmitSignal(SignalName.UpdateExperienceBar, experience);
-			
-		experienceBar.Value = experience % 100;
-		if (experience % 100 == 0) 
-		{
-			levelNum += 1;
-			levelLabel.Text = $"Level: {levelNum}";
-			EmitSignal(SignalName.UpdateLevel);
-		}
+		LevelManager.Instance.HandleExperienceGained();
 		MakeItemDrop(position);
 	}
 
@@ -105,7 +84,7 @@ public partial class Main : Node2D
 
 	private void OnMobTimerTimeout()
 	{
-		// SpawnMob();
+		SpawnMob();
 	}
 
 	private void OnTreeTimerTimeout() 

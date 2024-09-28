@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ugmjyabdunxc"]
+
+[ext_resource type="Script" path="res://Scenes/UI/FPSMeter.gd" id="1_hhagw"]
+
+[node name="FPSMeter" type="CanvasLayer"]
+layer = 5
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_hhagw")

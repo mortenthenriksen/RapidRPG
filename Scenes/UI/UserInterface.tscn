@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba6wyi7m1e8vy"]
+
+[ext_resource type="Script" path="res://Scenes/UI/UserInterface.gd" id="1_sdupe"]
+[ext_resource type="AudioStream" uid="uid://cfwj5akuftc5i" path="res://assets/inventory/OpenMenu.wav" id="2_c7b2f"]
+
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_sdupe")
+player_path = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_c7b2f")
+volume_db = -15.0

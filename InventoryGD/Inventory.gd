@@ -58,6 +58,7 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# else:
 	# 	_on_slot_1_mouse_exited()		
 
+
 func _input(_event):
 	if find_parent("UserInterface").holding_item:
 		find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()

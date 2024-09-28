@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nbqq64n0nken"
-path="res://.godot/imported/Character_RollUp.png-34ee9f1905ecb6d5fe1704ec3031f7fc.ctex"
+path="res://.godot/imported/Character_RollUp.png-bb300b26c532a2ac7f97c04802c27649.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Dave/SpriteSheets/Character_RollUp.png"
-dest_files=["res://.godot/imported/Character_RollUp.png-34ee9f1905ecb6d5fe1704ec3031f7fc.ctex"]
+source_file="res://characters/Player/Dave/SpriteSheets/Character_RollUp.png"
+dest_files=["res://.godot/imported/Character_RollUp.png-bb300b26c532a2ac7f97c04802c27649.ctex"]
 
 [params]
 

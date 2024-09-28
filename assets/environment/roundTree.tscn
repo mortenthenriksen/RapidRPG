@@ -5,27 +5,37 @@
 [ext_resource type="Texture2D" uid="uid://nqy46ga0asbt" path="res://assets/groundShadow.png" id="1_ntjro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlon5"]
-radius = 22.9946
+radius = 37.0046
 height = 122.009
 
 [node name="roundTree" type="StaticBody2D"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-1, 25)
 script = ExtResource("1_2767x")
 
 [node name="GroundShadow" type="Sprite2D" parent="."]
-modulate = Color(0.733333, 0.733333, 0.733333, 1)
+visible = false
+modulate = Color(0.525101, 0.525101, 0.525101, 1)
+show_behind_parent = true
+y_sort_enabled = true
 position = Vector2(-1, -21)
 scale = Vector2(1.39, 1.39)
 texture = ExtResource("1_ntjro")
+offset = Vector2(0, -12)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(29, -118)
 scale = Vector2(1.51274, 1.51274)
 texture = ExtResource("1_1wtic")
+offset = Vector2(-1, -13)
 hframes = 5
 vframes = 5
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -25)
+position = Vector2(1, -43)
 rotation = 1.56569
 shape = SubResource("CapsuleShape2D_jlon5")

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sryh4gi0dfp1"
-path="res://.godot/imported/Orc-Walk.png-557e5c2a44e264a3f5103c4b93b06f64.ctex"
+path="res://.godot/imported/Orc-Walk.png-13cb75c301ed1cde452faff4ad0ac653.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Enemies/Orc/OrcSpriteSheet/Orc-Walk.png"
-dest_files=["res://.godot/imported/Orc-Walk.png-557e5c2a44e264a3f5103c4b93b06f64.ctex"]
+source_file="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Walk.png"
+dest_files=["res://.godot/imported/Orc-Walk.png-13cb75c301ed1cde452faff4ad0ac653.ctex"]
 
 [params]
 

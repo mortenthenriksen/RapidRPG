@@ -12,7 +12,7 @@ func _ready():
 		# old godot: 
 		# PlayerInventory.Connect("active_item_updated, slots[i], "refresh_style)
 		# new godot method for the same thing:
-		InventoryLogic.active_item_updated.connect(slots[i].refresh_style)
+		# InventoryLogic.active_item_updated.connect(slots[i].refresh_style)
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 

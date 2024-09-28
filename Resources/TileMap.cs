@@ -11,7 +11,7 @@ public partial class TileMap : Godot.TileMap
     public Dave player;
 
     // this might cause issues if / when the player gets more movement speed, maybe we just multiply it then xd
-    private const int autoTileRange = 50;
+    private const int autoTileRange = 55;
     private const float updateInterval = 0.5f;
     private float timeSinceLastUpdate = 0f;
 
@@ -47,9 +47,16 @@ public partial class TileMap : Godot.TileMap
                 newActiveTiles.Add(cellPosition);
                 if (GetCellTileData(0, cellPosition) == null)
                 {
-                    var atlasCoordsPosRandomX = random.Next(2, 4);
-                    var atlasCoordsPosRandomY = random.Next(3, 5);
-                    SetCell(0, cellPosition, 1, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
+                    if (random.NextDouble() > 0.90)
+                    {
+                        var atlasCoordsPosRandomX = random.Next(2, 4);
+                        var atlasCoordsPosRandomY = random.Next(3, 5);
+                        SetCell(0, cellPosition, 1, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
+                    }
+                    else
+                    {
+                        SetCell(0, cellPosition, 1, new Vector2I(6, 6));
+                    }
                 }
             }
         }

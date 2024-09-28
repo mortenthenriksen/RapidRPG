@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpccydj6bxg4u"]
+
+[ext_resource type="Script" path="res://InventoryGD/Data/JSONData.gd" id="1_wy27a"]
+
+[node name="JSONData" type="Node"]
+script = ExtResource("1_wy27a")
