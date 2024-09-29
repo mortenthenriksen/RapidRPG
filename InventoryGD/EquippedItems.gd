@@ -1,6 +1,8 @@
 extends GridContainer
 
 signal slot_interacted
+signal item_clicked(item_name)
+signal custom_mouse_entered(item_name)
 
 const SlotClass = preload("res://InventoryGD/Slot.gd")
 @onready var equip_slots = get_node("/root/Main/UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
@@ -35,6 +37,8 @@ func initialize_equips():
 
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
+	if slot.item:
+		emit_signal("custom_mouse_entered", slot.item.item_name)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
 			if find_parent("UserInterface").holding_item != null:
@@ -141,3 +145,4 @@ func get_equipped_items():
 			if slot.item:
 				item_names.append(slot.item.item_name)
 	return item_names
+

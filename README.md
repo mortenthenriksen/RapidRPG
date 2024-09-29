@@ -2,10 +2,9 @@ To do
 - **Most importantly: enjoy the journey and be proud**
 - Add more enemies, fix enemy logic (damage and make the colliding smooth)
 - Add sound
-- Consider how to make the game more skillfull
+- Consider how to make the game more skillfull (add rolls and make enemies shoots bullets and be able to block)
 - Fix tooltip
-- Figure out a way to not make it last forever, but still so that the highscore demands something
-- Find a use for the toolbar
+- Figure out a way to not make it last forever, but still so that the highscore demands something (checek, infitiy RPG we here come!)
+- Find a use for the toolbar (just remove it :)
 - Make different characters
-- Add a campfire that makes enemies stop spawning
-- Make the map procedural generated (yikes)
+- Make the map procedural generated (yikes, basicly done, just need to add some trees and random events B-)

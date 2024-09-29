@@ -1,4 +1,3 @@
-using System;
 using Game.Autoload;
 using Godot;
 using Godot.Collections;
@@ -16,13 +15,15 @@ public partial class DefenseManager : Node
 
     private Array<string> equippedItems;
     
-    private float totalDefense;
+
+    private float baseDefense;
 
 
     public override void _Ready()
     {
         equippedSlots.Connect("slot_interacted", Callable.From(OnSlotInteracted));
     }
+
 
     public override void _Process(double delta)
     {        
@@ -36,7 +37,7 @@ public partial class DefenseManager : Node
 
     public float GetDefenceFromEquippedItems()
     {
-        totalDefense = 0;
+        baseDefense = 0;
         equippedItems = (Array<string>)equippedSlots.Call("get_equipped_items");
         var itemDataJson = GetItemDataDictionary();
         foreach (var element in equippedItems)
@@ -48,12 +49,12 @@ public partial class DefenseManager : Node
                     var valueDict = (Dictionary)itemDataJson[element];
                     if (valueDict.ContainsKey("Defense"))
                     {
-                        totalDefense += (float)valueDict["Defense"];
+                        baseDefense += (float)valueDict["Defense"];
                     }
                 }
             }
         }
-        return totalDefense;
+        return baseDefense;
     }
 
     private Dictionary GetItemDataDictionary()
@@ -63,7 +64,7 @@ public partial class DefenseManager : Node
 
     public float GetTotalDefence()
     {
-        return totalDefense;
+        return baseDefense;
     }
     
     		

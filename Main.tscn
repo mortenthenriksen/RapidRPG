@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=28 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
@@ -14,6 +14,7 @@
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_03c58"]
 [ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://InventoryGD/Hotbar.tscn" id="6_46h80"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://Scenes/AutoLoad/CustomSignals.tscn" id="7_32r1k"]
+[ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://managers/ToolTipManager.tscn" id="10_svtpr"]
 [ext_resource type="PackedScene" uid="uid://dtklru5yhe3hp" path="res://managers/LevelManager.tscn" id="13_vy1kb"]
 [ext_resource type="PackedScene" uid="uid://53ah323bj8tk" path="res://Scenes/environment/Bonfire.tscn" id="14_s20ge"]
 [ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://Scenes/UI/UserInterface.tscn" id="15_8rt37"]
@@ -109,24 +110,27 @@ position = Vector2(182, 189)
 
 [node name="Handlers" type="Node" parent="."]
 
+[node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("10_svtpr")]
+equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+
+[node name="DefenseManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
+equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+
 [node name="DamageManager" parent="Handlers" node_paths=PackedStringArray("player", "damageNumbers", "staff") instance=ExtResource("4_3djjo")]
 player = NodePath("../../Dave")
 orcScene = ExtResource("3_qk0ik")
 damageNumbers = NodePath("../DamageNumbers")
 staff = NodePath("../../Dave/Staff")
 
-[node name="DefenseManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
-equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+[node name="LevelManager" parent="Handlers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]
+player = NodePath("../../Dave")
+experienceBar = NodePath("../../Dave/ExperienceBar")
+levelLabel = NodePath("../../Dave/ExperienceBar/LevelLabel")
 
 [node name="DamageNumbers" parent="Handlers" instance=ExtResource("5_2a70g")]
 pixelKubastaFontTheme = ExtResource("6_03c58")
 
 [node name="CustomSignals" parent="Handlers" instance=ExtResource("7_32r1k")]
-
-[node name="LevelManager" parent="Handlers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]
-player = NodePath("../../Dave")
-experienceBar = NodePath("../../Dave/ExperienceBar")
-levelLabel = NodePath("../../Dave/ExperienceBar/LevelLabel")
 
 [node name="GDToCSDataConverter" parent="Handlers" node_paths=PackedStringArray("jsonData") instance=ExtResource("16_hqvsu")]
 jsonData = NodePath("../JSONData")

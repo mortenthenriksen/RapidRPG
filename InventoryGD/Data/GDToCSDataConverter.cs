@@ -14,9 +14,6 @@ public partial class GDToCSDataConverter : Node
     [Export]
     private Node jsonData;
 
-    private Dictionary<string, ItemDataClass> itemData;
-    
-
     private readonly static string filePath = "res://InventoryGD/Data/ItemData.json";
 
 
@@ -28,18 +25,18 @@ public partial class GDToCSDataConverter : Node
     public Godot.Collections.Dictionary GetValuesDictionaries()
     {
         var godotDict = (Godot.Collections.Dictionary)jsonData.Call("LoadData", filePath);
-        itemData = new Dictionary<string, ItemDataClass>();
+        // itemData = new Dictionary<string, ItemDataClass>();
 
-        // Check if "Iron Helmet" exists in the dictionary
-        if (godotDict.ContainsKey("Tree Branch"))
-        {
-            var valueDict = (Godot.Collections.Dictionary)godotDict["Tree Branch"];
-            // Check if "Defense" key exists in the value dictionary
-            if (valueDict.ContainsKey("Defense"))
-            {
-                GD.Print(valueDict["Defense"]);
-            }
-        }
+        // // Check if "Iron Helmet" exists in the dictionary
+        // if (godotDict.ContainsKey("Tree Branch"))
+        // {
+        //     var valueDict = (Godot.Collections.Dictionary)godotDict["Tree Branch"];
+        //     // Check if "Defense" key exists in the value dictionary
+        //     if (valueDict.ContainsKey("Defense"))
+        //     {
+        //         GD.Print(valueDict["Defense"]);
+        //     }
+        // }
 
         return godotDict;
     }
@@ -54,16 +51,15 @@ public partial class GDToCSDataConverter : Node
 }
 
 
-
-internal class ItemDataClass
-{
-    public string ItemCategory { get; set; }
-    public int Defense { get; set; }
-    public int? AddHealth { get; set; }
-    public int? AddEnergy { get; set; }
-    public int StackSize { get; set; }
-    public string Description { get; set; }
-    public int? ItemAttack { get; set; }
-    public double? ItemSpeed { get; set; }
-}
+// internal class ItemDataClass
+// {
+//     public string ItemCategory { get; set; }
+//     public int Defense { get; set; }
+//     public int? AddHealth { get; set; }
+//     public int? AddEnergy { get; set; }
+//     public int StackSize { get; set; }
+//     public string Description { get; set; }
+//     public int? ItemAttack { get; set; }
+//     public double? ItemSpeed { get; set; }
+// }
 
