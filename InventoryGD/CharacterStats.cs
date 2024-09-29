@@ -18,14 +18,15 @@ public partial class CharacterStats : MarginContainer
         totalDamageLabel = GetNode<Label>("%TotalDamageLabel");
         defenseLabel = GetNode<Label>("%DefenseLabel");
         currentMultiplierLabel = GetNode<Label>("%CurrentMultiplierLabel");
-
-       
     }
+
+    
 
     public override void _Process(double delta)
     {
         UpdateCurrentDamageInfo();
         UpdateCurrentLevel();
+        UpdateCurrentDefence();
     }
 
 
@@ -42,7 +43,7 @@ public partial class CharacterStats : MarginContainer
 
     private void UpdateCurrentDefence()
     {
-        // defenseLabel.Text = 
+        defenseLabel.Text = DefenseManager.Instance.GetTotalDefence().ToString();
     }
 
 }   

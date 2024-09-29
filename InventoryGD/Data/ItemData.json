@@ -1,7 +1,6 @@
 {
 	"Tree Branch": {
 		"ItemCategory": "Resource",
-		"Defense": 100,
 		"StackSize": 99,
 		"Description": "A sturdy tree branch that can be used for crafting."
 	},
@@ -9,11 +8,17 @@
 	
 	"Iron Sword": {
 		"ItemCategory": "Sword",
-		"Defense": 0,
 		"ItemAttack": 3,
 		"ItemSpeed": 0.75,
 		"StackSize": 1,
 		"Description": "Quite rusty, like your mom in bed."
+	},
+	"Legendary Sword": {
+		"ItemCategory": "Sword",
+		"ItemAttack": 100,
+		"ItemSpeed": 1.75,
+		"StackSize": 1,
+		"Description": "INSANE DAMAGE!!"
 	},
 	
 	"Iron Helmet": {

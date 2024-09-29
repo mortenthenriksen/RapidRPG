@@ -9,27 +9,47 @@ namespace Game.Autoload;
 
 public partial class GDToCSDataConverter : Node
 {
+    public static GDToCSDataConverter Instance { get; private set; }
+    
     [Export]
     private Node jsonData;
+
     private Dictionary<string, ItemDataClass> itemData;
+    
+
     private readonly static string filePath = "res://InventoryGD/Data/ItemData.json";
 
 
     public override void _Ready()
     {
+        GetValuesDictionaries();
+    }
+
+    public Godot.Collections.Dictionary GetValuesDictionaries()
+    {
         var godotDict = (Godot.Collections.Dictionary)jsonData.Call("LoadData", filePath);
         itemData = new Dictionary<string, ItemDataClass>();
 
-        foreach (var key in godotDict.Keys)
+        // Check if "Iron Helmet" exists in the dictionary
+        if (godotDict.ContainsKey("Tree Branch"))
         {
-            var value = godotDict[key];
-            var valueDict = (Godot.Collections.Dictionary)value;
+            var valueDict = (Godot.Collections.Dictionary)godotDict["Tree Branch"];
+            // Check if "Defense" key exists in the value dictionary
             if (valueDict.ContainsKey("Defense"))
             {
                 GD.Print(valueDict["Defense"]);
             }
         }
 
+        return godotDict;
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationSceneInstantiated)
+            {
+                Instance = this;
+            }
     }
 }
 
@@ -46,3 +66,4 @@ internal class ItemDataClass
     public int? ItemAttack { get; set; }
     public double? ItemSpeed { get; set; }
 }
+

@@ -115,6 +115,9 @@ orcScene = ExtResource("3_qk0ik")
 damageNumbers = NodePath("../DamageNumbers")
 staff = NodePath("../../Dave/Staff")
 
+[node name="DefenseManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
+equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+
 [node name="DamageNumbers" parent="Handlers" instance=ExtResource("5_2a70g")]
 pixelKubastaFontTheme = ExtResource("6_03c58")
 
@@ -124,8 +127,6 @@ pixelKubastaFontTheme = ExtResource("6_03c58")
 player = NodePath("../../Dave")
 experienceBar = NodePath("../../Dave/ExperienceBar")
 levelLabel = NodePath("../../Dave/ExperienceBar/LevelLabel")
-
-[node name="DefenseManager" parent="Handlers" instance=ExtResource("15_d3pw1")]
 
 [node name="GDToCSDataConverter" parent="Handlers" node_paths=PackedStringArray("jsonData") instance=ExtResource("16_hqvsu")]
 jsonData = NodePath("../JSONData")
@@ -190,3 +191,5 @@ vertical_alignment = 1
 
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]
+
+[editable path="UserInterface/Inventory"]

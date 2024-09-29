@@ -6,7 +6,6 @@ const SlotClass = preload("res://InventoryGD/Slot.gd")
 const ItemClass = preload("res://InventoryGD/Item.gd")
 @onready var hotbar_slots = get_node("/root/Main/UserInterface/Hotbar/HotbarSlots")
 @onready var active_item_label = get_node("/root/Main/UserInterface/Hotbar/ActiveItemLabel")
-@onready var equip_slots = ("/root/Main/UserInterface/InventoryPanel/TextureRect2/EquipSlots")
 
 var inventory = PlayerInventory.get_inventory()
 var hotbar = PlayerInventory.get_hotbar()

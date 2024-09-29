@@ -1,5 +1,7 @@
 extends GridContainer
 
+signal slot_interacted
+
 const SlotClass = preload("res://InventoryGD/Slot.gd")
 @onready var equip_slots = get_node("/root/Main/UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 
@@ -22,11 +24,14 @@ func _ready():
 
 	initialize_equips()
 
+
+
 func initialize_equips():
 	var slotsEquip = equip_slots.get_children()
 	for i in range(slotsEquip.size()):
 		if InventoryLogic.equips.has(i):
 			slotsEquip[i].initialize_item(InventoryLogic.equips[i][0], InventoryLogic.equips[i][1])
+	emit_signal("slot_interacted")
 
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
@@ -42,6 +47,7 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 						left_click_same_item(slot)
 			elif slot.item:
 				left_click_not_holding(slot)
+			emit_signal("slot_interacted")
 
 
 func _input(_event):
@@ -77,6 +83,7 @@ func is_correct_slot_type(slot: SlotClass):
 
 func left_click_empty_slot(slot: SlotClass):
 	var holding_item = find_parent("UserInterface").holding_item
+	# print_equips(slot)
 
 	if is_correct_slot_type(slot):
 		InventoryLogic.add_item_to_empty_slot(holding_item, slot)
@@ -123,7 +130,14 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item = slot.item
 	slot.pick_from_slot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
-
 	InventoryLogic.get_equips().erase(slot.slot_index)
 
-	
+
+func get_equipped_items():
+	var item_names = []
+	for i in range(equip_slots.get_child_count()):
+		var slot = equip_slots.get_child(i)
+		if slot.slot_type in [SlotClass.SlotType.HELMET, SlotClass.SlotType.TORSO, SlotClass.SlotType.PANTS, SlotClass.SlotType.SHOES, SlotClass.SlotType.AMULET, SlotClass.SlotType.OFFHAND, SlotClass.SlotType.RING1, SlotClass.SlotType.RING2]:
+			if slot.item:
+				item_names.append(slot.item.item_name)
+	return item_names
