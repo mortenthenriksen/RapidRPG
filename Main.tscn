@@ -110,8 +110,10 @@ position = Vector2(182, 189)
 
 [node name="Handlers" type="Node" parent="."]
 
-[node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("10_svtpr")]
+[node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots", "inventorySlots", "player") instance=ExtResource("10_svtpr")]
 equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+inventorySlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect/InventorySlots")
+player = NodePath("../../Dave")
 
 [node name="DefenseManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
 equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
@@ -142,6 +144,12 @@ player_path = "/root/Main/Dave"
 
 [node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
 position = Vector2(126.056, 73.7308)
+
+[node name="Panel" parent="UserInterface/Inventory" index="0"]
+offset_left = 587.362
+offset_top = -18.2163
+offset_right = 956.362
+offset_bottom = 502.784
 
 [node name="Hotbar" parent="UserInterface" instance=ExtResource("6_46h80")]
 visible = false

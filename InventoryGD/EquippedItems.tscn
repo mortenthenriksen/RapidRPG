@@ -7,5 +7,5 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_e8a8m")
 
-[connection signal="item_clicked" from="." to="." method="OnItemClicked"]
 [connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

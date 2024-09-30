@@ -50,7 +50,6 @@ public partial class Dave : CharacterBody2D
 		{
 			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
 			itemDrop.PickupItem(this);
-			// inventory.AddItemToInventory(itemDrop.GetItemName(), 1);
 		}
 	}
 
@@ -91,6 +90,7 @@ public partial class Dave : CharacterBody2D
 		// {   
 		// 	moveDirection += lastMoveDirection + new Vector2(1, 1);
 		// }
+		lastMoveDirection = moveDirection;
 		return moveDirection;
 	}
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dmvynwitiq8dv"]
 
-[ext_resource type="Script" path="res://InventoryGD/Inventory.gd" id="1_m4bpw"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="2_lr6sy"]
+[ext_resource type="Script" path="res://InventoryGD/InventorySlots.gd" id="3_xk7l4"]
 [ext_resource type="Script" path="res://InventoryGD/Slot.gd" id="4_luyic"]
 [ext_resource type="Script" path="res://InventoryGD/EquippedItems.gd" id="5_tjp47"]
 [ext_resource type="Texture2D" uid="uid://cv0p25flrboe6" path="res://InventoryGD/Sprites/ShirtOverlay.png" id="6_0wo02"]
@@ -15,13 +15,13 @@
 [ext_resource type="Script" path="res://InventoryGD/CharacterStats.cs" id="13_y0fev"]
 
 [node name="Inventory" type="Node2D"]
-script = ExtResource("1_m4bpw")
+scale = Vector2(1.17, 1.17)
 metadata/_edit_horizontal_guides_ = [626.0]
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 750.0
+offset_left = 754.0
 offset_top = 63.0
-offset_right = 1119.0
+offset_right = 1097.0
 offset_bottom = 584.0
 theme = ExtResource("2_lr6sy")
 
@@ -44,7 +44,7 @@ offset_right = 304.0
 offset_bottom = 503.0
 metadata/_edit_lock_ = true
 
-[node name="GridContainer" type="GridContainer" parent="Panel/TextureRect"]
+[node name="InventorySlots" type="GridContainer" parent="Panel/TextureRect"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
 offset_left = 21.0
@@ -52,212 +52,213 @@ offset_top = 25.0
 offset_right = 325.0
 offset_bottom = 241.0
 columns = 7
+script = ExtResource("3_xk7l4")
 
-[node name="Slot1" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot1" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot2" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot2" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot3" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot3" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot4" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot4" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot5" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot5" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot6" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot6" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot7" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot7" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot8" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot8" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot9" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot9" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot10" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot10" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot11" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot11" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot12" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot12" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot13" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot13" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot14" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot14" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot15" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot15" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot16" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot16" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot17" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot17" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot18" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot18" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot19" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot19" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot20" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot20" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot21" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot21" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot22" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot22" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot23" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot23" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot24" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot24" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot25" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot25" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot26" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot26" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot27" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot27" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot28" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot28" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot29" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot29" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot30" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot30" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot31" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot31" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot32" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot32" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot33" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot33" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot34" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot34" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="Slot35" type="Panel" parent="Panel/TextureRect/GridContainer"]
+[node name="Slot35" type="Panel" parent="Panel/TextureRect/InventorySlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
@@ -392,7 +393,7 @@ texture = ExtResource("12_4ty8w")
 layout_mode = 0
 offset_left = 18.0
 offset_top = 49.0
-offset_right = 210.0
+offset_right = 196.0
 offset_bottom = 234.0
 scale = Vector2(1.15, 1.15)
 script = ExtResource("13_y0fev")
@@ -518,6 +519,3 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "NaN"
 horizontal_alignment = 2
-
-[connection signal="mouse_exited" from="Panel/TextureRect/GridContainer" to="." method="_on_grid_container_mouse_exited"]
-[connection signal="mouse_exited" from="Panel/TextureRect/GridContainer/Slot1" to="." method="_on_slot_1_mouse_exited"]

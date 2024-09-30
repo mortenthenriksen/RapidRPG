@@ -20,8 +20,8 @@ public partial class DamageManager : Node
 	[Export]
 	private DamageNumbers damageNumbers;
 
-	[Export]
-	private Staff staff;
+	// [Export]
+	// private Staff staff;
 	
 	public override void _Notification(int what)
     {
@@ -55,6 +55,6 @@ public partial class DamageManager : Node
 	public float TotalDamageAmount()
 	{
 		// the final returning of the max dmg, will be affected by a lot of modifers later on
-		return staff.GetDamageAmount() * 5;
+		return 50;
 	}
 }

@@ -1,6 +1,7 @@
 [gd_scene load_steps=96 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://characters/Player/Dave/Dave.cs" id="1_soyg5"]
+[ext_resource type="PackedScene" uid="uid://dmo2jnk70cbcd" path="res://Items/Weapons/Sword/Sword.tscn" id="2_s46mt"]
 [ext_resource type="Texture2D" uid="uid://dg6a6tjqvgfrs" path="res://characters/Player/Dave/SpriteSheets/Character_RollLeft.png" id="3_43swp"]
 [ext_resource type="Texture2D" uid="uid://iaqg1dpo0y4s" path="res://characters/Player/Dave/SpriteSheets/Character_Down.png" id="3_i0xh5"]
 [ext_resource type="Texture2D" uid="uid://ch16a8kulfbqu" path="res://characters/Player/Dave/SpriteSheets/Character_RollRight.png" id="3_mc1xi"]
@@ -17,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://nbqq64n0nken" path="res://characters/Player/Dave/SpriteSheets/Character_RollUp.png" id="14_c6am2"]
 [ext_resource type="Texture2D" uid="uid://dnws0smvmr66x" path="res://characters/Player/Dave/SpriteSheets/Character_RollUpLeft.png" id="17_8vb4a"]
 [ext_resource type="Texture2D" uid="uid://c158i2l4tac5p" path="res://characters/Player/Dave/SpriteSheets/Character_RollUpRight.png" id="18_uouck"]
-[ext_resource type="PackedScene" uid="uid://dqoa6rbuyyevn" path="res://Items/Weapons/ProjectileWeapons/Staff.tscn" id="19_muk2l"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
@@ -679,6 +679,9 @@ z_index = 3
 position = Vector2(575, 328)
 script = ExtResource("1_soyg5")
 
+[node name="Sword" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_s46mt")]
+player = NodePath("..")
+
 [node name="GroundShadow" type="Sprite2D" parent="."]
 modulate = Color(0.733005, 0.733005, 0.733005, 1)
 show_behind_parent = true
@@ -697,11 +700,7 @@ shape = SubResource("CircleShape2D_eu5cp")
 position = Vector2(-1, -25)
 scale = Vector2(2.02588, 2.03125)
 sprite_frames = SubResource("SpriteFrames_0jluf")
-animation = &"rollLeft"
-frame_progress = 0.828298
-
-[node name="Staff" parent="." instance=ExtResource("19_muk2l")]
-metadata/_edit_group_ = true
+animation = &"idle"
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false
