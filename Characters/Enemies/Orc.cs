@@ -1,4 +1,5 @@
 using Game.Autoload;
+using Game.Manager;
 using Godot; 
 
 namespace Game.Characters;
@@ -98,9 +99,9 @@ public partial class Orc : CharacterBody2D
 	private void UpdateHealthBar()
 	{
 		EmitSignal(SignalName.UpdateOrcHealth, health);
-		healthBarOrc.MaxValue = MAX_HEALTH;
-		healthBarOrc.Value = health;
-		healthLabelOrc.Text = $"Health: {health}";
+		healthBarOrc.MaxValue = MAX_HEALTH * MultiplierManager.Instance.GetMultiplier();
+		healthBarOrc.Value = health * MultiplierManager.Instance.GetMultiplier();
+		healthLabelOrc.Text = $"Health: {healthBarOrc.Value.ToString("F0")}";
 		if (health <= 0)
 		{
 			healthBarOrc.Visible = false;

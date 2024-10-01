@@ -1,4 +1,5 @@
 
+using System;
 using Game.Autoload;
 using Game.Characters;
 using Godot;
@@ -6,7 +7,6 @@ using Godot.Collections;
 
 namespace Game.Manager;
 
-[GlobalClass]
 
 public partial class ToolTipManager : Node2D
 {
@@ -74,14 +74,30 @@ public partial class ToolTipManager : Node2D
             {
                 mainStatLabel.Text = "Defense: ";
                 mainStatValue.Text = valueDict["Defense"].ToString();
-                descriptionLabel.Text = valueDict["Description"].ToString();
+                if (valueDict.ContainsKey("MainStat"))
+                {
+                    // secondaryStatLabel.Text = GetMainStatFromItemDrop();
+                    secondaryStatValue.Text = valueDict["MainStat"].ToString();
+                }
+                else
+                {
+                    secondaryStatLabel.Text = "";
+                    secondaryStatValue.Text = "";
+                }
+                descriptionLabel.Text = "";
             }
-            else
+
+
+            if (valueDict.ContainsKey("ItemCategory") && valueDict["ItemCategory"].ToString() == "Consumable")
             {
                 mainStatLabel.Text = "Stacksize";
-                mainStatValue.Text = "suggma";
+                mainStatValue.Text = valueDict["StackSize"].ToString();
+                secondaryStatLabel.Text = valueDict["ItemCategory"].ToString();
+                secondaryStatValue.Text = "";
                 descriptionLabel.Text = valueDict["Description"].ToString();
             }
+            
+
         }
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=30 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://InventoryGD/Hotbar.tscn" id="6_46h80"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://Scenes/AutoLoad/CustomSignals.tscn" id="7_32r1k"]
 [ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://managers/ToolTipManager.tscn" id="10_svtpr"]
+[ext_resource type="PackedScene" uid="uid://bfhntderc087f" path="res://managers/MainStatManager.tscn" id="11_olti3"]
+[ext_resource type="PackedScene" uid="uid://cy7i6no4rac10" path="res://managers/MultiplierManager.tscn" id="11_qn87i"]
 [ext_resource type="PackedScene" uid="uid://dtklru5yhe3hp" path="res://managers/LevelManager.tscn" id="13_vy1kb"]
 [ext_resource type="PackedScene" uid="uid://53ah323bj8tk" path="res://Scenes/environment/Bonfire.tscn" id="14_s20ge"]
 [ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://Scenes/UI/UserInterface.tscn" id="15_8rt37"]
@@ -115,6 +117,13 @@ equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/Equip
 inventorySlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect/InventorySlots")
 player = NodePath("../../Dave")
 
+[node name="MultiplierManager" parent="Handlers" node_paths=PackedStringArray("player") instance=ExtResource("11_qn87i")]
+player = NodePath("../../Dave")
+
+[node name="MainStatManager" parent="Handlers" node_paths=PackedStringArray("defenseManager", "damageManager") instance=ExtResource("11_olti3")]
+defenseManager = NodePath("../DefenseManager")
+damageManager = NodePath("../DamageManager")
+
 [node name="DefenseManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
 equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 
@@ -172,6 +181,7 @@ position = Vector2(176.149, 342.693)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4
+autostart = true
 
 [node name="TreeTimer" type="Timer" parent="."]
 
@@ -204,4 +214,5 @@ vertical_alignment = 1
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]
 
+[editable path="Dave"]
 [editable path="UserInterface/Inventory"]

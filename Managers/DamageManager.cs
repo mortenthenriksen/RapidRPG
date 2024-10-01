@@ -4,7 +4,6 @@ using Godot;
 
 namespace Game.Manager;
 
-[GlobalClass]
 
 public partial class DamageManager : Node
 {
@@ -20,8 +19,8 @@ public partial class DamageManager : Node
 	[Export]
 	private DamageNumbers damageNumbers;
 
-	// [Export]
-	// private Staff staff;
+	[Export]
+	private Staff staff;
 	
 	public override void _Notification(int what)
     {
@@ -55,6 +54,7 @@ public partial class DamageManager : Node
 	public float TotalDamageAmount()
 	{
 		// the final returning of the max dmg, will be affected by a lot of modifers later on
-		return 50;
+		// make it depend on the class chosen B-), just buy the character pack already
+		return 50 + MainStatManager.Instance.GetStrengthValue();
 	}
 }

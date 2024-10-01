@@ -4,9 +4,9 @@ using System;
 
 public partial class ItemDrop : CharacterBody2D
 {
-    string itemName;
+    private string itemName;
     private Dave player = null;
-    public bool isBeingPickedUp = false;
+    private bool isBeingPickedUp = false;
     
     private Node InventoryLogic;
 

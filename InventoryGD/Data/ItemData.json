@@ -1,8 +1,8 @@
 {
 	"Tree Branch": {
-		"ItemCategory": "Resource",
+		"ItemCategory": "Consumable",
 		"StackSize": 99,
-		"Description": "A sturdy tree branch that can be used for crafting."
+		"Description": "A sturdy tree branch!"
 	},
 
 	
@@ -24,6 +24,7 @@
 	"Iron Helmet": {
 		"ItemCategory": "Helmet",
 		"Defense": 4,
+		"MainStat": 3,
 		"StackSize": 1,
 		"Description": "Not the hair!"
 	},
@@ -31,6 +32,7 @@
 	"Iron Chestplate": {
 		"ItemCategory": "Torso",
 		"Defense": 10,
+		"MainStat": 7,
 		"StackSize": 1,
 		"Description": "It macthes my other armor!"
 	},
@@ -38,6 +40,7 @@
 	"Iron Leggins": {
 		"ItemCategory": "Pants",
 		"Defense": 8,
+		"MainStat": 5,
 		"StackSize": 1,
 		"Description": "Nobody is getting!"
 	},
@@ -45,6 +48,7 @@
 	"Iron Boots": {
 		"ItemCategory": "Shoes",
 		"Defense": 5,
+		"MainStat": 2,
 		"StackSize": 1,
 		"Description": "Even works on nails"
 	},

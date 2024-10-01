@@ -17,6 +17,7 @@ func _ready():
 	var slots = self.get_children()
 	for i in range(slots.size()):
 		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
+		slots[i].mouse_exited.connect(on_slot_mouse_exited)
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.INVENTORY
 

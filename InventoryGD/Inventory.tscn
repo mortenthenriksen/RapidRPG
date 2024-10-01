@@ -456,21 +456,21 @@ text = "Intelligence:"
 [node name="SpecificStats" type="VBoxContainer" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats"]
 layout_mode = 2
 
-[node name="StrengthValue" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
+[node name="StrengthLabel" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "NaN"
 horizontal_alignment = 2
 
-[node name="DexterityValue" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
+[node name="DexterityLabel" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "NaN"
 horizontal_alignment = 2
 
-[node name="IntelligenceValue" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
+[node name="IntelligenceLabel" type="Label" parent="Panel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats/SpecificStats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2

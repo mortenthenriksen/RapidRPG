@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://beai64jjhwi4e"]
+[gd_scene load_steps=97 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://characters/Player/Dave/Dave.cs" id="1_soyg5"]
 [ext_resource type="PackedScene" uid="uid://dmo2jnk70cbcd" path="res://Items/Weapons/Sword/Sword.tscn" id="2_s46mt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dnws0smvmr66x" path="res://characters/Player/Dave/SpriteSheets/Character_RollUpLeft.png" id="17_8vb4a"]
 [ext_resource type="Texture2D" uid="uid://c158i2l4tac5p" path="res://characters/Player/Dave/SpriteSheets/Character_RollUpRight.png" id="18_uouck"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="19_pixa1"]
+[ext_resource type="PackedScene" uid="uid://dqoa6rbuyyevn" path="res://Items/Weapons/ProjectileWeapons/Staff.tscn" id="21_s81ij"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_em2vo"]
@@ -781,6 +782,8 @@ shape = SubResource("CircleShape2D_q8fy1")
 
 [node name="HealthRegenTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Staff" parent="." instance=ExtResource("21_s81ij")]
 
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]
 [connection signal="body_exited" from="PickupBox" to="." method="OnPickupBoxBodyExited"]
