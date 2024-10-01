@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ba6wyi7m1e8vy"]
 
-[ext_resource type="Script" path="res://Scenes/UI/UserInterface.gd" id="1_sdupe"]
+[ext_resource type="Script" path="res://scenes/UI/UserInterface.gd" id="1_sdupe"]
 [ext_resource type="AudioStream" uid="uid://cfwj5akuftc5i" path="res://assets/inventory/OpenMenu.wav" id="2_c7b2f"]
 
 [node name="UserInterface" type="CanvasLayer"]

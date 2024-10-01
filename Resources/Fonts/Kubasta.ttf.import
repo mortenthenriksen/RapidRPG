@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://sctiqlw5t0xg"
-path="res://.godot/imported/Kubasta.ttf-2266932894c7d075215e3523e970d38c.fontdata"
+path="res://.godot/imported/Kubasta.ttf-b3379b8981bf87408f8651e6edce9470.fontdata"
 
 [deps]
 
-source_file="res://Resources/Fonts/Kubasta.ttf"
-dest_files=["res://.godot/imported/Kubasta.ttf-2266932894c7d075215e3523e970d38c.fontdata"]
+source_file="res://resources/fonts/Kubasta.ttf"
+dest_files=["res://.godot/imported/Kubasta.ttf-b3379b8981bf87408f8651e6edce9470.fontdata"]
 
 [params]
 

@@ -4,25 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
 [ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://characters/Player/Dave/Dave.tscn" id="2_y6x0m"]
 [ext_resource type="PackedScene" uid="uid://mib2hqo11ekk" path="res://characters/Enemies/Orc.tscn" id="3_qk0ik"]
-[ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://managers/DamageManager.tscn" id="4_3djjo"]
-[ext_resource type="PackedScene" uid="uid://ugmjyabdunxc" path="res://Scenes/UI/FPSMeter.tscn" id="4_a8j3k"]
-[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://Resources/tiles.tres" id="4_bm5kl"]
-[ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://InventoryGD/ItemDrop.tscn" id="4_w44kb"]
-[ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://Scenes/AutoLoad/DamageNumbers.tscn" id="5_2a70g"]
-[ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://InventoryGD/Inventory.tscn" id="5_3ibag"]
-[ext_resource type="Script" path="res://Resources/TileMap.cs" id="5_26fb6"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_03c58"]
-[ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://InventoryGD/Hotbar.tscn" id="6_46h80"]
-[ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://Scenes/AutoLoad/CustomSignals.tscn" id="7_32r1k"]
-[ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://managers/ToolTipManager.tscn" id="10_svtpr"]
-[ext_resource type="PackedScene" uid="uid://bfhntderc087f" path="res://managers/MainStatManager.tscn" id="11_olti3"]
-[ext_resource type="PackedScene" uid="uid://cy7i6no4rac10" path="res://managers/MultiplierManager.tscn" id="11_qn87i"]
-[ext_resource type="PackedScene" uid="uid://dtklru5yhe3hp" path="res://managers/LevelManager.tscn" id="13_vy1kb"]
-[ext_resource type="PackedScene" uid="uid://53ah323bj8tk" path="res://Scenes/environment/Bonfire.tscn" id="14_s20ge"]
-[ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://Scenes/UI/UserInterface.tscn" id="15_8rt37"]
-[ext_resource type="PackedScene" uid="uid://p1tdhj0o0arj" path="res://managers/DefenseManager.tscn" id="15_d3pw1"]
-[ext_resource type="PackedScene" uid="uid://cpccydj6bxg4u" path="res://InventoryGD/Data/JsonData.tscn" id="16_2vlxg"]
-[ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://InventoryGD/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
+[ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://scenes/managers/DamageManager.tscn" id="4_3djjo"]
+[ext_resource type="PackedScene" uid="uid://ugmjyabdunxc" path="res://scenes/UI/FPSMeter.tscn" id="4_a8j3k"]
+[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="4_bm5kl"]
+[ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://Inventory/ItemDrop.tscn" id="4_w44kb"]
+[ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://scenes/autoload/DamageNumbers.tscn" id="5_2a70g"]
+[ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://Inventory/Inventory.tscn" id="5_3ibag"]
+[ext_resource type="Script" path="res://resources/TileMap.cs" id="5_26fb6"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_03c58"]
+[ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://Inventory/Hotbar.tscn" id="6_46h80"]
+[ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://scenes/autoload/CustomSignals.tscn" id="7_32r1k"]
+[ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://scenes/managers/ToolTipManager.tscn" id="10_svtpr"]
+[ext_resource type="PackedScene" uid="uid://bfhntderc087f" path="res://scenes/managers/MainStatManager.tscn" id="11_olti3"]
+[ext_resource type="PackedScene" uid="uid://cy7i6no4rac10" path="res://scenes/managers/MultiplierManager.tscn" id="11_qn87i"]
+[ext_resource type="PackedScene" uid="uid://dtklru5yhe3hp" path="res://scenes/managers/LevelManager.tscn" id="13_vy1kb"]
+[ext_resource type="PackedScene" uid="uid://53ah323bj8tk" path="res://scenes/environment/Bonfire.tscn" id="14_s20ge"]
+[ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://scenes/UI/UserInterface.tscn" id="15_8rt37"]
+[ext_resource type="PackedScene" uid="uid://p1tdhj0o0arj" path="res://scenes/managers/DefenseManager.tscn" id="15_d3pw1"]
+[ext_resource type="PackedScene" uid="uid://cpccydj6bxg4u" path="res://Inventory/Data/JsonData.tscn" id="16_2vlxg"]
+[ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://Inventory/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
 script/source = "using Game.Characters;
@@ -165,23 +165,86 @@ visible = false
 
 [node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(316, 223)
+position = Vector2(61.4961, 514.042)
 
 [node name="Orc2" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(448.292, 139.845)
+position = Vector2(462.434, 463.7)
 
 [node name="Orc3" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(237.885, 458.605)
 
+[node name="Orc5" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(327.339, 437.186)
+
+[node name="Orc6" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(382.776, 509.002)
+
+[node name="Orc7" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(220.246, 559.399)
+
+[node name="Orc8" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(149.022, 480.641)
+
+[node name="Orc9" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(316, 541.76)
+
+[node name="Orc10" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(406.714, 405.688)
+
 [node name="Orc4" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(176.149, 342.693)
+position = Vector2(132.052, 589.637)
+
+[node name="Orc11" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(-57.2979, 337.265)
+
+[node name="Orc12" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(343.64, 286.923)
+
+[node name="Orc13" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(119.091, 281.828)
+
+[node name="Orc14" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(208.545, 260.41)
+
+[node name="Orc15" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(263.982, 332.225)
+
+[node name="Orc16" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(101.452, 382.622)
+
+[node name="Orc17" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(30.2283, 303.864)
+
+[node name="Orc18" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(197.206, 364.983)
+
+[node name="Orc19" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(287.92, 228.912)
+
+[node name="Orc20" parent="." instance=ExtResource("3_qk0ik")]
+y_sort_enabled = true
+position = Vector2(13.2578, 412.861)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4
-autostart = true
 
 [node name="TreeTimer" type="Timer" parent="."]
 

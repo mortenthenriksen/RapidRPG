@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cglqhqdsxl518"]
+
+[ext_resource type="Script" path="res://scenes/autoload/MonsterSpawner.cs" id="1_u4awe"]
+
+[node name="MonsterSpawner" type="Node"]
+script = ExtResource("1_u4awe")

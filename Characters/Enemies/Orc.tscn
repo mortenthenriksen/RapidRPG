@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bej63gg8jxslf" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack02.png" id="3_lgid2"]
 [ext_resource type="Texture2D" uid="uid://dv1ngbcc5vvi6" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack01.png" id="5_asduv"]
 [ext_resource type="Texture2D" uid="uid://bly5q6kl5edld" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Death.png" id="5_uknlb"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_rvdu8"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_rvdu8"]
 [ext_resource type="Texture2D" uid="uid://sryh4gi0dfp1" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Walk.png" id="6_yte1w"]
 [ext_resource type="Texture2D" uid="uid://d0by56dsydqe8" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Hurt.png" id="7_uj3w3"]
 

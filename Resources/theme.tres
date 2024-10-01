@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cgh4aiglxympm"]
 
-[ext_resource type="FontFile" uid="uid://sctiqlw5t0xg" path="res://Resources/Fonts/Kubasta.ttf" id="1_rhxcn"]
+[ext_resource type="FontFile" uid="uid://sctiqlw5t0xg" path="res://resources/fonts/Kubasta.ttf" id="1_rhxcn"]
 [ext_resource type="Texture2D" uid="uid://dh6noithfe7wp" path="res://assets/inventory/InventoryHeader.png" id="2_w6txv"]
 [ext_resource type="Texture2D" uid="uid://d3fnfeqjx2xwe" path="res://assets/inventory/ItemSlot.png" id="3_ccnsx"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://decs3hxn878nt"]
 
-[ext_resource type="Script" path="res://Scenes/AutoLoad/CustomSignals.cs" id="1_6duj0"]
+[ext_resource type="Script" path="res://scenes/autoload/CustomSignals.cs" id="1_6duj0"]
 
 [node name="CustomSignals" type="Node"]
 script = ExtResource("1_6duj0")

@@ -16,11 +16,12 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 
 [autoload]
 
-CustomSignals="*res://Scenes/AutoLoad/CustomSignals.cs"
-DamageNumbers="*res://Scenes/AutoLoad/DamageNumbers.cs"
-JsonData="*res://InventoryGD/Data/JSONData.gd"
-PlayerInventory="*res://InventoryGD/PlayerInventory.gd"
-InventoryLogic="*res://InventoryGD/InventoryLogic.gd"
+CustomSignals="*res://scenes/autoload/CustomSignals.cs"
+DamageNumbers="*res://scenes/autoload/DamageNumbers.cs"
+JsonData="*res://Inventory/Data/JSONData.gd"
+PlayerInventory="*res://Inventory/PlayerInventory.gd"
+InventoryLogic="*res://Inventory/InventoryLogic.gd"
+MonsterSpawner="*res://scenes/autoload/MonsterSpawner.cs"
 
 [display]
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy7i6no4rac10"]
+
+[ext_resource type="Script" path="res://scenes/managers/MultiplierManager.cs" id="1_j1mhh"]
+
+[node name="MultiplierManager" type="Node"]
+script = ExtResource("1_j1mhh")

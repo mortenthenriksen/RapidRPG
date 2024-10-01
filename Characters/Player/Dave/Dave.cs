@@ -25,7 +25,7 @@ public partial class Dave : CharacterBody2D
 	private AnimatedSprite2D animatedSprite2D;
 	private ProgressBar healthBar;
 	private Label healthLabel;
-	private Vector2 lastMoveDirection = new Vector2(0, 0);
+	private Vector2 moveDirection;
 	private PickupBox pickupBox;
 	private ItemDrop itemDrop;
 	private Timer healthRegenTimer;
@@ -42,9 +42,9 @@ public partial class Dave : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 Move = HandleInput();
-		PlayAnimation(Move);
-		MoveAndCollide(Move * speed * (float) delta);
+		Vector2 moveDirection = HandleInput();
+		PlayAnimation(moveDirection);
+		MoveAndCollide(moveDirection * speed * (float) delta);
 
 		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
@@ -85,12 +85,11 @@ public partial class Dave : CharacterBody2D
 	private Vector2 HandleInput()
 	{
 
-		Vector2 moveDirection =  Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
+		Vector2 moveDirection = Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
 		// if (Input.IsActionPressed(ROLL))
 		// {   
 		// 	moveDirection += lastMoveDirection + new Vector2(1, 1);
 		// }
-		lastMoveDirection = moveDirection;
 		return moveDirection;
 	}
 
@@ -98,21 +97,22 @@ public partial class Dave : CharacterBody2D
 	{
 		string action;
 
-		if (Input.IsActionPressed(ROLL))
-		{
-		    action = ROLL;
-		    direction = lastMoveDirection;
-		}
+		// if (Input.IsActionPressed(ROLL))
+		// {
+		//     action = ROLL;
+		//     direction = lastMoveDirection;
+		// }
 
 		if (direction == Vector2.Zero) 
 		{
 			action = "idle";
-			direction = lastMoveDirection; 
+			direction = moveDirection;
 		}
 		
 		else
 		{
 			action = "run";
+			moveDirection = direction; 
 		}
 
 		string directionSuffix = direction switch
@@ -136,7 +136,7 @@ public partial class Dave : CharacterBody2D
 
 	public Vector2 GetCurrentDirection()
 	{
-		return lastMoveDirection;
+		return moveDirection;
 	}
 
 	public Vector2 GetCurrentPlayerPosition()
