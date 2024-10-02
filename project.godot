@@ -21,7 +21,6 @@ DamageNumbers="*res://scenes/autoload/DamageNumbers.cs"
 JsonData="*res://Inventory/Data/JSONData.gd"
 PlayerInventory="*res://Inventory/PlayerInventory.gd"
 InventoryLogic="*res://Inventory/InventoryLogic.gd"
-MonsterSpawner="*res://scenes/autoload/MonsterSpawner.cs"
 
 [display]
 
