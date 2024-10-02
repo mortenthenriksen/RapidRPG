@@ -1,13 +1,85 @@
 {
-    "Tree Branch": {
-        "ItemCategory": "Consumable",
-        "StackSize": 99,
-        "Description": "A sturdy tree branch!"
+    "Blue Jeans": {
+        "ItemCategory": "Pants",
+        "StackSize": 1,
+        "Description": "Pants! Didn't expect that",
+        "Weight": 0
+    },
+    "Brown Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "What are those?!",
+        "Weight": 0
+    },
+    "Brown Shirt": {
+        "ItemCategory": "Torso",
+        "StackSize": 1,
+        "Description": "White shirts was sold out",
+        "Weight": 0
+    },
+    "Emerald Amulet": {
+        "ItemCategory": "Amulet",
+        "StackSize": 1,
+        "Description": "Blingy",
+        "Weight": 100,
+        "Attack": 20.0,
+        "Defense": 20.0,
+        "MainStat": 100.0
+    },
+    "Golden Ring": {
+        "ItemCategory": "Ring",
+        "StackSize": 1,
+        "Description": "Blingyblingy",
+        "Weight": 100,
+        "Attack": 20.0,
+        "Defense": 20.0,
+        "MainStat": 100.0
+    },
+    "Iron Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "Even works on nails",
+        "Weight": 10,
+        "Defense": 5.0,
+        "MainStat": 2.0
+    },
+    "Iron Chestplate": {
+        "ItemCategory": "Torso",
+        "StackSize": 1,
+        "Description": "It matches my other armor!",
+        "Weight": 10,
+        "Defense": 10.0,
+        "MainStat": 7.0
+    },
+    "Iron Helmet": {
+        "ItemCategory": "Helmet",
+        "StackSize": 1,
+        "Description": "Not the hair!",
+        "Weight": 10,
+        "Defense": 4.0,
+        "MainStat": 3.0
+    },
+    "Iron Leggins": {
+        "ItemCategory": "Pants",
+        "StackSize": 1,
+        "Description": "Stay safe!",
+        "Weight": 10,
+        "Defense": 8.0,
+        "MainStat": 5.0
+    },
+    "Iron Shield": {
+        "ItemCategory": "Offhand",
+        "StackSize": 1,
+        "Description": "STOP!",
+        "Weight": 10,
+        "Defense": 1000.0,
+        "MainStat": 3.0
     },
     "Iron Sword": {
         "ItemCategory": "Weapon",
-        "StackSize": 1,
-        "Description": "Quite rusty, like your mom in bed.",
+        "StackSize": 10,
+        "Description": "Quite rusty",
+        "Weight": 0,
         "Attack": 3.0,
         "ItemSpeed": 0.75
     },
@@ -15,64 +87,82 @@
         "ItemCategory": "Weapon",
         "StackSize": 1,
         "Description": "INSANE DAMAGE!!",
+        "Weight": 5,
         "Attack": 100.0,
         "ItemSpeed": 1.75
     },
-    "Iron Helmet": {
-        "ItemCategory": "Helmet",
-        "StackSize": 1,
-        "Description": "Not the hair!",
-        "Defense": 4.0,
-        "MainStat": 3.0
-    },
-    "Iron Chestplate": {
-        "ItemCategory": "Torso",
-        "StackSize": 1,
-        "Description": "It matches my other armor!",
-        "Defense": 10.0,
-        "MainStat": 7.0
-    },
-    "Iron Leggins": {
-        "ItemCategory": "Pants",
-        "StackSize": 1,
-        "Description": "Nobody is getting!",
-        "Defense": 8.0,
-        "MainStat": 5.0
-    },
-    "Iron Boots": {
-        "ItemCategory": "Shoes",
-        "StackSize": 1,
-        "Description": "Even works on nails",
-        "Defense": 5.0,
-        "MainStat": 2.0
-    },
-    "Iron Shield": {
-        "ItemCategory": "Offhand",
-        "StackSize": 1,
-        "Description": "STOP!",
-        "Defense": 1000.0,
-        "MainStat": 3.0
-    },
     "Slime Potion": {
         "ItemCategory": "Consumable",
-        "StackSize": 10,
+        "StackSize": 1,
         "Description": "It smells like medicine.",
+        "Weight": 0,
         "AddHealth": 5.0,
         "AddEnergy": 32.0
     },
-    "Brown Shirt": {
-        "ItemCategory": "Torso",
-        "StackSize": 1,
-        "Description": "White shirts was sold out"
+    "Tree Branch": {
+        "ItemCategory": "Consumable",
+        "StackSize": 10,
+        "Description": "A sturdy tree branch!",
+        "Weight": 0
     },
-    "Blue Jeans": {
-        "ItemCategory": "Pants",
+    "Normal Amulet": {
+        "ItemCategory": "Default",
         "StackSize": 1,
-        "Description": "Pants! Didn't expect that"
+        "Description": "Default",
+        "Weight": 0
     },
-    "Brown Boots": {
-        "ItemCategory": "Shoes",
+    "Normal Ring": {
+        "ItemCategory": "Default",
         "StackSize": 1,
-        "Description": "What are those?!"
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Boots": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Chestplate": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Helmet": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Leggins": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Shield": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Wooden Sword": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Butterfly Ring": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
+    },
+    "Golden Skull Amulet": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 200
     }
 }

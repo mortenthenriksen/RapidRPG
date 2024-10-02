@@ -161,6 +161,10 @@ offset_bottom = 502.784
 
 [node name="TextureRect" parent="UserInterface/Inventory/Panel/TextureRect2/EquipSlots/OffhandSlot" index="0"]
 layout_mode = 0
+offset_left = 3.26804
+offset_top = 0.528502
+offset_right = 38.2681
+offset_bottom = 35.5285
 
 [node name="Hotbar" parent="UserInterface" instance=ExtResource("6_46h80")]
 visible = false

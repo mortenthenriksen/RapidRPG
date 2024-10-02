@@ -5,7 +5,7 @@ import json
 
 # run this whenever you add new items B-)
 # Load the Excel file
-excel_file = 'C:/Users/morte/OneDrive - Danmarks Tekniske Universitet/ProjektGodot/Rapid RPG/Inventory/Data/ItemDataExcel.xlsx'
+excel_file = "C:/Users/morte/OneDrive - Danmarks Tekniske Universitet/ProjektGodot/Rapid RPG/ItemDataExcel.xlsx"
 df = pd.read_excel(excel_file)
 
 # Initialize an empty dictionary to store the JSON data
@@ -17,7 +17,8 @@ for index, row in df.iterrows():
     item_data = {
         "ItemCategory": row['ItemCategory'],
         "StackSize": row['StackSize'],
-        "Description": row['Description']
+        "Description": row['Description'],
+        "Weight": row['Weight']
     }
     
     # Add optional fields if they exist
@@ -34,6 +35,7 @@ for index, row in df.iterrows():
     if 'AddEnergy' in row and not pd.isna(row['AddEnergy']):
         item_data['AddEnergy'] = row['AddEnergy']
     
+
     # Add the item data to the JSON dictionary
     json_data[item_name] = item_data
 

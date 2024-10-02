@@ -1,5 +1,8 @@
+using System.Linq;
+using Game.Autoload;
 using Game.Characters;
 using Godot;
+using Godot.Collections;
 
 
 public partial class ItemDrop : CharacterBody2D
@@ -8,21 +11,23 @@ public partial class ItemDrop : CharacterBody2D
     private Node InventoryLogic;
     private Dave player = null;
     private bool isBeingPickedUp = false;
+    private int itemsInData;
 
-    WeightedGroup<string> weightedItemDrops = new WeightedGroup<string>()
-        {
-            {"Iron Helmet", 10},
-            {"Iron Chestplate", 70},
-            {"Iron Leggins", 20},
-            {"Legendary Sword", 2},
-            {"Iron Shield", 20},
-        }; 
-
+    WeightedGroup<string> weightedItemDrops = new WeightedGroup<string>();
 
     public override void _Ready()
     {
-        itemName = WeightedItemDrop();
         InventoryLogic = GetNode<Node>("/root/InventoryLogic");
+        var itemDataDict = GDToCSDataConverter.Instance.GetValuesDictionaries();
+        foreach (var item in itemDataDict)
+        {
+            string itemName = (string)item.Key;
+            var itemDataDictValue = (Dictionary)itemDataDict[item.Key];
+            // checks if i remember to add a weight to each item :) else just puts it to 0
+            int itemWeight = itemDataDictValue.ContainsKey("Weight") ? (int)itemDataDictValue["Weight"] : 0;  
+            weightedItemDrops.Add(itemName, itemWeight);
+        }
+        itemName = WeightedItemDrop();
     }
 
     public override void _PhysicsProcess(double delta)
