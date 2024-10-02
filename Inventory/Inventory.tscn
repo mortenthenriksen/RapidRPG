@@ -3,15 +3,15 @@
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_lr6sy"]
 [ext_resource type="Script" path="res://Inventory/InventorySlots.gd" id="3_xk7l4"]
 [ext_resource type="Script" path="res://Inventory/Slot.gd" id="4_luyic"]
+[ext_resource type="Texture2D" uid="uid://cthiheim5qnjx" path="res://Inventory/ItemIcons/Wooden Helmet.png" id="5_5bj2j"]
 [ext_resource type="Script" path="res://Inventory/EquippedItems.gd" id="5_tjp47"]
-[ext_resource type="Texture2D" uid="uid://cv0p25flrboe6" path="res://Inventory/Sprites/ShirtOverlay.png" id="6_0wo02"]
-[ext_resource type="Texture2D" uid="uid://dcm61r0awwaej" path="res://Inventory/Sprites/HelmetOverlay.png" id="6_wxtqa"]
-[ext_resource type="Texture2D" uid="uid://c6j86mgyi86q3" path="res://Inventory/Sprites/PantsOverlay.png" id="7_phdd6"]
-[ext_resource type="Texture2D" uid="uid://d2w3c0ydgorix" path="res://Inventory/Sprites/AmuletOverlay.png" id="7_q8nqa"]
-[ext_resource type="Texture2D" uid="uid://dg4xqqjtw8bcy" path="res://Inventory/Sprites/ShoesOverlay.png" id="8_baiyw"]
-[ext_resource type="Texture2D" uid="uid://cjnmcygl7qus5" path="res://Inventory/Sprites/OffhandOverlay.png" id="9_u7gwy"]
-[ext_resource type="Texture2D" uid="uid://blghr5kksb5uh" path="res://Inventory/Sprites/Ring1Overlay.png" id="10_gxunj"]
-[ext_resource type="Texture2D" uid="uid://bhc2uhpchcxjw" path="res://Inventory/Sprites/Ring2Overlay.png" id="12_4ty8w"]
+[ext_resource type="Texture2D" uid="uid://caqgpvwmxf4vd" path="res://Inventory/ItemIcons/Normal Amulet.png" id="6_mdij2"]
+[ext_resource type="Texture2D" uid="uid://dh5vewyvybvg6" path="res://Inventory/ItemIcons/Wooden Chestplate.png" id="7_ekwi1"]
+[ext_resource type="Texture2D" uid="uid://4sgg36ov0d6h" path="res://Inventory/ItemIcons/Wooden Shield.png" id="8_3h0gy"]
+[ext_resource type="Texture2D" uid="uid://pp2ycnbvt50n" path="res://Inventory/ItemIcons/Normal Ring.png" id="8_dpakc"]
+[ext_resource type="Texture2D" uid="uid://lkshfb0t4458" path="res://Inventory/ItemIcons/Wooden Leggins.png" id="9_h0aa1"]
+[ext_resource type="Texture2D" uid="uid://f2sjv3lr6yts" path="res://Inventory/ItemIcons/Wooden Boots.png" id="11_qpp6y"]
+[ext_resource type="Texture2D" uid="uid://dkhr8ou7um62g" path="res://Inventory/ItemIcons/Wooden Sword.png" id="12_l0bnt"]
 [ext_resource type="Script" path="res://Inventory/CharacterStats.cs" id="13_y0fev"]
 
 [node name="Inventory" type="Node2D"]
@@ -289,11 +289,14 @@ theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/HelmetSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_right = 35.0
-offset_bottom = 35.0
-texture = ExtResource("6_wxtqa")
+offset_left = -0.371323
+offset_top = -1.37977
+offset_right = 39.6287
+offset_bottom = 38.6202
+texture = ExtResource("5_5bj2j")
 
 [node name="AmuletSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
@@ -302,12 +305,15 @@ theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/AmuletSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
+self_modulate = Color(0.580392, 0.552941, 0.423529, 1)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_top = 2.0
-offset_right = 34.0
-offset_bottom = 36.0
-texture = ExtResource("7_q8nqa")
+offset_left = 0.190409
+offset_top = -0.855441
+offset_right = 40.1904
+offset_bottom = 39.1446
+texture = ExtResource("6_mdij2")
 
 [node name="ShirtSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
@@ -316,24 +322,30 @@ theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShirtSlot"]
-custom_minimum_size = Vector2(40, 40)
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 layout_mode = 0
-offset_right = 35.0
-offset_bottom = 35.0
-texture = ExtResource("6_0wo02")
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 38.0
+texture = ExtResource("7_ekwi1")
 
-[node name="OffhandSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+[node name="RingSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/OffhandSlot"]
-custom_minimum_size = Vector2(40, 40)
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
+self_modulate = Color(0.580244, 0.551939, 0.421681, 1)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 0
-offset_right = 35.0
-offset_bottom = 34.0
-texture = ExtResource("9_u7gwy")
+offset_left = 3.04581
+offset_top = 1.14218
+offset_right = 38.0458
+offset_bottom = 36.1422
+texture = ExtResource("8_dpakc")
 
 [node name="PantsSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
@@ -342,24 +354,27 @@ theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/PantsSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
 offset_right = 35.0
 offset_bottom = 35.0
-texture = ExtResource("7_phdd6")
+texture = ExtResource("9_h0aa1")
 
-[node name="RingSlot1" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+[node name="OffhandSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot1"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_right = 35.0
-offset_bottom = 35.0
-texture = ExtResource("10_gxunj")
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/OffhandSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
+custom_minimum_size = Vector2(35, 35)
+offset_left = 3.04578
+offset_top = 1.14217
+offset_right = 38.0458
+offset_bottom = 36.1422
+texture = ExtResource("8_3h0gy")
 
 [node name="ShoesSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
@@ -368,26 +383,28 @@ theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShoesSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
 offset_right = 35.0
 offset_bottom = 35.0
-texture = ExtResource("8_baiyw")
+texture = ExtResource("11_qpp6y")
 
-[node name="RingSlot2" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
+[node name="WeaponSlot" type="Panel" parent="Panel/TextureRect2/EquipSlots"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot2"]
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/WeaponSlot"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_left = 2.0
-offset_top = -2.0
-offset_right = 37.0
-offset_bottom = 33.0
-texture = ExtResource("12_4ty8w")
+offset_left = 0.435897
+offset_top = 0.213675
+offset_right = 40.4359
+offset_bottom = 40.2137
+texture = ExtResource("12_l0bnt")
 
 [node name="CharacterStats" type="MarginContainer" parent="Panel"]
 layout_mode = 0

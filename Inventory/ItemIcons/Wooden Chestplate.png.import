@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0p25flrboe6"
-path="res://.godot/imported/ShirtOverlay.png-2f3877da1c4639e15d7f80c29b4a1c94.ctex"
+uid="uid://dh5vewyvybvg6"
+path="res://.godot/imported/Wooden Chestplate.png-e6aa21b94570b6caabde0f628f4f9d34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/sprites for equipment/ShirtOverlay.png"
-dest_files=["res://.godot/imported/ShirtOverlay.png-2f3877da1c4639e15d7f80c29b4a1c94.ctex"]
+source_file="res://Inventory/ItemIcons/Wooden Chestplate.png"
+dest_files=["res://.godot/imported/Wooden Chestplate.png-e6aa21b94570b6caabde0f628f4f9d34.ctex"]
 
 [params]
 

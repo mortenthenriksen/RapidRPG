@@ -14,7 +14,7 @@ public partial class ItemDrop : CharacterBody2D
             {"Iron Helmet", 10},
             {"Iron Chestplate", 70},
             {"Iron Leggins", 20},
-            {"Legendary Sword", 20},
+            {"Legendary Sword", 2},
             {"Iron Shield", 20},
         }; 
 

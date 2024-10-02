@@ -21,11 +21,11 @@ func _ready():
 	slotsEquip[0].slot_type = SlotClass.SlotType.HELMET
 	slotsEquip[1].slot_type = SlotClass.SlotType.AMULET
 	slotsEquip[2].slot_type = SlotClass.SlotType.TORSO
-	slotsEquip[3].slot_type = SlotClass.SlotType.OFFHAND
+	slotsEquip[3].slot_type = SlotClass.SlotType.RING
 	slotsEquip[4].slot_type = SlotClass.SlotType.PANTS
-	slotsEquip[5].slot_type = SlotClass.SlotType.RING1
+	slotsEquip[5].slot_type = SlotClass.SlotType.OFFHAND
 	slotsEquip[6].slot_type = SlotClass.SlotType.SHOES
-	slotsEquip[7].slot_type = SlotClass.SlotType.RING2
+	slotsEquip[7].slot_type = SlotClass.SlotType.WEAPON
 
 	initialize_equips()
 
@@ -145,7 +145,7 @@ func get_equipped_items():
 	var item_names = []
 	for i in range(equip_slots.get_child_count()):
 		var slot = equip_slots.get_child(i)
-		if slot.slot_type in [SlotClass.SlotType.HELMET, SlotClass.SlotType.TORSO, SlotClass.SlotType.PANTS, SlotClass.SlotType.SHOES, SlotClass.SlotType.AMULET, SlotClass.SlotType.OFFHAND, SlotClass.SlotType.RING1, SlotClass.SlotType.RING2]:
+		if slot.slot_type in [SlotClass.SlotType.HELMET, SlotClass.SlotType.TORSO, SlotClass.SlotType.PANTS, SlotClass.SlotType.SHOES, SlotClass.SlotType.AMULET, SlotClass.SlotType.OFFHAND, SlotClass.SlotType.RING, SlotClass.SlotType.WEAPON]:
 			if slot.item:
 				item_names.append(slot.item.item_name)
 	return item_names

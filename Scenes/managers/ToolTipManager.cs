@@ -1,5 +1,3 @@
-
-using System;
 using Game.Autoload;
 using Game.Characters;
 using Godot;
@@ -125,7 +123,6 @@ public partial class ToolTipManager : Node2D
     {
         return GDToCSDataConverter.Instance.GetValuesDictionaries();
     }
-
 
 
     public override void _Notification(int what)

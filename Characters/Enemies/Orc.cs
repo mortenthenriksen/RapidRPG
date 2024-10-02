@@ -82,10 +82,13 @@ public partial class Orc : CharacterBody2D
 	{
 		health -= damageAmount;
 		UpdateHealthBar();	
+		if (!isDead)
+		{
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHitByBullet, Position);
+		}
 		if (health > 0) 
 		{   
 			elapsedTime = 0.0f;
-			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHitByBullet, Position);
 		}
 		else if (health <= 0 && !isDead) 
 		{   

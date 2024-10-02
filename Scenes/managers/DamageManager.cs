@@ -55,6 +55,6 @@ public partial class DamageManager : Node
 	{
 		// the final returning of the max dmg, will be affected by a lot of modifers later on
 		// make it depend on the class chosen B-), just buy the character pack already
-		return 50 + MainStatManager.Instance.GetStrengthValue() * 10;
+		return 50 + MainStatManager.Instance.GetStrengthValue() + EquippedItemsManager.Instance.GetAddedDamage();
 	}
 }

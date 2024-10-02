@@ -12,22 +12,22 @@ enum SlotType {
 	HELMET, #2
 	AMULET, #3 
 	TORSO, #4
-	OFFHAND, #5
+	RING, #5
 	PANTS, #6
-	RING1, #7
+	OFFHAND, #7
 	SHOES, #8
-	RING2, #9
+	WEAPON, #9
 }
 
 var SlotTypeNames = {
 	SlotType.HELMET: "Helmet",
 	SlotType.AMULET: "Amulet",
     SlotType.TORSO: "Torso",
-	SlotType.OFFHAND: "Offhand",
+	SlotType.RING: "Ring",
     SlotType.PANTS: "Pants",
-	SlotType.RING1: "Ring1",
+	SlotType.OFFHAND: "Offhand",
 	SlotType.SHOES: "Shoes",
-	SlotType.RING2: "Ring2"
+	SlotType.WEAPON: "Weapon"
 }
 
 func pick_from_slot():

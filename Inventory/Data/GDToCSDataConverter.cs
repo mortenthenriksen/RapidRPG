@@ -14,7 +14,7 @@ public partial class GDToCSDataConverter : Node
     [Export]
     private Node jsonData;
 
-    private readonly static string filePath = "res://Inventory/Data/ItemData.json";
+    private readonly static string filePath = "res://Inventory/Data/ItemDataFromExcel.json";
 
 
     public override void _Ready()

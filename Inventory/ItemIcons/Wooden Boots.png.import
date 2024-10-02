@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg4xqqjtw8bcy"
-path="res://.godot/imported/ShoesOverlay.png-d83737b7f29b286e87683e1cf5f6c983.ctex"
+uid="uid://f2sjv3lr6yts"
+path="res://.godot/imported/Wooden Boots.png-42cf6667964dbb16e5eae232f8c3dba8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/Sprites/ShoesOverlay.png"
-dest_files=["res://.godot/imported/ShoesOverlay.png-d83737b7f29b286e87683e1cf5f6c983.ctex"]
+source_file="res://Inventory/ItemIcons/Wooden Boots.png"
+dest_files=["res://.godot/imported/Wooden Boots.png-42cf6667964dbb16e5eae232f8c3dba8.ctex"]
 
 [params]
 

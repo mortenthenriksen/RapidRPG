@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2w3c0ydgorix"
-path="res://.godot/imported/AmuletOverlay.png-bc67d9cf52f4bd9d2b9f518553b4cb36.ctex"
+uid="uid://lkshfb0t4458"
+path="res://.godot/imported/Wooden Leggins.png-679a1c77b5a596a0cd0763c8d48937f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/sprites for equipment/AmuletOverlay.png"
-dest_files=["res://.godot/imported/AmuletOverlay.png-bc67d9cf52f4bd9d2b9f518553b4cb36.ctex"]
+source_file="res://Inventory/ItemIcons/Wooden Leggins.png"
+dest_files=["res://.godot/imported/Wooden Leggins.png-679a1c77b5a596a0cd0763c8d48937f4.ctex"]
 
 [params]
 

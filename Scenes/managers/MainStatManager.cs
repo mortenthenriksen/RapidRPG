@@ -3,7 +3,6 @@ using Godot;
 
 namespace Game.Manager;
 
-[GlobalClass]
 
 
 public partial class MainStatManager : Node
@@ -12,7 +11,7 @@ public partial class MainStatManager : Node
 	public static MainStatManager Instance { get; private set; }
 
 	[Export]
-	private DefenseManager defenseManager;
+	private EquippedItemsManager equippedItemsManager;
 
 	[Export]
 	private DamageManager damageManager;

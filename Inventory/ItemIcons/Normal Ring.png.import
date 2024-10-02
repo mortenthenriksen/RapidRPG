@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6j86mgyi86q3"
-path="res://.godot/imported/PantsOverlay.png-9d74b9c17bcc8c215d3717e5e6e37dd7.ctex"
+uid="uid://pp2ycnbvt50n"
+path="res://.godot/imported/Normal Ring.png-95728b0afa6ce012afede81c7d053aeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/Sprites/PantsOverlay.png"
-dest_files=["res://.godot/imported/PantsOverlay.png-9d74b9c17bcc8c215d3717e5e6e37dd7.ctex"]
+source_file="res://Inventory/ItemIcons/Normal Ring.png"
+dest_files=["res://.godot/imported/Normal Ring.png-95728b0afa6ce012afede81c7d053aeb.ctex"]
 
 [params]
 

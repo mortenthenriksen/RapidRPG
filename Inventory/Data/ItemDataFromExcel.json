@@ -1,0 +1,78 @@
+{
+    "Tree Branch": {
+        "ItemCategory": "Consumable",
+        "StackSize": 99,
+        "Description": "A sturdy tree branch!"
+    },
+    "Iron Sword": {
+        "ItemCategory": "Weapon",
+        "StackSize": 1,
+        "Description": "Quite rusty, like your mom in bed.",
+        "Attack": 3.0,
+        "ItemSpeed": 0.75
+    },
+    "Legendary Sword": {
+        "ItemCategory": "Weapon",
+        "StackSize": 1,
+        "Description": "INSANE DAMAGE!!",
+        "Attack": 100.0,
+        "ItemSpeed": 1.75
+    },
+    "Iron Helmet": {
+        "ItemCategory": "Helmet",
+        "StackSize": 1,
+        "Description": "Not the hair!",
+        "Defense": 4.0,
+        "MainStat": 3.0
+    },
+    "Iron Chestplate": {
+        "ItemCategory": "Torso",
+        "StackSize": 1,
+        "Description": "It matches my other armor!",
+        "Defense": 10.0,
+        "MainStat": 7.0
+    },
+    "Iron Leggins": {
+        "ItemCategory": "Pants",
+        "StackSize": 1,
+        "Description": "Nobody is getting!",
+        "Defense": 8.0,
+        "MainStat": 5.0
+    },
+    "Iron Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "Even works on nails",
+        "Defense": 5.0,
+        "MainStat": 2.0
+    },
+    "Iron Shield": {
+        "ItemCategory": "Offhand",
+        "StackSize": 1,
+        "Description": "STOP!",
+        "Defense": 1000.0,
+        "MainStat": 3.0
+    },
+    "Slime Potion": {
+        "ItemCategory": "Consumable",
+        "StackSize": 10,
+        "Description": "It smells like medicine.",
+        "AddHealth": 5.0,
+        "AddEnergy": 32.0
+    },
+    "Brown Shirt": {
+        "ItemCategory": "Torso",
+        "StackSize": 1,
+        "Description": "White shirts was sold out"
+    },
+    "Blue Jeans": {
+        "ItemCategory": "Pants",
+        "StackSize": 1,
+        "Description": "Pants! Didn't expect that"
+    },
+    "Brown Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "What are those?!"
+    }
+}

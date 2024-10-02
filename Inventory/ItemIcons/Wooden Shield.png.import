@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0p25flrboe6"
-path="res://.godot/imported/ShirtOverlay.png-13fef2525a0f40938f304187ebe13b88.ctex"
+uid="uid://4sgg36ov0d6h"
+path="res://.godot/imported/Wooden Shield.png-995fa2603240b99df8a68326b3a02b98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/Sprites/ShirtOverlay.png"
-dest_files=["res://.godot/imported/ShirtOverlay.png-13fef2525a0f40938f304187ebe13b88.ctex"]
+source_file="res://Inventory/ItemIcons/Wooden Shield.png"
+dest_files=["res://.godot/imported/Wooden Shield.png-995fa2603240b99df8a68326b3a02b98.ctex"]
 
 [params]
 

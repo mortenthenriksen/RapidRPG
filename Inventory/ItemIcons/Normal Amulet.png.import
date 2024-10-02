@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjnmcygl7qus5"
-path="res://.godot/imported/OffhandOverlay.png-57278c184d1659376ff86e94cb6eef3e.ctex"
+uid="uid://caqgpvwmxf4vd"
+path="res://.godot/imported/Normal Amulet.png-7c173d2422ccba392fa11f128b8e1191.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/sprites for equipment/OffhandOverlay.png"
-dest_files=["res://.godot/imported/OffhandOverlay.png-57278c184d1659376ff86e94cb6eef3e.ctex"]
+source_file="res://Inventory/ItemIcons/Normal Amulet.png"
+dest_files=["res://.godot/imported/Normal Amulet.png-7c173d2422ccba392fa11f128b8e1191.ctex"]
 
 [params]
 

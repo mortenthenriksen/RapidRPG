@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6j86mgyi86q3"
-path="res://.godot/imported/PantsOverlay.png-eeec86c83bc19db4f3fa27318a91d1ea.ctex"
+uid="uid://cthiheim5qnjx"
+path="res://.godot/imported/Wooden Helmet.png-72bbdb22938a2e1be16f2d79e8eaec37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/sprites for equipment/PantsOverlay.png"
-dest_files=["res://.godot/imported/PantsOverlay.png-eeec86c83bc19db4f3fa27318a91d1ea.ctex"]
+source_file="res://Inventory/ItemIcons/Wooden Helmet.png"
+dest_files=["res://.godot/imported/Wooden Helmet.png-72bbdb22938a2e1be16f2d79e8eaec37.ctex"]
 
 [params]
 

@@ -62,7 +62,7 @@ public partial class CharacterStats : MarginContainer
 
     private void UpdateCurrentDefence()
     {
-        defenseLabel.Text = DefenseManager.Instance.GetTotalDefence().ToString();
+        defenseLabel.Text = EquippedItemsManager.Instance.GetTotalDefence().ToString();
     }
 
     private void UpdateCurrentMultiplier()
