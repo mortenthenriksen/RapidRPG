@@ -24,6 +24,7 @@ var equips = {
 	0: ["Iron Helmet", 1],
 	2: ["Iron Chestplate", 1],
 	4: ["Iron Leggins", 1],
+	5: ["Wooden Shield", 1],
 	6: ["Iron Boots", 1],
 }
 

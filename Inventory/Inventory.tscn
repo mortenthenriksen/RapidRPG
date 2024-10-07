@@ -288,7 +288,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/HelmetSlot"]
+[node name="TextureRectHelmet" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/HelmetSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -304,7 +305,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/AmuletSlot"]
+[node name="TextureRectAmulet" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/AmuletSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 self_modulate = Color(0.580392, 0.552941, 0.423529, 1)
 custom_minimum_size = Vector2(40, 40)
@@ -321,7 +323,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShirtSlot"]
+[node name="TextureRectShirt" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShirtSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 layout_mode = 0
 offset_left = 1.0
@@ -336,7 +339,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot"]
+[node name="TextureRectRing" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/RingSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 self_modulate = Color(0.580244, 0.551939, 0.421681, 1)
 custom_minimum_size = Vector2(35, 35)
@@ -353,7 +357,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/PantsSlot"]
+[node name="TextureRectPants" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/PantsSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -367,9 +372,11 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/OffhandSlot"]
+[node name="TextureRectOffhand" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/OffhandSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(35, 35)
+layout_mode = 0
 offset_left = 3.04578
 offset_top = 1.14217
 offset_right = 38.0458
@@ -382,7 +389,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShoesSlot"]
+[node name="TextureRectShoes" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/ShoesSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -396,7 +404,8 @@ layout_mode = 2
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/WeaponSlot"]
+[node name="TextureRectWeapon" type="TextureRect" parent="Panel/TextureRect2/EquipSlots/WeaponSlot"]
+unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0

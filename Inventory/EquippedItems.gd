@@ -141,6 +141,7 @@ func left_click_not_holding(slot: SlotClass):
 	InventoryLogic.get_equips().erase(slot.slot_index)
 
 
+
 func get_equipped_items():
 	var item_names = []
 	for i in range(equip_slots.get_child_count()):

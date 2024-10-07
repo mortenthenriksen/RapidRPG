@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
-[ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://characters/Player/Dave/Dave.tscn" id="2_y6x0m"]
 [ext_resource type="PackedScene" uid="uid://mib2hqo11ekk" path="res://characters/Enemies/Orc.tscn" id="3_qk0ik"]
 [ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://scenes/managers/DamageManager.tscn" id="4_3djjo"]
 [ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="4_bm5kl"]
@@ -22,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://p1tdhj0o0arj" path="res://scenes/managers/EquippedItemsManager.tscn" id="15_d3pw1"]
 [ext_resource type="PackedScene" uid="uid://cpccydj6bxg4u" path="res://Inventory/Data/JsonData.tscn" id="16_2vlxg"]
 [ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://Inventory/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
+[ext_resource type="PackedScene" uid="uid://bl8wagg0ao6c5" path="res://characters/Player/Knight/Knight.tscn" id="22_2ofkg"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
 script/source = "using Game.Characters;
@@ -74,27 +74,25 @@ _bundled = {
 font_size = 80
 font_color = Color(1, 0, 0, 1)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "damageNumbers")]
+[node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_am2bs")
 treeScene = SubResource("PackedScene_ed46r")
 orcScene = ExtResource("3_qk0ik")
-player = NodePath("Dave")
 itemDropScene = ExtResource("4_w44kb")
-damageNumbers = NodePath("Handlers/DamageNumbers")
 
-[node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
+[node name="Knight" parent="." instance=ExtResource("22_2ofkg")]
+position = Vector2(582.084, 395.615)
 
 [node name="YSortRoot" type="Node2D" parent="."]
 
-[node name="TileMap" type="TileMap" parent="YSortRoot" node_paths=PackedStringArray("player")]
+[node name="TileMap" type="TileMap" parent="YSortRoot"]
 y_sort_enabled = true
 tile_set = ExtResource("4_bm5kl")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/z_index = -1
 script = ExtResource("5_26fb6")
-player = NodePath("../../Dave")
 
 [node name="Bonfire" parent="YSortRoot" instance=ExtResource("14_s20ge")]
 position = Vector2(580, 166)
@@ -110,10 +108,10 @@ position = Vector2(182, 189)
 [node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots", "inventorySlots", "player") instance=ExtResource("10_svtpr")]
 equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 inventorySlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect/InventorySlots")
-player = NodePath("../../Dave")
+player = NodePath("../../Knight")
 
 [node name="MultiplierManager" parent="Handlers" node_paths=PackedStringArray("player") instance=ExtResource("11_qn87i")]
-player = NodePath("../../Dave")
+player = NodePath("../../Knight")
 
 [node name="MainStatManager" parent="Handlers" node_paths=PackedStringArray("equippedItemsManager", "damageManager") instance=ExtResource("11_olti3")]
 equippedItemsManager = NodePath("../EquippedItemsManager")
@@ -123,14 +121,14 @@ damageManager = NodePath("../DamageManager")
 equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
 
 [node name="DamageManager" parent="Handlers" node_paths=PackedStringArray("player", "damageNumbers") instance=ExtResource("4_3djjo")]
-player = NodePath("../../Dave")
+player = NodePath("../../Knight")
 orcScene = ExtResource("3_qk0ik")
 damageNumbers = NodePath("../DamageNumbers")
 
 [node name="LevelManager" parent="Handlers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]
-player = NodePath("../../Dave")
-experienceBar = NodePath("../../Dave/ExperienceBar")
-levelLabel = NodePath("../../Dave/ExperienceBar/LevelLabel")
+player = NodePath("../../Knight")
+experienceBar = NodePath("../../Knight/ExperienceBar")
+levelLabel = NodePath("../../Knight/ExperienceBar/LevelLabel")
 
 [node name="DamageNumbers" parent="Handlers" instance=ExtResource("5_2a70g")]
 pixelKubastaFontTheme = ExtResource("6_03c58")
@@ -143,6 +141,7 @@ jsonData = NodePath("../JSONData")
 [node name="JSONData" parent="Handlers" instance=ExtResource("16_2vlxg")]
 
 [node name="UserInterface" parent="." instance=ExtResource("15_8rt37")]
+player_path = "res://characters/Player/Knight/Knight.tscn"
 
 [node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
 position = Vector2(126.056, 73.7308)
@@ -270,5 +269,5 @@ vertical_alignment = 1
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]
 
-[editable path="Dave"]
+[editable path="Knight"]
 [editable path="UserInterface/Inventory"]

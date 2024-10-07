@@ -6,7 +6,6 @@ namespace Game.Characters;
 public partial class Dave : CharacterBody2D
 {
 	private float speed = 300;
-	private bool isRolling = false;
 	private float MAX_HEALTH = 75.0f;
 	private float health = 75.0f;
 	private float healthRegenAmount = 0.25f;
@@ -14,7 +13,6 @@ public partial class Dave : CharacterBody2D
 	private readonly StringName MOVE_RIGHT = "move_right";
 	private readonly StringName MOVE_UP = "move_up";
 	private readonly StringName MOVE_DOWN = "move_down";
-	private readonly StringName ROLL = "roll";
 
 	[Signal]
 	public delegate void UpdatePlayerHealthEventHandler(float health);
@@ -84,29 +82,30 @@ public partial class Dave : CharacterBody2D
 
 	private Vector2 HandleInput()
 	{
-
-		Vector2 moveDirection = Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
-		// if (Input.IsActionPressed(ROLL))
-		// {   
-		// 	moveDirection += lastMoveDirection + new Vector2(1, 1);
-		// }
-		return moveDirection;
+		return moveDirection = Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
 	}
 
 	private void PlayAnimation(Vector2 direction) 
 	{
 		string action;
 
-		// if (Input.IsActionPressed(ROLL))
-		// {
-		//     action = ROLL;
-		//     direction = lastMoveDirection;
-		// }
-
 		if (direction == Vector2.Zero) 
 		{
 			action = "idle";
 			direction = moveDirection;
+		}
+
+		if (Input.IsActionPressed("attack"))
+		{
+			action = "sword";
+			direction = moveDirection;
+		}
+		
+		if (Input.IsActionPressed("special_attack"))
+		{
+			action = "special";
+			direction = moveDirection;
+			GD.Print("test");
 		}
 		
 		else
