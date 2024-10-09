@@ -22,6 +22,7 @@ public partial class Orc : CharacterBody2D
 	private Label healthLabelOrc;
 	
 	private bool isDead = false;
+	private bool isTakingDamage = false;
 	private float elapsedTime;
 
 	private AnimatedSprite2D animatedSprite2D; 
@@ -49,27 +50,35 @@ public partial class Orc : CharacterBody2D
 
 		if (distance > threshold && health > 0)
 		{
-			// MoveAndCollide(velocity);
+			MoveAndCollide(velocity);
 		}
 
 
 		if (health > 0)
 		{
-			if (distance < threshold)
+			if (!isTakingDamage)
 			{
-				animatedSprite2D.Play("attack01");
-			}
-			else if (direction.X != 0) 
-			{
-				if (direction.X > 0)
-				{	
-					animatedSprite2D.FlipH = false;
-				}
-				else
+				if (distance < threshold)
 				{
-					animatedSprite2D.FlipH = true;
+					animatedSprite2D.Play("attack01");
 				}
-				animatedSprite2D.Play("run");
+				else if (direction.X != 0) 
+				{
+					if (direction.X > 0)
+					{	
+						animatedSprite2D.FlipH = false;
+					}
+					else
+					{
+						animatedSprite2D.FlipH = true;
+					}
+					animatedSprite2D.Play("run");
+				}
+			}
+
+			if (isTakingDamage)
+			{
+				animatedSprite2D.Play("hurt");
 			}
 		}
 		else if (health <= 0 && !animatedSprite2D.IsPlaying())
@@ -84,6 +93,7 @@ public partial class Orc : CharacterBody2D
 		UpdateHealthBar();	
 		if (!isDead)
 		{
+			isTakingDamage = true;
 			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHitByBullet, Position);
 		}
 		if (health > 0) 
@@ -127,21 +137,16 @@ public partial class Orc : CharacterBody2D
 		} else {
 			return;
 		}
-		
+	}
+
+	private void OnAnimationFinished()
+	{
+		isTakingDamage = false;
 	}
 
 	public float GetHealth()
 	{
 		return health;
 	}
-
-
-    // very important to also remove the eventhandler from the dying orc and not just the dying orc
-    // protected override void Dispose(bool disposing)
-    // {
-    // 	CustomSignals.Instance.EnemyDamageRecieved -= OnEnemyDamageRecieved;
-    // 	base.Dispose(disposing);
-    // }
-
 }
 

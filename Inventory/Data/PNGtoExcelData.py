@@ -63,8 +63,8 @@ for index, row in df.iterrows():
     # Add optional fields if they exist
     if 'Attack' in row and not pd.isna(row['Attack']):
         item_data['Attack'] = row['Attack']
-    if 'ItemSpeed' in row and not pd.isna(row['ItemSpeed']):
-        item_data['ItemSpeed'] = row['ItemSpeed']
+    if 'AttackSpeed' in row and not pd.isna(row['AttackSpeed']):
+        item_data['AttackSpeed'] = row['AttackSpeed']
     if 'Defense' in row and not pd.isna(row['Defense']):
         item_data['Defense'] = row['Defense']
     if 'MainStat' in row and not pd.isna(row['MainStat']):

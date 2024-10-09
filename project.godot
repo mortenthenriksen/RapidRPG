@@ -24,9 +24,8 @@ InventoryLogic="*res://Inventory/InventoryLogic.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -122,3 +121,8 @@ common/max_physics_steps_per_frame=1
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/decals/filter=2
+textures/light_projectors/filter=2
+environment/volumetric_fog/use_filter=0
+viewport/size/viewport_width=1980
+viewport/size/viewport_height=1080

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=30 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://p1tdhj0o0arj" path="res://scenes/managers/EquippedItemsManager.tscn" id="15_d3pw1"]
 [ext_resource type="PackedScene" uid="uid://cpccydj6bxg4u" path="res://Inventory/Data/JsonData.tscn" id="16_2vlxg"]
 [ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://Inventory/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
+[ext_resource type="PackedScene" uid="uid://ugmjyabdunxc" path="res://scenes/UI/FPSMeter.tscn" id="20_2lrrw"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
 script/source = "using Game.Characters;
@@ -85,6 +86,18 @@ damageNumbers = NodePath("Handlers/DamageNumbers")
 
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
 
+[node name="AnimatedSprite2D" parent="Dave" index="0"]
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="Dave" index="1"]
+visible = true
+
+[node name="ExperienceBar" parent="Dave" index="5"]
+offset_left = -196.183
+offset_top = 268.206
+offset_right = 196.817
+offset_bottom = 296.206
+
 [node name="YSortRoot" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="YSortRoot" node_paths=PackedStringArray("player")]
@@ -97,19 +110,22 @@ script = ExtResource("5_26fb6")
 player = NodePath("../../Dave")
 
 [node name="Bonfire" parent="YSortRoot" instance=ExtResource("14_s20ge")]
-position = Vector2(580, 166)
+position = Vector2(947, 336)
 
 [node name="roundTree" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(812, 187)
+position = Vector2(1023, 182)
 
 [node name="roundTree2" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(182, 189)
+position = Vector2(310, 222)
+
+[node name="roundTree3" parent="YSortRoot" instance=ExtResource("2_n184a")]
+position = Vector2(669.575, 241.325)
 
 [node name="Handlers" type="Node" parent="."]
 
-[node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots", "inventorySlots", "player") instance=ExtResource("10_svtpr")]
-equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
-inventorySlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect/InventorySlots")
+[node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("inventorySlots", "equippedSlots", "player") instance=ExtResource("10_svtpr")]
+inventorySlots = NodePath("../../UserInterface/Inventory/InventoryPanel/TextureRect/InventorySlots")
+equippedSlots = NodePath("../../UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
 player = NodePath("../../Dave")
 
 [node name="MultiplierManager" parent="Handlers" node_paths=PackedStringArray("player") instance=ExtResource("11_qn87i")]
@@ -120,7 +136,7 @@ equippedItemsManager = NodePath("../EquippedItemsManager")
 damageManager = NodePath("../DamageManager")
 
 [node name="EquippedItemsManager" parent="Handlers" node_paths=PackedStringArray("equippedSlots") instance=ExtResource("15_d3pw1")]
-equippedSlots = NodePath("../../UserInterface/Inventory/Panel/TextureRect2/EquipSlots")
+equippedSlots = NodePath("../../UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
 
 [node name="DamageManager" parent="Handlers" node_paths=PackedStringArray("player", "damageNumbers") instance=ExtResource("4_3djjo")]
 player = NodePath("../../Dave")
@@ -142,99 +158,101 @@ jsonData = NodePath("../JSONData")
 
 [node name="JSONData" parent="Handlers" instance=ExtResource("16_2vlxg")]
 
+[node name="FPSMeter" parent="Handlers" instance=ExtResource("20_2lrrw")]
+
 [node name="UserInterface" parent="." instance=ExtResource("15_8rt37")]
-
-[node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
-position = Vector2(126.056, 73.7308)
-
-[node name="Panel" parent="UserInterface/Inventory" index="0"]
-offset_left = 587.362
-offset_top = -18.2163
-offset_right = 956.362
-offset_bottom = 502.784
 
 [node name="Hotbar" parent="UserInterface" instance=ExtResource("6_46h80")]
 visible = false
 
+[node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
+offset_left = 818.0
+offset_top = 149.0
+offset_right = 818.0
+offset_bottom = 149.0
+
+[node name="InventoryPanel" parent="UserInterface/Inventory" index="0"]
+layout_mode = 0
+
 [node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(61.4961, 514.042)
+position = Vector2(134.794, 552.13)
 
 [node name="Orc2" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(462.434, 463.7)
+position = Vector2(535.732, 501.788)
 
 [node name="Orc3" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(237.885, 458.605)
+position = Vector2(311.183, 496.693)
 
 [node name="Orc5" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(327.339, 437.186)
+position = Vector2(400.637, 475.274)
 
 [node name="Orc6" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(382.776, 509.002)
+position = Vector2(456.074, 547.09)
 
 [node name="Orc7" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(220.246, 559.399)
+position = Vector2(293.544, 597.487)
 
 [node name="Orc8" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(149.022, 480.641)
+position = Vector2(222.32, 518.729)
 
 [node name="Orc9" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(316, 541.76)
+position = Vector2(389.298, 579.848)
 
 [node name="Orc10" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(406.714, 405.688)
+position = Vector2(480.012, 443.776)
 
 [node name="Orc4" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(132.052, 589.637)
+position = Vector2(205.35, 627.725)
 
 [node name="Orc11" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(-57.2979, 337.265)
+position = Vector2(16, 375.353)
 
 [node name="Orc12" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(343.64, 286.923)
+position = Vector2(416.938, 325.011)
 
 [node name="Orc13" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(119.091, 281.828)
+position = Vector2(192.389, 319.916)
 
 [node name="Orc14" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(208.545, 260.41)
+position = Vector2(281.843, 298.498)
 
 [node name="Orc15" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(263.982, 332.225)
+position = Vector2(337.28, 370.313)
 
 [node name="Orc16" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(101.452, 382.622)
+position = Vector2(174.75, 420.71)
 
 [node name="Orc17" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(30.2283, 303.864)
+position = Vector2(103.526, 341.952)
 
 [node name="Orc18" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(197.206, 364.983)
+position = Vector2(270.504, 403.071)
 
 [node name="Orc19" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(287.92, 228.912)
+position = Vector2(361.218, 267)
 
 [node name="Orc20" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(13.2578, 412.861)
+position = Vector2(86.556, 450.949)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4

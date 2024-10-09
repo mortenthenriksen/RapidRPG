@@ -16,6 +16,7 @@ public partial class EquippedItemsManager : Node
     private Dictionary itemDataJson;
     
     private float baseDefense;
+    private float attackSpeed;
     private float addedDamage;
 
 
@@ -81,6 +82,31 @@ public partial class EquippedItemsManager : Node
     }
 
 
+    public float GetAttackSpeedFromEquippedItems()
+    {
+        attackSpeed = 0;
+        equippedItems = (Array<string>)equippedSlots.Call("get_equipped_items");
+        foreach (var element in equippedItems)
+        {
+            if (GetItemDataDictionary().ContainsKey(element))
+            {
+                if (itemDataJson.ContainsKey(element))
+                {
+                    var valueDict = (Dictionary)itemDataJson[element];
+                    if (valueDict.ContainsKey("AttackSpeed"))
+                    {
+                        attackSpeed += (float)valueDict["AttackSpeed"];
+                    }
+                }
+            }
+        }
+        if (attackSpeed == 0)
+        {
+            return 1;
+        }
+        return attackSpeed;
+    }
+
     private Dictionary GetItemDataDictionary()
     {
         return GDToCSDataConverter.Instance.GetValuesDictionaries();
@@ -96,6 +122,10 @@ public partial class EquippedItemsManager : Node
         return addedDamage;
     }
     
+    public float GetTotalAttackSpeed()
+    {
+        return attackSpeed;
+    }
     		
     public override void _Notification(int what)
     {

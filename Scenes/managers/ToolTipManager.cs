@@ -9,12 +9,13 @@ namespace Game.Manager;
 public partial class ToolTipManager : Node2D
 {
     public static ToolTipManager Instance { get; private set; }
+    
+    [Export]
+    private GridContainer inventorySlots;
 
     [Export]
     private GridContainer equippedSlots;
 
-    [Export]
-    private GridContainer inventorySlots;
 
     [Export]
     private Dave player;
@@ -27,9 +28,8 @@ public partial class ToolTipManager : Node2D
     private Label secondaryStatValue;
     private Label descriptionLabel;
 
-
-    private Vector2I offset = new Vector2I(300, 200);
-
+    private Timer toolTipDelayTimer;
+    private Vector2I offset = new Vector2I(200, 200);
 
     public override void _Ready()
     {
@@ -42,6 +42,7 @@ public partial class ToolTipManager : Node2D
         
         
         toolTipPanel = GetNode<Panel>("%ToolTipPanel");
+        toolTipDelayTimer = GetNode<Timer>("ToolTipDelayTimer");
         toolTipPanel.Visible = false;
         
         itemNameLabel = GetNode<Label>("%ItemNameLabel");
@@ -74,7 +75,7 @@ public partial class ToolTipManager : Node2D
                 mainStatValue.Text = valueDict["Defense"].ToString();
                 if (valueDict.ContainsKey("MainStat"))
                 {
-                    // secondaryStatLabel.Text = GetMainStatFromItemDrop();
+                    secondaryStatLabel.Text = "Strength: ";
                     secondaryStatValue.Text = valueDict["MainStat"].ToString();
                 }
                 else
@@ -85,8 +86,17 @@ public partial class ToolTipManager : Node2D
                 descriptionLabel.Text = "";
             }
 
+            if (valueDict["ItemCategory"].ToString() == "Weapon")
+            {
+                mainStatLabel.Text = "Attack damage: ";
+                mainStatValue.Text = valueDict["Attack"].ToString();
+                secondaryStatLabel.Text = "Attack speed: ";
+                secondaryStatValue.Text = valueDict["AttackSpeed"].ToString();
+                descriptionLabel.Text = "";
+            }
 
-            if (valueDict.ContainsKey("ItemCategory") && valueDict["ItemCategory"].ToString() == "Consumable")
+
+            if (valueDict["ItemCategory"].ToString() == "Consumable")
             {
                 mainStatLabel.Text = "Stacksize";
                 mainStatValue.Text = valueDict["StackSize"].ToString();
@@ -94,10 +104,7 @@ public partial class ToolTipManager : Node2D
                 secondaryStatValue.Text = "";
                 descriptionLabel.Text = valueDict["Description"].ToString();
             }
-            
-
         }
-
 
         
         // // Check if "Iron Helmet" exists in the dictionary
@@ -116,8 +123,6 @@ public partial class ToolTipManager : Node2D
     {   
         toolTipPanel.Visible = false;
     }
-
-
 
     private Dictionary GetItemDataDictionary()
     {

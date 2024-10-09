@@ -6,7 +6,6 @@ signal custom_mouse_exited()
 const SlotClass = preload("res://Inventory/Slot.gd")
 const ItemClass = preload("res://Inventory/Item.gd")
 
-# @onready var inventory_slots = $Panel/TextureRect/GridContainer
 
 var inventory = InventoryLogic.get_inventory()
 var equips = InventoryLogic.get_equips()

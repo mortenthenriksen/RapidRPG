@@ -80,8 +80,8 @@
         "StackSize": 10,
         "Description": "Quite rusty",
         "Weight": 0,
-        "Attack": 3.0,
-        "ItemSpeed": 0.75
+        "Attack": 10.0,
+        "AttackSpeed": 0.75
     },
     "Legendary Sword": {
         "ItemCategory": "Weapon",
@@ -89,7 +89,7 @@
         "Description": "INSANE DAMAGE!!",
         "Weight": 5,
         "Attack": 100.0,
-        "ItemSpeed": 1.75
+        "AttackSpeed": 1.75
     },
     "Slime Potion": {
         "ItemCategory": "Consumable",
@@ -106,63 +106,68 @@
         "Weight": 0
     },
     "Normal Amulet": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Amulet",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Normal Ring": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Ring",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Wooden Boots": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Shoes",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Wooden Chestplate": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Torso",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Wooden Helmet": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Helmet",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Wooden Leggins": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Pants",
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
     },
     "Wooden Shield": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Offhand",
         "StackSize": 1,
         "Description": "Default",
-        "Weight": 0
+        "Weight": 0,
+        "Defense": 3.0
     },
     "Wooden Sword": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Weapon",
         "StackSize": 1,
         "Description": "Default",
-        "Weight": 0
+        "Weight": 0,
+        "Attack": 5.0,
+        "AttackSpeed": 1.1
     },
     "Butterfly Ring": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Ring",
         "StackSize": 1,
         "Description": "Default",
-        "Weight": 0
+        "Weight": 0,
+        "Attack": 100.0
     },
     "Golden Skull Amulet": {
-        "ItemCategory": "Default",
+        "ItemCategory": "Amulet",
         "StackSize": 1,
         "Description": "Default",
-        "Weight": 0
+        "Weight": 0,
+        "Attack": 100.0
     }
 }
