@@ -39,6 +39,7 @@ public partial class Dave : CharacterBody2D
 	private AttackBoxCollisionShape attackBoxCollisionShape;
 	private ItemDrop itemDrop;
 	private Timer healthRegenTimer;
+	private InventoryPanel inventoryPanel;
 	private bool isAttacking = false;
 	private bool hasDealtDamage = false;
 
@@ -50,6 +51,7 @@ public partial class Dave : CharacterBody2D
 		pickupBox = GetNode<PickupBox>("PickupBox");
 		attackBox = GetNode<Area2D>("AttackBox");
 		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
+		inventoryPanel = GetNode<InventoryPanel>("/root/Main/UserInterface/Inventory/InventoryPanel");
 
 		UpdateHealthBar();
 	}
@@ -133,17 +135,30 @@ public partial class Dave : CharacterBody2D
 	{
 		string action;
 
-		if (Input.IsActionPressed("attack") && !isAttacking)
-		{
-			animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetAttackSpeedFromEquippedItems();
-			action = "sword";
-			isAttacking = true;
-		}
+		animatedSprite2D.SpeedScale = 1;
+		action = "idle";
 
-		else if (Input.IsActionPressed("special_attack") && !isAttacking)
+		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isAttacking)
 		{
-			action = "special";
-			isAttacking = true;
+			if (Input.IsActionPressed("attack"))
+			{
+				animatedSprite2D.SpeedScale = 0.9f;
+				animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
+				action = "sword";
+				isAttacking = true;
+			}
+
+			else if (Input.IsActionPressed("special_attack"))
+			{
+				action = "special";
+				isAttacking = true;
+			}
+
+			else if (direction != Vector2.Zero)
+			{
+			animatedSprite2D.SpeedScale = 1;
+			action = "run";
+			}
 		}
 
 		else if (direction != Vector2.Zero)
@@ -151,26 +166,6 @@ public partial class Dave : CharacterBody2D
 			animatedSprite2D.SpeedScale = 1;
 			action = "run";
 		}
-
-		else
-		{
-			animatedSprite2D.SpeedScale = 1;
-			action = "idle";
-		}
-
-		// string directionSuffix = direction switch
-		// {
-		// 	Vector2 d when d == Vector2.Up => "Up",
-		// 	Vector2 d when d == Vector2.Down => "Down",
-		// 	Vector2 d when d == Vector2.Left => "Left",
-		// 	Vector2 d when d == Vector2.Right => "Right",
-		// 	// slightly cursed, but i dont care :)
-		// 	Vector2 d when d == new Vector2(-(float)0.70710677, -(float)0.70710677) => "Left", 
-		// 	Vector2 d when d == new Vector2((float)0.70710677, -(float)0.70710677) => "Right", 
-		// 	Vector2 d when d == new Vector2(-(float)0.70710677, (float)0.70710677) => "Left", 
-		// 	Vector2 d when d == new Vector2((float)0.70710677, (float)0.70710677) => "Right", 
-		// 	_ => ""
-		// };
 
 		string directionSuffix = GetDirectionSuffix(direction != Vector2.Zero ? direction : lastDirection);
         animatedSprite2D.Play(action + directionSuffix);
@@ -193,12 +188,12 @@ public partial class Dave : CharacterBody2D
 		};
 	}
 
+
 	private void OnAnimationFinished()
 	{
 		isAttacking = false;
 		hasDealtDamage = false;
 	}
-
 
 	public Vector2 GetCurrentDirection()
 	{

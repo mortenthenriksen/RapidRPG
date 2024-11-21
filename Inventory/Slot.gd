@@ -1,6 +1,5 @@
 extends Panel
 
-
 var ItemClass = preload("res://Inventory/Item.tscn")
 var item = null
 var slot_type = null
@@ -35,8 +34,6 @@ func pick_from_slot():
 	var inventoryNode = find_parent("UserInterface")
 	inventoryNode.add_child(item)
 	item = null
-
-	
 
 func put_into_slot(new_item):
 	item = new_item

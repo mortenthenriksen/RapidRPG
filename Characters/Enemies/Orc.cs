@@ -16,17 +16,26 @@ public partial class Orc : CharacterBody2D
 	private float MAX_HEALTH = 150;
 	private float health = 150; 
 	private float threshold = 50;
-	private float damageTaken;
+	private float separationRadius = 200; // Radius for separation detection
+    private float separationStrength = 500; // Strength of the separation force
+    private float avoidanceRadius = 30; // Radius for obstacle avoidance detection
+    private float avoidanceAngle = 90; // Angle to adjust direction when avoiding obstacles
 	
-	private ProgressBar healthBarOrc; 
-	private Label healthLabelOrc;
 	
 	private bool isDead = false;
 	private bool isTakingDamage = false;
+	private bool isAttacking = false;
+	private bool hasDealtDamage = false;
+	private Vector2 direction;
+	private float knockBackForce = 15;
 	private float elapsedTime;
 
+	private ProgressBar healthBarOrc; 
+	private Label healthLabelOrc;
 	private AnimatedSprite2D animatedSprite2D; 
 	private Dave player; 
+	private Area2D detectionArea;
+	private Area2D obstacleDetectionArea;
 
 	public override void _Ready()
 	{
@@ -34,6 +43,9 @@ public partial class Orc : CharacterBody2D
 		healthLabelOrc = GetNode<Label>("HealthBarOrc/HealthLabelOrc");
 		healthBarOrc = GetNode<ProgressBar>("HealthBarOrc");
 		player = GetNode<Dave>("/root/Main/Dave");
+		detectionArea = GetNode<Area2D>("DetectionArea");
+		obstacleDetectionArea = GetNode<Area2D>("ObstacleDetectionArea");
+
 
 		UpdateHealthBar();
 
@@ -44,13 +56,18 @@ public partial class Orc : CharacterBody2D
     public override void _PhysicsProcess(double delta)
 	{
 		elapsedTime += (float) delta;
-		var direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
+		direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
 		var distance = GlobalPosition.DistanceTo(player.GetCurrentPlayerPosition());
 		var velocity = direction * speed * (float)delta;
 
+        Vector2 separationForce = CalculateSeparationForce();
+		Vector2 avoidanceDirection = AdjustDirectionForObstacles(direction);
+
+        velocity = (avoidanceDirection * speed + separationForce * separationStrength) * (float)delta;
+
 		if (distance > threshold && health > 0)
 		{
-			MoveAndCollide(velocity);
+			// MoveAndCollide(velocity);
 		}
 
 
@@ -60,7 +77,12 @@ public partial class Orc : CharacterBody2D
 			{
 				if (distance < threshold)
 				{
-					animatedSprite2D.Play("attack01");
+					if (!isAttacking)
+					{
+						animatedSprite2D.Play("attack01");
+						DealDamageToDave();
+						isAttacking = true;
+					}
 				}
 				else if (direction.X != 0) 
 				{
@@ -87,6 +109,31 @@ public partial class Orc : CharacterBody2D
 		}
 	}
 
+	
+    private void DealDamageToDave()
+    {
+        var bodies = detectionArea.GetOverlappingBodies();
+        foreach (Node body in bodies)
+        {
+            if (body is Dave dave && animatedSprite2D.Animation == "attack01")
+            {
+                CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, damageAmount);
+				hasDealtDamage = true;
+                break;
+            }
+        }
+    }
+
+
+	private void OnAnimationFinished()
+	{
+		isTakingDamage = false;
+		isAttacking = false;
+		hasDealtDamage = false;
+	}
+
+
+
 	public void TakeDamage(float damageAmount) 
 	{
 		health -= damageAmount;
@@ -94,7 +141,8 @@ public partial class Orc : CharacterBody2D
 		if (!isDead)
 		{
 			isTakingDamage = true;
-			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyHitByBullet, Position);
+			Position -= direction.Normalized() * knockBackForce;
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, Position);
 		}
 		if (health > 0) 
 		{   
@@ -107,6 +155,51 @@ public partial class Orc : CharacterBody2D
 			OnEnemyHealthDepleted(health);
 		} 
 	}
+
+    private Vector2 CalculateSeparationForce()
+    {
+        Vector2 separationForce = Vector2.Zero;
+        var bodies = detectionArea.GetOverlappingBodies();
+
+        foreach (Node body in bodies)
+        {
+            if (body is Orc orc && orc != this)
+            {
+                Vector2 difference = GlobalPosition - orc.GlobalPosition;
+                float distance = difference.Length();
+
+                if (distance < separationRadius)
+                {
+                    separationForce += difference.Normalized() / distance;
+                }
+            }
+        }
+
+        return separationForce;
+    }
+
+	private Vector2 AdjustDirectionForObstacles(Vector2 direction)
+    {
+        var bodies = obstacleDetectionArea.GetOverlappingBodies();
+
+        foreach (Node body in bodies)
+        {
+            if (body is Orc orc && orc != this)
+            {
+                Vector2 difference = orc.GlobalPosition - GlobalPosition;
+                float distance = difference.Length();
+
+                if (distance < avoidanceRadius)
+                {
+                    float angle = Mathf.DegToRad(avoidanceAngle);
+                    direction = direction.Rotated(angle);
+                    break;
+                }
+            }
+        }
+
+        return direction;
+    }
 
 
 	private void UpdateHealthBar()
@@ -128,21 +221,7 @@ public partial class Orc : CharacterBody2D
 	}
 
 
-	private void OnHurtBoxBodyEntered(Node2D body) 
-	{
-		if (body is Dave) 
-		{
-			if (body == null) return;
-			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, damageAmount);
-		} else {
-			return;
-		}
-	}
 
-	private void OnAnimationFinished()
-	{
-		isTakingDamage = false;
-	}
 
 	public float GetHealth()
 	{

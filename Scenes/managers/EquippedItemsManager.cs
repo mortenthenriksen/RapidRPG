@@ -20,7 +20,6 @@ public partial class EquippedItemsManager : Node
     private float addedDamage;
 
 
-
     public override void _Ready()
     {
         equippedSlots.Connect("slot_interacted", Callable.From(OnSlotInteracted));
@@ -37,6 +36,7 @@ public partial class EquippedItemsManager : Node
     {
         GetDefenceFromEquippedItems();
         GetDamageFromEquippedItems();
+        GetAttackSpeedFromEquippedItems();
     }
 
     private float GetDefenceFromEquippedItems()

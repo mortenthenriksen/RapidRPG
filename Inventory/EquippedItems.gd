@@ -7,6 +7,16 @@ signal custom_mouse_exited()
 const SlotClass = preload("res://Inventory/Slot.gd")
 @onready var equip_slots = get_node("/root/Main/UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
 
+@onready var texture_rect_helmet = $HelmetSlot/TextureRectHelmet
+@onready var texture_rect_amulet = $AmuletSlot/TextureRectAmulet
+@onready var texture_rect_shirt = $ShirtSlot/TextureRectShirt
+@onready var texture_rect_ring = $RingSlot/TextureRectRing
+@onready var texture_rect_pants = $PantsSlot/TextureRectPants
+@onready var texture_rect_shoes = $ShoesSlot/TextureRectShoes
+@onready var texture_rect_weapon = $WeaponSlot/TextureRectWeapon
+@onready var texture_rect_offhand = $OffhandSlot/TextureRectOffhand
+
+
 var inventory = InventoryLogic.get_inventory()
 var equips = InventoryLogic.get_equips()
 var last_mouse_position = Vector2()

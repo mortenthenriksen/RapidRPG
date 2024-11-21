@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://beai64jjhwi4e" path="res://characters/Player/Dave/Dave.tscn" id="2_y6x0m"]
 [ext_resource type="PackedScene" uid="uid://mib2hqo11ekk" path="res://characters/Enemies/Orc.tscn" id="3_qk0ik"]
 [ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://scenes/managers/DamageManager.tscn" id="4_3djjo"]
-[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="4_bm5kl"]
 [ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://Inventory/ItemDrop.tscn" id="4_w44kb"]
 [ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://scenes/autoload/DamageNumbers.tscn" id="5_2a70g"]
 [ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://Inventory/Inventory.tscn" id="5_3ibag"]
-[ext_resource type="Script" path="res://resources/TileMap.cs" id="5_26fb6"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_03c58"]
 [ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://Inventory/Hotbar.tscn" id="6_46h80"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://scenes/autoload/CustomSignals.tscn" id="7_32r1k"]
+[ext_resource type="Script" path="res://resources/TileMapLayerScript.cs" id="7_fajpj"]
+[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="7_wbigq"]
 [ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://scenes/managers/ToolTipManager.tscn" id="10_svtpr"]
 [ext_resource type="PackedScene" uid="uid://bfhntderc087f" path="res://scenes/managers/MainStatManager.tscn" id="11_olti3"]
 [ext_resource type="PackedScene" uid="uid://cy7i6no4rac10" path="res://scenes/managers/MultiplierManager.tscn" id="11_qn87i"]
@@ -85,6 +85,7 @@ itemDropScene = ExtResource("4_w44kb")
 damageNumbers = NodePath("Handlers/DamageNumbers")
 
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
+position = Vector2(575, 325)
 
 [node name="AnimatedSprite2D" parent="Dave" index="0"]
 frame_progress = 0.0
@@ -98,16 +99,10 @@ offset_top = 268.206
 offset_right = 196.817
 offset_bottom = 296.206
 
-[node name="YSortRoot" type="Node2D" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="Dave"]
 
-[node name="TileMap" type="TileMap" parent="YSortRoot" node_paths=PackedStringArray("player")]
+[node name="YSortRoot" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("4_bm5kl")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/z_index = -1
-script = ExtResource("5_26fb6")
-player = NodePath("../../Dave")
 
 [node name="Bonfire" parent="YSortRoot" instance=ExtResource("14_s20ge")]
 position = Vector2(947, 336)
@@ -120,6 +115,13 @@ position = Vector2(310, 222)
 
 [node name="roundTree3" parent="YSortRoot" instance=ExtResource("2_n184a")]
 position = Vector2(669.575, 241.325)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="YSortRoot" node_paths=PackedStringArray("player")]
+z_index = -100
+y_sort_enabled = true
+tile_set = ExtResource("7_wbigq")
+script = ExtResource("7_fajpj")
+player = NodePath("../../Dave")
 
 [node name="Handlers" type="Node" parent="."]
 
@@ -171,9 +173,6 @@ offset_top = 149.0
 offset_right = 818.0
 offset_bottom = 149.0
 
-[node name="InventoryPanel" parent="UserInterface/Inventory" index="0"]
-layout_mode = 0
-
 [node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(134.794, 552.13)
@@ -208,7 +207,7 @@ position = Vector2(389.298, 579.848)
 
 [node name="Orc10" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
-position = Vector2(480.012, 443.776)
+position = Vector2(811, 323)
 
 [node name="Orc4" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
@@ -219,8 +218,7 @@ y_sort_enabled = true
 position = Vector2(16, 375.353)
 
 [node name="Orc12" parent="." instance=ExtResource("3_qk0ik")]
-y_sort_enabled = true
-position = Vector2(416.938, 325.011)
+position = Vector2(487, 350)
 
 [node name="Orc13" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true

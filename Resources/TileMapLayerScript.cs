@@ -5,7 +5,7 @@ using Godot;
 
 namespace Game.Environment;
 
-public partial class TileMap : Godot.TileMap
+public partial class TileMapLayerScript  : TileMapLayer
 {
     [Export]
     public Dave player;
@@ -45,17 +45,17 @@ public partial class TileMap : Godot.TileMap
             {
                 Vector2I cellPosition = playerCell + new Vector2I(x, y);
                 newActiveTiles.Add(cellPosition);
-                if (GetCellTileData(0, cellPosition) == null)
+                if (GetCellTileData(cellPosition) == null)
                 {
                     if (random.NextDouble() > 0.90)
                     {
                         var atlasCoordsPosRandomX = random.Next(2, 4);
                         var atlasCoordsPosRandomY = random.Next(3, 5);
-                        SetCell(0, cellPosition, 1, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
+                        SetCell(cellPosition, 1, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
                     }
                     else
                     {
-                        SetCell(0, cellPosition, 1, new Vector2I(6, 6));
+                        SetCell(cellPosition, 1, new Vector2I(6, 6));
                     }
                 }
             }
@@ -65,7 +65,7 @@ public partial class TileMap : Godot.TileMap
         {
             if (!newActiveTiles.Contains(cell))
             {
-                SetCell(0, cell, -1);
+                SetCell(cell, -1);
             }
         }
 

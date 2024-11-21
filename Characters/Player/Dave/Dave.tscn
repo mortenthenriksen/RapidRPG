@@ -1251,11 +1251,12 @@ radius = 250.939
 height = 501.879
 
 [node name="Dave" type="CharacterBody2D"]
-z_index = 3
+y_sort_enabled = true
 position = Vector2(576.183, 324.794)
 script = ExtResource("1_soyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-0.0635987, -13.0136)
 scale = Vector2(1.6, 1.604)
 sprite_frames = SubResource("SpriteFrames_0jluf")
@@ -1265,6 +1266,7 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+y_sort_enabled = true
 position = Vector2(3.27826e-07, 0)
 shape = SubResource("CircleShape2D_eu5cp")
 

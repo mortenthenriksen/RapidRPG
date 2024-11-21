@@ -22,4 +22,5 @@ public partial class InventoryPanel : Panel
     {
         return isMouseHoveringInventory;
     }
+
 }

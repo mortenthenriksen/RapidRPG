@@ -32,15 +32,21 @@ public partial class DamageManager : Node
 	
 	public override void _Ready()
 	{
-		CustomSignals.Instance.EnemyHitByBullet += OnEnemyHitByBullet;
+		// CustomSignals.Instance.EnemyHitByBullet += OnEnemyHitByBullet;
 		CustomSignals.Instance.EnemyDamageDealt += OnPlayerDamageReceived;
+		CustomSignals.Instance.EnemyDamageRecieved += OnEnemyDamageRecieved;
 	}
 
 
-    private void OnEnemyHitByBullet(Vector2 position)
+    // private void OnEnemyHitByBullet(Vector2 position)
+	// {
+	// 	damageNumbers.DisplayNumber(TotalDamageAmount(), position, false);
+	// 	CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, TotalDamageAmount());
+	// }
+
+	private void OnEnemyDamageRecieved(Vector2 position)
 	{
 		damageNumbers.DisplayNumber(TotalDamageAmount(), position, false);
-		CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, TotalDamageAmount());
 	}
 
 
