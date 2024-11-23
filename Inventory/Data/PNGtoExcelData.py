@@ -89,6 +89,6 @@ output_file = os.path.join(output_folder, 'ItemDataFromExcel.json')
 with open(output_file, 'w') as json_file:
     json_file.write(json_string)
 
-print(os.path.dirname(pd.__file__))
+# print(os.path.dirname(pd.__file__))
 
 print("Excel file has been converted to JSON successfully.")

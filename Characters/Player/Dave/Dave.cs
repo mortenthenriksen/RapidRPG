@@ -17,7 +17,6 @@ public partial class Dave : CharacterBody2D
 	[Signal]
 	public delegate void PlayerHealthDepletedEventHandler(float health);
 
-
 	private float speed = 300;
 	private float MAX_HEALTH = 75.0f;
 	private float health = 75.0f;
@@ -30,7 +29,6 @@ public partial class Dave : CharacterBody2D
 	private Vector2 moveDirection = Vector2.Zero;
     private Vector2 lastDirection = Vector2.Down;
 
-
 	private AnimatedSprite2D animatedSprite2D;
 	private ProgressBar healthBar;
 	private Label healthLabel;
@@ -38,8 +36,10 @@ public partial class Dave : CharacterBody2D
 	private Area2D attackBox;
 	private AttackBoxCollisionShape attackBoxCollisionShape;
 	private ItemDrop itemDrop;
-	private Timer healthRegenTimer;
 	private InventoryPanel inventoryPanel;
+	private Timer dashCooldownTimer;
+	private Tween dashTween;
+	private bool isDashOnCooldown = false;
 	private bool isAttacking = false;
 	private bool hasDealtDamage = false;
 
@@ -52,6 +52,7 @@ public partial class Dave : CharacterBody2D
 		attackBox = GetNode<Area2D>("AttackBox");
 		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
 		inventoryPanel = GetNode<InventoryPanel>("/root/Main/UserInterface/Inventory/InventoryPanel");
+		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
 
 		UpdateHealthBar();
 	}
@@ -66,6 +67,7 @@ public partial class Dave : CharacterBody2D
                 lastDirection = moveDirection;
 				attackBoxCollisionShape.RotateAttackBox(moveDirection);
             }
+
 			PlayAnimation(moveDirection);
 			MoveAndCollide(moveDirection * speed * (float) delta);
 		}
@@ -103,8 +105,6 @@ public partial class Dave : CharacterBody2D
 			EmitSignal(SignalName.PlayerHealthDepleted, health);
 		}
 	}
-
-
 
 	private void OnTimerTimeout()
 	{
@@ -154,10 +154,35 @@ public partial class Dave : CharacterBody2D
 				isAttacking = true;
 			}
 
+			else if (Input.IsActionPressed("spinAttack"))
+			{
+				action = "spinAttack";
+				isAttacking = true;
+			}
+
+			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
+			{
+				if (dashTween != null)
+				{
+					dashTween.Kill(); 
+				}
+
+				dashTween = GetTree().CreateTween();
+				Vector2 targetPosition = Position + lastDirection * 150;
+
+				dashTween
+					.TweenProperty(this, "position", targetPosition, 0.25f)
+					// .SetEase(Tween.EaseType.In)
+					.SetTrans(Tween.TransitionType.Sine);
+
+				dashCooldownTimer.Start();
+				isDashOnCooldown = true;
+			}
+
 			else if (direction != Vector2.Zero)
 			{
-			animatedSprite2D.SpeedScale = 1;
-			action = "run";
+				animatedSprite2D.SpeedScale = 1;
+				action = "run";
 			}
 		}
 
@@ -169,6 +194,11 @@ public partial class Dave : CharacterBody2D
 
 		string directionSuffix = GetDirectionSuffix(direction != Vector2.Zero ? direction : lastDirection);
         animatedSprite2D.Play(action + directionSuffix);
+	}
+
+	private void OnDashCooldownTimerTimeout()
+	{
+		isDashOnCooldown = false;
 	}
 
 	private string GetDirectionSuffix(Vector2 direction)

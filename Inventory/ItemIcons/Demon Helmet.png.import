@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6dwna0vk1r7k"
-path="res://.godot/imported/Sword_UpRight.png-496e9fb75f11535629bd02d8237b0526.ctex"
+uid="uid://d0td40q7qllwx"
+path="res://.godot/imported/Demon Helmet.png-26be5afe53fb090979af18b3d77a9ee8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/items/Weapons/Sword/SpriteSheetsSword/Sword_UpRight.png"
-dest_files=["res://.godot/imported/Sword_UpRight.png-496e9fb75f11535629bd02d8237b0526.ctex"]
+source_file="res://Inventory/ItemIcons/Demon Helmet.png"
+dest_files=["res://.godot/imported/Demon Helmet.png-26be5afe53fb090979af18b3d77a9ee8.ctex"]
 
 [params]
 

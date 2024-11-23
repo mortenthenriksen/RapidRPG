@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blqkrgu4s2fpa"
-path="res://.godot/imported/Sword_UpLeft.png-b38f6444322415b27ec970e062f6d88f.ctex"
+uid="uid://wxp53v5ju0h2"
+path="res://.godot/imported/Demon Boots.png-00723367e769a1194758b49c7e2da640.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/items/Weapons/Sword/SpriteSheetsSword/Sword_UpLeft.png"
-dest_files=["res://.godot/imported/Sword_UpLeft.png-b38f6444322415b27ec970e062f6d88f.ctex"]
+source_file="res://Inventory/ItemIcons/Demon Boots.png"
+dest_files=["res://.godot/imported/Demon Boots.png-00723367e769a1194758b49c7e2da640.ctex"]
 
 [params]
 

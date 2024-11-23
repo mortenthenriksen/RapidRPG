@@ -5,10 +5,8 @@ using Godot;
 
 public partial class DamageNumbers : Node
 {
-
     [Export]
     public Theme pixelKubastaFontTheme;
-
 
     private bool isCritial = false;
     private string color;
@@ -24,11 +22,6 @@ public partial class DamageNumbers : Node
 
         number.Theme = pixelKubastaFontTheme;
         number.AddThemeFontSizeOverride("font_size", 24);
-
-        color = "#FFF";
-        if (isCritial) {
-            color = "#B22";
-        } 
 
         AddChild(number);
 

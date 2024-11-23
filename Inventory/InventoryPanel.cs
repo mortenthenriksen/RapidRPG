@@ -8,13 +8,11 @@ public partial class InventoryPanel : Panel
 
     private void OnMouseEntered()
     {
-        GD.Print("entered");
         isMouseHoveringInventory = true;
     }
     
     private void OnMouseExited()
     {
-        GD.Print("exited");
         isMouseHoveringInventory = false;
     }
 

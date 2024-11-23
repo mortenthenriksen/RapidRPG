@@ -11,7 +11,7 @@ public partial class TileMapLayerScript  : TileMapLayer
     public Dave player;
 
     // this might cause issues if / when the player gets more movement speed, maybe we just multiply it then xd
-    private const int autoTileRange = 70;
+    private const int autoTileRange = 80;
     private const float updateInterval = 0.5f;
     private float timeSinceLastUpdate = 0f;
 

@@ -167,7 +167,37 @@
         "ItemCategory": "Amulet",
         "StackSize": 1,
         "Description": "Default",
-        "Weight": 0,
+        "Weight": 10,
         "Attack": 100.0
+    },
+    "Demon Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 20,
+        "Attack": 20.0,
+        "Defense": 10.0,
+        "MainStat": 40.0
+    },
+    "Demon Chestplate": {
+        "ItemCategory": "Torso",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 20,
+        "Defense": 40.0
+    },
+    "Demon Helmet": {
+        "ItemCategory": "Helmet",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 20,
+        "Defense": 15.0
+    },
+    "Demon Leggins": {
+        "ItemCategory": "Pants",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 20,
+        "Defense": 20.0
     }
 }

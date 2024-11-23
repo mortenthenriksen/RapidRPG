@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdhw0skm2i4mo"
-path="res://.godot/imported/Sword_DownRight.png-6c33d5e6acd801ed1af30a7019b5fdbf.ctex"
+uid="uid://crjpiq7umakwd"
+path="res://.godot/imported/Demon Chestplate.png-08b2aa225ef0518f6adee9cf38aa849c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/items/Weapons/Sword/SpriteSheetsSword/Sword_DownRight.png"
-dest_files=["res://.godot/imported/Sword_DownRight.png-6c33d5e6acd801ed1af30a7019b5fdbf.ctex"]
+source_file="res://Inventory/ItemIcons/Demon Chestplate.png"
+dest_files=["res://.godot/imported/Demon Chestplate.png-08b2aa225ef0518f6adee9cf38aa849c.ctex"]
 
 [params]
 

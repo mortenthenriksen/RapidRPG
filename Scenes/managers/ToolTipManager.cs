@@ -16,7 +16,6 @@ public partial class ToolTipManager : Node2D
     [Export]
     private GridContainer equippedSlots;
 
-
     [Export]
     private Dave player;
 
@@ -57,7 +56,7 @@ public partial class ToolTipManager : Node2D
     {
         Vector2 mouseGlobalPosition = GetGlobalMousePosition();
         Vector2 playerGlobalPosition = player.GlobalPosition;
-        toolTipPanel.Position = mouseGlobalPosition - playerGlobalPosition + offset;
+        // toolTipPanel.Position = mouseGlobalPosition - playerGlobalPosition + offset;
     }
 
 

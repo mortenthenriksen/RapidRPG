@@ -85,10 +85,7 @@ itemDropScene = ExtResource("4_w44kb")
 damageNumbers = NodePath("Handlers/DamageNumbers")
 
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
-position = Vector2(575, 325)
-
-[node name="AnimatedSprite2D" parent="Dave" index="0"]
-frame_progress = 0.0
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="Dave" index="1"]
 visible = true
@@ -168,10 +165,8 @@ jsonData = NodePath("../JSONData")
 visible = false
 
 [node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
-offset_left = 818.0
-offset_top = 149.0
-offset_right = 818.0
-offset_bottom = 149.0
+offset_left = 1420.0
+offset_right = 1420.0
 
 [node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true

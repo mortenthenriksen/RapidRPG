@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xt652vpffb6y"
-path="res://.godot/imported/Sword_DownLeft.png-de54f5f9bdb3cbba992d82585de6fb09.ctex"
+uid="uid://kvifnfqggc44"
+path="res://.godot/imported/Demon Leggins.png-fe042e0908c506bf7722d8cf05341c7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/items/Weapons/Sword/SpriteSheetsSword/Sword_DownLeft.png"
-dest_files=["res://.godot/imported/Sword_DownLeft.png-de54f5f9bdb3cbba992d82585de6fb09.ctex"]
+source_file="res://Inventory/ItemIcons/Demon Leggins.png"
+dest_files=["res://.godot/imported/Demon Leggins.png-fe042e0908c506bf7722d8cf05341c7d.ctex"]
 
 [params]
 
