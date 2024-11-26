@@ -96,10 +96,10 @@ offset_top = 268.206
 offset_right = 196.817
 offset_bottom = 296.206
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Dave" node_paths=PackedStringArray("player")]
+[node name="TileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("player")]
 tile_set = ExtResource("7_wbigq")
 script = ExtResource("7_fajpj")
-player = NodePath("..")
+player = NodePath("../Dave")
 
 [node name="YSortRoot" type="Node2D" parent="."]
 y_sort_enabled = true

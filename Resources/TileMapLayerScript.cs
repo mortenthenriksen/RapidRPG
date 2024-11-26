@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Game.Characters;
 using Godot;
 
-namespace Game.Environment;
 
 public partial class TileMapLayerScript : TileMapLayer
 {
