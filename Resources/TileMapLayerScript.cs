@@ -5,7 +5,7 @@ using Godot;
 
 namespace Game.Environment;
 
-public partial class TileMapLayerScript  : TileMapLayer
+public partial class TileMapLayerScript : TileMapLayer
 {
     [Export]
     public Dave player;

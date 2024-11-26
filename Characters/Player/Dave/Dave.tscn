@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_special_moves.png" id="4_v0adg"]
 [ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxCollisionShape.cs" id="8_reevb"]
 [ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_walk_run.png" id="18_hh242"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="19_pixa1"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2ts2"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dmvynwitiq8dv"]
 
 [ext_resource type="Script" path="res://Inventory/InventoryPanel.cs" id="2_kvbgv"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_lr6sy"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="2_lr6sy"]
 [ext_resource type="Script" path="res://Inventory/InventorySlots.gd" id="3_xk7l4"]
 [ext_resource type="Script" path="res://Inventory/Slot.gd" id="4_luyic"]
 [ext_resource type="Texture2D" uid="uid://cthiheim5qnjx" path="res://Inventory/ItemIcons/Wooden Helmet.png" id="5_5bj2j"]
