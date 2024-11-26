@@ -1,7 +1,6 @@
 extends Node
 
 const NUM_INVENTORY_SLOTS = 35
-const NUM_HOTBAR_SLOTS = 8
 const SlotClass = preload("res://Inventory/Slot.gd")
 const ItemClass = preload("res://Inventory/Item.gd")
 
@@ -11,12 +10,6 @@ var inventory = {
 	2: ["Slime Potion", 10],
 	3: ["Iron Helmet", 1],
 	4: ["Legendary Sword", 1]
-}
-
-var hotbar = {
-	0: ["Iron Sword", 1],
-	2: ["Tree Branch", 6],
-	3: ["Slime Potion", 10]
 }
 
 var equips = {
@@ -35,12 +28,8 @@ func get_inventory():
 func get_equips():
 	return equips
 
-func get_hotbar():
-	return hotbar
 
 func get_NUM_INVENTORY_SLOTS():
 	return NUM_INVENTORY_SLOTS
 
-func get_NUM_HOTBAR_SLOTS():
-	return NUM_HOTBAR_SLOTS
 

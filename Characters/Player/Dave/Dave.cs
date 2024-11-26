@@ -142,8 +142,9 @@ public partial class Dave : CharacterBody2D
 		{
 			if (Input.IsActionPressed("attack"))
 			{
-				animatedSprite2D.SpeedScale = 0.9f;
+				animatedSprite2D.SpeedScale = 0.6f;
 				animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
+				// check if speedscale = 0 then set a baseline
 				action = "sword";
 				isAttacking = true;
 			}

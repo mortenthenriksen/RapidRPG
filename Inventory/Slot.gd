@@ -6,7 +6,6 @@ var slot_type = null
 var slot_index
 
 enum SlotType {
-	HOTBAR = 0, 
 	INVENTORY,
 	HELMET, #2
 	AMULET, #3 

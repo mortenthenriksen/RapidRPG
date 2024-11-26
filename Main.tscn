@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://scenes/autoload/DamageNumbers.tscn" id="5_2a70g"]
 [ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://Inventory/Inventory.tscn" id="5_3ibag"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_03c58"]
-[ext_resource type="PackedScene" uid="uid://clekcdmpwvlm5" path="res://Inventory/Hotbar.tscn" id="6_46h80"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://scenes/autoload/CustomSignals.tscn" id="7_32r1k"]
 [ext_resource type="Script" path="res://resources/TileMapLayerScript.cs" id="7_fajpj"]
 [ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="7_wbigq"]
@@ -23,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cpccydj6bxg4u" path="res://Inventory/Data/JsonData.tscn" id="16_2vlxg"]
 [ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://Inventory/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
 [ext_resource type="PackedScene" uid="uid://ugmjyabdunxc" path="res://scenes/UI/FPSMeter.tscn" id="20_2lrrw"]
+[ext_resource type="Script" path="res://scenes/UI/WindowResizing.cs" id="23_135pu"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
 script/source = "using Game.Characters;
@@ -161,89 +161,108 @@ jsonData = NodePath("../JSONData")
 
 [node name="UserInterface" parent="." instance=ExtResource("15_8rt37")]
 
-[node name="Hotbar" parent="UserInterface" instance=ExtResource("6_46h80")]
-visible = false
-
 [node name="Inventory" parent="UserInterface" instance=ExtResource("5_3ibag")]
 offset_left = 1420.0
 offset_right = 1420.0
 
-[node name="Orc" parent="." instance=ExtResource("3_qk0ik")]
+[node name="WindowResizing" type="CanvasLayer" parent="UserInterface"]
+script = ExtResource("23_135pu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/WindowResizing"]
+offset_left = 19.0
+offset_top = 798.0
+offset_right = 137.0
+offset_bottom = 864.0
+theme_override_constants/separation = 10
+
+[node name="SmallWindowButton" type="Button" parent="UserInterface/WindowResizing/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Small window"
+
+[node name="LargeWindowButton" type="Button" parent="UserInterface/WindowResizing/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Large Window"
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Orc" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(134.794, 552.13)
 
-[node name="Orc2" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc2" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(535.732, 501.788)
 
-[node name="Orc3" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc3" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(311.183, 496.693)
 
-[node name="Orc5" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc5" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(400.637, 475.274)
 
-[node name="Orc6" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc6" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(456.074, 547.09)
 
-[node name="Orc7" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc7" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(293.544, 597.487)
 
-[node name="Orc8" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc8" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(222.32, 518.729)
 
-[node name="Orc9" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc9" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(389.298, 579.848)
 
-[node name="Orc10" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc10" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(811, 323)
 
-[node name="Orc4" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc4" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(205.35, 627.725)
 
-[node name="Orc11" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc11" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(16, 375.353)
 
-[node name="Orc12" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc12" parent="Enemies" instance=ExtResource("3_qk0ik")]
 position = Vector2(487, 350)
 
-[node name="Orc13" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc13" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(192.389, 319.916)
 
-[node name="Orc14" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc14" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(281.843, 298.498)
 
-[node name="Orc15" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc15" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(337.28, 370.313)
 
-[node name="Orc16" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc16" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(174.75, 420.71)
 
-[node name="Orc17" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc17" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(103.526, 341.952)
 
-[node name="Orc18" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc18" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(270.504, 403.071)
 
-[node name="Orc19" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc19" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(361.218, 267)
 
-[node name="Orc20" parent="." instance=ExtResource("3_qk0ik")]
+[node name="Orc20" parent="Enemies" instance=ExtResource("3_qk0ik")]
 y_sort_enabled = true
 position = Vector2(86.556, 450.949)
 
@@ -253,6 +272,7 @@ wait_time = 0.4
 [node name="TreeTimer" type="Timer" parent="."]
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
+layer = 128
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]

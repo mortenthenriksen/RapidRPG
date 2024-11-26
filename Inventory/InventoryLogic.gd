@@ -1,18 +1,12 @@
 extends Node
 
-signal active_item_updated
-
 const SlotClass = preload("res://Inventory/Slot.gd")
 const ItemClass = preload("res://Inventory/Item.gd")
-@onready var hotbar_slots = get_node("/root/Main/UserInterface/Hotbar/HotbarSlots")
-@onready var active_item_label = get_node("/root/Main/UserInterface/Hotbar/ActiveItemLabel")
 
 var inventory = PlayerInventory.get_inventory()
-var hotbar = PlayerInventory.get_hotbar()
 var equips = PlayerInventory.get_equips()
 
 var NUM_INVENTORY_SLOTS = PlayerInventory.get_NUM_INVENTORY_SLOTS()
-var NUM_HOTBAR_SLOTS = PlayerInventory.get_NUM_HOTBAR_SLOTS()
 
 var active_item_slot = 0
 
@@ -47,8 +41,6 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 	match slot.SlotType: 
-		SlotClass.SlotType.HOTBAR:
-			hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
 		SlotClass.SlotType.INVENTORY:
 			inventory[slot.slot_index] = [item.item_name, item.item_quantity]
 		_: 
@@ -57,8 +49,6 @@ func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 
 func remove_item(slot: SlotClass):
 	match slot.SlotType: 
-		SlotClass.SlotType.HOTBAR:
-			hotbar.erase(slot.slot_index)
 		SlotClass.SlotType.INVENTORY:
 			inventory.erase(slot.slot_index)
 		_: 
@@ -67,23 +57,8 @@ func remove_item(slot: SlotClass):
 
 func add_item_quantity(slot: SlotClass, quantity_to_add: int):
 	match slot.SlotType: 
-		SlotClass.SlotType.HOTBAR:
-			hotbar[slot.slot_index][1] += quantity_to_add
 		SlotClass.SlotType.INVENTORY:
 			inventory[slot.slot_index][1] += quantity_to_add
-
-
-func active_item_scroll_up():
-	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS
-	emit_signal("active_item_updated")
-
-
-func active_item_scroll_down():
-	if active_item_slot == 0:
-		active_item_slot = NUM_HOTBAR_SLOTS - 1
-	else:
-		active_item_slot -= 1 
-	emit_signal("active_item_updated")
 
 
 func get_inventory():
