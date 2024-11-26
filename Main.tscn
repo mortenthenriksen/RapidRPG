@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=30 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
@@ -8,11 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://Inventory/ItemDrop.tscn" id="4_w44kb"]
 [ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://scenes/autoload/DamageNumbers.tscn" id="5_2a70g"]
 [ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://Inventory/Inventory.tscn" id="5_3ibag"]
-[ext_resource type="Script" path="res://Resources/TileMapLayerScript.cs" id="5_do68i"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://Resources/theme.tres" id="6_03c58"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_03c58"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://scenes/autoload/CustomSignals.tscn" id="7_32r1k"]
 [ext_resource type="Script" path="res://resources/TileMapLayerScript.cs" id="7_fajpj"]
-[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://Resources/tiles.tres" id="7_wbigq"]
+[ext_resource type="TileSet" uid="uid://durnopy3dd01k" path="res://resources/tiles.tres" id="7_wbigq"]
 [ext_resource type="PackedScene" uid="uid://b872b5ya622ua" path="res://scenes/managers/ToolTipManager.tscn" id="10_svtpr"]
 [ext_resource type="PackedScene" uid="uid://bfhntderc087f" path="res://scenes/managers/MainStatManager.tscn" id="11_olti3"]
 [ext_resource type="PackedScene" uid="uid://cy7i6no4rac10" path="res://scenes/managers/MultiplierManager.tscn" id="11_qn87i"]
@@ -97,8 +96,10 @@ offset_top = 268.206
 offset_right = 196.817
 offset_bottom = 296.206
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Dave"]
-script = ExtResource("5_do68i")
+[node name="TileMapLayer" type="TileMapLayer" parent="Dave" node_paths=PackedStringArray("player")]
+tile_set = ExtResource("7_wbigq")
+script = ExtResource("7_fajpj")
+player = NodePath("..")
 
 [node name="YSortRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -140,8 +141,8 @@ damageManager = NodePath("../DamageManager")
 equippedSlots = NodePath("../../UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
 
 [node name="DamageManager" parent="Handlers" node_paths=PackedStringArray("player", "damageNumbers") instance=ExtResource("4_3djjo")]
-orcScene = ExtResource("3_qk0ik")
 player = NodePath("../../Dave")
+orcScene = ExtResource("3_qk0ik")
 damageNumbers = NodePath("../DamageNumbers")
 
 [node name="LevelManager" parent="Handlers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]

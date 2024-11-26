@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://cgh4aiglxympm"]
 
-[ext_resource type="FontFile" uid="uid://sctiqlw5t0xg" path="res://Resources/Fonts/Kubasta.ttf" id="1_6x7mi"]
+[ext_resource type="FontFile" uid="uid://sctiqlw5t0xg" path="res://resources/Fonts/Kubasta.ttf" id="1_6x7mi"]
 [ext_resource type="Texture2D" uid="uid://d3fnfeqjx2xwe" path="res://assets/inventory/ItemSlot.png" id="2_e5p6n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xs3i8"]
