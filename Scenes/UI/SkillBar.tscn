@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=3 uid="uid://3hcyventnwnu"]
+
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_2bod6"]
+[ext_resource type="Texture2D" uid="uid://buyl727t50nmm" path="res://assets/downloads/DaveSpriteSheet/swordAttackForSkillBar.png" id="2_gtcds"]
+[ext_resource type="Texture2D" uid="uid://cwl3v6570fuqd" path="res://assets/downloads/DaveSpriteSheet/spinningAttackForSkillBar.png" id="3_gsqlp"]
+[ext_resource type="Texture2D" uid="uid://dnbg66vxu7fsr" path="res://assets/downloads/DaveSpriteSheet/specialAttackForSkillBar.png" id="4_jkibh"]
+[ext_resource type="Texture2D" uid="uid://bduclexx06821" path="res://assets/downloads/DaveSpriteSheet/dashForSkillBar.png" id="5_hug4t"]
+
+[node name="SkillBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 292.0
+offset_bottom = 76.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 20)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+theme_override_font_sizes/font_size = 32
+text = "RMB"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 20)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+theme_override_font_sizes/font_size = 32
+text = "LMB"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 20)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+theme_override_font_sizes/font_size = 32
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 20)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+theme_override_font_sizes/font_size = 32
+text = "SPACE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 66.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_gtcds")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 9.0
+offset_right = 42.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 32
+
+[node name="Panel2" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 66.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_gsqlp")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+
+[node name="TextureRectSpecial" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel3"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 66.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_jkibh")
+
+[node name="CooldownSpecialLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel3"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 14.0
+offset_top = -2.0
+offset_right = 62.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+theme = ExtResource("2_2bod6")
+
+[node name="TextureRectDash" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel4"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 66.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_hug4t")
+
+[node name="CooldownDashLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel4"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 13.0
+offset_top = -2.0
+offset_right = 61.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1

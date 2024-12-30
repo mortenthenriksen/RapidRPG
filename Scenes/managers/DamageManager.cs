@@ -18,9 +18,6 @@ public partial class DamageManager : Node
 
 	[Export]
 	private DamageNumbers damageNumbers;
-
-	// [Export]
-	// private Staff staff;
 	
 	public override void _Notification(int what)
     {

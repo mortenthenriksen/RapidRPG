@@ -7,8 +7,7 @@ public partial class CharacterStats : MarginContainer
 {
     
     private Label characterLevelLabel;
-
-
+    
     private Label strengthLabel;
     private Label dexterityLabel;
     private Label intelligenceLabel;

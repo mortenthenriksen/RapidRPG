@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjnfhkjxvoayj"
-path="res://.godot/imported/groundShadow.png-a876e40a34e9fdf8d547a4b1e6de7f5e.ctex"
+uid="uid://6qxwdgne0wte"
+path="res://.godot/imported/Arrow02(32x32).png-02aea5cb15f73de655ba6410936c9218.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/groundShadow.png"
-dest_files=["res://.godot/imported/groundShadow.png-a876e40a34e9fdf8d547a4b1e6de7f5e.ctex"]
+source_file="res://characters/Enemies/Archer/Arrow02(32x32).png"
+dest_files=["res://.godot/imported/Arrow02(32x32).png-02aea5cb15f73de655ba6410936c9218.ctex"]
 
 [params]
 

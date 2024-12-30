@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq6h0xjja7qf6"]
+
+[ext_resource type="Texture2D" uid="uid://6qxwdgne0wte" path="res://characters/Enemies/Archer/Arrow02(32x32).png" id="1_sli3v"]
+[ext_resource type="Script" path="res://characters/Enemies/Archer/ArrowScene.cs" id="1_ur80d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_biomt"]
+radius = 7.00059
+height = 30.0047
+
+[node name="ArrowScene" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ur80d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sli3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5705
+shape = SubResource("CapsuleShape2D_biomt")
+one_way_collision_margin = 0.0

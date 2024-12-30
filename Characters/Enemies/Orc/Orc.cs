@@ -10,17 +10,16 @@ public partial class Orc : CharacterBody2D
 	[Signal]
 	public delegate void UpdateOrcHealthEventHandler(float health);
 
-	public float damageAmount = 1;
+	public float damageAmount = 3;
 
 	private float speed = 150; 
 	private float MAX_HEALTH = 150;
 	private float health = 150; 
 	private float threshold = 50;
 	private float separationRadius = 200; // Radius for separation detection
-    private float separationStrength = 500; // Strength of the separation force
-    private float avoidanceRadius = 30; // Radius for obstacle avoidance detection
-    private float avoidanceAngle = 90; // Angle to adjust direction when avoiding obstacles
-	
+	private float separationStrength = 500; // Strength of the separation force
+	private float avoidanceRadius = 30; // Radius for obstacle avoidance detection
+	private float avoidanceAngle = 90; // Angle to adjust direction when avoiding obstacles
 	
 	private bool isDead = false;
 	private bool isTakingDamage = false;
@@ -46,6 +45,7 @@ public partial class Orc : CharacterBody2D
 		detectionArea = GetNode<Area2D>("DetectionArea");
 		obstacleDetectionArea = GetNode<Area2D>("ObstacleDetectionArea");
 
+		health = MAX_HEALTH * MultiplierManager.Instance.GetMultiplier();
 
 		UpdateHealthBar();
 
@@ -53,23 +53,24 @@ public partial class Orc : CharacterBody2D
 	}
 
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		elapsedTime += (float) delta;
 		direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
 		var distance = GlobalPosition.DistanceTo(player.GetCurrentPlayerPosition());
 		var velocity = direction * speed * (float)delta;
 
-        Vector2 separationForce = CalculateSeparationForce();
+		Vector2 separationForce = CalculateSeparationForce();
 		Vector2 avoidanceDirection = AdjustDirectionForObstacles(direction);
 
-        velocity = (avoidanceDirection * speed + separationForce * separationStrength) * (float)delta;
+		velocity = (avoidanceDirection * speed + separationForce * separationStrength) * (float)delta;
 
 		if (distance > threshold && health > 0)
 		{
 			// MoveAndCollide(velocity);
 		}
 
+		DealDamageToDave();
 
 		if (health > 0)
 		{
@@ -79,9 +80,8 @@ public partial class Orc : CharacterBody2D
 				{
 					if (!isAttacking)
 					{
-						animatedSprite2D.Play("attack01");
-						DealDamageToDave();
 						isAttacking = true;
+						animatedSprite2D.Play("attack01");
 					}
 				}
 				else if (direction.X != 0) 
@@ -110,20 +110,23 @@ public partial class Orc : CharacterBody2D
 	}
 
 	
-    private void DealDamageToDave()
-    {
-        var bodies = detectionArea.GetOverlappingBodies();
-        foreach (Node body in bodies)
-        {
-            if (body is Dave dave && animatedSprite2D.Animation == "attack01")
-            {
-                CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, damageAmount);
-				hasDealtDamage = true;
-                break;
-            }
-        }
-    }
-
+	private void DealDamageToDave()
+	{
+		// trying to make damage seem logical
+		var bodies = detectionArea.GetOverlappingBodies();
+		foreach (Node body in bodies)
+		{
+			if (body is Dave dave)
+			{
+				if (isAttacking && !hasDealtDamage)
+				{
+					CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, damageAmount);
+					hasDealtDamage = true;
+					break;
+				}
+			}
+		}
+	}
 
 	private void OnAnimationFinished()
 	{
@@ -132,11 +135,9 @@ public partial class Orc : CharacterBody2D
 		hasDealtDamage = false;
 	}
 
-
-
 	public void TakeDamage(float damageAmount) 
 	{
-		health -= damageAmount;
+		// health -= damageAmount;
 		UpdateHealthBar();	
 		if (!isDead)
 		{
@@ -156,50 +157,50 @@ public partial class Orc : CharacterBody2D
 		} 
 	}
 
-    private Vector2 CalculateSeparationForce()
-    {
-        Vector2 separationForce = Vector2.Zero;
-        var bodies = detectionArea.GetOverlappingBodies();
+	private Vector2 CalculateSeparationForce()
+	{
+		Vector2 separationForce = Vector2.Zero;
+		var bodies = detectionArea.GetOverlappingBodies();
 
-        foreach (Node body in bodies)
-        {
-            if (body is Orc orc && orc != this)
-            {
-                Vector2 difference = GlobalPosition - orc.GlobalPosition;
-                float distance = difference.Length();
+		foreach (Node body in bodies)
+		{
+			if (body is Orc orc && orc != this)
+			{
+				Vector2 difference = GlobalPosition - orc.GlobalPosition;
+				float distance = difference.Length();
 
-                if (distance < separationRadius)
-                {
-                    separationForce += difference.Normalized() / distance;
-                }
-            }
-        }
+				if (distance < separationRadius)
+				{
+					separationForce += difference.Normalized() / distance;
+				}
+			}
+		}
 
-        return separationForce;
-    }
+		return separationForce;
+	}
 
 	private Vector2 AdjustDirectionForObstacles(Vector2 direction)
-    {
-        var bodies = obstacleDetectionArea.GetOverlappingBodies();
+	{
+		var bodies = obstacleDetectionArea.GetOverlappingBodies();
 
-        foreach (Node body in bodies)
-        {
-            if (body is Orc orc && orc != this)
-            {
-                Vector2 difference = orc.GlobalPosition - GlobalPosition;
-                float distance = difference.Length();
+		foreach (Node body in bodies)
+		{
+			if (body is Orc orc && orc != this)
+			{
+				Vector2 difference = orc.GlobalPosition - GlobalPosition;
+				float distance = difference.Length();
 
-                if (distance < avoidanceRadius)
-                {
-                    float angle = Mathf.DegToRad(avoidanceAngle);
-                    direction = direction.Rotated(angle);
-                    break;
-                }
-            }
-        }
+				if (distance < avoidanceRadius)
+				{
+					float angle = Mathf.DegToRad(avoidanceAngle);
+					direction = direction.Rotated(angle);
+					break;
+				}
+			}
+		}
 
-        return direction;
-    }
+		return direction;
+	}
 
 
 	private void UpdateHealthBar()
@@ -221,11 +222,8 @@ public partial class Orc : CharacterBody2D
 	}
 
 
-
-
 	public float GetHealth()
 	{
 		return health;
 	}
 }
-

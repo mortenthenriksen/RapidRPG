@@ -10,7 +10,14 @@
             "cwd":"${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false,
-            "args": ["--path","${workspaceRoot}"]
+            "args": ["--path","${workspaceRoot}"],
+            "justMyCode": true,
+            "logging": {
+              "moduleLoad": false,
+              "diagnosticsLog.protocolMessages": false,
+              "exceptions": false,
+              "programOutput": true
+            }
         }
     ]
 }

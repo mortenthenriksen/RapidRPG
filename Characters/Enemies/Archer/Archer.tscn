@@ -1,0 +1,257 @@
+[gd_scene load_steps=28 format=3 uid="uid://deu18rapvgfcu"]
+
+[ext_resource type="Script" path="res://characters/Enemies/Archer/Archer.cs" id="1_ogleh"]
+[ext_resource type="Texture2D" uid="uid://cvoftiva3m2el" path="res://characters/Enemies/Archer/ArcherSpriteSheet/Archer.png" id="1_umucg"]
+[ext_resource type="PackedScene" uid="uid://cq6h0xjja7qf6" path="res://characters/Enemies/Archer/ArrowScene.tscn" id="2_5ld1c"]
+[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_qj6n8"]
+[ext_resource type="Script" path="res://characters/Enemies/Archer/StateMachine.cs" id="5_3uy1x"]
+[ext_resource type="Script" path="res://characters/Enemies/State/Idle.cs" id="6_ogqac"]
+[ext_resource type="Script" path="res://characters/Enemies/State/Attack.cs" id="7_exgri"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj8dg"]
+atlas = ExtResource("1_umucg")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltr0h"]
+atlas = ExtResource("1_umucg")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rqfo"]
+atlas = ExtResource("1_umucg")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgdcd"]
+atlas = ExtResource("1_umucg")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0vu7"]
+atlas = ExtResource("1_umucg")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jku7e"]
+atlas = ExtResource("1_umucg")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih0ii"]
+atlas = ExtResource("1_umucg")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv4uc"]
+atlas = ExtResource("1_umucg")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r5gt"]
+atlas = ExtResource("1_umucg")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0w4x"]
+atlas = ExtResource("1_umucg")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38y37"]
+atlas = ExtResource("1_umucg")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwjen"]
+atlas = ExtResource("1_umucg")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47oxd"]
+atlas = ExtResource("1_umucg")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6aj5"]
+atlas = ExtResource("1_umucg")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_663ib"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"attack01",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"attack02",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"hurt",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj8dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltr0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rqfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgdcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0vu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jku7e")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih0ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv4uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r5gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0w4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38y37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwjen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47oxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6aj5")
+}],
+"loop": false,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ggs6"]
+radius = 14.5021
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tfru"]
+radius = 27.2409
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pd7e"]
+bg_color = Color(0.22011, 0.11286, 0.15504, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lamco"]
+bg_color = Color(0.157667, 0.86, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4m8f"]
+radius = 215.514
+
+[node name="Archer" type="CharacterBody2D"]
+y_sort_enabled = true
+scale = Vector2(1.00229, 1.00823)
+script = ExtResource("1_ogleh")
+arrowScene = ExtResource("2_5ld1c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -17)
+scale = Vector2(1.97688, 1.97688)
+sprite_frames = SubResource("SpriteFrames_663ib")
+animation = &"idle"
+frame = 5
+frame_progress = 1.0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.765159, -13.1983)
+shape = SubResource("CircleShape2D_8ggs6")
+
+[node name="GroundShadow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.733333, 0.733333, 0.733333, 1)
+position = Vector2(-9.53674e-07, -4)
+scale = Vector2(0.224219, 0.227117)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
+position = Vector2(1, -20)
+shape = SubResource("CircleShape2D_7tfru")
+debug_color = Color(0.894636, 0.000213508, 0.780598, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -33.0
+offset_top = -54.0
+offset_right = 33.0
+offset_bottom = -47.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3pd7e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lamco")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -13.0
+offset_right = 64.0
+offset_bottom = 1.0
+theme = ExtResource("2_qj6n8")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+light_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -17.0192)
+shape = SubResource("CircleShape2D_j4m8f")
+
+[node name="Polygon2D" type="Polygon2D" parent="DetectionArea/CollisionShape2D"]
+self_modulate = Color(1, 1, 1, 0.290196)
+position = Vector2(0.997714, 4.12532)
+scale = Vector2(0.668873, 0.650356)
+color = Color(1, 0.07, 0.07, 1)
+polygon = PackedVector2Array(-3.99085, -340.041, 169.611, -297.392, 293.328, -172.421, 340.22, 5.11719, 296.321, 171.745, 168.614, 294.733, -88.7965, 328.455, -240.449, 239.19, -294.325, 169.762, -330.243, 88.4313, -328.248, -91.0907, -240.449, -244.825)
+
+[node name="ObstacleDetectionArea" type="Area2D" parent="."]
+visible = false
+light_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetectionArea"]
+position = Vector2(0, -17.0192)
+shape = SubResource("CircleShape2D_j4m8f")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("5_3uy1x")
+initialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_ogqac")
+enemy = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
+script = ExtResource("7_exgri")
+archer = NodePath("../..")
+arrowScene = ExtResource("2_5ld1c")
+
+[node name="FireRateTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[connection signal="body_entered" from="DetectionArea" to="." method="OnDetectionAreaBodyEntered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="OnDetectionAreaBodyExited"]
+[connection signal="timeout" from="StateMachine/Attack/FireRateTimer" to="StateMachine/Attack" method="OnFireRateTimerTimeout"]

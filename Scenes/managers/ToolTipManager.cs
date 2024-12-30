@@ -54,9 +54,7 @@ public partial class ToolTipManager : Node2D
 
     public override void _Process(double delta)
     {
-        Vector2 mouseGlobalPosition = GetGlobalMousePosition();
-        Vector2 playerGlobalPosition = player.GlobalPosition;
-        // toolTipPanel.Position = mouseGlobalPosition - playerGlobalPosition + offset;
+
     }
 
 
@@ -70,7 +68,7 @@ public partial class ToolTipManager : Node2D
             var valueDict = (Dictionary)itemData[itemName];
             if (valueDict.ContainsKey("Defense"))
             {
-                mainStatLabel.Text = "Defense: ";
+                mainStatLabel.Text = "Armour: ";
                 mainStatValue.Text = valueDict["Defense"].ToString();
                 if (valueDict.ContainsKey("MainStat"))
                 {

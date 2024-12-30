@@ -1,0 +1,84 @@
+using System.Collections.Generic;
+using Godot;
+
+namespace Game.State;
+
+public partial class StateMachine : Node
+{
+    [Export]
+    private State initialState;
+
+    private Dictionary<string, State> states = new Dictionary<string, State>();    
+    private State currentState;
+
+    public override void _Ready()
+    {
+        foreach (var child in GetChildren()) 
+        {
+            if (child is State state)
+            {
+                states[child.Name.ToString().ToLower()] = state;
+                state.Transitioned += OnTransitioned;
+            }
+        }
+
+        if (initialState != null)
+        {
+            initialState.Enter();
+            currentState = initialState;
+        }
+        // PrintStates();
+    }
+
+    private void OnTransitioned(State EnemyState, string newStateName)
+    {
+        if (EnemyState != currentState)
+        {
+            return;
+        }
+
+        if (states.TryGetValue(newStateName.ToLower(), out var newState))
+        {
+            if (newState == null)
+            {
+                return;
+            }
+        }
+
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+
+        newState.Enter();
+
+        currentState = newState;
+
+    }
+
+    public override void _Process(double delta)
+    {
+        if (currentState != null)
+        {
+            currentState.Update(delta);
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (currentState != null)
+        {
+            currentState.PhysicsUpdate(delta);
+        }
+    }
+
+
+
+    private void PrintStates()
+        {
+            foreach (var kvp in states)
+            {
+                GD.Print($"State Name: {kvp.Key}, State Object: {kvp.Value}");
+            }
+        }
+}

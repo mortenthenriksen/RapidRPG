@@ -1,9 +1,8 @@
-using Game.Autoload;
 using Game.Inventory;
 using Game.Manager;
+using Game.UI;
 using Game.Weapons;
 using Godot;
-using System;
 using System.Linq;
 
 namespace Game.Characters;
@@ -37,9 +36,12 @@ public partial class Dave : CharacterBody2D
 	private AttackBoxCollisionShape attackBoxCollisionShape;
 	private ItemDrop itemDrop;
 	private InventoryPanel inventoryPanel;
+	private SkillBar skillBar; 
+	private Timer specialCooldownTimer;
 	private Timer dashCooldownTimer;
 	private Tween dashTween;
 	private bool isDashOnCooldown = false;
+	private bool isSpecialOnCooldown = false;
 	private bool isAttacking = false;
 	private bool hasDealtDamage = false;
 
@@ -52,7 +54,9 @@ public partial class Dave : CharacterBody2D
 		attackBox = GetNode<Area2D>("AttackBox");
 		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
 		inventoryPanel = GetNode<InventoryPanel>("/root/Main/UserInterface/Inventory/InventoryPanel");
+		skillBar = GetNode<SkillBar>("/root/Main/UserInterface/SkillBar");
 		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
+		specialCooldownTimer = GetNode<Timer>("SpecialCooldownTimer");
 
 		UpdateHealthBar();
 	}
@@ -142,17 +146,17 @@ public partial class Dave : CharacterBody2D
 		{
 			if (Input.IsActionPressed("attack"))
 			{
-				animatedSprite2D.SpeedScale = 0.6f;
 				animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
-				// check if speedscale = 0 then set a baseline
 				action = "sword";
 				isAttacking = true;
 			}
 
-			else if (Input.IsActionPressed("special_attack"))
+			else if (Input.IsActionPressed("special_attack") && !isSpecialOnCooldown)
 			{
 				action = "special";
 				isAttacking = true;
+				specialCooldownTimer.Start();
+				isSpecialOnCooldown = true;
 			}
 
 			else if (Input.IsActionPressed("spinAttack"))
@@ -172,7 +176,7 @@ public partial class Dave : CharacterBody2D
 				Vector2 targetPosition = Position + lastDirection * 150;
 
 				dashTween
-					.TweenProperty(this, "position", targetPosition, 0.25f)
+					.TweenProperty(this, "position", targetPosition, 0.2f)
 					// .SetEase(Tween.EaseType.In)
 					.SetTrans(Tween.TransitionType.Sine);
 
@@ -202,6 +206,11 @@ public partial class Dave : CharacterBody2D
 		isDashOnCooldown = false;
 	}
 
+	private void OnSpecialCooldownTimerTimeout()
+	{
+		isSpecialOnCooldown = false;
+	}
+
 	private string GetDirectionSuffix(Vector2 direction)
 	{
 		return direction switch
@@ -224,6 +233,26 @@ public partial class Dave : CharacterBody2D
 	{
 		isAttacking = false;
 		hasDealtDamage = false;
+	}
+
+	public bool GetIsDashOnCooldown()
+	{
+		return isDashOnCooldown;
+	}
+
+	public Timer GetDashTimer()
+	{
+		return dashCooldownTimer;
+	}
+
+	public bool GetIsSpecialOnCooldown()
+	{
+		return isSpecialOnCooldown;
+	}
+
+	public Timer GetSpecialTimer()
+	{
+		return specialCooldownTimer;
 	}
 
 	public Vector2 GetCurrentDirection()

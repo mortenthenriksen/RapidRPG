@@ -100,10 +100,7 @@ public partial class EquippedItemsManager : Node
                 }
             }
         }
-        if (attackSpeed == 0)
-        {
-            return 1;
-        }
+
         return attackSpeed;
     }
 
@@ -124,6 +121,10 @@ public partial class EquippedItemsManager : Node
     
     public float GetTotalAttackSpeed()
     {
+        if (attackSpeed == 0)
+        {
+            return 1f;
+        }
         return attackSpeed;
     }
     		

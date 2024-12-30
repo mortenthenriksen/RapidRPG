@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://mib2hqo11ekk"]
 
-[ext_resource type="Script" path="res://characters/Enemies/Orc.cs" id="1_sy4n5"]
+[ext_resource type="Script" path="res://characters/Enemies/Orc/Orc.cs" id="1_sy4n5"]
 [ext_resource type="Texture2D" uid="uid://bej63gg8jxslf" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack02.png" id="3_lgid2"]
 [ext_resource type="Texture2D" uid="uid://dv1ngbcc5vvi6" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Attack01.png" id="5_asduv"]
 [ext_resource type="Texture2D" uid="uid://bly5q6kl5edld" path="res://characters/Enemies/Orc/OrcSpriteSheet/Orc-Death.png" id="5_uknlb"]
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_45scp")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack01",
 "speed": 8.0
 }, {
@@ -155,7 +155,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_djyqv")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack02",
 "speed": 8.0
 }, {
@@ -246,7 +246,7 @@ shape = SubResource("CircleShape2D_q6kf6")
 position = Vector2(-1, -17)
 scale = Vector2(1.97688, 1.97688)
 sprite_frames = SubResource("SpriteFrames_yf0f3")
-animation = &"attack01"
+animation = &"attack02"
 metadata/_edit_lock_ = true
 
 [node name="GroundShadow" type="Sprite2D" parent="."]

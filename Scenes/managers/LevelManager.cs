@@ -1,3 +1,4 @@
+using System;
 using Game.Autoload;
 using Game.Characters;
 using Godot;
@@ -5,7 +6,6 @@ using Godot;
 namespace Game.Manager;
 
 [GlobalClass]
-
 
 public partial class LevelManager : Node
 {
@@ -43,18 +43,37 @@ public partial class LevelManager : Node
 
     public void HandleExperienceGained()
     {
-        experience += 1000;
+        // Make an experience manager here, that takes mob type and  multiplier into account
+        experience += 21;
 		CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.UpdateExperienceBar, experience);
-			
-		experienceBar.Value = experience % 100;
-		if (experience % 100 == 0) 
+		
+        var experienceMaxValue = ExperienceForLevel();
+		experienceBar.Value = experience;
+        experienceBar.MaxValue = experienceMaxValue;
+
+		if (experienceMaxValue - experience <= 0) 
 		{
+            var experienceForNextLevel = Math.Abs((int)experienceMaxValue - experience);
             LevelGainedAnimation();
 			levelNum += 1;
 			levelLabel.Text = $"Level: {GetCurrentLevel()}";
+            experienceBar.Value = experienceForNextLevel;
+            experience = experienceForNextLevel;
             CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.UpdateLevel);
 		}
     }
+
+
+    private double ExperienceForLevel()
+    {   
+        // tweak this to make leveling slower / faster
+        var baseExp = 100;
+        var logBase = 1.5;
+        var offset = 1;
+        var power = 1.5;
+        return (int)baseExp * Math.Pow(Math.Log(GetCurrentLevel() + offset, logBase), power);
+    }
+
 
     public int GetCurrentLevel()
     {

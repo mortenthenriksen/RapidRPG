@@ -1,11 +1,11 @@
 [gd_scene load_steps=193 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://characters/Player/Dave/Dave.cs" id="1_soyg5"]
-[ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_idle.png" id="3_3rr87"]
-[ext_resource type="Texture2D" uid="uid://nkyp3oy1ehbr" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_sword_attacks.png" id="4_h6oic"]
-[ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_special_moves.png" id="4_v0adg"]
+[ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/DaveSpriteSheet/Warrior_idle.png" id="3_3rr87"]
+[ext_resource type="Texture2D" uid="uid://nkyp3oy1ehbr" path="res://assets/downloads/DaveSpriteSheet/Warrior_sword_attacks.png" id="4_h6oic"]
+[ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/DaveSpriteSheet/Warrior_special_moves.png" id="4_v0adg"]
 [ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxCollisionShape.cs" id="8_reevb"]
-[ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/FL_Warrior_v1.1/_PNG/Warrior_walk_run.png" id="18_hh242"]
+[ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/DaveSpriteSheet/Warrior_walk_run.png" id="18_hh242"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
@@ -625,23 +625,23 @@ region = Rect2(160, 320, 80, 80)
 atlas = ExtResource("4_h6oic")
 region = Rect2(240, 320, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y72qk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_myq6c"]
 atlas = ExtResource("4_h6oic")
 region = Rect2(80, 160, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gr3vj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bwl4"]
 atlas = ExtResource("4_h6oic")
 region = Rect2(160, 160, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7x6l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sawpp"]
 atlas = ExtResource("4_h6oic")
 region = Rect2(240, 160, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f286l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh5qt"]
 atlas = ExtResource("4_h6oic")
 region = Rect2(320, 160, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bmvbl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4u50"]
 atlas = ExtResource("4_h6oic")
 region = Rect2(400, 160, 80, 80)
 
@@ -1256,19 +1256,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y72qk")
+"texture": SubResource("AtlasTexture_myq6c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gr3vj")
+"texture": SubResource("AtlasTexture_3bwl4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j7x6l")
+"texture": SubResource("AtlasTexture_sawpp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f286l")
+"texture": SubResource("AtlasTexture_hh5qt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bmvbl")
+"texture": SubResource("AtlasTexture_b4u50")
 }],
 "loop": false,
 "name": &"swordDown",
@@ -1379,8 +1379,8 @@ point_count = 5
 radius = 31.0161
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3j8og"]
-radius = 250.939
-height = 501.879
+radius = 220.854
+height = 441.707
 
 [node name="Dave" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -1392,7 +1392,7 @@ y_sort_enabled = true
 position = Vector2(-0.0635987, -13.0136)
 scale = Vector2(1.6, 1.604)
 sprite_frames = SubResource("SpriteFrames_0jluf")
-animation = &"spinAttackDown"
+animation = &"swordDown"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -1441,10 +1441,10 @@ z_index = 10
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
-offset_top = 490.0
-offset_right = 300.0
-offset_bottom = 518.0
+offset_left = -393.0
+offset_top = 474.0
+offset_right = 407.0
+offset_bottom = 502.0
 grow_horizontal = 2
 theme = ExtResource("19_pixa1")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -1457,7 +1457,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LevelLabel" type="Label" parent="ExperienceBar"]
 unique_name_in_owner = true
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.189949
+anchor_top = -0.258746
+anchor_right = 0.316199
+anchor_bottom = -0.258745
 offset_left = 152.041
 offset_top = -31.7551
 offset_right = 234.041
@@ -1495,13 +1500,16 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
+[node name="SpecialCooldownTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [node name="AttackBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 524288
 
 [node name="AttackBoxCollisionShape" type="CollisionShape2D" parent="AttackBox"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, 51.1464)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_3j8og")
@@ -1519,4 +1527,5 @@ polygon = PackedVector2Array(-3.14676, 59.5, -28.6466, 40.4998, -32.1464, -1.500
 [connection signal="body_exited" from="PickupBox" to="." method="OnPickupBoxBodyExited"]
 [connection signal="timeout" from="HealthRegenTimer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="OnDashCooldownTimerTimeout"]
+[connection signal="timeout" from="SpecialCooldownTimer" to="." method="OnSpecialCooldownTimerTimeout"]
 [connection signal="area_entered" from="AttackBox" to="." method="OnAttackBoxAreaEntered"]

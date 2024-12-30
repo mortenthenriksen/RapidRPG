@@ -6,6 +6,7 @@ var slot_type = null
 var slot_index
 
 enum SlotType {
+	PLACEHOLDER,
 	INVENTORY,
 	HELMET, #2
 	AMULET, #3 

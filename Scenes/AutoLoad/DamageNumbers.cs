@@ -21,7 +21,7 @@ public partial class DamageNumbers : Node
         };
 
         number.Theme = pixelKubastaFontTheme;
-        number.AddThemeFontSizeOverride("font_size", 24);
+        number.AddThemeFontSizeOverride("font_size", 32);
 
         AddChild(number);
 
