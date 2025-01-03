@@ -9,7 +9,8 @@ const ItemClass = preload("res://Inventory/Item.gd")
 # shouldnt be too bad
 var inventory = {
 	3: ["Iron Helmet", 1],
-	4: ["Legendary Sword", 1]
+	4: ["Legendary Sword", 1],
+	1: ["Sword of Undying Flame", 1]
 }
 
 var equips = {

@@ -37,6 +37,6 @@ public partial class DropletBullet : Area2D
     
     private float GetTotalDamageAmountFromDamageManager()
     {
-        return DamageManager.Instance.TotalDamageAmount();
+        return DamageManager.Instance.GetTotalDamageAmount();
     }
 }

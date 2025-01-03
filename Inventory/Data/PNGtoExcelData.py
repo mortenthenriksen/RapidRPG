@@ -27,9 +27,9 @@ for item_name in png_item_names:
         new_item = {
             'ItemName': item_name,
             'ItemCategory': "Default",  # Add default or placeholder values as needed
-            'StackSize': 1,      # Default stack size
+            'StackSize': 1,             # Default stack size
             'Description': 'Default',   # Default description
-            'Weight': 0          # Default weight
+            'Weight': 0                 # Default weight
         }
         new_items.append(new_item)
 
@@ -69,11 +69,8 @@ for index, row in df.iterrows():
         item_data['Defense'] = row['Defense']
     if 'MainStat' in row and not pd.isna(row['MainStat']):
         item_data['MainStat'] = row['MainStat']
-    if 'AddHealth' in row and not pd.isna(row['AddHealth']):
-        item_data['AddHealth'] = row['AddHealth']
-    if 'AddEnergy' in row and not pd.isna(row['AddEnergy']):
-        item_data['AddEnergy'] = row['AddEnergy']
-    
+    if 'UniqueEffect' in row and not pd.isna(row['UniqueEffect']):
+        item_data['UniqueEffect'] = row['UniqueEffect']
 
     # Add the item data to the JSON dictionary
     json_data[item_name] = item_data

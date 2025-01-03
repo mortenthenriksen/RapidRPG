@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/DaveSpriteSheet/Warrior_idle.png" id="3_3rr87"]
 [ext_resource type="Texture2D" uid="uid://nkyp3oy1ehbr" path="res://assets/downloads/DaveSpriteSheet/Warrior_sword_attacks.png" id="4_h6oic"]
 [ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/DaveSpriteSheet/Warrior_special_moves.png" id="4_v0adg"]
+[ext_resource type="AudioStream" uid="uid://06v0wojib7tr" path="res://assets/sounds/characters/newDaveSword.wav" id="6_nqhgl"]
 [ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxCollisionShape.cs" id="8_reevb"]
 [ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://scenes/UI/UserInterface.tscn" id="9_ptaow"]
 [ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/DaveSpriteSheet/Warrior_walk_run.png" id="18_hh242"]
@@ -1359,9 +1360,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eu5cp"]
 radius = 13.6341
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7c56y"]
-radius = 23.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8xoi"]
 bg_color = Color(0.22011, 0.11286, 0.15504, 1)
 corner_radius_top_left = 4
@@ -1423,14 +1421,9 @@ shape = SubResource("CircleShape2D_eu5cp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HurtBox" type="Area2D" parent="."]
-visible = false
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -20)
-shape = SubResource("CircleShape2D_7c56y")
-debug_color = Color(0.963675, 0, 0.497311, 0.42)
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nqhgl")
+volume_db = -20.0
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 3

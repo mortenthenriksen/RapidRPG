@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cot7166cpnww4"]
+
+[ext_resource type="Texture2D" uid="uid://brgufafktlj4j" path="res://assets/effects/FireProjectile/Wind Projectile.png" id="1_7h1y4"]
+[ext_resource type="Script" path="res://characters/Player/UniqueEffects/FireProjectileScene.cs" id="1_hiaja"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ybgjv"]
+height = 58.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvt2i"]
+atlas = ExtResource("1_7h1y4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me1gx"]
+atlas = ExtResource("1_7h1y4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdhx4"]
+atlas = ExtResource("1_7h1y4")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wa7jr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvt2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me1gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdhx4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="FireProjectileScene" type="Area2D"]
+script = ExtResource("1_hiaja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ybgjv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.0862745, 0.188235, 1)
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(1.5625, 1.75)
+sprite_frames = SubResource("SpriteFrames_wa7jr")
+autoplay = "default"
+frame_progress = 0.709907
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

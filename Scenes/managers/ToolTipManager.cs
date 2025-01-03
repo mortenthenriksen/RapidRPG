@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Game.Autoload;
 using Game.Characters;
 using Godot;
@@ -89,7 +91,15 @@ public partial class ToolTipManager : Node2D
                 mainStatValue.Text = valueDict["Attack"].ToString();
                 secondaryStatLabel.Text = "Attack speed: ";
                 secondaryStatValue.Text = valueDict["AttackSpeed"].ToString();
-                descriptionLabel.Text = "";
+                if (valueDict.ContainsKey("UniqueEffect"))
+                {
+                    // GD.Print(valueDict["UniqueEffect"].ToString().Length);
+                    descriptionLabel.Text = SplitTextIntoLines(valueDict["UniqueEffect"].ToString(), 30);
+                }
+                else 
+                {
+                    descriptionLabel.Text = "";
+                }
             }
 
 
@@ -114,6 +124,25 @@ public partial class ToolTipManager : Node2D
         //         GD.Print(valueDict["Defense"]);
         //     }
         // }
+    }
+
+    // make this split the words, be smart
+    private string SplitTextIntoLines(string text, int lineLength)
+    {
+        if (string.IsNullOrEmpty(text))
+            return text;
+
+        var result = new System.Text.StringBuilder();
+        int currentIndex = 0;
+
+        while (currentIndex < text.Length)
+        {
+            int length = Math.Min(lineLength, text.Length - currentIndex);
+            result.AppendLine(text.Substring(currentIndex, length));
+            currentIndex += length;
+        }
+
+        return result.ToString();
     }
 
     private void OnMouseExited()

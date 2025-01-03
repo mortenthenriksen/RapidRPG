@@ -46,7 +46,7 @@ public partial class DamageManager : Node
 
 	private void OnEnemyDamageRecieved(Vector2 position)
 	{
-		damageNumbers.DisplayNumber(TotalDamageAmount(), position, false);
+		damageNumbers.DisplayNumber(GetTotalDamageAmount(), position, false);
 	}
 
 
@@ -57,7 +57,7 @@ public partial class DamageManager : Node
     }
 
 
-	public float TotalDamageAmount()
+	public float GetTotalDamageAmount()
 	{
 		// the final returning of the max dmg, will be affected by a lot of modifers later on
 		// make it depend on the class chosen B-), just buy the character pack already

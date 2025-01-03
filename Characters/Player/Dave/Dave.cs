@@ -37,6 +37,7 @@ public partial class Dave : CharacterBody2D
 	private ItemDrop itemDrop;
 	private InventoryPanel inventoryPanel;
 	private SkillBar skillBar; 
+	private AudioStreamPlayer2D audioStreamPlayer2D;
 	private Timer specialCooldownTimer;
 	private Timer dashCooldownTimer;
 	private Tween dashTween;
@@ -58,6 +59,7 @@ public partial class Dave : CharacterBody2D
 		skillBar = GetNode<SkillBar>("UserInterface/SkillBar");
 		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
 		specialCooldownTimer = GetNode<Timer>("SpecialCooldownTimer");
+		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
 		UpdateHealthBar();
 	}
@@ -84,7 +86,7 @@ public partial class Dave : CharacterBody2D
 		}
 
 		if (isAttacking && !hasDealtDamage)
-		{
+		{	
 			foreach (var body in attackBox.GetOverlappingBodies())
 			{
 				if (body is IEnemies enemies)
@@ -100,7 +102,7 @@ public partial class Dave : CharacterBody2D
     {
 		if (body is IEnemies enemies)
         {
-            enemies.TakeDamage(DamageManager.Instance.TotalDamageAmount());
+            enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
         }
     }
 
@@ -153,7 +155,9 @@ public partial class Dave : CharacterBody2D
 		{
 			if (Input.IsActionPressed("attack"))
 			{
+				audioStreamPlayer2D.Play();
 				animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
+				EquippedItemsManager.Instance.FindUniqueEffectForWeapon();
 				action = "sword";
 				isAttacking = true;
 			}
@@ -168,6 +172,7 @@ public partial class Dave : CharacterBody2D
 
 			else if (Input.IsActionPressed("spinAttack"))
 			{
+				audioStreamPlayer2D.Play();
 				action = "spinAttack";
 				isAttacking = true;
 			}
@@ -193,7 +198,7 @@ public partial class Dave : CharacterBody2D
 
 			else if (Input.IsActionJustPressed("teleport"))
 			{
-				GD.Print("port back to town shorty");
+				// GD.Print("port back to town shorty");
 				CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown);
 			}
 

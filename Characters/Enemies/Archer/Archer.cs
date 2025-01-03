@@ -22,13 +22,15 @@ public partial class Archer : IEnemies
 	private ProgressBar healthBar; 
 	private Label healthLabel;
 
-	private AnimatedSprite2D animatedSprite2D; 
+	private AnimatedSprite2D animatedSprite2D;
+	private AudioStreamPlayer2D audioStreamPlayer2D; 
 	private Attack attack;
 	private Dave player; 
 
 	public override void _Ready()
 	{
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		healthBar = GetNode<ProgressBar>("HealthBar");
 		healthLabel = GetNode<Label>("HealthBar/HealthLabel");
 		attack = GetNode<Attack>("StateMachine/Attack");
@@ -105,6 +107,10 @@ public partial class Archer : IEnemies
 			isTakingDamage = true;
 			Position += playerDirection * 2;
 			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, Position);
+		}
+		if (health <= 0)
+		{
+			audioStreamPlayer2D.Play();
 		}
 	}
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uaqsbxm6k3r8"
-path="res://.godot/imported/teleport_icon.png-2809d220c96c4b3578ee8f98d871cceb.ctex"
+uid="uid://bhyj6u6hec110"
+path="res://.godot/imported/Wind Breath.png-d58d7aec4d7c16388f7c7e2e44a82bca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/Player/Dave/teleport_icon.png"
-dest_files=["res://.godot/imported/teleport_icon.png-2809d220c96c4b3578ee8f98d871cceb.ctex"]
+source_file="res://assets/effects/FireProjectile/Wind Breath.png"
+dest_files=["res://.godot/imported/Wind Breath.png-d58d7aec4d7c16388f7c7e2e44a82bca.ctex"]
 
 [params]
 

@@ -51,7 +51,7 @@ public partial class CharacterStats : MarginContainer
 
     private void UpdateCurrentDamageInfo()
     {
-        totalDamageLabel.Text = DamageManager.Instance.TotalDamageAmount().ToString();
+        totalDamageLabel.Text = DamageManager.Instance.GetTotalDamageAmount().ToString();
     }
 
     private void UpdateCurrentLevel()

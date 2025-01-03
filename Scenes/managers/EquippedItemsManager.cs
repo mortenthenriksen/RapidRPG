@@ -1,4 +1,7 @@
+using System;
 using Game.Autoload;
+using Game.Characters;
+using Game.Projectiles;
 using Godot;
 using Godot.Collections;
 
@@ -12,8 +15,16 @@ public partial class EquippedItemsManager : Node
     [Export]
     private GridContainer equippedSlots;
 
+    [Export]
+    private PackedScene fireProjectileScene;
+
+    [Export]
+    private Dave player;
+
     private Array<string> equippedItems;
+    private Dictionary<string, string> uniqueEffects = new Dictionary<string, string>();
     private Dictionary itemDataJson;
+    private string uniqueEffectFromWeapon;
     
     private float baseDefense;
     private float attackSpeed;
@@ -37,6 +48,7 @@ public partial class EquippedItemsManager : Node
         GetDefenceFromEquippedItems();
         GetDamageFromEquippedItems();
         GetAttackSpeedFromEquippedItems();
+        GetUniqueEffectsFromEquippedItems();
     }
 
     private float GetDefenceFromEquippedItems()
@@ -103,6 +115,47 @@ public partial class EquippedItemsManager : Node
 
         return attackSpeed;
     }
+
+    private Dictionary<string, string> GetUniqueEffectsFromEquippedItems()
+    {
+        uniqueEffects.Clear();
+        equippedItems = (Array<string>)equippedSlots.Call("get_equipped_items");
+        foreach (var element in equippedItems)
+        {
+            if (GetItemDataDictionary().ContainsKey(element))
+            {
+                if (itemDataJson.ContainsKey(element))
+                {
+                    var valueDict = (Dictionary)itemDataJson[element];
+                    if (valueDict.ContainsKey("UniqueEffect"))
+                    {
+                        var value = valueDict["UniqueEffect"].ToString();
+                        var key = valueDict["ItemCategory"].ToString();
+                        uniqueEffects.Add(key, value);
+                    }
+                }
+            }
+        }
+        return uniqueEffects;
+    }
+
+    public void FindUniqueEffectForWeapon()
+    {   
+        if (uniqueEffects.ContainsKey("Weapon"))
+        {
+            uniqueEffectFromWeapon = uniqueEffects["Weapon"];
+            if (uniqueEffectFromWeapon == "Adds a flaming projectile to your basic attacks")
+            {
+                var fireProjectile = fireProjectileScene.Instantiate() as Area2D;
+                fireProjectile.GlobalPosition = player.Position;
+                var angle = player.GetCurrentDirection().Angle();
+                fireProjectile.Rotation = angle;
+                GetTree().Root.CallDeferred("add_child", fireProjectile);                
+            }
+        }
+
+    }
+
 
     private Dictionary GetItemDataDictionary()
     {

@@ -91,14 +91,6 @@
         "Attack": 100.0,
         "AttackSpeed": 1.75
     },
-    "Slime Potion": {
-        "ItemCategory": "Consumable",
-        "StackSize": 1,
-        "Description": "It smells like medicine.",
-        "Weight": 0,
-        "AddHealth": 5.0,
-        "AddEnergy": 32.0
-    },
     "Tree Branch": {
         "ItemCategory": "Consumable",
         "StackSize": 10,
@@ -199,5 +191,20 @@
         "Description": "Default",
         "Weight": 20,
         "Defense": 20.0
+    },
+    "Sword of Undying Flame": {
+        "ItemCategory": "Weapon",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 5,
+        "Attack": 40.0,
+        "AttackSpeed": 1.2,
+        "UniqueEffect": "Adds a flaming projectile to your basic attacks"
+    },
+    "Slime Potion": {
+        "ItemCategory": "Default",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 0
     }
 }
