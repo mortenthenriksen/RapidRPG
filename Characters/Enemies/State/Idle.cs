@@ -1,21 +1,28 @@
 using System;
+using Game.Characters;
 using Game.State;
 using Godot;
 
 public partial class Idle : State
 {
     [Export]
-    private CharacterBody2D enemy;
+    private CharacterBody2D archer;
 
     [Export]
-    private int moveSpeed = 30;
+    private int moveSpeed = 0;
 
-    [Export]
-    private CharacterBody2D player;
+    private Dave player;
 
     private Vector2 moveDirection;
     private float wanderTime;
     private Random random = new Random();
+    private AnimatedSprite2D animatedSprite2D;
+    
+    public override void _Ready()
+    {
+        player = GetNode<Dave>("/root/Main/Dave");
+        animatedSprite2D = archer.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+    }
 
     private void RandomizeWander()
     {   
@@ -47,15 +54,15 @@ public partial class Idle : State
 
     public override void PhysicsUpdate(double delta)
     {
-        var direction = player.GlobalPosition - enemy.GlobalPosition;
-        if (enemy != null)
+        var direction = player.GlobalPosition - archer.GlobalPosition;
+
+        if (archer != null)
         {
-            enemy.Velocity = moveDirection * moveSpeed;
+            archer.Velocity = moveDirection * moveSpeed;
         }
 
         if (direction.Length() < 250) 
         {
-            GD.Print("should attack");
             EmitSignal(SignalName.Transitioned, this, "attack");
         }
     }

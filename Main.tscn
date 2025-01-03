@@ -101,7 +101,7 @@ position = Vector2(1023, 182)
 position = Vector2(310, 222)
 
 [node name="roundTree3" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(669.575, 241.325)
+position = Vector2(668, 230)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="YSortRoot" node_paths=PackedStringArray("player")]
 z_index = -100
@@ -130,6 +130,7 @@ equippedSlots = NodePath("../../UserInterface/Inventory/InventoryPanel/TextureRe
 [node name="DamageManager" parent="Handlers" node_paths=PackedStringArray("player", "damageNumbers") instance=ExtResource("4_3djjo")]
 player = NodePath("../../Dave")
 orcScene = ExtResource("3_qk0ik")
+archerScene = ExtResource("26_om3au")
 damageNumbers = NodePath("../DamageNumbers")
 
 [node name="LevelManager" parent="Handlers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]
@@ -188,16 +189,13 @@ follow_viewport_enabled = false
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Archer" parent="Enemies" instance=ExtResource("26_om3au")]
-position = Vector2(670, 383)
+position = Vector2(669, 466)
 
-[node name="StateMachine" parent="Enemies/Archer" index="8" node_paths=PackedStringArray("initialState")]
-initialState = NodePath("Attack")
+[node name="Archer2" parent="Enemies" instance=ExtResource("26_om3au")]
+position = Vector2(808, 182)
 
-[node name="Idle" parent="Enemies/Archer/StateMachine" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../../../Dave")
-
-[node name="Attack" parent="Enemies/Archer/StateMachine" index="1" node_paths=PackedStringArray("player")]
-player = NodePath("../../../../Dave")
+[node name="Orc" parent="Enemies" instance=ExtResource("3_qk0ik")]
+position = Vector2(510, 723)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -236,4 +234,3 @@ vertical_alignment = 1
 
 [editable path="Dave"]
 [editable path="UserInterface/Inventory"]
-[editable path="Enemies/Archer"]

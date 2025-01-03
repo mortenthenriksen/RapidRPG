@@ -2,8 +2,6 @@ using Godot;
 
 namespace Game.Autoload;
 
-[GlobalClass]
-
 public partial class CustomSignals : Node
 {
 

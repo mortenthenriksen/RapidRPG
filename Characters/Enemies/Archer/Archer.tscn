@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://deu18rapvgfcu"]
+[gd_scene load_steps=42 format=3 uid="uid://deu18rapvgfcu"]
 
 [ext_resource type="Script" path="res://characters/Enemies/Archer/Archer.cs" id="1_ogleh"]
 [ext_resource type="Texture2D" uid="uid://cvoftiva3m2el" path="res://characters/Enemies/Archer/ArcherSpriteSheet/Archer.png" id="1_umucg"]
@@ -7,6 +7,69 @@
 [ext_resource type="Script" path="res://characters/Enemies/Archer/StateMachine.cs" id="5_3uy1x"]
 [ext_resource type="Script" path="res://characters/Enemies/State/Idle.cs" id="6_ogqac"]
 [ext_resource type="Script" path="res://characters/Enemies/State/Attack.cs" id="7_exgri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ggs6"]
+radius = 14.5021
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xovyt"]
+atlas = ExtResource("1_umucg")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5rkg"]
+atlas = ExtResource("1_umucg")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik65u"]
+atlas = ExtResource("1_umucg")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_720oc"]
+atlas = ExtResource("1_umucg")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmlcm"]
+atlas = ExtResource("1_umucg")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jsym"]
+atlas = ExtResource("1_umucg")
+region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h53l3"]
+atlas = ExtResource("1_umucg")
+region = Rect2(600, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22sb0"]
+atlas = ExtResource("1_umucg")
+region = Rect2(700, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyck1"]
+atlas = ExtResource("1_umucg")
+region = Rect2(800, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q5sh"]
+atlas = ExtResource("1_umucg")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jyel"]
+atlas = ExtResource("1_umucg")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c15xw"]
+atlas = ExtResource("1_umucg")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t22nt"]
+atlas = ExtResource("1_umucg")
+region = Rect2(300, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swqgk"]
+atlas = ExtResource("1_umucg")
+region = Rect2(0, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qerq"]
+atlas = ExtResource("1_umucg")
+region = Rect2(100, 400, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lj8dg"]
 atlas = ExtResource("1_umucg")
@@ -66,7 +129,34 @@ region = Rect2(700, 100, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_663ib"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xovyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5rkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik65u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_720oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmlcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jsym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h53l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22sb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyck1")
+}],
 "loop": false,
 "name": &"attack01",
 "speed": 8.0
@@ -76,12 +166,33 @@ animations = [{
 "name": &"attack02",
 "speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q5sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jyel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c15xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t22nt")
+}],
 "loop": false,
 "name": &"death",
-"speed": 7.0
+"speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swqgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qerq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swqgk")
+}],
 "loop": false,
 "name": &"hurt",
 "speed": 20.0
@@ -139,12 +250,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8ggs6"]
-radius = 14.5021
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7tfru"]
-radius = 27.2409
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pd7e"]
 bg_color = Color(0.22011, 0.11286, 0.15504, 1)
 corner_radius_top_left = 4
@@ -160,42 +265,29 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j4m8f"]
-radius = 215.514
+radius = 249.445
 
 [node name="Archer" type="CharacterBody2D"]
-y_sort_enabled = true
 scale = Vector2(1.00229, 1.00823)
+collision_layer = 3
 script = ExtResource("1_ogleh")
 arrowScene = ExtResource("2_5ld1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.765159, -13.1983)
+shape = SubResource("CircleShape2D_8ggs6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -17)
 scale = Vector2(1.97688, 1.97688)
 sprite_frames = SubResource("SpriteFrames_663ib")
 animation = &"idle"
-frame = 5
-frame_progress = 1.0
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.765159, -13.1983)
-shape = SubResource("CircleShape2D_8ggs6")
-
 [node name="GroundShadow" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(0.733333, 0.733333, 0.733333, 1)
 position = Vector2(-9.53674e-07, -4)
 scale = Vector2(0.224219, 0.227117)
-
-[node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-visible = false
-position = Vector2(1, -20)
-shape = SubResource("CircleShape2D_7tfru")
-debug_color = Color(0.894636, 0.000213508, 0.780598, 0.42)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -33.0
@@ -217,22 +309,7 @@ theme = ExtResource("2_qj6n8")
 [node name="DetectionArea" type="Area2D" parent="."]
 light_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, -17.0192)
-shape = SubResource("CircleShape2D_j4m8f")
-
-[node name="Polygon2D" type="Polygon2D" parent="DetectionArea/CollisionShape2D"]
-self_modulate = Color(1, 1, 1, 0.290196)
-position = Vector2(0.997714, 4.12532)
-scale = Vector2(0.668873, 0.650356)
-color = Color(1, 0.07, 0.07, 1)
-polygon = PackedVector2Array(-3.99085, -340.041, 169.611, -297.392, 293.328, -172.421, 340.22, 5.11719, 296.321, 171.745, 168.614, 294.733, -88.7965, 328.455, -240.449, 239.19, -294.325, 169.762, -330.243, 88.4313, -328.248, -91.0907, -240.449, -244.825)
-
-[node name="ObstacleDetectionArea" type="Area2D" parent="."]
-visible = false
-light_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetectionArea"]
+[node name="DetectionCollision" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -17.0192)
 shape = SubResource("CircleShape2D_j4m8f")
 
@@ -240,18 +317,23 @@ shape = SubResource("CircleShape2D_j4m8f")
 script = ExtResource("5_3uy1x")
 initialState = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
 script = ExtResource("6_ogqac")
-enemy = NodePath("../..")
+archer = NodePath("../..")
+moveSpeed = 10
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
 script = ExtResource("7_exgri")
 archer = NodePath("../..")
+RANGE = 250
 arrowScene = ExtResource("2_5ld1c")
 
 [node name="FireRateTimer" type="Timer" parent="StateMachine/Attack"]
+wait_time = 1.5
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Attack" method="OnAnimatedSprite2DAnimationFinishedState"]
 [connection signal="body_entered" from="DetectionArea" to="." method="OnDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="OnDetectionAreaBodyExited"]
 [connection signal="timeout" from="StateMachine/Attack/FireRateTimer" to="StateMachine/Attack" method="OnFireRateTimerTimeout"]

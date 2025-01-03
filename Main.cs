@@ -22,7 +22,6 @@ public partial class Main : Node2D
 	[Export]
 	private DamageNumbers damageNumbers;
 
-
 	private Orc spawnedOrc;
 	private PathFollow2D pathFollow2D;
 	private CanvasLayer gameOverScreen;
@@ -62,7 +61,6 @@ public partial class Main : Node2D
 		newTree.GlobalPosition = pathFollow2D.GlobalPosition;
 		GetTree().Root.AddChild(newTree);
 	}
-
 
 
 	private void OnPlayerHealthDepleted(float health) {

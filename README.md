@@ -8,3 +8,4 @@ To do
 - Find a use for the toolbar (just remove it :)
 - Make different characters
 - Make the map procedural generated (yikes, basicly done, just need to add some trees and random events B-)
+- Suggma, learn where and how to update the readme, ya dumbass

@@ -5,8 +5,6 @@ using Godot;
 
 namespace Game.Manager;
 
-[GlobalClass]
-
 public partial class LevelManager : Node
 {
     public static LevelManager Instance { get; private set; }

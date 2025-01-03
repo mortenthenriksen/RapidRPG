@@ -7,25 +7,39 @@ public partial class Attack : State
 {
     [Export]
     private Archer archer;
-    
-    [Export]
-    private Dave player;
 
     [Export]
     private int moveSpeed = 0;
 
     [Export]
+    private int RANGE;
+
+    [Export]
 	private PackedScene arrowScene;
 
+    private Dave player;
+
+    private Vector2 offset = new Vector2(0,-10);
     private Array<Node2D> bodies = new Array<Node2D>();
     private Timer fireRateTimer;
     private Vector2 moveDirection;
 	private Area2D detectionArea;
+	private CollisionShape2D collisionShape2D;
+    private AnimatedSprite2D animatedSprite2D;
+    private bool isAttacking = false;
 
     public override void _Ready()
     {
         detectionArea = archer.GetNode<Area2D>("DetectionArea");
+        collisionShape2D = archer.GetNode<CollisionShape2D>("DetectionArea/DetectionCollision");
+        animatedSprite2D = archer.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         fireRateTimer = GetNode<Timer>("FireRateTimer");
+        player = GetNode<Dave>("/root/Main/Dave");
+
+        if (collisionShape2D.Shape is CircleShape2D circleShape)
+        {
+            circleShape.Radius = RANGE;
+        }
     }
 
     public override void Enter()
@@ -37,6 +51,8 @@ public partial class Attack : State
     public override void Exit()
     {
         bodies.Clear();
+        fireRateTimer.Stop();
+        
     }
 
     public override void Update(double delta)
@@ -53,34 +69,42 @@ public partial class Attack : State
             archer.Velocity = moveDirection * moveSpeed;
         }
 
-        if (direction.Length() > 250) 
+        if (direction.Length() > RANGE) 
         {
-            GD.Print("should idle");
             EmitSignal(SignalName.Transitioned, this, "idle");
         }
-    }
-
-    private void DealDamageToDave()
-    {
-        var positionOfDave = player.Position;
-        FireArrowAtDave(positionOfDave);
     }
 
     private void FireArrowAtDave(Vector2 positionOfDave)
     {
         var arrow = arrowScene.Instantiate() as Area2D;
-		arrow.GlobalPosition = archer.Position;
-		arrow.LookAt(positionOfDave);
+		arrow.GlobalPosition = archer.Position + offset;
+		arrow.LookAt(positionOfDave + offset);
 		GetTree().Root.CallDeferred("add_child", arrow);
     }
 
     private void OnFireRateTimerTimeout()
     {
-        if (bodies.Count > 0)
+        isAttacking = true;
+    }
+
+    private void OnAnimatedSprite2DAnimationFinishedState()
+    {
+        if (animatedSprite2D.Animation == "attack01")
         {
             var positionOfDave = player.Position;
             FireArrowAtDave(positionOfDave);
-            fireRateTimer.Start();
-        }
+
+            if (bodies.Count > 0)
+            {
+                fireRateTimer.Start();
+            }
+            isAttacking = false;
+        } 
+    }
+
+    public bool GetIsAttacking()
+    {
+        return isAttacking;
     }
 }

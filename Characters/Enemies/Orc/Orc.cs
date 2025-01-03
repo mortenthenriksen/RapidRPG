@@ -4,7 +4,7 @@ using Godot;
 
 namespace Game.Characters;
 
-public partial class Orc : CharacterBody2D
+public partial class Orc : IEnemies
 { 
 
 	[Signal]
@@ -16,10 +16,6 @@ public partial class Orc : CharacterBody2D
 	private float MAX_HEALTH = 150;
 	private float health = 150; 
 	private float threshold = 50;
-	private float separationRadius = 200; // Radius for separation detection
-	private float separationStrength = 500; // Strength of the separation force
-	private float avoidanceRadius = 30; // Radius for obstacle avoidance detection
-	private float avoidanceAngle = 90; // Angle to adjust direction when avoiding obstacles
 	
 	private bool isDead = false;
 	private bool isTakingDamage = false;
@@ -43,7 +39,6 @@ public partial class Orc : CharacterBody2D
 		healthBarOrc = GetNode<ProgressBar>("HealthBarOrc");
 		player = GetNode<Dave>("/root/Main/Dave");
 		detectionArea = GetNode<Area2D>("DetectionArea");
-		obstacleDetectionArea = GetNode<Area2D>("ObstacleDetectionArea");
 
 		health = MAX_HEALTH * MultiplierManager.Instance.GetMultiplier();
 
@@ -55,15 +50,9 @@ public partial class Orc : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		elapsedTime += (float) delta;
-		direction = GlobalPosition.DirectionTo(player.GetCurrentPlayerPosition());
-		var distance = GlobalPosition.DistanceTo(player.GetCurrentPlayerPosition());
+		direction = GlobalPosition.DirectionTo(player.Position);
+		var distance = GlobalPosition.DistanceTo(player.Position);
 		var velocity = direction * speed * (float)delta;
-
-		Vector2 separationForce = CalculateSeparationForce();
-		Vector2 avoidanceDirection = AdjustDirectionForObstacles(direction);
-
-		velocity = (avoidanceDirection * speed + separationForce * separationStrength) * (float)delta;
 
 		if (distance > threshold && health > 0)
 		{
@@ -135,19 +124,14 @@ public partial class Orc : CharacterBody2D
 		hasDealtDamage = false;
 	}
 
-	public void TakeDamage(float damageAmount) 
+	public override void TakeDamage(float damageAmount) 
 	{
-		// health -= damageAmount;
+		health -= damageAmount;
 		UpdateHealthBar();	
 		if (!isDead)
 		{
 			isTakingDamage = true;
-			Position -= direction.Normalized() * knockBackForce;
 			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, Position);
-		}
-		if (health > 0) 
-		{   
-			elapsedTime = 0.0f;
 		}
 		else if (health <= 0 && !isDead) 
 		{   
@@ -155,51 +139,6 @@ public partial class Orc : CharacterBody2D
 			animatedSprite2D.Play("death");
 			OnEnemyHealthDepleted(health);
 		} 
-	}
-
-	private Vector2 CalculateSeparationForce()
-	{
-		Vector2 separationForce = Vector2.Zero;
-		var bodies = detectionArea.GetOverlappingBodies();
-
-		foreach (Node body in bodies)
-		{
-			if (body is Orc orc && orc != this)
-			{
-				Vector2 difference = GlobalPosition - orc.GlobalPosition;
-				float distance = difference.Length();
-
-				if (distance < separationRadius)
-				{
-					separationForce += difference.Normalized() / distance;
-				}
-			}
-		}
-
-		return separationForce;
-	}
-
-	private Vector2 AdjustDirectionForObstacles(Vector2 direction)
-	{
-		var bodies = obstacleDetectionArea.GetOverlappingBodies();
-
-		foreach (Node body in bodies)
-		{
-			if (body is Orc orc && orc != this)
-			{
-				Vector2 difference = orc.GlobalPosition - GlobalPosition;
-				float distance = difference.Length();
-
-				if (distance < avoidanceRadius)
-				{
-					float angle = Mathf.DegToRad(avoidanceAngle);
-					direction = direction.Rotated(angle);
-					break;
-				}
-			}
-		}
-
-		return direction;
 	}
 
 

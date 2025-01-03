@@ -9,7 +9,6 @@ namespace Game.Characters;
 
 public partial class Dave : CharacterBody2D
 {
-
 	[Signal]
 	public delegate void UpdatePlayerHealthEventHandler(float health);
 
@@ -86,21 +85,24 @@ public partial class Dave : CharacterBody2D
 		{
 			foreach (var body in attackBox.GetOverlappingBodies())
 			{
-				AttackEnemy(body);
-				hasDealtDamage = true;
+				if (body is IEnemies enemies)
+				{
+					AttackEnemy(enemies);
+					hasDealtDamage = true;
+				}
 			}
 		}
 	}
 
-    private void AttackEnemy(Node2D body)
+    private void AttackEnemy(CharacterBody2D body)
     {
-		if (body is Orc enemy)
+		if (body is IEnemies enemies)
         {
-            enemy.TakeDamage(DamageManager.Instance.TotalDamageAmount());
+            enemies.TakeDamage(DamageManager.Instance.TotalDamageAmount());
         }
     }
 
-    public void PlayerDamageReceived(float damageAmount, Vector2 position) 
+    public void PlayerDamageReceived(float damageAmount) 
 	{
 		health -= damageAmount;
 		UpdateHealthBar();
@@ -257,12 +259,7 @@ public partial class Dave : CharacterBody2D
 
 	public Vector2 GetCurrentDirection()
 	{
-		return moveDirection;
-	}
-
-	public Vector2 GetCurrentPlayerPosition()
-	{
-		return GlobalPosition;
+		return lastDirection;
 	}
 	
 	public float GetHealth() {

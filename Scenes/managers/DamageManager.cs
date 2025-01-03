@@ -17,6 +17,9 @@ public partial class DamageManager : Node
 	private PackedScene orcScene;
 
 	[Export]
+	private PackedScene archerScene; 
+	
+	[Export]
 	private DamageNumbers damageNumbers;
 	
 	public override void _Notification(int what)
@@ -50,7 +53,7 @@ public partial class DamageManager : Node
     private void OnPlayerDamageReceived(float damageAmount)
     {
 		damageNumbers.DisplayNumber(damageAmount, player.Position, false);
-		player.PlayerDamageReceived(damageAmount, player.Position);
+		player.PlayerDamageReceived(damageAmount);
     }
 
 
@@ -58,6 +61,6 @@ public partial class DamageManager : Node
 	{
 		// the final returning of the max dmg, will be affected by a lot of modifers later on
 		// make it depend on the class chosen B-), just buy the character pack already
-		return 50 + MainStatManager.Instance.GetStrengthValue() + EquippedItemsManager.Instance.GetAddedDamage();
+		return MainStatManager.Instance.GetStrengthValue() + EquippedItemsManager.Instance.GetAddedDamage();
 	}
 }

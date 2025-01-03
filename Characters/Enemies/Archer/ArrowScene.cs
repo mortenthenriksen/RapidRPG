@@ -1,3 +1,5 @@
+using Game.Autoload;
+using Game.Characters;
 using Godot;
 using System.Collections.Generic;
 
@@ -7,9 +9,12 @@ public partial class ArrowScene : Area2D
 {
     private static Queue<ArrowScene> pool = new Queue<ArrowScene>();
 
+    [Export]
+    private Archer archer;
+
     float travelledDistance = 0; 
-    const float SPEED = 600;
-    const float RANGE = 800;
+    const float SPEED = 500;
+    const float RANGE = 600;
     private Vector2 direction;
 
     public static ArrowScene GetArrow()
@@ -38,6 +43,17 @@ public partial class ArrowScene : Area2D
             RemoveArrow();
         }
     }
+    private void OnBodyEntered(Node2D body)
+    {
+        if (body is Dave player)
+        {
+            player.PlayerDamageReceived(Archer.GetDamageAmount());
+            CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, Archer.GetDamageAmount());
+            RemoveArrow();
+        }
+
+    }
+
 
     private void RemoveArrow()
     {
@@ -49,9 +65,6 @@ public partial class ArrowScene : Area2D
         {
             pool.Enqueue(this);
         }
-        
-
-
     }   
 
 }
