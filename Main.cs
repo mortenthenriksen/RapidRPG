@@ -14,6 +14,9 @@ public partial class Main : Node2D
 	private PackedScene orcScene;
 
 	[Export]
+	private PackedScene townScenePacked;
+
+	[Export]
 	private Dave player;
 
 	[Export]
@@ -25,15 +28,20 @@ public partial class Main : Node2D
 	private Orc spawnedOrc;
 	private PathFollow2D pathFollow2D;
 	private CanvasLayer gameOverScreen;
+	private TileMapLayer tileMapLayer;
+	private Handlers handlers;
 
 
 	public override void _Ready()
 	{
 		pathFollow2D = GetNode<PathFollow2D>("/root/Main/Dave/Path2D/PathFollow2D");
+		tileMapLayer = GetNode<TileMapLayer>("TileMapAroundThePlayer");
 		gameOverScreen = GetNode<CanvasLayer>("GameOverScreen");
+		handlers = GetNode<Handlers>("Handlers");
 
 		player.PlayerHealthDepleted += OnPlayerHealthDepleted; 
 		CustomSignals.Instance.EnemyHealthDepleted += OnEnemyHealthDepleted;
+		CustomSignals.Instance.TeleportBackToTown += OnTeleportBackToTown;
 	}
 
     public override void _Process(double delta)
@@ -61,6 +69,34 @@ public partial class Main : Node2D
 		newTree.GlobalPosition = pathFollow2D.GlobalPosition;
 		GetTree().Root.AddChild(newTree);
 	}
+
+	private async void OnTeleportBackToTown()
+    {	
+		if (GetTree().CurrentScene != townScenePacked.Instantiate())
+		{
+			var townScene = townScenePacked.Instantiate();
+			GetTree().Root.AddChild(townScene);
+			GetTree().CurrentScene = townScene;
+
+			// Wait for the scene to change
+			await ToSignal(GetTree(), "process_frame");
+
+			foreach (var child in this.GetChildren() )
+			{
+				GD.Print(child.Name);
+				if (child is IEnemies)
+				{
+					QueueFree();
+				}
+			}
+
+			player.Reparent(townScene);
+			tileMapLayer.Reparent(townScene);
+			handlers.Reparent(townScene);
+
+			player.Position = new Vector2(468,500);
+		}
+    }
 
 
 	private void OnPlayerHealthDepleted(float health) {

@@ -25,6 +25,9 @@ public partial class CustomSignals : Node
 	[Signal]
 	public delegate void UpdateLevelEventHandler();
 
+	[Signal]
+	public delegate void TeleportBackToTownEventHandler();
+
 
 
 	

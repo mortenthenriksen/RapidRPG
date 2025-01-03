@@ -4,7 +4,7 @@ using Game.Characters;
 using Godot;
 
 
-public partial class TileMapLayerScript : TileMapLayer
+public partial class TileMapAroundThePlayer : TileMapLayer
 {
     [Export]
     public Dave player;
@@ -50,11 +50,11 @@ public partial class TileMapLayerScript : TileMapLayer
                     {
                         var atlasCoordsPosRandomX = random.Next(2, 4);
                         var atlasCoordsPosRandomY = random.Next(3, 5);
-                        SetCell(cellPosition, 1, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
+                        SetCell(cellPosition, 2, new Vector2I(atlasCoordsPosRandomX, atlasCoordsPosRandomY));
                     }
                     else
                     {
-                        SetCell(cellPosition, 1, new Vector2I(6, 6));
+                        SetCell(cellPosition, 2, new Vector2I(6, 6));
                     }
                 }
             }

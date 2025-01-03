@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba6wyi7m1e8vy"]
+[gd_scene load_steps=8 format=3 uid="uid://ba6wyi7m1e8vy"]
 
 [ext_resource type="Script" path="res://scenes/UI/UserInterface.gd" id="1_sdupe"]
 [ext_resource type="AudioStream" uid="uid://cfwj5akuftc5i" path="res://assets/inventory/OpenMenu.wav" id="2_c7b2f"]
+[ext_resource type="PackedScene" uid="uid://dmvynwitiq8dv" path="res://Inventory/Inventory.tscn" id="3_vnedm"]
+[ext_resource type="Script" path="res://scenes/UI/WindowResizing.cs" id="4_c3vaw"]
+[ext_resource type="PackedScene" uid="uid://3hcyventnwnu" path="res://scenes/UI/SkillBar.tscn" id="5_1l65e"]
+[ext_resource type="Script" path="res://scenes/UI/SkillBar.cs" id="6_oeprx"]
+[ext_resource type="PackedScene" uid="uid://ugmjyabdunxc" path="res://scenes/UI/FPSMeter.tscn" id="7_e838s"]
 
 [node name="UserInterface" type="CanvasLayer"]
 script = ExtResource("1_sdupe")
@@ -10,3 +15,40 @@ script = ExtResource("1_sdupe")
 unique_name_in_owner = true
 stream = ExtResource("2_c7b2f")
 volume_db = -15.0
+
+[node name="Inventory" parent="." instance=ExtResource("3_vnedm")]
+offset_left = 1420.0
+offset_right = 1420.0
+
+[node name="WindowResizing" type="CanvasLayer" parent="."]
+script = ExtResource("4_c3vaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowResizing"]
+offset_left = 19.0
+offset_top = 798.0
+offset_right = 137.0
+offset_bottom = 864.0
+theme_override_constants/separation = 10
+
+[node name="SmallWindowButton" type="Button" parent="WindowResizing/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Small window"
+
+[node name="LargeWindowButton" type="Button" parent="WindowResizing/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Large Window"
+
+[node name="SkillBar" parent="." instance=ExtResource("5_1l65e")]
+offset_left = 808.0
+offset_top = 884.0
+offset_right = 848.0
+offset_bottom = 924.0
+script = ExtResource("6_oeprx")
+
+[node name="FPSMeter" parent="." instance=ExtResource("7_e838s")]
+layer = 10
+follow_viewport_enabled = false
+
+[editable path="Inventory"]

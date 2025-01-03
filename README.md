@@ -1,11 +1,11 @@
 To do
 - **Most importantly: enjoy the journey and be proud**
-- Add more enemies, fix enemy logic (damage and make the colliding smooth)
+- Add more enemies, fix enemy logic (damage and make the colliding smooth) -> with the state machine operational, it should be a bit faster now
+- Add magic and rare monsters. Add bosses 
 - Add sound
-- Consider how to make the game more skillfull (add rolls and make enemies shoots bullets and be able to block)
-- Fix tooltip
+- Make unique items, more items in general -> make them drop with sound (set items would be really cool)
+- Make items have their name be on the ground, pick them up by clicking
 - Figure out a way to not make it last forever, but still so that the highscore demands something (checek, infitiy RPG we here come!)
-- Find a use for the toolbar (just remove it :)
-- Make different characters
 - Make the map procedural generated (yikes, basicly done, just need to add some trees and random events B-)
+- Give lines to Aegis -> learn about how different states of the game affects his voice lines -> learn how to write speech boxes
 - Suggma, learn where and how to update the readme, ya dumbass

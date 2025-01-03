@@ -325,7 +325,7 @@ moveSpeed = 10
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
 script = ExtResource("7_exgri")
 archer = NodePath("../..")
-RANGE = 250
+RANGE = 300
 arrowScene = ExtResource("2_5ld1c")
 
 [node name="FireRateTimer" type="Timer" parent="StateMachine/Attack"]

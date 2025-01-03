@@ -1,3 +1,4 @@
+using Game.Autoload;
 using Game.Inventory;
 using Game.Manager;
 using Game.UI;
@@ -43,6 +44,7 @@ public partial class Dave : CharacterBody2D
 	private bool isSpecialOnCooldown = false;
 	private bool isAttacking = false;
 	private bool hasDealtDamage = false;
+	private bool isDashing = false;
 
 	public override void _Ready()
 	{
@@ -52,8 +54,8 @@ public partial class Dave : CharacterBody2D
 		pickupBox = GetNode<PickupBox>("PickupBox");
 		attackBox = GetNode<Area2D>("AttackBox");
 		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
-		inventoryPanel = GetNode<InventoryPanel>("/root/Main/UserInterface/Inventory/InventoryPanel");
-		skillBar = GetNode<SkillBar>("/root/Main/UserInterface/SkillBar");
+		inventoryPanel = GetNode<InventoryPanel>("UserInterface/Inventory/InventoryPanel");
+		skillBar = GetNode<SkillBar>("UserInterface/SkillBar");
 		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
 		specialCooldownTimer = GetNode<Timer>("SpecialCooldownTimer");
 
@@ -104,11 +106,14 @@ public partial class Dave : CharacterBody2D
 
     public void PlayerDamageReceived(float damageAmount) 
 	{
-		health -= damageAmount;
-		UpdateHealthBar();
-		if (health <= 0) 
+		if (!isDashing)
 		{
-			EmitSignal(SignalName.PlayerHealthDepleted, health);
+			health -= damageAmount;
+			UpdateHealthBar();
+			if (health <= 0) 
+			{
+				EmitSignal(SignalName.PlayerHealthDepleted, health);
+			}
 		}
 	}
 
@@ -169,6 +174,7 @@ public partial class Dave : CharacterBody2D
 
 			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
 			{
+				isDashing = true;
 				if (dashTween != null)
 				{
 					dashTween.Kill(); 
@@ -183,7 +189,12 @@ public partial class Dave : CharacterBody2D
 					.SetTrans(Tween.TransitionType.Sine);
 
 				dashCooldownTimer.Start();
-				isDashOnCooldown = true;
+			}
+
+			else if (Input.IsActionJustPressed("teleport"))
+			{
+				GD.Print("port back to town shorty");
+				CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown);
 			}
 
 			else if (direction != Vector2.Zero)

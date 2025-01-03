@@ -1,13 +1,18 @@
-[gd_scene load_steps=193 format=3 uid="uid://beai64jjhwi4e"]
+[gd_scene load_steps=194 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://characters/Player/Dave/Dave.cs" id="1_soyg5"]
 [ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/DaveSpriteSheet/Warrior_idle.png" id="3_3rr87"]
 [ext_resource type="Texture2D" uid="uid://nkyp3oy1ehbr" path="res://assets/downloads/DaveSpriteSheet/Warrior_sword_attacks.png" id="4_h6oic"]
 [ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/DaveSpriteSheet/Warrior_special_moves.png" id="4_v0adg"]
 [ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxCollisionShape.cs" id="8_reevb"]
+[ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://scenes/UI/UserInterface.tscn" id="9_ptaow"]
 [ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/DaveSpriteSheet/Warrior_walk_run.png" id="18_hh242"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8iuw"]
+atlas = ExtResource("3_3rr87")
+region = Rect2(0, 160, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2ts2"]
 atlas = ExtResource("3_3rr87")
@@ -48,10 +53,6 @@ region = Rect2(640, 160, 80, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xphm"]
 atlas = ExtResource("3_3rr87")
 region = Rect2(720, 160, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p8iuw"]
-atlas = ExtResource("3_3rr87")
-region = Rect2(0, 160, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lanqk"]
 atlas = ExtResource("3_3rr87")
@@ -707,6 +708,26 @@ region = Rect2(400, 240, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jluf"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8iuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8iuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8iuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8iuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8iuw")
+}],
+"loop": true,
+"name": &"dashingDown",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n2ts2")
@@ -1392,7 +1413,7 @@ y_sort_enabled = true
 position = Vector2(-0.0635987, -13.0136)
 scale = Vector2(1.6, 1.604)
 sprite_frames = SubResource("SpriteFrames_0jluf")
-animation = &"swordDown"
+animation = &"dashingDown"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -1523,9 +1544,17 @@ self_modulate = Color(1, 1, 1, 0.231373)
 color = Color(0.952941, 1, 0.329412, 1)
 polygon = PackedVector2Array(-3.14676, 59.5, -28.6466, 40.4998, -32.1464, -1.50018, -29.1461, -39.5002, -2.646, -61.5, 25.8539, -41.9998, 33.3536, 0.500183, 27.3533, 42.5002)
 
+[node name="UserInterface" parent="." instance=ExtResource("9_ptaow")]
+
+[node name="SkillBar" parent="UserInterface" index="3" node_paths=PackedStringArray("player")]
+player = NodePath("../..")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]
 [connection signal="body_exited" from="PickupBox" to="." method="OnPickupBoxBodyExited"]
 [connection signal="timeout" from="HealthRegenTimer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="OnDashCooldownTimerTimeout"]
 [connection signal="timeout" from="SpecialCooldownTimer" to="." method="OnSpecialCooldownTimerTimeout"]
+
+[editable path="UserInterface"]
+[editable path="UserInterface/Inventory"]

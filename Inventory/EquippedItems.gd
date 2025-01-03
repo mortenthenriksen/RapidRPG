@@ -5,7 +5,8 @@ signal custom_mouse_entered(item_name)
 signal custom_mouse_exited()
 
 const SlotClass = preload("res://Inventory/Slot.gd")
-@onready var equip_slots = get_node("/root/Main/UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
+
+@onready var equip_slots = get_node("/root/Main/Dave/UserInterface/Inventory/InventoryPanel/TextureRect2/EquipSlots")
 
 @onready var texture_rect_helmet = $HelmetSlot/TextureRectHelmet
 @onready var texture_rect_amulet = $AmuletSlot/TextureRectAmulet
