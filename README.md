@@ -8,4 +8,6 @@ To do
 - Figure out a way to not make it last forever, but still so that the highscore demands something (checek, infitiy RPG we here come!)
 - Make the map procedural generated (yikes, basicly done, just need to add some trees and random events B-)
 - Give lines to Aegis -> learn about how different states of the game affects his voice lines -> learn how to write speech boxes
+- Add a small skill tree -> fix the level up animation -> (sound better anim)
+- Add a guy that lives in well in town -> the merchant (dumping items and he gives back gold, thats pretty funny)
 - Suggma, learn where and how to update the readme, ya dumbass

@@ -46,7 +46,7 @@ public partial class TileMapAroundThePlayer : TileMapLayer
                 newActiveTiles.Add(cellPosition);
                 if (GetCellTileData(cellPosition) == null)
                 {
-                    if (random.NextDouble() > 0.90)
+                    if (random.NextDouble() > 0.70)
                     {
                         var atlasCoordsPosRandomX = random.Next(2, 4);
                         var atlasCoordsPosRandomY = random.Next(3, 5);

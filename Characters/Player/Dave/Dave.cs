@@ -4,6 +4,7 @@ using Game.Manager;
 using Game.UI;
 using Game.Weapons;
 using Godot;
+using System;
 using System.Linq;
 
 namespace Game.Characters;
@@ -31,6 +32,8 @@ public partial class Dave : CharacterBody2D
 	private AnimatedSprite2D animatedSprite2D;
 	private ProgressBar healthBar;
 	private Label healthLabel;
+	private ProgressBar rageBar;
+	private Label rageLabel;
 	private PickupBox pickupBox;
 	private Area2D attackBox;
 	private AttackBoxCollisionShape attackBoxCollisionShape;
@@ -41,6 +44,7 @@ public partial class Dave : CharacterBody2D
 	private Timer specialCooldownTimer;
 	private Timer dashCooldownTimer;
 	private Tween dashTween;
+
 	private bool isDashOnCooldown = false;
 	private bool isSpecialOnCooldown = false;
 	private bool isAttacking = false;
@@ -50,8 +54,13 @@ public partial class Dave : CharacterBody2D
 	public override void _Ready()
 	{
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		healthBar = GetNode<ProgressBar>("HealthBar");
-		healthLabel = GetNode<Label>("HealthBar/HealthLabel");
+
+		healthBar = GetNode<ProgressBar>("UserInterface/SkillBar/MarginContainer/HBoxContainer/VBoxHealth/HealthBar");
+		healthLabel = GetNode<Label>("UserInterface/SkillBar/MarginContainer/HBoxContainer/VBoxHealth/HealthLabel");
+
+		rageBar = GetNode<ProgressBar>("UserInterface/SkillBar/MarginContainer/HBoxContainer/VBoxRage/RageBar");
+		rageLabel = GetNode<Label>("UserInterface/SkillBar/MarginContainer/HBoxContainer/VBoxRage/RageLabel");
+
 		pickupBox = GetNode<PickupBox>("PickupBox");
 		attackBox = GetNode<Area2D>("AttackBox");
 		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
@@ -62,9 +71,10 @@ public partial class Dave : CharacterBody2D
 		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
 		UpdateHealthBar();
+		UpdateRageBar();
 	}
 
-	public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
 	{
 		if (!isAttacking)
 		{
@@ -135,8 +145,13 @@ public partial class Dave : CharacterBody2D
 		EmitSignal(SignalName.UpdatePlayerHealth, health);
 		healthBar.MaxValue = MAX_HEALTH;
 		healthBar.Value = health;
-		healthLabel.Text = $"Health: {health}";
+		healthLabel.Text = $"{Math.Round(health)}" +"/" + healthBar.MaxValue.ToString();
 	}
+
+	private void UpdateRageBar()
+    {
+        
+    }
 
 	private Vector2 HandleInput()
 	{
@@ -179,7 +194,6 @@ public partial class Dave : CharacterBody2D
 
 			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
 			{
-				isDashing = true;
 				if (dashTween != null)
 				{
 					dashTween.Kill(); 
@@ -194,6 +208,7 @@ public partial class Dave : CharacterBody2D
 					.SetTrans(Tween.TransitionType.Sine);
 
 				dashCooldownTimer.Start();
+				isDashOnCooldown = true;
 			}
 
 			else if (Input.IsActionJustPressed("teleport"))

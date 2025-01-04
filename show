@@ -1,0 +1,206 @@
+[33mcommit b4d62398559b7ef8ea1226b41374b972d91d5e13[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Fri Jan 3 23:52:36 2025 +0100
+
+    added the first legendary item, how SOLID it is doesnt matter, its cool
+
+[33mcommit 58f2eba05fc8d1d741177182784e98892d19f80f[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Fri Jan 3 20:43:28 2025 +0100
+
+    its been a good day, glad the animation of the archer is over. The town is coming along. Say hi to Aegis (maybe find a new name). The Master of Dreams?
+
+[33mcommit 76f3a75bbba1eb6a371f2bed33123856df789355[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Fri Jan 3 15:22:47 2025 +0100
+
+    archer is done >:(, fucked up the readme
+
+[33mcommit c22ad6a2330552f7eb8716a54083fec015b7b0aa[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Mon Dec 30 22:00:23 2024 +0100
+
+    made a lot of changes, added state machines for the enemies
+
+[33mcommit 3d453a720f61e472061dbdc55f86920bb1ca10fe[m[33m ([m[1;31morigin/mortenMain[m[33m)[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Nov 26 13:21:55 2024 +0100
+
+    skrt
+
+[33mcommit 7f617071787bba89188da6c6f8e708e5e93fd2b3[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Nov 26 13:16:44 2024 +0100
+
+    still fixing
+
+[33mcommit fda28aaff47c11e71a1ad742955bdb0752d017b2[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Nov 26 13:11:46 2024 +0100
+
+    trying to fix merge
+
+[33mcommit cfcaf8852cadf0c65da402d2b6a40fc8e0b1f284[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Nov 26 12:52:26 2024 +0100
+
+    stuff
+
+[33mcommit 1cda14e4f263f1f3613af63cbac70d045304b68d[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat Nov 23 22:59:29 2024 +0100
+
+    added dash and some other stuff
+
+[33mcommit 9514630d07c2cb725e93a0d148bbd5ef2011d8e0[m[33m ([m[1;32morigin[m[33m)[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Thu Nov 21 20:26:10 2024 +0100
+
+    back from hiatus, now godot 4.3, working
+
+[33mcommit 87d310e0d03760d1f88835773f459155c1345d6b[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Wed Oct 9 20:23:15 2024 +0200
+
+    a lot of changes to dave, he's slowly coming along, maybe it should be Infinite Dave and not infite RPG, fixes the problem about multiple classes B-), then i can finally focus on making the enemies work well
+
+[33mcommit a6270eb025380b2a3c8a6ac01704bc88c9868016[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Mon Oct 7 11:45:39 2024 +0200
+
+    new dave is coming along, gotta find him a mate somewhere, if not then mroe characters will just be part of the DLC ;))
+
+[33mcommit be57cce89093e7aeca332c205bb612a3591b0f94[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Wed Oct 2 17:28:09 2024 +0200
+
+    massive automation changes, i now only have add the png to the system files and then it gets autoamtically added to the excel sheet, massive win B-)
+
+[33mcommit 00856b6e1e52a849759add8c601836b1446e0869[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Wed Oct 2 10:31:14 2024 +0200
+
+    ignoring the venv so that python doesnt clutter B-)
+
+[33mcommit 96020c320c82921c8d3c3c432e796e08a288bc38[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Wed Oct 2 10:26:01 2024 +0200
+
+    added a converter so that adding new items is easier, changed EquippedItemsManager so it also handles dmg, bought some texture packs B-)
+
+[33mcommit c167bf7f69aa9628a46bb66ef2ce33633e14292e[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Oct 1 23:04:28 2024 +0200
+
+    weighted drops is implemented, need to figure out a fast way to implement itemsin the json file, but lowkey slaying currently. Soon there is a playable game B-)
+
+[33mcommit 663dcbd71c88bee517461bb47030435ab64b0a18[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Oct 1 18:49:23 2024 +0200
+
+    multiplier coming along nicely, mainstatmanager needs some fixing, but to really play the game, we need some weigthed drops, will be coming up in the next patch
+
+[33mcommit 4e5e2287a1356c08695191256faad10a24408ae7[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Mon Sep 30 22:38:39 2024 +0200
+
+    tooltip is coming along nicely, time to make a descision if Dave has to go to make space for new characters :O, time will tell
+
+[33mcommit daba5f4bde81d49413ccf48238a1bc5ab5ed1d8a[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sun Sep 29 12:26:49 2024 +0200
+
+    The logic for getting the tooltip data is coming along, now its just about getting it to show and make it look nice B-)
+
+[33mcommit f375a99d31f098bdd801d3128814b7dcc8c0c0a6[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sun Sep 29 09:36:38 2024 +0200
+
+    Well done with the defense displaying, really making some progress right now
+
+[33mcommit 2d89b94e56dd3d48791205be191720fde1e94120[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat Sep 28 18:05:43 2024 +0200
+
+    Soon DefenceManager is up and running, time will tell B-)
+
+[33mcommit 3212850cc944f1a702983b8a1c8535ea5579df58[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat Sep 28 12:19:33 2024 +0200
+
+    Admitted defeat and accepted that GDScript inventory is better than no inventory
+
+[33mcommit f766722abb9d0786c0aedceb65284a5d6a774e4c[m
+Merge: 121264f 27d98a4
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Thu Sep 12 23:03:28 2024 +0200
+
+    Merge branch 'main' of https://github.com/mortenthenriksen/RapidRPG
+
+[33mcommit 121264f5c38a052bf2cfbfce1af13b6166c1a984[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Thu Sep 12 23:03:24 2024 +0200
+
+    Tooltip is coming along nicely B) dont worry about finishing it fast. Just have fun pretty boy <3
+
+[33mcommit 27d98a4170e7dfa161aab054c841142b452f28c3[m
+Author: mortenthenriksen <mortentokkesdal@gmail.com>
+Date:   Wed Sep 11 23:00:57 2024 +0200
+
+    Create README.md
+    
+    Readme for me :)
+
+[33mcommit 2ef1d2cc8540c763f3226206132d488aeb337f49[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Wed Sep 11 22:57:28 2024 +0200
+
+    Added more equip slots, trying to get tooltip to work. Lot is happening right now B-)
+
+[33mcommit b4b232506e289ad95795d62ec5449bf081632682[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Sep 10 23:41:26 2024 +0200
+
+    Good progress on the inventory. Im done using tutorials. Now im the captain
+
+[33mcommit ff0d6da96826dc85f051c67aa506c2ed7e788c21[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Sep 10 12:53:34 2024 +0200
+
+    Trying to fix equip slots, kinda messy
+
+[33mcommit 5146dee6ef9afaf53ddeaaab39f4f6197b18892e[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Tue Sep 10 00:25:34 2024 +0200
+
+    finally fixed The Inventory Bug, by correctly updating the dictionary at the right places ofc
+
+[33mcommit 5cfdfb940182c599c3749ff1061e7e3d3a15bcac[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sun May 19 00:18:29 2024 +0200
+
+    added hotbar, code will need some massive cleaning
+
+[33mcommit 1912d25c0c2d9400ec102abecc7d0adbaa1f3da0[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat May 18 18:57:54 2024 +0200
+
+    fixed another bug B-)
+
+[33mcommit daba55475e0580e9414114672ebcc393c2eeb75c[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat May 18 18:48:05 2024 +0200
+
+    inventory works
+
+[33mcommit 5790f779eb260f9a01987ebd0b1aee50d0e4aa92[m[33m ([m[1;31morigin/fixingInventory[m[33m)[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Sat May 18 00:22:33 2024 +0200
+
+    fixed inventory, almost
+
+[33mcommit 9b531efc8606dbe5b9a9852d482cc54fcf12adce[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: MortenmedTorden <s225183@dtu.dk>
+Date:   Fri May 17 12:34:27 2024 +0200
+
+    Initial commit

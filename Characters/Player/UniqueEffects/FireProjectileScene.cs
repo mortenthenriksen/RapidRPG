@@ -4,15 +4,20 @@ using Godot;
 
 public partial class FireProjectileScene : Area2D
 {
-
-    private float travelledDistance = 0; 
     private const float SPEED = 500;
-    private const float RANGE = 600;
+    private const float RANGE = 300;
+    private float travelledDistance = 0; 
+    private AnimatedSprite2D animatedSprite2D;
+    private Node2D audioParent;
     private Vector2 direction;
 
     public override void _Ready()
     {
         direction = Vector2.Right.Rotated(Rotation);
+        animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        audioParent = GetNode<Node2D>("AudioParent");
+        var fireProjectileSound = (AudioStreamPlayer2D)audioParent.GetChild(0);
+        fireProjectileSound.Play();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -29,7 +34,9 @@ public partial class FireProjectileScene : Area2D
         if (body is IEnemies enemies)
         {
             enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
+            animatedSprite2D.Play("impact");
+            var fireProjectileSound = (AudioStreamPlayer2D)audioParent.GetChild(1);
+            fireProjectileSound.Play();
         }
-
     }
 }
