@@ -12,9 +12,6 @@ public partial class Attack : State
     private int moveSpeed = 0;
 
     [Export]
-    private int RANGE;
-
-    [Export]
 	private PackedScene arrowScene;
 
     private Dave player;
@@ -35,11 +32,6 @@ public partial class Attack : State
         animatedSprite2D = archer.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         fireRateTimer = GetNode<Timer>("FireRateTimer");
         player = GetNode<Dave>("/root/Main/Dave");
-
-        if (collisionShape2D.Shape is CircleShape2D circleShape)
-        {
-            circleShape.Radius = RANGE;
-        }
     }
 
     public override void Enter()
@@ -62,14 +54,14 @@ public partial class Attack : State
 
     public override void PhysicsUpdate(double delta)
     {
-        var direction = player.GlobalPosition - archer.GlobalPosition;
+        var distance = archer.GlobalPosition.DistanceTo(player.GlobalPosition);
 
         if (archer != null)
         {
             archer.Velocity = moveDirection * moveSpeed;
         }
 
-        if (direction.Length() > RANGE) 
+        if (distance > archer.GetRange()) 
         {
             EmitSignal(SignalName.Transitioned, this, "idle");
         }

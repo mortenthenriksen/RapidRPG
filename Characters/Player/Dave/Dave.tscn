@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/DaveSpriteSheet/Warrior_idle.png" id="3_3rr87"]
 [ext_resource type="Texture2D" uid="uid://nkyp3oy1ehbr" path="res://assets/downloads/DaveSpriteSheet/Warrior_sword_attacks.png" id="4_h6oic"]
 [ext_resource type="Texture2D" uid="uid://fwvd1bbfsgip" path="res://assets/downloads/DaveSpriteSheet/Warrior_special_moves.png" id="4_v0adg"]
-[ext_resource type="AudioStream" uid="uid://06v0wojib7tr" path="res://assets/sounds/characters/newDaveSword.wav" id="6_nqhgl"]
-[ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxCollisionShape.cs" id="8_reevb"]
+[ext_resource type="AudioStream" uid="uid://06v0wojib7tr" path="res://assets/sounds/characters/Player/newDaveSword.wav" id="6_nqhgl"]
 [ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://scenes/UI/UserInterface.tscn" id="9_ptaow"]
+[ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxPolygon.cs" id="10_81hug"]
 [ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/DaveSpriteSheet/Warrior_walk_run.png" id="18_hh242"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
@@ -1397,9 +1397,8 @@ point_count = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
 radius = 31.0161
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3j8og"]
-radius = 29.8534
-height = 122.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_nquh0"]
+radius = 72.0
 
 [node name="Dave" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -1426,6 +1425,7 @@ stream = ExtResource("6_nqhgl")
 volume_db = -24.0
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 z_index = 3
 y_sort_enabled = true
 offset_left = -27.0
@@ -1508,24 +1508,14 @@ one_shot = true
 wait_time = 15.0
 one_shot = true
 
-[node name="AttackBox" type="Area2D" parent="."]
+[node name="AttackBoxBasic" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 524289
 
-[node name="AttackBoxCollisionShape" type="CollisionShape2D" parent="AttackBox"]
+[node name="BasicAttackBoxPolygonShape" type="CollisionPolygon2D" parent="AttackBoxBasic"]
 unique_name_in_owner = true
-visible = false
-position = Vector2(0, 51.1464)
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_3j8og")
-debug_color = Color(0, 0.6, 0.701961, 1)
-script = ExtResource("8_reevb")
-
-[node name="Polygon2D" type="Polygon2D" parent="AttackBox/AttackBoxCollisionShape"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.231373)
-color = Color(0.952941, 1, 0.329412, 1)
-polygon = PackedVector2Array(-3.14676, 59.5, -28.6466, 40.4998, -32.1464, -1.50018, -29.1461, -39.5002, -2.646, -61.5, 25.8539, -41.9998, 33.3536, 0.500183, 27.3533, 42.5002)
+polygon = PackedVector2Array(-24, 14, -33, -4, -53, 4, -58, 29, -45, 48, -21, 58, 9, 60, 38, 55, 55, 37, 59, 17, 54, 2, 44, -6, 36, 7, 29, 14, 23, 16, 12, 19, 0, 21, -14, 19)
+script = ExtResource("10_81hug")
 
 [node name="UserInterface" parent="." instance=ExtResource("9_ptaow")]
 
@@ -1535,6 +1525,11 @@ offset_top = 870.0
 offset_right = 712.0
 offset_bottom = 910.0
 player = NodePath("../..")
+
+[node name="AttackBoxSpin" type="Area2D" parent="."]
+
+[node name="SpinAttackBoxCollisionShape" type="CollisionShape2D" parent="AttackBoxSpin"]
+shape = SubResource("CircleShape2D_nquh0")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]

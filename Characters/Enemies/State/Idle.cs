@@ -6,7 +6,7 @@ using Godot;
 public partial class Idle : State
 {
     [Export]
-    private CharacterBody2D archer;
+    private Archer archer;
 
     [Export]
     private int moveSpeed = 0;
@@ -54,14 +54,14 @@ public partial class Idle : State
 
     public override void PhysicsUpdate(double delta)
     {
-        var direction = player.GlobalPosition - archer.GlobalPosition;
+        var distance = archer.GlobalPosition.DistanceTo(player.GlobalPosition);
 
         if (archer != null)
         {
             archer.Velocity = moveDirection * moveSpeed;
         }
 
-        if (direction.Length() < 250) 
+        if (distance < archer.GetRange()) 
         {
             EmitSignal(SignalName.Transitioned, this, "attack");
         }

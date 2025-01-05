@@ -39,8 +39,8 @@ public partial class EquippedItemsManager : Node
 
 
     public override void _Process(double delta)
-    {        
-        // GetDefenceFromEquippedItems();
+    {       
+        
     }
 
     private void OnSlotInteracted()

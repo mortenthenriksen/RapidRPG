@@ -11,7 +11,7 @@ public partial class CustomSignals : Node
 	public delegate void EnemyHitByBulletEventHandler(Vector2 position);
 
 	[Signal]
-	public delegate void EnemyDamageRecievedEventHandler(Vector2 position);
+	public delegate void EnemyDamageRecievedEventHandler(float damageAmount, Vector2 position);
 
 	[Signal]
 	public delegate void EnemyHealthDepletedEventHandler(float health, Vector2 deathPosition);   

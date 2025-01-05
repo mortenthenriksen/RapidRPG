@@ -2,6 +2,7 @@ extends GridContainer
 
 signal custom_mouse_entered(item_name)
 signal custom_mouse_exited()
+signal slot_interacted()
 
 const SlotClass = preload("res://Inventory/Slot.gd")
 const ItemClass = preload("res://Inventory/Item.gd")
@@ -44,7 +45,8 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 						left_click_same_item(slot)
 			elif slot.item:
 				left_click_not_holding(slot)
-		
+			emit_signal("slot_interacted")		
+
 
 func _input(_event):
 	if find_parent("UserInterface").holding_item:

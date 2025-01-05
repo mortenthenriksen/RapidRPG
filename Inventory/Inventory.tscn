@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmvynwitiq8dv"]
+[gd_scene load_steps=16 format=3 uid="uid://dmvynwitiq8dv"]
 
 [ext_resource type="Script" path="res://Inventory/InventoryPanel.cs" id="2_kvbgv"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_lr6sy"]
+[ext_resource type="AudioStream" uid="uid://3cfoajpm5i16" path="res://assets/inventory/EquipItem.wav" id="3_25v2p"]
 [ext_resource type="Script" path="res://Inventory/InventorySlots.gd" id="3_xk7l4"]
 [ext_resource type="Script" path="res://Inventory/Slot.gd" id="4_luyic"]
 [ext_resource type="Texture2D" uid="uid://cthiheim5qnjx" path="res://Inventory/ItemIcons/Wooden Helmet.png" id="5_5bj2j"]
@@ -21,7 +22,7 @@ anchors_preset = 0
 metadata/_edit_horizontal_guides_ = [626.0]
 metadata/_edit_lock_ = true
 
-[node name="InventoryPanel" type="Panel" parent="."]
+[node name="InventoryPanel" type="Panel" parent="." node_paths=PackedStringArray("equippedSlots", "inventorySlots")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 500.0
@@ -29,7 +30,13 @@ offset_bottom = 1080.0
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("2_kvbgv")
+equippedSlots = NodePath("TextureRect2/EquipSlots")
+inventorySlots = NodePath("TextureRect/InventorySlots")
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="InventoryPanel"]
+stream = ExtResource("3_25v2p")
+volume_db = -28.0
 
 [node name="Label" type="Label" parent="InventoryPanel"]
 layout_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=31 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="2_n184a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cid63pvdo12" path="res://scenes/managers/DamageManager.tscn" id="4_3djjo"]
 [ext_resource type="PackedScene" uid="uid://4vws81fchdnm" path="res://Inventory/ItemDrop.tscn" id="4_w44kb"]
 [ext_resource type="PackedScene" uid="uid://cporrs8hka7fd" path="res://scenes/autoload/DamageNumbers.tscn" id="5_2a70g"]
+[ext_resource type="Script" path="res://SwitchSceneManager.cs" id="5_dl5qq"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="6_03c58"]
 [ext_resource type="Script" path="res://resources/TileMapAroundThePlayer.cs" id="6_4hdan"]
 [ext_resource type="PackedScene" uid="uid://decs3hxn878nt" path="res://scenes/autoload/CustomSignals.tscn" id="7_32r1k"]
@@ -75,40 +76,21 @@ _bundled = {
 font_size = 80
 font_color = Color(1, 0, 0, 1)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "damageNumbers")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_am2bs")
 treeScene = SubResource("PackedScene_ed46r")
 orcScene = ExtResource("3_qk0ik")
-townScenePacked = ExtResource("21_5f5ap")
 player = NodePath("Dave")
 itemDropScene = ExtResource("4_w44kb")
-damageNumbers = NodePath("Handlers/DamageNumbers")
-
-[node name="YSortRoot" type="Node2D" parent="."]
-
-[node name="Bonfire" parent="YSortRoot" instance=ExtResource("14_s20ge")]
-position = Vector2(947, 336)
-
-[node name="roundTree" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(1023, 182)
-
-[node name="roundTree2" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(310, 222)
-
-[node name="roundTree3" parent="YSortRoot" instance=ExtResource("2_n184a")]
-position = Vector2(668, 230)
-
-[node name="TileMapAroundThePlayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("player")]
-modulate = Color(1, 1.25, 1, 1)
-z_index = -100
-y_sort_enabled = true
-tile_set = ExtResource("23_dpvdp")
-script = ExtResource("6_4hdan")
-player = NodePath("../Dave")
 
 [node name="Handlers" type="Node" parent="."]
 script = ExtResource("9_jk514")
+
+[node name="SwitchSceneManager" type="Node" parent="Handlers" node_paths=PackedStringArray("player")]
+script = ExtResource("5_dl5qq")
+player = NodePath("../../Dave")
+townScenePacked = ExtResource("21_5f5ap")
 
 [node name="ToolTipManager" parent="Handlers" node_paths=PackedStringArray("inventorySlots", "equippedSlots", "player") instance=ExtResource("10_svtpr")]
 inventorySlots = NodePath("../../Dave/UserInterface/Inventory/InventoryPanel/TextureRect/InventorySlots")
@@ -148,7 +130,15 @@ jsonData = NodePath("../JSONData")
 
 [node name="JSONData" parent="Handlers" instance=ExtResource("16_2vlxg")]
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="TileMapAroundThePlayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("player")]
+visible = false
+modulate = Color(1, 1.25, 1, 1)
+z_index = -100
+y_sort_enabled = true
+position = Vector2(-33, -88)
+tile_set = ExtResource("23_dpvdp")
+script = ExtResource("6_4hdan")
+player = NodePath("../Dave")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -182,13 +172,22 @@ label_settings = SubResource("LabelSettings_biyrh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Archer5" parent="." instance=ExtResource("26_om3au")]
+position = Vector2(816, 222)
+
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
 
-[node name="Archer" parent="." instance=ExtResource("26_om3au")]
-position = Vector2(669, 466)
+[node name="Bonfire" parent="." instance=ExtResource("14_s20ge")]
+position = Vector2(948, 335)
 
-[node name="Archer2" parent="." instance=ExtResource("26_om3au")]
-position = Vector2(808, 182)
+[node name="roundTree" parent="." instance=ExtResource("2_n184a")]
+position = Vector2(1023, 182)
+
+[node name="roundTree2" parent="." instance=ExtResource("2_n184a")]
+position = Vector2(310, 222)
+
+[node name="roundTree3" parent="." instance=ExtResource("2_n184a")]
+position = Vector2(668, 230)
 
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]

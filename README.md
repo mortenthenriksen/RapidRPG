@@ -1,11 +1,10 @@
 To do
 - **Most importantly: enjoy the journey and be proud**
-- Add more enemies, fix enemy logic (damage and make the colliding smooth) -> with the state machine operational, it should be a bit faster now
+- Add more enemies, fix enemy logic (damage and make the colliding smooth) -> with the state machine operational, it should be a bit faster now -> make even smarter enemy AI, if you need to play this game forever, you need smart enemies (make a weighting depending on where they wanna go, something along their spawn point also)
 - Add magic and rare monsters. Add bosses 
-- Add sound
-- Make unique items, more items in general -> make them drop with sound (set items would be really cool)
+- Add sound (getting there, it's pretty easy and adds a ton of effect)
+- Make unique items, more items in general -> make them drop with sound (fix the sound) (set items would be really cool)
 - Make items have their name be on the ground, pick them up by clicking
-- Figure out a way to not make it last forever, but still so that the highscore demands something (checek, infitiy RPG we here come!)
 - Make the map procedural generated (yikes, basicly done, just need to add some trees and random events B-)
 - Give lines to Aegis -> learn about how different states of the game affects his voice lines -> learn how to write speech boxes
 - Add a small skill tree -> fix the level up animation -> (sound better anim)

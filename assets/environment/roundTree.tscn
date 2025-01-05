@@ -5,11 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://b6ico60gs8j3i" path="res://assets/environment/greenRoundTree.png" id="2_45l0l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlon5"]
-radius = 37.0046
-height = 122.009
+radius = 30.9945
+height = 144.008
 
 [node name="roundTree" type="StaticBody2D"]
-z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_2767x")
 
@@ -17,20 +16,21 @@ script = ExtResource("1_2767x")
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_45l0l")
-offset = Vector2(0, -50)
+offset = Vector2(0, -72.26)
 
 [node name="GroundShadow" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355313, 1)
 self_modulate = Color(1, 1, 1, 0.411765)
 z_index = -1
-position = Vector2(-1, 57)
+y_sort_enabled = true
+position = Vector2(1, 60)
 scale = Vector2(1.39, 1.39)
 texture = ExtResource("1_ntjro")
-offset = Vector2(0, -34.1)
+offset = Vector2(0, -59.03)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 y_sort_enabled = true
-position = Vector2(-1, 1)
+position = Vector2(4.76837e-07, -31)
 rotation = 1.56569
 shape = SubResource("CapsuleShape2D_jlon5")

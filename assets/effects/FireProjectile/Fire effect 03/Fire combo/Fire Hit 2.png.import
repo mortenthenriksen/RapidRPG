@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhdc0c7ax2kpr"
-path="res://.godot/imported/Wind Hit Effect.png-1e361e5c529b7bd50f9b26a7a8741955.ctex"
+uid="uid://c3j2jvfumwhtb"
+path="res://.godot/imported/Fire Hit 2.png-2469656a196a2636215703c2cbdebce8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/FireProjectile/Wind Hit Effect.png"
-dest_files=["res://.godot/imported/Wind Hit Effect.png-1e361e5c529b7bd50f9b26a7a8741955.ctex"]
+source_file="res://assets/effects/FireProjectile/Fire effect 03/Fire combo/Fire Hit 2.png"
+dest_files=["res://.godot/imported/Fire Hit 2.png-2469656a196a2636215703c2cbdebce8.ctex"]
 
 [params]
 

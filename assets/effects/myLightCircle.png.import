@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhyj6u6hec110"
-path="res://.godot/imported/Wind Breath.png-d58d7aec4d7c16388f7c7e2e44a82bca.ctex"
+uid="uid://bsumraau06wlf"
+path="res://.godot/imported/myLightCircle.png-17997bb9872a4a450b7b5cfcacc76307.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/FireProjectile/Wind Breath.png"
-dest_files=["res://.godot/imported/Wind Breath.png-d58d7aec4d7c16388f7c7e2e44a82bca.ctex"]
+source_file="res://assets/effects/myLightCircle.png"
+dest_files=["res://.godot/imported/myLightCircle.png-17997bb9872a4a450b7b5cfcacc76307.ctex"]
 
 [params]
 

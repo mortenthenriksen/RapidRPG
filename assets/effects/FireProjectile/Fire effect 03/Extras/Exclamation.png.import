@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brgufafktlj4j"
-path="res://.godot/imported/Wind Projectile.png-cf7807e3c6b553aa10154a5270c216e7.ctex"
+uid="uid://dv80qkpa25p1q"
+path="res://.godot/imported/Exclamation.png-1cdeb88b1adfa7021339ca636c81082a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/FireProjectile/Wind Projectile.png"
-dest_files=["res://.godot/imported/Wind Projectile.png-cf7807e3c6b553aa10154a5270c216e7.ctex"]
+source_file="res://assets/effects/FireProjectile/Fire effect 03/Extras/Exclamation.png"
+dest_files=["res://.godot/imported/Exclamation.png-1cdeb88b1adfa7021339ca636c81082a.ctex"]
 
 [params]
 

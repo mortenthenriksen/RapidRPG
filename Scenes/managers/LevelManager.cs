@@ -21,22 +21,36 @@ public partial class LevelManager : Node
     [Export]
     private Label levelLabel;
 
-    private AnimatedSprite2D levelUpAnimation;
-    private AnimatedSprite2D levelUpAnimation2;
-    private AnimatedSprite2D levelUpAnimation3;
+    private AnimatedSprite2D newUp;
+    private AnimatedSprite2D newUpUpper;
+    private AnimatedSprite2D newUpUpper2;
+    private AudioStreamPlayer2D audioStreamPlayer2D;
+    private Timer lightTimer;
+    private PointLight2D pointLight2D;
 
     public override void _Ready()
     {
-        levelUpAnimation = GetNode<AnimatedSprite2D>("LevelUpAnimation");
-        levelUpAnimation2 = GetNode<AnimatedSprite2D>("LevelUpAnimation2");
-        levelUpAnimation3 = GetNode<AnimatedSprite2D>("LevelUpAnimation3"); 
+        newUp = GetNode<AnimatedSprite2D>("NewUp"); 
+        newUpUpper = GetNode<AnimatedSprite2D>("NewUpUpper"); 
+        newUpUpper2 = GetNode<AnimatedSprite2D>("NewUpUpper2"); 
+        audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+        lightTimer = GetNode<Timer>("LightTimer");
+        pointLight2D = GetNode<PointLight2D>("PointLight2D");
     }
 
     public override void _Process(double delta)
     {
-        levelUpAnimation.Position = player.Position;
-        levelUpAnimation2.Position = player.Position;
-        levelUpAnimation3.Position = player.Position;
+        if (Input.IsActionPressed("pick_up"))
+        {
+            LevelGainedUI();
+        }
+
+        pointLight2D.Color = new Color(1, 1, 0.8f, (float)lightTimer.TimeLeft);
+
+        newUp.Position = player.Position + new Vector2(0, 10);
+        newUpUpper.Position = player.Position + new Vector2(0, 10);
+        newUpUpper2.Position = player.Position + new Vector2(0, 10);
+        pointLight2D.Position = player.Position + new Vector2(0, 10);
     }
 
     public void HandleExperienceGained()
@@ -52,7 +66,7 @@ public partial class LevelManager : Node
 		if (experienceMaxValue - experience <= 0) 
 		{
             var experienceForNextLevel = Math.Abs((int)experienceMaxValue - experience);
-            LevelGainedAnimation();
+            LevelGainedUI();
 			levelNum += 1;
 			levelLabel.Text = $"Level: {GetCurrentLevel()}";
             experienceBar.Value = experienceForNextLevel;
@@ -78,11 +92,13 @@ public partial class LevelManager : Node
         return levelNum;
     }
 
-    private void LevelGainedAnimation()
+    private void LevelGainedUI()
     {
-        levelUpAnimation.Play();
-        levelUpAnimation2.Play();
-        levelUpAnimation3.Play();
+        lightTimer.Start();
+        newUp.Play();
+        newUpUpper.Play();
+        newUpUpper2.Play();
+        audioStreamPlayer2D.Play();
 
     }
 

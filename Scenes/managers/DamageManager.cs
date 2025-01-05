@@ -44,16 +44,16 @@ public partial class DamageManager : Node
 	// 	CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, TotalDamageAmount());
 	// }
 
-	private void OnEnemyDamageRecieved(Vector2 position)
+	private void OnEnemyDamageRecieved(float damageAmount, Vector2 position)
 	{
-		damageNumbers.DisplayNumber(GetTotalDamageAmount(), position, false);
+		damageNumbers.DisplayNumber((int)damageAmount, position, false);
 	}
 
 
     private void OnPlayerDamageReceived(float damageAmount)
     {
-		damageNumbers.DisplayNumber(damageAmount, player.Position, false);
-		player.PlayerDamageReceived(damageAmount);
+		damageNumbers.DisplayNumber((int)damageAmount, player.Position, false);
+		player.PlayerDamageReceived((int)damageAmount);
     }
 
 

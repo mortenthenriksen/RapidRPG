@@ -28,6 +28,7 @@ public partial class Dave : CharacterBody2D
 
 	private Vector2 moveDirection = Vector2.Zero;
     private Vector2 lastDirection = Vector2.Down;
+	private string action;
 
 	private AnimatedSprite2D animatedSprite2D;
 	private ProgressBar healthBar;
@@ -35,8 +36,9 @@ public partial class Dave : CharacterBody2D
 	private ProgressBar rageBar;
 	private Label rageLabel;
 	private PickupBox pickupBox;
-	private Area2D attackBox;
-	private AttackBoxCollisionShape attackBoxCollisionShape;
+	private Area2D attackBoxBasic;
+	private Area2D attackBoxSpin;
+	private AttackBoxPolygon basicAttackBoxPolygonShape;
 	private ItemDrop itemDrop;
 	private InventoryPanel inventoryPanel;
 	private SkillBar skillBar; 
@@ -62,8 +64,11 @@ public partial class Dave : CharacterBody2D
 		rageLabel = GetNode<Label>("UserInterface/SkillBar/MarginContainer/HBoxContainer/VBoxRage/RageLabel");
 
 		pickupBox = GetNode<PickupBox>("PickupBox");
-		attackBox = GetNode<Area2D>("AttackBox");
-		attackBoxCollisionShape = GetNode<AttackBoxCollisionShape>("%AttackBoxCollisionShape");
+		attackBoxBasic = GetNode<Area2D>("AttackBoxBasic");
+		attackBoxSpin = GetNode<Area2D>("AttackBoxSpin");
+
+		basicAttackBoxPolygonShape = GetNode<AttackBoxPolygon>("%BasicAttackBoxPolygonShape");
+
 		inventoryPanel = GetNode<InventoryPanel>("UserInterface/Inventory/InventoryPanel");
 		skillBar = GetNode<SkillBar>("UserInterface/SkillBar");
 		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
@@ -82,7 +87,7 @@ public partial class Dave : CharacterBody2D
 			if (moveDirection != Vector2.Zero)
             {
                 lastDirection = moveDirection;
-				attackBoxCollisionShape.RotateAttackBox(moveDirection);
+				basicAttackBoxPolygonShape.RotateAttackBox(moveDirection);
             }
 
 			PlayAnimation(moveDirection);
@@ -97,12 +102,27 @@ public partial class Dave : CharacterBody2D
 
 		if (isAttacking && !hasDealtDamage)
 		{	
-			foreach (var body in attackBox.GetOverlappingBodies())
+			if (action == "sword")
 			{
-				if (body is IEnemies enemies)
+				foreach (var body in attackBoxBasic.GetOverlappingBodies())
 				{
-					AttackEnemy(enemies);
-					hasDealtDamage = true;
+					if (body is IEnemies enemies)
+					{
+						AttackEnemy(enemies);
+						hasDealtDamage = true;
+					}
+				}
+			}
+
+			else if (action == "spinAttack")
+			{
+				foreach (var body in attackBoxSpin.GetOverlappingBodies())
+				{
+					if (body is IEnemies enemy)
+					{
+						AttackEnemy(enemy);
+						hasDealtDamage = true;
+					}
 				}
 			}
 		}
@@ -112,7 +132,14 @@ public partial class Dave : CharacterBody2D
     {
 		if (body is IEnemies enemies)
         {
-            enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
+			if (action == "sword")
+			{
+            	enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
+			}
+			else if (action == "spinAttack")
+			{
+				enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount() * 0.6f);
+			}
         }
     }
 
@@ -161,8 +188,6 @@ public partial class Dave : CharacterBody2D
 
 	private void PlayAnimation(Vector2 direction) 
 	{
-		string action;
-
 		animatedSprite2D.SpeedScale = 1;
 		action = "idle";
 
@@ -177,6 +202,13 @@ public partial class Dave : CharacterBody2D
 				isAttacking = true;
 			}
 
+			else if (Input.IsActionPressed("spinAttack"))
+			{
+				audioStreamPlayer2D.Play();
+				action = "spinAttack";
+				isAttacking = true;
+			}
+
 			else if (Input.IsActionPressed("special_attack") && !isSpecialOnCooldown)
 			{
 				action = "special";
@@ -185,12 +217,6 @@ public partial class Dave : CharacterBody2D
 				isSpecialOnCooldown = true;
 			}
 
-			else if (Input.IsActionPressed("spinAttack"))
-			{
-				audioStreamPlayer2D.Play();
-				action = "spinAttack";
-				isAttacking = true;
-			}
 
 			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
 			{
@@ -253,7 +279,7 @@ public partial class Dave : CharacterBody2D
 			Vector2 d when d == Vector2.Left => "Left",
 			Vector2 d when d == Vector2.Right => "Right",
 			// slightly cursed, but i dont care :)
-			Vector2 d when d == new Vector2(-(float)0.70710677, -(float)0.70710677) => "Left", 
+			Vector2 d when d == new Vector2(-(float)0.70710677, -(float)0.70710677) => "Left",
 			Vector2 d when d == new Vector2((float)0.70710677, -(float)0.70710677) => "Right", 
 			Vector2 d when d == new Vector2(-(float)0.70710677, (float)0.70710677) => "Left", 
 			Vector2 d when d == new Vector2((float)0.70710677, (float)0.70710677) => "Right", 

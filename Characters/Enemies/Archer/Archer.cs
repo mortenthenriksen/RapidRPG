@@ -12,29 +12,45 @@ public partial class Archer : IEnemies
     [Export]
 	private PackedScene arrowScene;
 
-	private static float damageAmount = 2f;
+	[Export]
+    private int RANGE;
+
+	private static float damageAmount = 0f;
 
 	private float speed = 110; 
 	private float MAX_HEALTH = 75;
 	private float health = 75; 
 	private bool isTakingDamage = false;
 
-	private ProgressBar healthBar; 
-	private Label healthLabel;
-
-	private AnimatedSprite2D animatedSprite2D;
-	private AudioStreamPlayer2D audioStreamPlayer2D; 
 	private Attack attack;
 	private Dave player; 
 
+	private ProgressBar healthBar; 
+	private Label healthLabel;
+	private Area2D detectionArea;
+	private CollisionShape2D collisionShape2D;
+
+	private AnimatedSprite2D animatedSprite2D;
+	private AudioStreamPlayer2D deathSound; 
+	private AudioStreamPlayer2D fireArrowSound; 
+
 	public override void _Ready()
 	{
-		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		player = GetNode<Dave>("/root/Main/Dave");
+		attack = GetNode<Attack>("StateMachine/Attack");
+		
 		healthBar = GetNode<ProgressBar>("HealthBar");
 		healthLabel = GetNode<Label>("HealthBar/HealthLabel");
-		attack = GetNode<Attack>("StateMachine/Attack");
-		player = GetNode<Dave>("/root/Main/Dave");
+		collisionShape2D = GetNode<CollisionShape2D>("DetectionArea/DetectionCollision");
+		detectionArea = GetNode<Area2D>("DetectionArea");
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		deathSound = GetNode<AudioStreamPlayer2D>("DeathSound");
+		fireArrowSound = GetNode<AudioStreamPlayer2D>("FireArrowSound");
+
+        if (collisionShape2D.Shape is CircleShape2D circleShape)
+        {
+            circleShape.Radius = RANGE;
+        }
 
 		health = MAX_HEALTH * MultiplierManager.Instance.GetMultiplier();
 
@@ -81,7 +97,7 @@ public partial class Archer : IEnemies
 
     public override void _PhysicsProcess(double delta)
 	{
-		MoveAndCollide(Velocity * (float)delta);
+		// MoveAndCollide(Velocity * (float)delta);
 	}
 
 	private void UpdateHealthBar()
@@ -106,11 +122,11 @@ public partial class Archer : IEnemies
 		{
 			isTakingDamage = true;
 			Position += playerDirection * 2;
-			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, Position);
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageRecieved, damageAmount,  Position);
 		}
 		if (health <= 0)
 		{
-			audioStreamPlayer2D.Play();
+			deathSound.Play();
 		}
 	}
 
@@ -126,6 +142,11 @@ public partial class Archer : IEnemies
 		{
 			isTakingDamage = false;
 		}
+
+		if (animatedSprite2D.Animation == "attack01")
+		{
+			fireArrowSound.Play();
+		}
 	}
 
 	private void OnEnemyHealthDepleted(float health)
@@ -136,5 +157,10 @@ public partial class Archer : IEnemies
 	public static float GetDamageAmount()
 	{
 		return damageAmount;
+	}
+
+	public int GetRange()
+	{
+		return RANGE;
 	}
 }

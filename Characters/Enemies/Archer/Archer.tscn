@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://deu18rapvgfcu"]
+[gd_scene load_steps=44 format=3 uid="uid://deu18rapvgfcu"]
 
 [ext_resource type="Script" path="res://characters/Enemies/Archer/Archer.cs" id="1_ogleh"]
 [ext_resource type="Texture2D" uid="uid://cvoftiva3m2el" path="res://characters/Enemies/Archer/ArcherSpriteSheet/Archer.png" id="1_umucg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://characters/Enemies/State/Idle.cs" id="6_ogqac"]
 [ext_resource type="Script" path="res://characters/Enemies/State/Attack.cs" id="7_exgri"]
 [ext_resource type="AudioStream" uid="uid://dibpdq8yojpur" path="res://assets/sounds/characters/deathSoundEnemies.wav" id="8_jsnt7"]
+[ext_resource type="AudioStream" uid="uid://42ej1qo3rvut" path="res://assets/sounds/characters/Enemies/fireArrowSound.wav" id="9_g7g5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ggs6"]
 radius = 14.5021
@@ -266,13 +267,14 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j4m8f"]
-radius = 249.445
+radius = 353.205
 
 [node name="Archer" type="CharacterBody2D"]
 scale = Vector2(1.00229, 1.00823)
 collision_layer = 3
 script = ExtResource("1_ogleh")
 arrowScene = ExtResource("2_5ld1c")
+RANGE = 350
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.765159, -13.1983)
@@ -326,16 +328,19 @@ moveSpeed = 10
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
 script = ExtResource("7_exgri")
 archer = NodePath("../..")
-RANGE = 300
 arrowScene = ExtResource("2_5ld1c")
 
 [node name="FireRateTimer" type="Timer" parent="StateMachine/Attack"]
-wait_time = 1.5
+wait_time = 1.25
 one_shot = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_jsnt7")
-volume_db = -25.0
+volume_db = -27.0
+
+[node name="FireArrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_g7g5p")
+volume_db = -20.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Attack" method="OnAnimatedSprite2DAnimationFinishedState"]
