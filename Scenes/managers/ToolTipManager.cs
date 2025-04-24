@@ -82,7 +82,15 @@ public partial class ToolTipManager : Node2D
                     secondaryStatLabel.Text = "";
                     secondaryStatValue.Text = "";
                 }
-                descriptionLabel.Text = "";
+                if (valueDict.ContainsKey("UniqueEffect"))
+                {
+                    // GD.Print(valueDict["UniqueEffect"].ToString().Length);
+                    descriptionLabel.Text = SplitTextIntoLines(valueDict["UniqueEffect"].ToString(), 30);
+                }
+                else 
+                {
+                    descriptionLabel.Text = "";
+                }
             }
 
             if (valueDict["ItemCategory"].ToString() == "Weapon")
@@ -102,7 +110,7 @@ public partial class ToolTipManager : Node2D
                 }
             }
 
-
+    
             if (valueDict["ItemCategory"].ToString() == "Consumable")
             {
                 mainStatLabel.Text = "Stacksize";

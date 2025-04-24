@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://cot7166cpnww4"]
 
-[ext_resource type="Script" path="res://characters/Player/UniqueEffects/FireProjectileScene.cs" id="1_hiaja"]
+[ext_resource type="Script" path="res://scenes/unique effects/FireProjectileScene.cs" id="1_hiaja"]
 [ext_resource type="Texture2D" uid="uid://de7rmo2mteq40" path="res://assets/effects/FireProjectile/Fire Effect 1/Fire Breath SpriteSheet.png" id="2_flwom"]
 [ext_resource type="Texture2D" uid="uid://eg3mnr13de5h" path="res://assets/effects/FireProjectile/Fire Effect 1/Firebolt SpriteSheet.png" id="3_7n2jk"]
 [ext_resource type="AudioStream" uid="uid://cj1gyoeq0obxa" path="res://assets/sounds/unique effects/fireFireProjectile.wav" id="4_284jk"]
@@ -207,8 +207,6 @@ scale = Vector2(1.67969, 1.89583)
 sprite_frames = SubResource("SpriteFrames_wa7jr")
 animation = &"small"
 autoplay = "small"
-frame = 3
-frame_progress = 1.0
 
 [node name="AudioParent" type="Node2D" parent="."]
 

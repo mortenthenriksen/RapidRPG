@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://bb5ajwrq2oajo"]
 
-[ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://assets/environment/roundTree.tscn" id="1_a6dtk"]
+[ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://scenes/environment/roundTree.tscn" id="1_a6dtk"]
 [ext_resource type="PackedScene" uid="uid://bo1e8df3bghpp" path="res://characters/Enemies/Aegis/Aegis.tscn" id="2_x0oej"]
 [ext_resource type="TileSet" uid="uid://b26ye6uromsr0" path="res://resources/newTiles.tres" id="3_e32nh"]
 

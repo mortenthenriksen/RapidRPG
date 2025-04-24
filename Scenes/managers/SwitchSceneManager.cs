@@ -1,7 +1,6 @@
 using Game.Autoload;
 using Game.Characters;
 using Godot;
-using System;
 
 namespace Game.Manager;
 
@@ -13,11 +12,11 @@ public partial class SwitchSceneManager : Node
 	[Export]
 	private PackedScene townScenePacked;
 
-	private Handlers handlers;
+	private Managers managers;
 
     public override void _Ready()
 	{
-		handlers = (Handlers)this.GetParent();
+		managers = (Managers)this.GetParent();
 
 		CustomSignals.Instance.TeleportBackToTown += OnTeleportBackToTown;
 	}

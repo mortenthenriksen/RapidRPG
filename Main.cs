@@ -32,7 +32,7 @@ public partial class Main : Node2D
 		CustomSignals.Instance.EnemyHealthDepleted += OnEnemyHealthDepleted;
 	}
 
-    private void SpawnMob() {
+	private void SpawnMob() {
 		spawnedOrc = orcScene.Instantiate() as Orc;
 		Random random = new Random();
 		pathFollow2D.ProgressRatio = (float) random.NextDouble();
@@ -41,7 +41,7 @@ public partial class Main : Node2D
 	}
 
 
-    private void SpawnTree() {
+	private void SpawnTree() {
 		var newTree = treeScene.Instantiate() as StaticBody2D;
 		Random random = new Random();
 		pathFollow2D.ProgressRatio = (float) random.NextDouble();
@@ -60,10 +60,18 @@ public partial class Main : Node2D
 		MakeItemDrop(position);
 	}
 
-	private void MakeItemDrop(Vector2 position) 
+	public void MakeItemDrop(Vector2 position) 
 	{
 		var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
 		newItemDrop.GlobalPosition = position;
+		GetTree().Root.CallDeferred("add_child", newItemDrop);
+	}
+
+	public void MakeItemDropFromInventory(string itemName)
+	{
+		var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
+		newItemDrop.GlobalPosition = GetGlobalMousePosition();
+		newItemDrop.SetItemName(itemName);
 		GetTree().Root.CallDeferred("add_child", newItemDrop);
 	}
 

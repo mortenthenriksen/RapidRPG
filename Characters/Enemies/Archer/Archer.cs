@@ -15,7 +15,7 @@ public partial class Archer : IEnemies
 	[Export]
     private int RANGE;
 
-	private static float damageAmount = 0f;
+	private static float damageAmount = 1.5f;
 
 	private float speed = 110; 
 	private float MAX_HEALTH = 75;
@@ -97,7 +97,7 @@ public partial class Archer : IEnemies
 
     public override void _PhysicsProcess(double delta)
 	{
-		// MoveAndCollide(Velocity * (float)delta);
+		MoveAndCollide(Velocity * (float)delta);
 	}
 
 	private void UpdateHealthBar()

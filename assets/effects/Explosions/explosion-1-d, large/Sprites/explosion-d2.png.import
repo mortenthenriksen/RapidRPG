@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diusj0hkgmyvb"
-path="res://.godot/imported/32x32_PixelAmour.png-a90b22bfd193545b0aca1132a0ca1466.ctex"
+uid="uid://b02j1gnw3dv78"
+path="res://.godot/imported/explosion-d2.png-8f65084d99f1e57a69b0f4a431f00488.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/32x32_PixelAmour.png"
-dest_files=["res://.godot/imported/32x32_PixelAmour.png-a90b22bfd193545b0aca1132a0ca1466.ctex"]
+source_file="res://assets/effects/Explosions/explosion-1-d, large/Sprites/explosion-d2.png"
+dest_files=["res://.godot/imported/explosion-d2.png-8f65084d99f1e57a69b0f4a431f00488.ctex"]
 
 [params]
 

@@ -28,7 +28,8 @@ public partial class CustomSignals : Node
 	[Signal]
 	public delegate void TeleportBackToTownEventHandler();
 
-
+	[Signal]
+	public delegate void DropItemOnGroundFromInventoryEventHandler();
 
 	
     public override void _Notification(int what)

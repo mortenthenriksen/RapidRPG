@@ -7,11 +7,8 @@ signal slot_interacted()
 const SlotClass = preload("res://Inventory/Slot.gd")
 const ItemClass = preload("res://Inventory/Item.gd")
 
-
 var inventory = InventoryLogic.get_inventory()
 var equips = InventoryLogic.get_equips()
-
-
 
 func _ready():
 	var slots = self.get_children()
@@ -116,3 +113,13 @@ func left_click_not_holding(slot: SlotClass):
 	slot.pick_from_slot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 
+
+func get_holding_item_name():
+	if find_parent("UserInterface").holding_item:
+		# print(find_parent("UserInterface").holding_item.item_name)
+		return find_parent("UserInterface").holding_item.item_name
+
+func clear_holding_item():
+	if find_parent("UserInterface").holding_item:
+		find_parent("UserInterface").holding_item.queue_free()
+		find_parent("UserInterface").holding_item = null

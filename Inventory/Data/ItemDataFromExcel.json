@@ -206,5 +206,15 @@
         "StackSize": 1,
         "Description": "Default",
         "Weight": 0
+    },
+    "Boom Boom Boots": {
+        "ItemCategory": "Shoes",
+        "StackSize": 1,
+        "Description": "Default",
+        "Weight": 1,
+        "Attack": 20.0,
+        "Defense": 30.0,
+        "MainStat": 20.0,
+        "UniqueEffect": "With every step, the very ground erupts. Adds explosive steps. "
     }
 }

@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using Game.Autoload;
 using Game.Characters;
 using Godot;
@@ -7,7 +7,7 @@ using Godot.Collections;
 
 public partial class ItemDrop : CharacterBody2D
 {
-    private string itemName;
+    public string itemName;
     private Node InventoryLogic;
     private Dave player = null;
     private Label itemNameLabel;
@@ -33,7 +33,29 @@ public partial class ItemDrop : CharacterBody2D
             int itemWeight = itemDataDictValue.ContainsKey("Weight") ? (int)itemDataDictValue["Weight"] : 0;  
             weightedItemDrops.Add(itemName, itemWeight);
         }
-        itemName = WeightedItemDrop();
+
+        if (string.IsNullOrEmpty(itemName))
+        {
+            itemName = WeightedItemDrop();
+        }
+        else
+        {
+            UpdateItem(itemName);
+        }
+    }
+
+    private void UpdateItem(string itemName)
+    {
+        var sprite = GetNode<Sprite2D>("Sprite2D");
+        var texture = (Texture)ResourceLoader.Load($"res://Inventory/ItemIcons/{itemName}.png");
+        sprite.Texture = (Texture2D)texture;
+        sprite.Scale = new Vector2(1f, 1f);
+        itemNameLabel.Text = itemName;
+        var dict = (Dictionary)itemDataDict[itemName];
+        if (dict.ContainsKey("UniqueEffect") || dict.ContainsKey("UniqueSetEffect"))
+        { 
+            audioStreamPlayer2D.Play();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -48,18 +70,13 @@ public partial class ItemDrop : CharacterBody2D
     public string WeightedItemDrop() 
     {
         var itemDropName = weightedItemDrops.GetItem();
-        // var itemDropName = "Sword of Undying Flame";
-        var sprite = GetNode<Sprite2D>("Sprite2D");
-        var texture = (Texture)ResourceLoader.Load($"res://Inventory/ItemIcons/{itemDropName}.png");
-        sprite.Texture = (Texture2D)texture;
-        sprite.Scale = new Vector2(1f, 1f);
-        itemNameLabel.Text = itemDropName;
-        var dict = (Dictionary)itemDataDict[itemDropName];
-        if (dict.ContainsKey("UniqueEffect") || dict.ContainsKey("UniqueSetEffect"))
-        { 
-            audioStreamPlayer2D.Play();
-        }
+        UpdateItem(itemDropName);
         return itemDropName;
+    }
+
+    public void SetItemName(string name)
+    {
+        itemName = name;
     }
 
     public void PickupItem(Dave body)

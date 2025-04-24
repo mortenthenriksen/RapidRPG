@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckgvctnqkob8x"
-path="res://.godot/imported/32x32_RingsandAmulets.png-c3ad65b05c6793df1930e038ab8fc6c6.ctex"
+uid="uid://diusj0hkgmyvb"
+path="res://.godot/imported/32x32_PixelAmour.png-0910c164646baa75bd64551b6d45640d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/32x32_RingsandAmulets.png"
-dest_files=["res://.godot/imported/32x32_RingsandAmulets.png-c3ad65b05c6793df1930e038ab8fc6c6.ctex"]
+source_file="res://assets/inventory/sprites for equipment/32x32_PixelAmour.png"
+dest_files=["res://.godot/imported/32x32_PixelAmour.png-0910c164646baa75bd64551b6d45640d.ctex"]
 
 [params]
 

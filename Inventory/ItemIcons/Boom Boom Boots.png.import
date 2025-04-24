@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg6fcofe424u6"
-path="res://.godot/imported/32x32_PixelWeapons_Free.png-483140861e866634bfe02f8b447782ae.ctex"
+uid="uid://cufwdei5fc3eu"
+path="res://.godot/imported/Boom Boom Boots.png-d223a5de416058b852892c2565306fe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/inventory/32x32_PixelWeapons_Free.png"
-dest_files=["res://.godot/imported/32x32_PixelWeapons_Free.png-483140861e866634bfe02f8b447782ae.ctex"]
+source_file="res://Inventory/ItemIcons/Boom Boom Boots.png"
+dest_files=["res://.godot/imported/Boom Boom Boots.png-d223a5de416058b852892c2565306fe9.ctex"]
 
 [params]
 

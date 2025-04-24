@@ -1374,6 +1374,15 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Curve2D" id="Curve2D_m784p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -416.857, -575.832, 0, 0, 0, 0, 1811.36, -572.173, 0, 0, 0, 0, 1818.68, 1096.25, 0, 0, 0, 0, -420.516, 1081.61, 0, 0, 0, 0, -413.198, -568.515)
+}
+point_count = 5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
+radius = 31.0161
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ir02"]
 bg_color = Color(1, 0.909804, 0.905882, 0.180392)
 corner_radius_top_left = 8
@@ -1387,15 +1396,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="Curve2D" id="Curve2D_m784p"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -416.857, -575.832, 0, 0, 0, 0, 1811.36, -572.173, 0, 0, 0, 0, 1818.68, 1096.25, 0, 0, 0, 0, -420.516, 1081.61, 0, 0, 0, 0, -413.198, -568.515)
-}
-point_count = 5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
-radius = 31.0161
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nquh0"]
 radius = 72.0
@@ -1418,8 +1418,6 @@ y_sort_enabled = true
 position = Vector2(3.27826e-07, 0)
 shape = SubResource("CircleShape2D_eu5cp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_nqhgl")
 volume_db = -24.0
@@ -1437,45 +1435,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gwwux")
 max_value = 50.0
 value = 50.0
 show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="ExperienceBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-z_index = 10
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -393.0
-offset_top = 474.0
-offset_right = 407.0
-offset_bottom = 502.0
-grow_horizontal = 2
-theme = ExtResource("19_pixa1")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/background = SubResource("StyleBoxFlat_1ir02")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fn404")
-step = 0.0
-metadata/_edit_use_anchors_ = true
-
-[node name="LevelLabel" type="Label" parent="ExperienceBar"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.189949
-anchor_top = -0.258746
-anchor_right = 0.316199
-anchor_bottom = -0.258745
-offset_left = 152.041
-offset_top = -31.7551
-offset_right = 234.041
-offset_bottom = -3.75513
-theme = ExtResource("19_pixa1")
-theme_override_font_sizes/font_size = 32
-text = "Level 1"
-horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -1509,6 +1468,7 @@ wait_time = 15.0
 one_shot = true
 
 [node name="AttackBoxBasic" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 524289
 
@@ -1526,10 +1486,50 @@ offset_right = 712.0
 offset_bottom = 910.0
 player = NodePath("../..")
 
+[node name="ExperienceBar" type="ProgressBar" parent="UserInterface"]
+unique_name_in_owner = true
+z_index = 10
+offset_left = 578.0
+offset_top = 1020.0
+offset_right = 1378.0
+offset_bottom = 1048.0
+theme = ExtResource("19_pixa1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/background = SubResource("StyleBoxFlat_1ir02")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn404")
+step = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="Label" parent="UserInterface/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.189949
+anchor_top = -0.258746
+anchor_right = 0.316199
+anchor_bottom = -0.258745
+offset_left = 152.041
+offset_top = -31.7551
+offset_right = 234.041
+offset_bottom = -3.75513
+theme = ExtResource("19_pixa1")
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="AttackBoxSpin" type="Area2D" parent="."]
+visible = false
 
 [node name="SpinAttackBoxCollisionShape" type="CollisionShape2D" parent="AttackBoxSpin"]
+visible = false
 shape = SubResource("CircleShape2D_nquh0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]

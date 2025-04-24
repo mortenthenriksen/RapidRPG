@@ -15,8 +15,8 @@ public partial class EquippedItemsManager : Node
     [Export]
     private GridContainer equippedSlots;
 
-    [Export]
     private PackedScene fireProjectileScene;
+    private PackedScene largeExplosionScene; 
 
     [Export]
     private Dave player;
@@ -25,6 +25,7 @@ public partial class EquippedItemsManager : Node
     private Dictionary<string, string> uniqueEffects = new Dictionary<string, string>();
     private Dictionary itemDataJson;
     private string uniqueEffectFromWeapon;
+    private string uniqueEffectFromShoes;
     
     private float baseDefense;
     private float attackSpeed;
@@ -35,6 +36,9 @@ public partial class EquippedItemsManager : Node
     {
         equippedSlots.Connect("slot_interacted", Callable.From(OnSlotInteracted));
         itemDataJson = GetItemDataDictionary();
+
+        fireProjectileScene = ResourceLoader.Load<PackedScene>("res://scenes/unique effects/FireProjectileScene.tscn");
+        largeExplosionScene = ResourceLoader.Load<PackedScene>("res://scenes/unique effects/LargeExplosionScene.tscn");
     }
 
 
@@ -136,6 +140,7 @@ public partial class EquippedItemsManager : Node
                 }
             }
         }
+        GD.Print(uniqueEffects);
         return uniqueEffects;
     }
 
@@ -153,9 +158,21 @@ public partial class EquippedItemsManager : Node
                 GetTree().Root.CallDeferred("add_child", fireProjectile);                
             }
         }
-
     }
 
+    public void FindUniqueEffectForShoes()
+    {
+        if (uniqueEffects.ContainsKey("Shoes"))
+        {
+            uniqueEffectFromShoes = uniqueEffects["Shoes"];
+            if (uniqueEffectFromShoes == "With every step, the very ground erupts. Adds explosive steps. ")
+            {
+                var largeExplosive = largeExplosionScene.Instantiate() as Area2D;
+                largeExplosive.GlobalPosition = player.Position;
+                GetTree().Root.CallDeferred("add_child", largeExplosive);  
+            }
+        }
+    }  
 
     private Dictionary GetItemDataDictionary()
     {

@@ -53,6 +53,9 @@ public partial class Dave : CharacterBody2D
 	private bool hasDealtDamage = false;
 	private bool isDashing = false;
 
+	private float shoesEffectTimer = 0f;
+	private const float SHOES_EFFECT_INTERVAL = 0.5f; // Adjust this value to change the interval
+
 	public override void _Ready()
 	{
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -88,12 +91,20 @@ public partial class Dave : CharacterBody2D
             {
                 lastDirection = moveDirection;
 				basicAttackBoxPolygonShape.RotateAttackBox(moveDirection);
+				
+				shoesEffectTimer += (float)delta;
+				if (shoesEffectTimer >= SHOES_EFFECT_INTERVAL)
+				{
+					EquippedItemsManager.Instance.FindUniqueEffectForShoes();
+					shoesEffectTimer = 0f;
+				}
             }
 
 			PlayAnimation(moveDirection);
 			MoveAndCollide(moveDirection * speed * (float) delta);
 		}
 
+		// Move this pickup logic somewhere else
 		if (pickupBox.GetOverlappingBodies().Count > 0) 
 		{
 			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
@@ -182,7 +193,11 @@ public partial class Dave : CharacterBody2D
 
 	private Vector2 HandleInput()
 	{
-		Vector2 moveDirection = Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
+		if (!isDashing)
+		{
+			Vector2 moveDirection = Input.GetVector(MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN);
+			return moveDirection;
+		}
 		return moveDirection;
 	}
 
@@ -191,7 +206,7 @@ public partial class Dave : CharacterBody2D
 		animatedSprite2D.SpeedScale = 1;
 		action = "idle";
 
-		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isAttacking)
+		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isAttacking && !isDashing)
 		{
 			if (Input.IsActionPressed("attack"))
 			{
@@ -220,18 +235,21 @@ public partial class Dave : CharacterBody2D
 
 			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
 			{
+				isDashing = true;
+				animatedSprite2D.SelfModulate = new Color(3f,3f,3f,1f);
 				if (dashTween != null)
 				{
 					dashTween.Kill(); 
 				}
 
 				dashTween = GetTree().CreateTween();
-				Vector2 targetPosition = Position + lastDirection * 150;
+				Vector2 targetPosition = Position + lastDirection * 225;
 
 				dashTween
-					.TweenProperty(this, "position", targetPosition, 0.2f)
-					// .SetEase(Tween.EaseType.In)
-					.SetTrans(Tween.TransitionType.Sine);
+					.TweenProperty(this, "position", targetPosition, 0.7f)
+					.SetTrans(Tween.TransitionType.Cubic)
+					.SetEase(Tween.EaseType.Out)
+					.Connect("finished", new Callable(this, nameof(OnDashComplete)));
 
 				dashCooldownTimer.Start();
 				isDashOnCooldown = true;
@@ -260,7 +278,13 @@ public partial class Dave : CharacterBody2D
         animatedSprite2D.Play(action + directionSuffix);
 	}
 
-	private void OnDashCooldownTimerTimeout()
+    private void OnDashComplete()
+    {
+		isDashing = false;
+		animatedSprite2D.SelfModulate = new Color(1, 1, 1, 1);
+    }
+
+    private void OnDashCooldownTimerTimeout()
 	{
 		isDashOnCooldown = false;
 	}
@@ -299,6 +323,11 @@ public partial class Dave : CharacterBody2D
 		return isDashOnCooldown;
 	}
 
+	public bool getIsDashing()
+	{
+		return isDashing;
+	}
+
 	public Timer GetDashTimer()
 	{
 		return dashCooldownTimer;
@@ -322,5 +351,4 @@ public partial class Dave : CharacterBody2D
 	public float GetHealth() {
 		return health;
 	}
-
 }

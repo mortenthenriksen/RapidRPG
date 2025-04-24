@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Item
+
 var item_name
 var item_quantity
 var item_stats = {}

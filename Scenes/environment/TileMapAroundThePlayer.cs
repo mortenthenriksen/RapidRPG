@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Game.Characters;
 using Godot;
 
-
 public partial class TileMapAroundThePlayer : TileMapLayer
 {
     [Export]
@@ -13,6 +12,7 @@ public partial class TileMapAroundThePlayer : TileMapLayer
     private const int autoTileRange = 80;
     private const float updateInterval = 0.5f;
     private float timeSinceLastUpdate = 0f;
+    private Vector2I lastPlayerCell;
 
     private Random random = new Random();
 
@@ -20,6 +20,7 @@ public partial class TileMapAroundThePlayer : TileMapLayer
 
     public override void _Ready()
     {
+        lastPlayerCell = LocalToMap(player.GlobalPosition);
         UpdateTilesAroundPlayer();
     }
 
@@ -28,7 +29,15 @@ public partial class TileMapAroundThePlayer : TileMapLayer
         timeSinceLastUpdate += (float)delta;
         if (timeSinceLastUpdate >= updateInterval)
         {
-            UpdateTilesAroundPlayer();
+            Vector2I currentPlayerCell = LocalToMap(player.GlobalPosition);
+            int xCoorDiff = Math.Abs(currentPlayerCell.X - lastPlayerCell.X);
+            int yCoorDiff = Math.Abs(currentPlayerCell.Y - lastPlayerCell.Y);
+            if (xCoorDiff > 10 || yCoorDiff > 10)
+            {   
+                // GD.Print("New pos within 10 cells");
+                lastPlayerCell = currentPlayerCell;
+                UpdateTilesAroundPlayer();
+            }
             timeSinceLastUpdate = 0f; 
         }
     }

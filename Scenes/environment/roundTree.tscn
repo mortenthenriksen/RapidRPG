@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://3117kpphwgj8"]
 
-[ext_resource type="Script" path="res://assets/environment/roundTree.cs" id="1_2767x"]
+[ext_resource type="Script" path="res://scenes/environment/roundTree.cs" id="1_2767x"]
 [ext_resource type="Texture2D" uid="uid://bjnfhkjxvoayj" path="res://assets/groundShadow.png" id="1_ntjro"]
 [ext_resource type="Texture2D" uid="uid://b6ico60gs8j3i" path="res://assets/environment/greenRoundTree.png" id="2_45l0l"]
 
@@ -9,6 +9,7 @@ radius = 30.9945
 height = 144.008
 
 [node name="roundTree" type="StaticBody2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_2767x")
 

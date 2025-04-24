@@ -8,6 +8,8 @@ radius = 7.00059
 height = 30.0047
 
 [node name="ArrowScene" type="Area2D"]
+z_as_relative = false
+y_sort_enabled = true
 scale = Vector2(2, 2)
 script = ExtResource("1_ur80d")
 
