@@ -24,11 +24,10 @@ InventoryLogic="*res://Inventory/InventoryLogic.gd"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1200
 window/stretch/mode="viewport"
-window/stretch/scale=0.5
 window/vsync/vsync_mode=0
+window/size/viewport_height=675
 
 [dotnet]
 
@@ -132,5 +131,3 @@ textures/decals/filter=2
 textures/light_projectors/filter=2
 environment/volumetric_fog/use_filter=0
 viewport/hdr_2d=true
-viewport/size/viewport_width=1980
-viewport/size/viewport_height=1080

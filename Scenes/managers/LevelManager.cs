@@ -18,8 +18,8 @@ public partial class LevelManager : Node
     [Export]
     private ProgressBar experienceBar;
 
-    [Export]
-    private Label levelLabel;
+    // [Export]
+    // private Label levelLabel;
 
     private AnimatedSprite2D newUp;
     private AnimatedSprite2D newUpUpper;
@@ -67,8 +67,8 @@ public partial class LevelManager : Node
 		{
             var experienceForNextLevel = Math.Abs((int)experienceMaxValue - experience);
             LevelGainedUI();
-			levelNum += 1;
-			levelLabel.Text = $"Level: {GetCurrentLevel()}";
+			// levelNum += 1;
+			// levelLabel.Text = $"Level: {GetCurrentLevel()}";
             experienceBar.Value = experienceForNextLevel;
             experience = experienceForNextLevel;
             CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.UpdateLevel);

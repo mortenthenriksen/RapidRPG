@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=3 uid="uid://beai64jjhwi4e"]
+[gd_scene load_steps=191 format=3 uid="uid://beai64jjhwi4e"]
 
 [ext_resource type="Script" path="res://characters/Player/Dave/Dave.cs" id="1_soyg5"]
 [ext_resource type="Texture2D" uid="uid://c3g5dsrlfxgn8" path="res://assets/downloads/DaveSpriteSheet/Warrior_idle.png" id="3_3rr87"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ba6wyi7m1e8vy" path="res://scenes/UI/UserInterface.tscn" id="9_ptaow"]
 [ext_resource type="Script" path="res://characters/Player/Dave/AttackBoxPolygon.cs" id="10_81hug"]
 [ext_resource type="Texture2D" uid="uid://cvc0vcnnpxn8q" path="res://assets/downloads/DaveSpriteSheet/Warrior_walk_run.png" id="18_hh242"]
-[ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="19_pixa1"]
 [ext_resource type="Script" path="res://characters/Player/Dave/PickupBox.cs" id="22_shs5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8iuw"]
@@ -1383,26 +1382,12 @@ point_count = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
 radius = 31.0161
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ir02"]
-bg_color = Color(1, 0.909804, 0.905882, 0.180392)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn404"]
-bg_color = Color(0.788235, 1, 0.309804, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_nquh0"]
 radius = 72.0
 
 [node name="Dave" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(960, 540)
+position = Vector2(602, 337)
 script = ExtResource("1_soyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1477,50 +1462,6 @@ unique_name_in_owner = true
 polygon = PackedVector2Array(-24, 14, -33, -4, -53, 4, -58, 29, -45, 48, -21, 58, 9, 60, 38, 55, 55, 37, 59, 17, 54, 2, 44, -6, 36, 7, 29, 14, 23, 16, 12, 19, 0, 21, -14, 19)
 script = ExtResource("10_81hug")
 
-[node name="UserInterface" parent="." instance=ExtResource("9_ptaow")]
-
-[node name="SkillBar" parent="UserInterface" index="3" node_paths=PackedStringArray("player")]
-offset_left = 672.0
-offset_top = 870.0
-offset_right = 712.0
-offset_bottom = 910.0
-player = NodePath("../..")
-
-[node name="ExperienceBar" type="ProgressBar" parent="UserInterface"]
-unique_name_in_owner = true
-z_index = 10
-offset_left = 578.0
-offset_top = 1020.0
-offset_right = 1378.0
-offset_bottom = 1048.0
-theme = ExtResource("19_pixa1")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/background = SubResource("StyleBoxFlat_1ir02")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fn404")
-step = 0.0
-metadata/_edit_use_anchors_ = true
-
-[node name="LevelLabel" type="Label" parent="UserInterface/ExperienceBar"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.189949
-anchor_top = -0.258746
-anchor_right = 0.316199
-anchor_bottom = -0.258745
-offset_left = 152.041
-offset_top = -31.7551
-offset_right = 234.041
-offset_bottom = -3.75513
-theme = ExtResource("19_pixa1")
-theme_override_font_sizes/font_size = 32
-text = "Level 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="AttackBoxSpin" type="Area2D" parent="."]
 visible = false
 
@@ -1531,12 +1472,11 @@ shape = SubResource("CircleShape2D_nquh0")
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 
+[node name="UserInterface" parent="." instance=ExtResource("9_ptaow")]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]
 [connection signal="body_exited" from="PickupBox" to="." method="OnPickupBoxBodyExited"]
 [connection signal="timeout" from="HealthRegenTimer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="OnDashCooldownTimerTimeout"]
 [connection signal="timeout" from="SpecialCooldownTimer" to="." method="OnSpecialCooldownTimerTimeout"]
-
-[editable path="UserInterface"]
-[editable path="UserInterface/Inventory"]

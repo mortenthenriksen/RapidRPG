@@ -21,6 +21,11 @@ public partial class ToolTipManager : Node2D
     [Export]
     private Dave player;
 
+    private Tween descriptionTween;
+    private readonly float PULSE_DURATION = 1.5f;
+    private readonly float PULSE_SCALE_MIN = 0.98f;
+    private readonly float PULSE_SCALE_MAX = 1.02f;
+
     private Panel toolTipPanel;
     private Label itemNameLabel;
     private Label mainStatLabel;
@@ -40,18 +45,20 @@ public partial class ToolTipManager : Node2D
 
         inventorySlots.Connect("custom_mouse_entered", Callable.From((string itemName) => OnMouseEntered(itemName)));
         inventorySlots.Connect("custom_mouse_exited", Callable.From(OnMouseExited));
-        
-        
+
+
         toolTipPanel = GetNode<Panel>("%ToolTipPanel");
         toolTipDelayTimer = GetNode<Timer>("ToolTipDelayTimer");
         toolTipPanel.Visible = false;
-        
+
         itemNameLabel = GetNode<Label>("%ItemNameLabel");
         mainStatLabel = GetNode<Label>("%MainStatLabel");
         mainStatValue = GetNode<Label>("%MainStatValue");
         secondaryStatLabel = GetNode<Label>("%SecondaryStatLabel");
         secondaryStatValue = GetNode<Label>("%SecondaryStatValue");
         descriptionLabel = GetNode<Label>("%DescriptionLabel");
+        
+        StartUniqueLabelEffect();
     }
 
     public override void _Process(double delta)
@@ -86,9 +93,15 @@ public partial class ToolTipManager : Node2D
                 {
                     // GD.Print(valueDict["UniqueEffect"].ToString().Length);
                     descriptionLabel.Text = SplitTextIntoLines(valueDict["UniqueEffect"].ToString(), 30);
+                    StartUniqueLabelEffect(); // Start pulsing when showing unique effect
                 }
-                else 
+                else
                 {
+                    if (descriptionTween != null)
+                    {
+                        descriptionTween.Kill(); // Stop pulsing when no unique effect
+                    }
+                    descriptionLabel.Scale = Vector2.One; // Reset scale
                     descriptionLabel.Text = "";
                 }
             }
@@ -134,33 +147,113 @@ public partial class ToolTipManager : Node2D
         // }
     }
 
-    // make this split the words, be smart
+    // chat is op B-)
     private string SplitTextIntoLines(string text, int lineLength)
     {
         if (string.IsNullOrEmpty(text))
             return text;
 
+        var words = text.Split(' ');
         var result = new System.Text.StringBuilder();
-        int currentIndex = 0;
+        var currentLine = new System.Text.StringBuilder();
 
-        while (currentIndex < text.Length)
+        foreach (var word in words)
         {
-            int length = Math.Min(lineLength, text.Length - currentIndex);
-            result.AppendLine(text.Substring(currentIndex, length));
-            currentIndex += length;
+            // Check if adding this word would exceed the line length
+            if (currentLine.Length + word.Length + 1 > lineLength)
+            {
+                // Add current line to result and start a new line
+                if (currentLine.Length > 0)
+                {
+                    result.AppendLine(currentLine.ToString().Trim());
+                    currentLine.Clear();
+                }
+
+                // If the word itself is longer than lineLength, split it
+                if (word.Length > lineLength)
+                {
+                    int index = 0;
+                    while (index < word.Length)
+                    {
+                        int length = Math.Min(lineLength, word.Length - index);
+                        result.AppendLine(word.Substring(index, length));
+                        index += length;
+                    }
+                }
+                else
+                {
+                    currentLine.Append(word);
+                }
+            }
+            else
+            {
+                // Add word to current line
+                if (currentLine.Length > 0)
+                    currentLine.Append(' ');
+                currentLine.Append(word);
+            }
         }
+
+        // Add the last line if there's anything left
+        if (currentLine.Length > 0)
+            result.AppendLine(currentLine.ToString().Trim());
 
         return result.ToString();
     }
 
     private void OnMouseExited()
     {   
+        if (descriptionTween != null)
+        {
+            descriptionTween.Kill(); // Stop pulsing when tooltip is hidden
+        }
+        descriptionLabel.Scale = Vector2.One; // Reset scale
         toolTipPanel.Visible = false;
     }
 
     private Dictionary GetItemDataDictionary()
     {
         return GDToCSDataConverter.Instance.GetValuesDictionaries();
+    }
+
+    private void StartUniqueLabelEffect()
+    {
+        if (descriptionTween != null)
+        {
+            descriptionTween.Kill();
+        }
+
+        descriptionTween = CreateTween();
+        descriptionTween.SetLoops();
+
+        // Cycle through colors
+        descriptionTween.TweenProperty(
+            descriptionLabel,
+            "modulate",
+            new Color(1, 0.5f, 0.5f), // Red tint
+            1.0f
+        ).SetTrans(Tween.TransitionType.Sine);
+
+        descriptionTween.TweenProperty(
+            descriptionLabel,
+            "modulate",
+            new Color(0.5f, 1, 0.5f), // Green tint
+            1.0f
+        ).SetTrans(Tween.TransitionType.Sine);
+
+        descriptionTween.TweenProperty(
+            descriptionLabel,
+            "modulate",
+            new Color(0.5f, 0.5f, 1), // Blue tint
+            1.0f
+        ).SetTrans(Tween.TransitionType.Sine);
+
+        descriptionTween.TweenProperty(
+            descriptionLabel,
+            "modulate",
+            Colors.White, // Back to normal
+            1.0f
+        ).SetTrans(Tween.TransitionType.Sine);
     }
 
 

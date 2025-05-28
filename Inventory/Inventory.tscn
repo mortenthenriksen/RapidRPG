@@ -25,8 +25,9 @@ metadata/_edit_lock_ = true
 [node name="InventoryPanel" type="Panel" parent="." node_paths=PackedStringArray("equippedSlots", "inventorySlots")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 500.0
-offset_bottom = 1080.0
+offset_left = 894.0
+offset_right = 1200.0
+offset_bottom = 675.0
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("2_kvbgv")
@@ -40,277 +41,277 @@ volume_db = -28.0
 
 [node name="Label" type="Label" parent="InventoryPanel"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 332.0
-offset_bottom = 42.0
-scale = Vector2(1.5, 1.5)
+offset_left = 51.0
+offset_top = 2.0
+offset_right = 254.0
+offset_bottom = 43.0
 theme = ExtResource("2_lr6sy")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="InventoryPanel"]
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 23.0
-offset_top = 574.0
-offset_right = 482.0
-offset_bottom = 907.0
+offset_left = 17.0
+offset_top = 366.0
+offset_right = 17.0
+offset_bottom = 366.0
 mouse_filter = 2
 
 [node name="InventorySlots" type="GridContainer" parent="InventoryPanel/TextureRect"]
 clip_contents = true
-custom_minimum_size = Vector2(35, 40)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 452.0
-offset_bottom = 324.0
+offset_left = 5.0
+offset_top = -32.0
+offset_right = 253.0
+offset_bottom = 144.0
 mouse_filter = 2
 columns = 7
 script = ExtResource("3_xk7l4")
 
 [node name="Slot1" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot2" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot3" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot4" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot5" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot6" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot7" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot8" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot9" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot10" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot11" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot12" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot13" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot14" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot15" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot16" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot17" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot18" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot19" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot20" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot21" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot22" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot23" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot24" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot25" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot26" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot27" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot28" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot29" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot30" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot31" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot32" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot33" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot34" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
 script = ExtResource("4_luyic")
 
 [node name="Slot35" type="Panel" parent="InventoryPanel/TextureRect/InventorySlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -320,23 +321,24 @@ script = ExtResource("4_luyic")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 498.0
+offset_right = 306.0
 offset_bottom = 53.0
+metadata/_edit_lock_ = true
 
 [node name="EquipSlots" type="GridContainer" parent="InventoryPanel/TextureRect2"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 348.0
-offset_top = 274.0
-offset_right = 472.0
-offset_bottom = 526.0
+offset_left = 202.0
+offset_top = 76.0
+offset_right = 274.0
+offset_bottom = 224.0
 mouse_filter = 2
 columns = 2
 script = ExtResource("5_tjp47")
 
 [node name="HelmetSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -345,15 +347,14 @@ script = ExtResource("4_luyic")
 [node name="TextureRectHelmet" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/HelmetSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("5_5bj2j")
 
 [node name="AmuletSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -363,15 +364,14 @@ script = ExtResource("4_luyic")
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 self_modulate = Color(0.580392, 0.552941, 0.423529, 1)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_top = -1.0
-offset_right = 40.0
-offset_bottom = 39.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("6_mdij2")
 
 [node name="ShirtSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -380,16 +380,14 @@ script = ExtResource("4_luyic")
 [node name="TextureRectShirt" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/ShirtSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = -1.0
-offset_top = 1.0
-offset_right = 39.0
-offset_bottom = 41.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("7_ekwi1")
 
 [node name="RingSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -399,16 +397,14 @@ script = ExtResource("4_luyic")
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
 self_modulate = Color(0.580244, 0.551939, 0.421681, 1)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 41.0
-offset_bottom = 41.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("8_dpakc")
 
 [node name="PantsSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -417,14 +413,14 @@ script = ExtResource("4_luyic")
 [node name="TextureRectPants" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/PantsSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_right = 35.0
-offset_bottom = 35.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("9_h0aa1")
 
 [node name="OffhandSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -433,15 +429,14 @@ script = ExtResource("4_luyic")
 [node name="TextureRectOffhand" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/OffhandSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("8_3h0gy")
 
 [node name="ShoesSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -450,15 +445,14 @@ script = ExtResource("4_luyic")
 [node name="TextureRectShoes" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/ShoesSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("11_qpp6y")
 
 [node name="WeaponSlot" type="Panel" parent="InventoryPanel/TextureRect2/EquipSlots"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_lr6sy")
@@ -467,45 +461,36 @@ script = ExtResource("4_luyic")
 [node name="TextureRectWeapon" type="TextureRect" parent="InventoryPanel/TextureRect2/EquipSlots/WeaponSlot"]
 unique_name_in_owner = true
 modulate = Color(0.196078, 0.196078, 0.196078, 0.647059)
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 0
 offset_left = 1.44243e-05
-offset_top = 2.00001
-offset_right = 40.0
-offset_bottom = 42.0
+offset_top = 1.00136e-05
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("12_l0bnt")
 
 [node name="CharacterStats" type="MarginContainer" parent="InventoryPanel"]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 216.0
-offset_right = 209.0
-offset_bottom = 398.0
-scale = Vector2(1.7, 1.7)
+offset_left = 24.0
+offset_top = 77.0
+offset_right = 179.0
+offset_bottom = 220.0
 script = ExtResource("13_y0fev")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/CharacterStats"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="CharacterStatsLabel" type="Label" parent="InventoryPanel/CharacterStats/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_lr6sy")
-theme_override_constants/shadow_offset_y = 0
-theme_override_font_sizes/font_size = 32
-text = "Character Stats"
-horizontal_alignment = 1
-
 [node name="VBoxContainer3" type="VBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = 125
+theme_override_constants/separation = 105
 
 [node name="Label" type="Label" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
@@ -521,11 +506,11 @@ horizontal_alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="MainStats" type="HBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/MainStats"]
 layout_mode = 2
@@ -573,7 +558,7 @@ horizontal_alignment = 2
 
 [node name="OtherStats" type="HBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 22
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/CharacterStats/VBoxContainer/VBoxContainer3/VBoxContainer/OtherStats"]
 layout_mode = 2

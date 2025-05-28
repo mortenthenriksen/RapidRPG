@@ -38,8 +38,8 @@ metadata/_edit_vertical_guides_ = [279.0, -43.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 292.0
-offset_bottom = 76.0
+offset_right = 514.0
+offset_bottom = 88.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -48,16 +48,16 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxHealth"]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "1200/1200"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxHealth"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_n8xoi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gwwux")
@@ -66,9 +66,10 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxHealth/HealthBar"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-offset_right = 110.0
-offset_bottom = 100.0
+offset_right = 67.0
+offset_bottom = 70.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p4ajh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
@@ -229,16 +230,16 @@ texture = ExtResource("6_o75yq")
 layout_mode = 2
 
 [node name="RageLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxRage"]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "30/30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RageBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxRage"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_n8xoi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vmeuh")
@@ -247,7 +248,8 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxRage/RageBar"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-offset_right = 110.0
-offset_bottom = 100.0
+offset_right = 70.0
+offset_bottom = 70.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p4ajh")

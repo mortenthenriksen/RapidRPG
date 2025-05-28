@@ -112,10 +112,9 @@ orcScene = ExtResource("3_qk0ik")
 archerScene = ExtResource("26_om3au")
 damageNumbers = NodePath("../DamageNumbers")
 
-[node name="LevelManager" parent="Managers" node_paths=PackedStringArray("player", "experienceBar", "levelLabel") instance=ExtResource("13_vy1kb")]
+[node name="LevelManager" parent="Managers" node_paths=PackedStringArray("player", "experienceBar") instance=ExtResource("13_vy1kb")]
 player = NodePath("../../Dave")
 experienceBar = NodePath("../../Dave/UserInterface/ExperienceBar")
-levelLabel = NodePath("../../Dave/UserInterface/ExperienceBar/LevelLabel")
 
 [node name="DamageNumbers" parent="Managers" instance=ExtResource("5_2a70g")]
 pixelKubastaFontTheme = ExtResource("6_03c58")
@@ -160,9 +159,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Archer5" parent="." instance=ExtResource("26_om3au")]
-position = Vector2(816, 222)
+position = Vector2(1064, 515)
 
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
+position = Vector2(599, 339)
+
+[node name="SkillBar" parent="Dave/UserInterface" index="2" node_paths=PackedStringArray("player")]
+player = NodePath("../..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Dave"]
 layer = -128

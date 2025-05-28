@@ -18,7 +18,7 @@ public partial class WindowResizing : CanvasLayer
 
     private void OnSmallWindowButtonPressed()
     {
-        Vector2I smallWindowSize = new Vector2I(960, 540);
+        Vector2I smallWindowSize = new Vector2I(1200, 675);
         DisplayServer.WindowSetSize(smallWindowSize); 
         GetViewport().CanvasTransform = new Transform2D(0.5f, 0, 0, 0.5f, 0, 0); 
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
