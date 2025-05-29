@@ -153,7 +153,7 @@ public partial class EquippedItemsManager : Node
             {
                 var fireProjectile = fireProjectileScene.Instantiate() as Area2D;
                 fireProjectile.GlobalPosition = player.Position;
-                var angle = player.GetCurrentDirection().Angle();
+                var angle = player.GetLocalMousePosition().Angle();
                 fireProjectile.Rotation = angle;
                 GetTree().Root.CallDeferred("add_child", fireProjectile);                
             }

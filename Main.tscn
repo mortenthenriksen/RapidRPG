@@ -181,17 +181,94 @@ offset_bottom = 1152.0
 [node name="Bonfire" parent="." instance=ExtResource("14_s20ge")]
 position = Vector2(948, 335)
 
-[node name="roundTree" parent="." instance=ExtResource("2_n184a")]
-position = Vector2(1023, 182)
-
-[node name="roundTree2" parent="." instance=ExtResource("2_n184a")]
-position = Vector2(310, 222)
-
-[node name="roundTree3" parent="." instance=ExtResource("2_n184a")]
-position = Vector2(668, 230)
-
 [node name="TileMapAroundThePlayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_v7k55")]
 player = NodePath("../Dave")
+
+[node name="TreeNode" type="Node2D" parent="."]
+
+[node name="roundTree" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1023, 182)
+
+[node name="roundTree2" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(310, 222)
+
+[node name="roundTree3" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(668, 230)
+
+[node name="roundTree4" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-802, 1472)
+
+[node name="roundTree5" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-692, 1470)
+
+[node name="roundTree6" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-558, 1468)
+
+[node name="roundTree7" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-430, 1468)
+
+[node name="roundTree8" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-320, 1466)
+
+[node name="roundTree9" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-186, 1464)
+
+[node name="roundTree10" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(-72, 1462)
+
+[node name="roundTree11" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(38, 1460)
+
+[node name="roundTree12" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(172, 1458)
+
+[node name="roundTree13" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(300, 1458)
+
+[node name="roundTree14" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(410, 1456)
+
+[node name="roundTree15" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(544, 1454)
+
+[node name="roundTree16" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(665, 1453)
+
+[node name="roundTree17" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(775, 1451)
+
+[node name="roundTree18" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(909, 1449)
+
+[node name="roundTree19" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1037, 1449)
+
+[node name="roundTree20" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1147, 1447)
+
+[node name="roundTree21" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1281, 1445)
+
+[node name="roundTree22" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1395, 1443)
+
+[node name="roundTree23" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1505, 1441)
+
+[node name="roundTree24" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1639, 1439)
+
+[node name="roundTree25" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1767, 1439)
+
+[node name="roundTree26" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(1877, 1437)
+
+[node name="roundTree27" parent="TreeNode" instance=ExtResource("2_n184a")]
+position = Vector2(2011, 1435)
+
+[node name="Town" parent="." instance=ExtResource("21_5f5ap")]
+position = Vector2(131, 2133)
 
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]
