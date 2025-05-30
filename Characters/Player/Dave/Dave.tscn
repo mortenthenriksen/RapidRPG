@@ -1388,6 +1388,7 @@ radius = 72.0
 [node name="Dave" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(477, 271)
+collision_mask = 17
 script = ExtResource("1_soyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1452,7 +1453,6 @@ wait_time = 15.0
 one_shot = true
 
 [node name="AttackBoxBasic" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 524289
 
@@ -1472,6 +1472,10 @@ shape = SubResource("CircleShape2D_nquh0")
 process_callback = 0
 
 [node name="UserInterface" parent="." instance=ExtResource("9_ptaow")]
+
+[node name="PickupCooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="PickupBox" to="." method="OnPickupBoxBodyEntered"]

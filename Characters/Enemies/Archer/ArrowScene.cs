@@ -43,11 +43,11 @@ public partial class ArrowScene : Area2D
             RemoveArrow();
         }
     }
+    
     private void OnBodyEntered(Node2D body)
     {
         if (body is Dave player && !player.getIsDashing())
         {
-            player.PlayerDamageReceived(Archer.GetDamageAmount());
             CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.EnemyDamageDealt, Archer.GetDamageAmount());
             RemoveArrow();
         }

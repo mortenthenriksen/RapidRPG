@@ -26,7 +26,7 @@ public partial class CustomSignals : Node
 	public delegate void UpdateLevelEventHandler();
 
 	[Signal]
-	public delegate void TeleportBackToTownEventHandler();
+	public delegate void TeleportBackToTownEventHandler(Vector2 position);
 
 	[Signal]
 	public delegate void DropItemOnGroundFromInventoryEventHandler();

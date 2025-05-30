@@ -612,7 +612,5 @@ horizontal_alignment = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="InventoryPanel" to="InventoryPanel" method="OnMouseEntered"]
-[connection signal="mouse_exited" from="InventoryPanel" to="InventoryPanel" method="OnMouseExited"]
 [connection signal="mouse_entered" from="InventoryPanel/TextureRect/InventorySlots" to="InventoryPanel" method="OnInventorySlotsMouseEntered"]
 [connection signal="mouse_exited" from="InventoryPanel/TextureRect/InventorySlots" to="InventoryPanel" method="OnInventorySlotsMouseExited"]

@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cvoftiva3m2el" path="res://characters/Enemies/Archer/ArcherSpriteSheet/Archer.png" id="1_umucg"]
 [ext_resource type="PackedScene" uid="uid://cq6h0xjja7qf6" path="res://characters/Enemies/Archer/ArrowScene.tscn" id="2_5ld1c"]
 [ext_resource type="Theme" uid="uid://cgh4aiglxympm" path="res://resources/theme.tres" id="2_qj6n8"]
-[ext_resource type="Script" path="res://characters/Enemies/Archer/StateMachine.cs" id="5_3uy1x"]
-[ext_resource type="Script" path="res://characters/Enemies/State/Idle.cs" id="6_ogqac"]
-[ext_resource type="Script" path="res://characters/Enemies/State/Attack.cs" id="7_exgri"]
+[ext_resource type="Script" path="res://characters/Enemies/Archer/States/ArcherStateMachine.cs" id="5_tnlmy"]
+[ext_resource type="Script" path="res://characters/Enemies/Archer/States/ArcherIdle.cs" id="6_ed4cd"]
+[ext_resource type="Script" path="res://characters/Enemies/Archer/States/ArcherAttack.cs" id="7_4ok44"]
 [ext_resource type="AudioStream" uid="uid://dibpdq8yojpur" path="res://assets/sounds/characters/deathSoundEnemies.wav" id="8_jsnt7"]
 [ext_resource type="AudioStream" uid="uid://42ej1qo3rvut" path="res://assets/sounds/characters/Enemies/fireArrowSound.wav" id="9_g7g5p"]
 
@@ -267,14 +267,14 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j4m8f"]
-radius = 353.205
+radius = 258.427
 
 [node name="Archer" type="CharacterBody2D"]
 scale = Vector2(1.00229, 1.00823)
 collision_layer = 3
 script = ExtResource("1_ogleh")
 arrowScene = ExtResource("2_5ld1c")
-RANGE = 350
+RANGE = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.765159, -13.1983)
@@ -286,11 +286,6 @@ scale = Vector2(1.97688, 1.97688)
 sprite_frames = SubResource("SpriteFrames_663ib")
 animation = &"idle"
 metadata/_edit_lock_ = true
-
-[node name="GroundShadow" type="Sprite2D" parent="."]
-modulate = Color(0.733333, 0.733333, 0.733333, 1)
-position = Vector2(-9.53674e-07, -4)
-scale = Vector2(0.224219, 0.227117)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -33.0
@@ -316,22 +311,21 @@ light_mask = 0
 position = Vector2(0, -17.0192)
 shape = SubResource("CircleShape2D_j4m8f")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
-script = ExtResource("5_3uy1x")
-initialState = NodePath("Idle")
+[node name="ArcherStateMachine" type="Node" parent="."]
+script = ExtResource("5_tnlmy")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
-script = ExtResource("6_ogqac")
+[node name="ArcherIdle" type="Node" parent="ArcherStateMachine" node_paths=PackedStringArray("archer")]
+script = ExtResource("6_ed4cd")
 archer = NodePath("../..")
 moveSpeed = 10
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("archer")]
-script = ExtResource("7_exgri")
+[node name="ArcherAttack" type="Node" parent="ArcherStateMachine" node_paths=PackedStringArray("archer")]
+script = ExtResource("7_4ok44")
 archer = NodePath("../..")
 arrowScene = ExtResource("2_5ld1c")
 
-[node name="FireRateTimer" type="Timer" parent="StateMachine/Attack"]
-wait_time = 1.25
+[node name="FireRateTimer" type="Timer" parent="ArcherStateMachine/ArcherAttack"]
+wait_time = 2.0
 one_shot = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
@@ -343,7 +337,7 @@ stream = ExtResource("9_g7g5p")
 volume_db = -20.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Attack" method="OnAnimatedSprite2DAnimationFinishedState"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="ArcherStateMachine/ArcherAttack" method="OnAnimatedSprite2DAnimationFinishedState"]
 [connection signal="body_entered" from="DetectionArea" to="." method="OnDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="OnDetectionAreaBodyExited"]
-[connection signal="timeout" from="StateMachine/Attack/FireRateTimer" to="StateMachine/Attack" method="OnFireRateTimerTimeout"]
+[connection signal="timeout" from="ArcherStateMachine/ArcherAttack/FireRateTimer" to="ArcherStateMachine/ArcherAttack" method="OnFireRateTimerTimeout"]

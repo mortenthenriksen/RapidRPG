@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dcepunlnh4wgu"]
+[gd_scene load_steps=30 format=3 uid="uid://dcepunlnh4wgu"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_am2bs"]
 [ext_resource type="PackedScene" uid="uid://3117kpphwgj8" path="res://scenes/environment/roundTree.tscn" id="2_n184a"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dbuvqg4cfq0aa" path="res://Inventory/Data/GDToCSDataConverter.tscn" id="16_hqvsu"]
 [ext_resource type="PackedScene" uid="uid://caf8yv0fb3e4x" path="res://scenes/environment/TileMapAroundThePlayer.tscn" id="20_v7k55"]
 [ext_resource type="PackedScene" uid="uid://bb5ajwrq2oajo" path="res://scenes/environment/Town.tscn" id="21_5f5ap"]
+[ext_resource type="PackedScene" uid="uid://cff4ftd7lcax6" path="res://characters/Enemies/ArmouredSkeleton/ArmoredSkeleton.tscn" id="23_khlll"]
 [ext_resource type="PackedScene" uid="uid://deu18rapvgfcu" path="res://characters/Enemies/Archer/Archer.tscn" id="26_om3au"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_4khn7"]
@@ -158,14 +159,15 @@ label_settings = SubResource("LabelSettings_biyrh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Archer5" parent="." instance=ExtResource("26_om3au")]
-position = Vector2(1064, 515)
-
 [node name="Dave" parent="." instance=ExtResource("2_y6x0m")]
-position = Vector2(599, 339)
+position = Vector2(481, 272)
 
 [node name="SkillBar" parent="Dave/UserInterface" index="2" node_paths=PackedStringArray("player")]
 player = NodePath("../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="ExperienceBar" parent="Dave/UserInterface" index="4"]
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Dave"]
 layer = -128
@@ -269,6 +271,12 @@ position = Vector2(2011, 1435)
 
 [node name="Town" parent="." instance=ExtResource("21_5f5ap")]
 position = Vector2(131, 2133)
+
+[node name="Archer" parent="." instance=ExtResource("26_om3au")]
+position = Vector2(899, 187)
+
+[node name="ArmouredSkeleton" parent="." instance=ExtResource("23_khlll")]
+position = Vector2(241, 370)
 
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="TreeTimer" to="." method="OnTreeTimerTimeout"]

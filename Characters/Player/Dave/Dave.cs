@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Game.Characters;
 
 public partial class Dave : CharacterBody2D
@@ -17,6 +16,11 @@ public partial class Dave : CharacterBody2D
 
 	[Signal]
 	public delegate void PlayerHealthDepletedEventHandler(float health);
+
+	private new static class CollisionLayer
+	{
+		public const uint StaticObjects = 1 << 4;  // Layer 5 (0-based index)
+	}
 
 	private float speed = 300;
 	private float MAX_HEALTH = 75.0f;
@@ -28,8 +32,9 @@ public partial class Dave : CharacterBody2D
 	private readonly StringName MOVE_DOWN = "move_down";
 
 	private Vector2 moveDirection = Vector2.Zero;
-    private Vector2 lastDirection = Vector2.Down;
+	private Vector2 lastDirection = Vector2.Down;
 	private Vector2 mouseDirection = Vector2.Right;
+	private Vector2? lastWorldPosition = null;
 	private string action;
 
 	private AnimatedSprite2D animatedSprite2D;
@@ -41,28 +46,34 @@ public partial class Dave : CharacterBody2D
 	private Area2D attackBoxBasic;
 	private Area2D attackBoxSpin;
 	private AttackBoxPolygon basicAttackBoxPolygonShape;
-	private ItemDrop itemDrop;
 	private InventoryPanel inventoryPanel;
-	private SkillBar skillBar; 
 	private AudioStreamPlayer2D audioStreamPlayer2D;
 	private Timer specialCooldownTimer;
 	private Timer dashCooldownTimer;
 	private Tween dashTween;
+	private Timer pickupCooldownTimer;
 
 	private bool isDashOnCooldown = false;
 	private bool isSpecialOnCooldown = false;
 	private bool isAttacking = false;
-	private bool hasDealtDamage = false;
+	private bool hasDealtSwordDamage = false;
+	private bool hasDealtSpinDamage = false;
 	private bool isDashing = false;
 
-    // Replace the single item reference with a list
-    private List<ItemDrop> nearbyItems = new List<ItemDrop>();
-    private bool isNearItem => nearbyItems.Count > 0;
+	// Replace the single item reference with a list
+	private List<ItemDrop> nearbyItems = new List<ItemDrop>();
+	private bool isNearItem => nearbyItems.Count > 0;
 
+	// move this to somewhere else
 	private float shoesEffectTimer = 0f;
-	private const float SHOES_EFFECT_INTERVAL = 0.5f; // Adjust this value to change the interval
-	private float pickupCooldown = 0.2f; // Adjust this value to change the cooldown duration
+	private const float SHOES_EFFECT_INTERVAL = 0.5f;
+	private float pickupCooldown = 0.2f;
 	private float currentPickupCooldown = 0f;
+
+	private const int SWORD_ATTACK_FRAME_START = 1;
+	private const int SWORD_ATTACK_FRAME_END = 4;
+	private const int SPIN_ATTACK_FRAME_START = 1;
+	private const int SPIN_ATTACK_FRAME_END = 5;
 
 	public override void _Ready()
 	{
@@ -81,33 +92,31 @@ public partial class Dave : CharacterBody2D
 		basicAttackBoxPolygonShape = GetNode<AttackBoxPolygon>("%BasicAttackBoxPolygonShape");
 
 		inventoryPanel = GetNode<InventoryPanel>("UserInterface/Inventory/InventoryPanel");
-		skillBar = GetNode<SkillBar>("UserInterface/SkillBar");
 		dashCooldownTimer = GetNode<Timer>("DashCooldownTimer");
 		specialCooldownTimer = GetNode<Timer>("SpecialCooldownTimer");
 		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+
+		pickupCooldownTimer = GetNode<Timer>("PickupCooldownTimer");
+		inventoryPanel.Connect(InventoryPanel.SignalName.ItemDropped, Callable.From(() => pickupCooldownTimer.Start()));
+		inventoryPanel.Connect(InventoryPanel.SignalName.ItemDropped, Callable.From(() => currentPickupCooldown = pickupCooldown));
+		animatedSprite2D.Connect("frame_changed", new Callable(this, nameof(OnAnimatedSprite2DFrameChanged)));
 
 		UpdateHealthBar();
 		UpdateRageBar();
 	}
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		// Update pickup cooldown
-		if (currentPickupCooldown > 0)
-		{
-			currentPickupCooldown -= (float)delta;
-		}
-
 		Vector2 mousePosition = GetGlobalMousePosition();
 		mouseDirection = (mousePosition - GlobalPosition).Normalized();
 
 		if (!isAttacking || (isAttacking && action == "spinAttack"))
 		{
+			basicAttackBoxPolygonShape.RotateAttackBox(mouseDirection);
 			moveDirection = HandleInput();
 			if (moveDirection != Vector2.Zero)
 			{
 				lastDirection = moveDirection;
-				basicAttackBoxPolygonShape.RotateAttackBox(mouseDirection);
 
 				shoesEffectTimer += (float)delta;
 				if (shoesEffectTimer >= SHOES_EFFECT_INTERVAL)
@@ -121,57 +130,30 @@ public partial class Dave : CharacterBody2D
 			float currentSpeed = (isAttacking && action == "spinAttack") ? speed * 0.5f : speed;
 			MoveAndCollide(moveDirection * currentSpeed * (float)delta);
 		}
-
-		if (isAttacking && !hasDealtDamage)
-		{	
-			if (action == "sword")
-			{
-				foreach (var body in attackBoxBasic.GetOverlappingBodies())
-				{
-					if (body is IEnemies enemies)
-					{
-						AttackEnemy(enemies);
-						hasDealtDamage = true;
-					}
-				}
-			}
-
-			else if (action == "spinAttack")
-			{
-				foreach (var body in attackBoxSpin.GetOverlappingBodies())
-				{
-					if (body is IEnemies enemy)
-					{
-						AttackEnemy(enemy);
-						hasDealtDamage = true;
-					}
-				}
-			}
-		}
 	}
 
-    private void AttackEnemy(CharacterBody2D body)
-    {
+	private void AttackEnemy(CharacterBody2D body)
+	{
 		if (body is IEnemies enemies)
-        {
+		{
 			if (action == "sword")
 			{
-            	enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
+				enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount());
 			}
 			else if (action == "spinAttack")
 			{
 				enemies.TakeDamage(DamageManager.Instance.GetTotalDamageAmount() * 0.6f);
 			}
-        }
-    }
+		}
+	}
 
-    public void PlayerDamageReceived(float damageAmount) 
+	public void PlayerDamageReceived(float damageAmount)
 	{
 		if (!isDashing)
 		{
 			health -= damageAmount;
 			UpdateHealthBar();
-			if (health <= 0) 
+			if (health <= 0)
 			{
 				EmitSignal(SignalName.PlayerHealthDepleted, health);
 			}
@@ -188,39 +170,113 @@ public partial class Dave : CharacterBody2D
 		health = Mathf.Min(health + healthRegenAmount, MAX_HEALTH);
 		UpdateHealthBar();
 	}
-	
+
 	private void UpdateHealthBar()
 	{
 		EmitSignal(SignalName.UpdatePlayerHealth, health);
 		healthBar.MaxValue = MAX_HEALTH;
 		healthBar.Value = health;
-		healthLabel.Text = $"{Math.Round(health)}" +"/" + healthBar.MaxValue.ToString();
+		healthLabel.Text = $"{Math.Round(health)}" + "/" + healthBar.MaxValue.ToString();
 	}
 
 	private void UpdateRageBar()
-    {
-        
-    }
+	{
 
-    // Modify OnPickupBoxBodyEntered
-    private void OnPickupBoxBodyEntered(Node2D body)
-    {
-        if (body is ItemDrop item)
-        {
-            nearbyItems.Add(item);
-            item.HighlightLabel();
-        }
-    }
+	}
 
-    // Modify OnPickupBoxBodyExited
-    private void OnPickupBoxBodyExited(Node2D body)
-    {
-        if (body is ItemDrop item)
-        {
-            nearbyItems.Remove(item);
-            item.UnhighlightLabel();
-        }
-    }
+	// Modify OnPickupBoxBodyEntered
+	private void OnPickupBoxBodyEntered(Node2D body)
+	{
+		if (body is ItemDrop item)
+		{
+			nearbyItems.Add(item);
+			item.HighlightLabel();
+		}
+	}
+
+	// Modify OnPickupBoxBodyExited
+	private void OnPickupBoxBodyExited(Node2D body)
+	{
+		if (body is ItemDrop item)
+		{
+			nearbyItems.Remove(item);
+			item.UnhighlightLabel();
+		}
+	}
+
+	private void OnAnimatedSprite2DFrameChanged()
+	{
+		if (!isAttacking) return;
+
+		var currentFrame = animatedSprite2D.Frame;
+		
+		if (action == "sword" && !hasDealtSwordDamage)
+		{
+			if (currentFrame >= SWORD_ATTACK_FRAME_START && currentFrame <= SWORD_ATTACK_FRAME_END)
+			{
+				foreach (var body in attackBoxBasic.GetOverlappingBodies())
+				{
+					if (body is IEnemies enemy)
+					{
+						AttackEnemy(enemy);
+						hasDealtSwordDamage = true;
+					}
+				}
+			}
+		}
+		else if (action == "spinAttack" && !hasDealtSpinDamage)
+		{
+			if (currentFrame >= SPIN_ATTACK_FRAME_START && currentFrame <= SPIN_ATTACK_FRAME_END)
+			{
+				foreach (var body in attackBoxSpin.GetOverlappingBodies())
+				{
+					if (body is IEnemies enemy)
+					{
+						AttackEnemy(enemy);
+						hasDealtSpinDamage = true;
+					}
+				}
+			}
+		}
+	}
+
+	private bool IsMouseOverItem(ItemDrop item, Vector2 mousePosition)
+	{
+		// Get the item's collision shape
+		var collisionShape = item.GetNode<CollisionShape2D>("CollisionShape2D");
+		if (collisionShape == null) return false;
+
+		// Get the shape
+		var shape = collisionShape.Shape;
+		if (shape is CircleShape2D circleShape)
+		{
+			var itemPos = item.GlobalPosition;
+			var radius = circleShape.Radius;
+
+			// Check if mouse is within the circle using distance comparison
+			var distance = mousePosition.DistanceTo(itemPos);
+			return distance <= radius;
+		}
+
+		return false;
+	}
+
+	// Add this method to check if a position is valid for dashing
+	private bool CanDashTo(Vector2 targetPosition)
+	{
+		// Create a test motion
+		var parameters = new PhysicsRayQueryParameters2D
+		{
+			From = Position,
+			To = targetPosition,
+			CollisionMask = CollisionLayer.StaticObjects  // Adjust this to match your collision layer for static objects
+		};
+
+		// Check for collisions along the path
+		var result = GetWorld2D().DirectSpaceState.IntersectRay(parameters);
+
+		return !result.Any();  // Return true if no collisions found
+	}
 
 	private Vector2 HandleInput()
 	{
@@ -232,29 +288,32 @@ public partial class Dave : CharacterBody2D
 		return moveDirection;
 	}
 
-	private void PlayAnimation(Vector2 direction) 
+	private void PlayAnimation(Vector2 direction)
 	{
 		animatedSprite2D.SpeedScale = 1;
 
 		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isDashing)
 		{
-			if (Input.IsActionPressed("attack") && !isAttacking && currentPickupCooldown <= 0) 
+			if (Input.IsActionPressed("attack") && !isAttacking && pickupCooldownTimer.IsStopped())
 			{
-                if (isNearItem)
-                {
-                    // Get the closest item to pick up
-                    var closestItem = nearbyItems
-                        .OrderBy(item => GlobalPosition.DistanceSquaredTo(item.GlobalPosition))
-                        .FirstOrDefault();
+				if (isNearItem)
+				{
+					// Get the closest item that is either being hovered by mouse or closest to player
+					var mousePosition = GetGlobalMousePosition();
+					var hoveredOrClosestItem = nearbyItems
+						.OrderByDescending(item => IsMouseOverItem(item, mousePosition))
+						.ThenBy(item => GlobalPosition.DistanceSquaredTo(item.GlobalPosition))
+						.FirstOrDefault();
 
-					if (closestItem != null)
+					if (hoveredOrClosestItem != null &&
+						(IsMouseOverItem(hoveredOrClosestItem, mousePosition) || GlobalPosition.DistanceSquaredTo(hoveredOrClosestItem.GlobalPosition) < 100f))
 					{
-						closestItem.PickupItem(this);
-						nearbyItems.Remove(closestItem);
-						currentPickupCooldown = 0.2f; // Short cooldown after pickup
-                    }
-                }
-				else if (currentPickupCooldown <= 0)
+						hoveredOrClosestItem.PickupItem(this);
+						nearbyItems.Remove(hoveredOrClosestItem);
+						pickupCooldownTimer.Start();
+					}
+				}
+				else if (pickupCooldownTimer.IsStopped())
 				{
 					// Normal attack logic
 					audioStreamPlayer2D.Play();
@@ -274,7 +333,7 @@ public partial class Dave : CharacterBody2D
 			isAttacking = true;
 		}
 
-		else if (Input.IsActionJustPressed("special_attack") && !isSpecialOnCooldown && isAttacking)
+		else if (Input.IsActionJustPressed("special_attack") && !isSpecialOnCooldown && !isAttacking)
 		{
 			action = "special";
 			isAttacking = true;
@@ -283,36 +342,43 @@ public partial class Dave : CharacterBody2D
 		}
 
 
-		else if (Input.IsActionJustPressed("dash") && !isDashOnCooldown)
+		else if (Input.IsActionJustPressed("dash") && !isDashOnCooldown && !isAttacking)
 		{
-			isDashing = true;
-			animatedSprite2D.SelfModulate = new Color(3f, 3f, 3f, 1f);
-			if (dashTween != null)
-			{
-				dashTween.Kill();
-			}
-
-			dashTween = GetTree().CreateTween();
 			Vector2 targetPosition = Position + lastDirection * 225;
+			if (CanDashTo(targetPosition))
+			{
+				isDashing = true;
+				animatedSprite2D.SelfModulate = new Color(3f, 3f, 3f, 1f);
+				if (dashTween != null)
+				{
+					dashTween.Kill();
+				}
 
-			dashTween
-				.TweenProperty(this, "position", targetPosition, 0.7f)
-				.SetTrans(Tween.TransitionType.Cubic)
-				.SetEase(Tween.EaseType.Out)
-				.Connect("finished", new Callable(this, nameof(OnDashComplete)));
+				dashTween = GetTree().CreateTween();
 
-			dashCooldownTimer.Start();
-			isDashOnCooldown = true;
+				dashTween
+					.TweenProperty(this, "position", targetPosition, 0.7f)
+					.SetTrans(Tween.TransitionType.Cubic)
+					.SetEase(Tween.EaseType.Out)
+					.Connect("finished", new Callable(this, nameof(OnDashComplete)));
+
+				dashCooldownTimer.Start();
+				isDashOnCooldown = true;
+			}
 		}
 
 		else if (Input.IsActionJustPressed("teleport"))
 		{
-			// GD.Print("port back to town shorty");
-			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown);
+			// Only store position if we haven't stored one yet (we're in the world)
+			if (lastWorldPosition == null)
+			{
+				lastWorldPosition = Position;
+			}
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown, lastWorldPosition.Value);
 		}
+
 		else if (isAttacking)
 		{
-			// Keep the current action and direction
 			direction = mouseDirection;
 		}
 
@@ -331,13 +397,13 @@ public partial class Dave : CharacterBody2D
 	}
 
 
-    private void OnDashComplete()
+	private void OnDashComplete()
 	{
 		isDashing = false;
 		animatedSprite2D.SelfModulate = new Color(1, 1, 1, 1);
 	}
 
-    private void OnDashCooldownTimerTimeout()
+	private void OnDashCooldownTimerTimeout()
 	{
 		isDashOnCooldown = false;
 	}
@@ -354,7 +420,7 @@ public partial class Dave : CharacterBody2D
 
 		// Calculate angle in radians (-π to π)
 		float angle = Mathf.Atan2(direction.Y, direction.X);
-		
+
 		// Convert to degrees and shift range to 0 to 360
 		float degrees = Mathf.RadToDeg(angle);
 		if (degrees < 0)
@@ -379,7 +445,8 @@ public partial class Dave : CharacterBody2D
 	private void OnAnimationFinished()
 	{
 		isAttacking = false;
-		hasDealtDamage = false;
+		hasDealtSwordDamage = false;
+		hasDealtSpinDamage = false;
 	}
 
 	public bool GetIsDashOnCooldown()
@@ -411,8 +478,14 @@ public partial class Dave : CharacterBody2D
 	{
 		return lastDirection;
 	}
-	
-	public float GetHealth() {
+
+	public float GetHealth()
+	{
 		return health;
+	}
+
+	public void resetLastWorldPosition()
+	{
+		lastWorldPosition = null;
 	}
 }

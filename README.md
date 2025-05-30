@@ -1,7 +1,7 @@
 To do
 
 - **Most importantly: enjoy the journey and be proud**
-- Add more enemies, fix enemy logic (damage and make the colliding smooth) -> with the state machine operational, it should be a bit faster now -> make even smarter enemy AI, if you need to play this game forever, you need smart enemies (make a weighting depending on where they wanna go, something along their spawn point also)
+- Add more enemies, fix enemy logic (damage and make the colliding smooth) -> with the state machine operational, it should be a bit faster now (edit: not faster but at least more smooth) -> make even smarter enemy AI, if you need to play this game forever, you need smart enemies (make a weighting depending on where they wanna go, something along their spawn point also)
 - Add magic and rare monsters. Add bosses
 - Add sound (getting there, it's pretty easy and adds a ton of effect)
 - Make unique items, more items in general -> make them drop with sound (fix the sound) (set items would be really cool)

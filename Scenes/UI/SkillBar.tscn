@@ -38,11 +38,12 @@ metadata/_edit_vertical_guides_ = [279.0, -43.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 514.0
-offset_bottom = 73.0
+offset_right = 338.0
+offset_bottom = 75.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="VBoxHealth" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

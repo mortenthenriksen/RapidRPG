@@ -3,7 +3,7 @@ using Game.Characters;
 using Game.State;
 using Godot;
 
-public partial class Idle : State
+public partial class ArcherIdle : State
 {
     [Export]
     private Archer archer;
@@ -63,7 +63,7 @@ public partial class Idle : State
 
         if (distance < archer.GetRange()) 
         {
-            EmitSignal(SignalName.Transitioned, this, "attack");
+            EmitSignal(SignalName.Transitioned, this, "archerattack");
         }
     }
 }

@@ -6,7 +6,9 @@ namespace Game.Inventory;
 
 public partial class InventoryPanel : Panel
 {
-    private bool isMouseHoveringInventory = false;
+
+    [Signal]
+    public delegate void ItemDroppedEventHandler();
 
     [Export]
     private GridContainer equippedSlots;
@@ -14,6 +16,7 @@ public partial class InventoryPanel : Panel
     [Export]
     private GridContainer inventorySlots;
 
+    private bool isMouseHoveringInventory = false;
     private AudioStreamPlayer2D audioStreamPlayer2D;
 
     public override void _Ready()
@@ -26,20 +29,17 @@ public partial class InventoryPanel : Panel
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("clickLeft") && !isMouseHoveringInventory)
+        if (Input.IsActionJustPressed("clickLeft"))
         {
-            DropItemOnGroundFromInventory();
+            Vector2 mousePos = GetViewport().GetMousePosition();
+            Rect2 bounds = GetGlobalRect();
+            isMouseHoveringInventory = bounds.HasPoint(mousePos);
+            // GD.Print($"Mouse hovering: {isMouseHoveringInventory}, Mouse position: {mousePos}, Bounds: {bounds}");
+            if (!isMouseHoveringInventory)
+            {
+                DropItemOnGroundFromInventory();
+            }
         }
-    }
-
-    private void OnMouseEntered()
-    {
-        isMouseHoveringInventory = true;
-    }
-    
-    private void OnMouseExited()
-    {
-        isMouseHoveringInventory = false;
     }
 
     private void OnSlotInteracted()
@@ -60,6 +60,7 @@ public partial class InventoryPanel : Panel
             var mainNode = GetNode<Main>("/root/Main");
             mainNode.MakeItemDropFromInventory(holdingItemName);
             inventorySlots.Call("clear_holding_item");
+            EmitSignal(SignalName.ItemDropped);  
         }
     }
 }

@@ -1,18 +1,15 @@
+using Godot;
+using Game.State;
 using Godot.Collections;
 using Game.Characters;
-using Game.State;
-using Godot;
 
-public partial class Attack : State
+public partial class ArmouredSkeletonAttack : State
 {
     [Export]
-    private Archer archer;
+    private ArmouredSkeleton armouredSkeleton;
 
     [Export]
     private int moveSpeed = 0;
-
-    [Export]
-	private PackedScene arrowScene;
 
     private Dave player;
 
@@ -27,9 +24,9 @@ public partial class Attack : State
 
     public override void _Ready()
     {
-        detectionArea = archer.GetNode<Area2D>("DetectionArea");
-        collisionShape2D = archer.GetNode<CollisionShape2D>("DetectionArea/DetectionCollision");
-        animatedSprite2D = archer.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        detectionArea = armouredSkeleton.GetNode<Area2D>("DetectionArea");
+        collisionShape2D = armouredSkeleton.GetNode<CollisionShape2D>("DetectionArea/DetectionCollision");
+        animatedSprite2D = armouredSkeleton.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         fireRateTimer = GetNode<Timer>("FireRateTimer");
         player = GetNode<Dave>("/root/Main/Dave");
     }
@@ -44,7 +41,7 @@ public partial class Attack : State
     {
         bodies.Clear();
         fireRateTimer.Stop();
-        
+        isAttacking = false;
     }
 
     public override void Update(double delta)
@@ -54,45 +51,48 @@ public partial class Attack : State
 
     public override void PhysicsUpdate(double delta)
     {
-        var distance = archer.GlobalPosition.DistanceTo(player.GlobalPosition);
+        var distance = armouredSkeleton.GlobalPosition.DistanceTo(player.GlobalPosition);
 
-        if (archer != null)
+        if (armouredSkeleton != null)
         {
-            archer.Velocity = moveDirection * moveSpeed;
+            armouredSkeleton.Velocity = moveDirection * moveSpeed;
         }
 
-        if (distance > archer.GetRange()) 
+        if (bodies.Count == 0 || distance > ArmouredSkeleton.ATTACK_RANGE) 
         {
-            EmitSignal(SignalName.Transitioned, this, "idle");
+            isAttacking = false; 
+            EmitSignal(SignalName.Transitioned, this, "armouredskeletonidle");
         }
-    }
-
-    private void FireArrowAtDave(Vector2 positionOfDave)
-    {
-        var arrow = arrowScene.Instantiate() as Area2D;
-		arrow.GlobalPosition = archer.Position + offset;
-		arrow.LookAt(positionOfDave + offset);
-		GetTree().Root.CallDeferred("add_child", arrow);
     }
 
     private void OnFireRateTimerTimeout()
     {
-        isAttacking = true;
+        if (bodies.Count > 0)
+        {
+            isAttacking = true;
+        }
     }
 
     private void OnAnimatedSprite2DAnimationFinishedState()
     {
         if (animatedSprite2D.Animation == "attack01")
         {
-            var positionOfDave = player.Position;
-            FireArrowAtDave(positionOfDave);
-
+            isAttacking = false; 
+            
             if (bodies.Count > 0)
             {
                 fireRateTimer.Start();
             }
+            else
+            {
+                EmitSignal(SignalName.Transitioned, this, "armouredskeletonidle");
+            }
+        }
+        else if (animatedSprite2D.Animation == "hurt")
+        {
+            // Handle hurt animation completion
             isAttacking = false;
-        } 
+        }
     }
 
     public bool GetIsAttacking()

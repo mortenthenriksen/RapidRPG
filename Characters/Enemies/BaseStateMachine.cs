@@ -3,19 +3,18 @@ using Godot;
 
 namespace Game.State;
 
-public partial class StateMachine : Node
+public partial class BaseStateMachine<T> : Node where T : State
 {
-    [Export]
-    private State initialState;
-
-    private Dictionary<string, State> states = new Dictionary<string, State>();    
-    private State currentState;
+    // Removed [Export] because Godot does not support exporting generic types.
+    protected T initialState;
+    protected Dictionary<string, T> states = new Dictionary<string, T>();    
+    protected T currentState;
 
     public override void _Ready()
     {
         foreach (var child in GetChildren()) 
         {
-            if (child is State state)
+            if (child is T state)
             {
                 states[child.Name.ToString().ToLower()] = state;
                 state.Transitioned += OnTransitioned;

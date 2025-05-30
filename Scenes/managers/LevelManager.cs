@@ -40,7 +40,7 @@ public partial class LevelManager : Node
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionPressed("pick_up"))
+        if (Input.IsActionJustPressed("pick_up"))
         {
             LevelGainedUI();
         }
@@ -71,7 +71,7 @@ public partial class LevelManager : Node
 			// levelLabel.Text = $"Level: {GetCurrentLevel()}";
             experienceBar.Value = experienceForNextLevel;
             experience = experienceForNextLevel;
-            CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.UpdateLevel);
+            // CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.UpdateLevel);
 		}
     }
 
@@ -90,6 +90,12 @@ public partial class LevelManager : Node
     public int GetCurrentLevel()
     {
         return levelNum;
+    }
+
+    public void IncreaseLevel()
+    {
+        levelNum++;
+        LevelGainedUI();
     }
 
     private void LevelGainedUI()

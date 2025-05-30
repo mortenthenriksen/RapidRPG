@@ -16,10 +16,121 @@ tile_map_data = PackedByteArray("AAAdAA4AAgADAA4AAAAcAAoAAgACAAoAAAAXAA0AAgAHAAM
 tile_set = ExtResource("3_e32nh")
 
 [node name="roundTree" parent="." instance=ExtResource("1_a6dtk")]
-position = Vector2(192, 140)
+position = Vector2(1110, 695)
+
+[node name="roundTree28" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1110, 695)
+
+[node name="roundTree29" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1110, 774)
+
+[node name="roundTree30" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1129, 812)
+
+[node name="roundTree31" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1027, 891)
+
+[node name="roundTree32" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(907, 935)
+
+[node name="roundTree33" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(772, 904)
+
+[node name="roundTree34" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(612, 935)
+
+[node name="roundTree3" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1129, 631)
+
+[node name="roundTree37" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1149, 597)
+
+[node name="roundTree4" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1149, 514)
+
+[node name="roundTree5" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1187, 417)
+
+[node name="roundTree6" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1187, 319)
+
+[node name="roundTree7" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1129, 222)
+
+[node name="roundTree8" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1047, 140)
+
+[node name="roundTree9" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(945, 21)
+
+[node name="roundTree38" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(1011, 83)
+
+[node name="roundTree39" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(140, 41)
+
+[node name="roundTree10" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(836, 21)
+
+[node name="roundTree11" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(230, 21)
+
+[node name="roundTree12" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(472, 21)
+
+[node name="roundTree13" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(596, 6)
+
+[node name="roundTree14" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(468, 935)
+
+[node name="roundTree15" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(332, 935)
+
+[node name="roundTree16" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(332, 21)
+
+[node name="roundTree17" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(192, 935)
+
+[node name="roundTree18" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(38, 904)
+
+[node name="roundTree19" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-82, 847)
+
+[node name="roundTree36" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-102, 812)
+
+[node name="roundTree20" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-138, 730)
+
+[node name="roundTree35" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-161, 651)
+
+[node name="roundTree21" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-184, 578)
+
+[node name="roundTree22" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-138, 418)
+
+[node name="roundTree23" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-102, 480)
+
+[node name="roundTree24" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-138, 339)
+
+[node name="roundTree25" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(-102, 222)
+
+[node name="roundTree26" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(58, 83)
+
+[node name="roundTree27" parent="." instance=ExtResource("1_a6dtk")]
+position = Vector2(0, 140)
 
 [node name="roundTree2" parent="." instance=ExtResource("1_a6dtk")]
-position = Vector2(752, 140)
+position = Vector2(734, 21)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_x0oej")]
 position = Vector2(468, 184)
