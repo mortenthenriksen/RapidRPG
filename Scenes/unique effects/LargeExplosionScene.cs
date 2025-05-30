@@ -25,6 +25,7 @@ public partial class LargeExplosionScene : Area2D
                 if (body is IEnemies enemies)
                 {
                     enemies.TakeDamage(75);
+                    hasDealtDamage = true;
                 }
             }
         }

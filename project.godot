@@ -24,9 +24,9 @@ InventoryLogic="*res://Inventory/InventoryLogic.gd"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=675
-window/stretch/mode="viewport"
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -126,6 +126,7 @@ rendering_device/vsync/swapchain_image_count=2
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 textures/decals/filter=2
 textures/light_projectors/filter=2

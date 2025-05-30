@@ -35,7 +35,7 @@ public partial class ToolTipManager : Node2D
     private Label descriptionLabel;
 
     private Timer toolTipDelayTimer;
-    private Vector2I offset = new Vector2I(200, 200);
+    private Vector2I offset = new Vector2I(-10, -10);
 
     public override void _Ready()
     {
@@ -57,19 +57,47 @@ public partial class ToolTipManager : Node2D
         secondaryStatLabel = GetNode<Label>("%SecondaryStatLabel");
         secondaryStatValue = GetNode<Label>("%SecondaryStatValue");
         descriptionLabel = GetNode<Label>("%DescriptionLabel");
-        
+
         StartUniqueLabelEffect();
     }
 
     public override void _Process(double delta)
     {
+        if (toolTipPanel.Visible)
+        {
+            // Get mouse position and screen size
+            Vector2I mousePos = (Vector2I)GetViewport().GetMousePosition();
+            Vector2I screenSize = (Vector2I)GetViewport().GetVisibleRect().Size;
 
+            // Calculate tooltip position
+            Vector2I tooltipSize = (Vector2I)toolTipPanel.Size;
+            Vector2I position = mousePos;
+
+            // Adjust position if tooltip would go off screen
+            if (position.X + tooltipSize.X > screenSize.X)
+            {
+                position.X = mousePos.X - tooltipSize.X - 10; // Extra offset when flipped left
+            }
+            if (position.Y + tooltipSize.Y + 10 > screenSize.Y)
+            {
+                position.Y = mousePos.Y - tooltipSize.Y - 10; // Extra offset when flipped up
+            }
+            else
+            {
+                position.Y = mousePos.Y + 10; // Extra offset when below mouse
+            }
+
+            toolTipPanel.Position = position;
+        }
     }
 
 
     private void OnMouseEntered(string itemName)
     {   
         toolTipPanel.Visible = true;
+        // Initial positioning will be refined in _Process
+        toolTipPanel.Position = GetViewport().GetMousePosition();
+        
         var itemData = GetItemDataDictionary();
         if (itemData.ContainsKey(itemName))
         {

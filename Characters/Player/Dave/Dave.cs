@@ -2,10 +2,11 @@ using Game.Autoload;
 using Game.Inventory;
 using Game.Manager;
 using Game.UI;
-using Game.Weapons;
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+
 
 namespace Game.Characters;
 
@@ -28,6 +29,7 @@ public partial class Dave : CharacterBody2D
 
 	private Vector2 moveDirection = Vector2.Zero;
     private Vector2 lastDirection = Vector2.Down;
+	private Vector2 mouseDirection = Vector2.Right;
 	private string action;
 
 	private AnimatedSprite2D animatedSprite2D;
@@ -53,8 +55,14 @@ public partial class Dave : CharacterBody2D
 	private bool hasDealtDamage = false;
 	private bool isDashing = false;
 
+    // Replace the single item reference with a list
+    private List<ItemDrop> nearbyItems = new List<ItemDrop>();
+    private bool isNearItem => nearbyItems.Count > 0;
+
 	private float shoesEffectTimer = 0f;
 	private const float SHOES_EFFECT_INTERVAL = 0.5f; // Adjust this value to change the interval
+	private float pickupCooldown = 0.2f; // Adjust this value to change the cooldown duration
+	private float currentPickupCooldown = 0f;
 
 	public override void _Ready()
 	{
@@ -84,31 +92,34 @@ public partial class Dave : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		if (!isAttacking)
+		// Update pickup cooldown
+		if (currentPickupCooldown > 0)
+		{
+			currentPickupCooldown -= (float)delta;
+		}
+
+		Vector2 mousePosition = GetGlobalMousePosition();
+		mouseDirection = (mousePosition - GlobalPosition).Normalized();
+
+		if (!isAttacking || (isAttacking && action == "spinAttack"))
 		{
 			moveDirection = HandleInput();
 			if (moveDirection != Vector2.Zero)
-            {
-                lastDirection = moveDirection;
-				basicAttackBoxPolygonShape.RotateAttackBox(moveDirection);
-				
+			{
+				lastDirection = moveDirection;
+				basicAttackBoxPolygonShape.RotateAttackBox(mouseDirection);
+
 				shoesEffectTimer += (float)delta;
 				if (shoesEffectTimer >= SHOES_EFFECT_INTERVAL)
 				{
 					EquippedItemsManager.Instance.FindUniqueEffectForShoes();
 					shoesEffectTimer = 0f;
 				}
-            }
+			}
 
 			PlayAnimation(moveDirection);
-			MoveAndCollide(moveDirection * speed * (float) delta);
-		}
-
-		// Move this pickup logic somewhere else
-		if (pickupBox.GetOverlappingBodies().Count > 0) 
-		{
-			var itemDrop = (ItemDrop)pickupBox.GetOverlappingBodies().First();
-			itemDrop.PickupItem(this);
+			float currentSpeed = (isAttacking && action == "spinAttack") ? speed * 0.5f : speed;
+			MoveAndCollide(moveDirection * currentSpeed * (float)delta);
 		}
 
 		if (isAttacking && !hasDealtDamage)
@@ -191,6 +202,26 @@ public partial class Dave : CharacterBody2D
         
     }
 
+    // Modify OnPickupBoxBodyEntered
+    private void OnPickupBoxBodyEntered(Node2D body)
+    {
+        if (body is ItemDrop item)
+        {
+            nearbyItems.Add(item);
+            item.HighlightLabel();
+        }
+    }
+
+    // Modify OnPickupBoxBodyExited
+    private void OnPickupBoxBodyExited(Node2D body)
+    {
+        if (body is ItemDrop item)
+        {
+            nearbyItems.Remove(item);
+            item.UnhighlightLabel();
+        }
+    }
+
 	private Vector2 HandleInput()
 	{
 		if (!isDashing)
@@ -204,68 +235,85 @@ public partial class Dave : CharacterBody2D
 	private void PlayAnimation(Vector2 direction) 
 	{
 		animatedSprite2D.SpeedScale = 1;
-		action = "idle";
 
-		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isAttacking && !isDashing)
+		if (!inventoryPanel.GetIsMouseHoveringInventory() && !isDashing)
 		{
-			if (Input.IsActionPressed("attack"))
+			if (Input.IsActionPressed("attack") && !isAttacking && currentPickupCooldown <= 0) 
 			{
-				audioStreamPlayer2D.Play();
-				animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
-				EquippedItemsManager.Instance.FindUniqueEffectForWeapon();
-				action = "sword";
-				isAttacking = true;
-			}
+                if (isNearItem)
+                {
+                    // Get the closest item to pick up
+                    var closestItem = nearbyItems
+                        .OrderBy(item => GlobalPosition.DistanceSquaredTo(item.GlobalPosition))
+                        .FirstOrDefault();
 
-			else if (Input.IsActionPressed("spinAttack"))
-			{
-				audioStreamPlayer2D.Play();
-				action = "spinAttack";
-				isAttacking = true;
-			}
-
-			else if (Input.IsActionPressed("special_attack") && !isSpecialOnCooldown)
-			{
-				action = "special";
-				isAttacking = true;
-				specialCooldownTimer.Start();
-				isSpecialOnCooldown = true;
-			}
-
-
-			else if (Input.IsActionPressed("dash") && !isDashOnCooldown)
-			{
-				isDashing = true;
-				animatedSprite2D.SelfModulate = new Color(3f,3f,3f,1f);
-				if (dashTween != null)
+					if (closestItem != null)
+					{
+						closestItem.PickupItem(this);
+						nearbyItems.Remove(closestItem);
+						currentPickupCooldown = 0.2f; // Short cooldown after pickup
+                    }
+                }
+				else if (currentPickupCooldown <= 0)
 				{
-					dashTween.Kill(); 
+					// Normal attack logic
+					audioStreamPlayer2D.Play();
+					animatedSprite2D.SpeedScale = EquippedItemsManager.Instance.GetTotalAttackSpeed();
+					EquippedItemsManager.Instance.FindUniqueEffectForWeapon();
+					action = "sword";
+					isAttacking = true;
+					direction = mouseDirection;
 				}
-
-				dashTween = GetTree().CreateTween();
-				Vector2 targetPosition = Position + lastDirection * 225;
-
-				dashTween
-					.TweenProperty(this, "position", targetPosition, 0.7f)
-					.SetTrans(Tween.TransitionType.Cubic)
-					.SetEase(Tween.EaseType.Out)
-					.Connect("finished", new Callable(this, nameof(OnDashComplete)));
-
-				dashCooldownTimer.Start();
-				isDashOnCooldown = true;
 			}
+		}
 
-			else if (Input.IsActionJustPressed("teleport"))
+		if (Input.IsActionPressed("spinAttack") && !isAttacking)
+		{
+			audioStreamPlayer2D.Play();
+			action = "spinAttack";
+			isAttacking = true;
+		}
+
+		else if (Input.IsActionJustPressed("special_attack") && !isSpecialOnCooldown && isAttacking)
+		{
+			action = "special";
+			isAttacking = true;
+			specialCooldownTimer.Start();
+			isSpecialOnCooldown = true;
+		}
+
+
+		else if (Input.IsActionJustPressed("dash") && !isDashOnCooldown)
+		{
+			isDashing = true;
+			animatedSprite2D.SelfModulate = new Color(3f, 3f, 3f, 1f);
+			if (dashTween != null)
 			{
-				// GD.Print("port back to town shorty");
-				CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown);
+				dashTween.Kill();
 			}
 
-			else if (direction != Vector2.Zero)
-			{
-				animatedSprite2D.SpeedScale = 1;
-				action = "run";
-			}
+			dashTween = GetTree().CreateTween();
+			Vector2 targetPosition = Position + lastDirection * 225;
+
+			dashTween
+				.TweenProperty(this, "position", targetPosition, 0.7f)
+				.SetTrans(Tween.TransitionType.Cubic)
+				.SetEase(Tween.EaseType.Out)
+				.Connect("finished", new Callable(this, nameof(OnDashComplete)));
+
+			dashCooldownTimer.Start();
+			isDashOnCooldown = true;
+		}
+
+		else if (Input.IsActionJustPressed("teleport"))
+		{
+			// GD.Print("port back to town shorty");
+			CustomSignals.Instance.EmitSignal(CustomSignals.SignalName.TeleportBackToTown);
+		}
+		else if (isAttacking)
+		{
+			// Keep the current action and direction
+			direction = mouseDirection;
 		}
 
 		else if (direction != Vector2.Zero)
@@ -273,16 +321,21 @@ public partial class Dave : CharacterBody2D
 			animatedSprite2D.SpeedScale = 1;
 			action = "run";
 		}
+		else
+		{
+			action = "idle";
+		}
 
-		string directionSuffix = GetDirectionSuffix(direction != Vector2.Zero ? direction : lastDirection);
-        animatedSprite2D.Play(action + directionSuffix);
+		string directionSuffix = GetDirectionSuffix(direction != Vector2.Zero ? direction : (isAttacking ? mouseDirection : lastDirection));
+		animatedSprite2D.Play(action + directionSuffix);
 	}
 
+
     private void OnDashComplete()
-    {
+	{
 		isDashing = false;
 		animatedSprite2D.SelfModulate = new Color(1, 1, 1, 1);
-    }
+	}
 
     private void OnDashCooldownTimerTimeout()
 	{
@@ -296,17 +349,28 @@ public partial class Dave : CharacterBody2D
 
 	private string GetDirectionSuffix(Vector2 direction)
 	{
-		return direction switch
+		if (direction == Vector2.Zero)
+			return "";
+
+		// Calculate angle in radians (-π to π)
+		float angle = Mathf.Atan2(direction.Y, direction.X);
+		
+		// Convert to degrees and shift range to 0 to 360
+		float degrees = Mathf.RadToDeg(angle);
+		if (degrees < 0)
+			degrees += 360;
+
+		// Check which quadrant we're in
+		// Right quadrant: -45 to 45 degrees
+		// Down quadrant: 45 to 135 degrees
+		// Left quadrant: 135 to 225 degrees
+		// Up quadrant: 225 to 315 degrees
+		return degrees switch
 		{
-			Vector2 d when d == Vector2.Up => "Up",
-			Vector2 d when d == Vector2.Down => "Down",
-			Vector2 d when d == Vector2.Left => "Left",
-			Vector2 d when d == Vector2.Right => "Right",
-			// slightly cursed, but i dont care :)
-			Vector2 d when d == new Vector2(-(float)0.70710677, -(float)0.70710677) => "Left",
-			Vector2 d when d == new Vector2((float)0.70710677, -(float)0.70710677) => "Right", 
-			Vector2 d when d == new Vector2(-(float)0.70710677, (float)0.70710677) => "Left", 
-			Vector2 d when d == new Vector2((float)0.70710677, (float)0.70710677) => "Right", 
+			>= 315 or < 45 => "Right",
+			>= 45 and < 135 => "Down",
+			>= 135 and < 225 => "Left",
+			>= 225 and < 315 => "Up",
 			_ => ""
 		};
 	}

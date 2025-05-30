@@ -56,7 +56,7 @@ public partial class Orc : IEnemies
 
 		if (distance > threshold && health > 0)
 		{
-			// MoveAndCollide(velocity);
+			MoveAndCollide(velocity);
 		}
 
 		DealDamageToDave();

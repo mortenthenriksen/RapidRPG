@@ -6,29 +6,37 @@ public partial class WindowResizing : CanvasLayer
 {
     private Button smallWindowButton;
     private Button largeWindowButton;
+    private Window root;
 
     public override void _Ready()
     {
         smallWindowButton = GetNode<Button>("VBoxContainer/SmallWindowButton");
         largeWindowButton = GetNode<Button>("VBoxContainer/LargeWindowButton");
+        root = GetTree().Root;
 
         smallWindowButton.Pressed += OnSmallWindowButtonPressed;
         largeWindowButton.Pressed += OnLargeWindowButtonPressed;
+
+        // Set initial viewport settings
+        root.ContentScaleMode = Window.ContentScaleModeEnum.CanvasItems;
+        root.ContentScaleFactor = 1.0f;
     }
 
     private void OnSmallWindowButtonPressed()
     {
-        Vector2I smallWindowSize = new Vector2I(1200, 675);
-        DisplayServer.WindowSetSize(smallWindowSize); 
-        GetViewport().CanvasTransform = new Transform2D(0.5f, 0, 0, 0.5f, 0, 0); 
+        Vector2I smallWindowSize = new(1920 / 2, 1080 / 2);
+        root.ContentScaleFactor = 1.0f;
+        DisplayServer.WindowSetSize(smallWindowSize);
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+        root.Size = smallWindowSize;
     }
 
     private void OnLargeWindowButtonPressed()
     {
-        Vector2I largeWindowSize = new Vector2I(1920, 1080);
+        Vector2I largeWindowSize = new(1200 * 2, 675 * 2);
+        root.ContentScaleFactor = 1f; // 1920/1200 = 1.6
         DisplayServer.WindowSetSize(largeWindowSize);
-        GetViewport().CanvasTransform = new Transform2D(1, 0, 0, 1, 0, 0);
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+        root.Size = largeWindowSize;
     }
 }

@@ -1380,14 +1380,14 @@ _data = {
 point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q8fy1"]
-radius = 31.0161
+radius = 45.7056
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nquh0"]
 radius = 72.0
 
 [node name="Dave" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(602, 337)
+position = Vector2(477, 271)
 script = ExtResource("1_soyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1432,7 +1432,6 @@ position = Vector2(-416.857, -575.832)
 rotation = 0.00164212
 
 [node name="PickupBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("22_shs5j")

@@ -66,11 +66,21 @@ public partial class Main : Node2D
 		newItemDrop.GlobalPosition = position;
 		GetTree().Root.CallDeferred("add_child", newItemDrop);
 	}
-
+	
 	public void MakeItemDropFromInventory(string itemName)
 	{
+		Vector2 mousePos = GetGlobalMousePosition();
+		Vector2 playerPos = player.GlobalPosition;
+		float maxDropDistance = 100f; // Maximum distance from player
+
+		// Calculate direction from player to mouse
+		Vector2 dropDirection = (mousePos - playerPos).Normalized();
+		
+		// Calculate final drop position by clamping distance
+		Vector2 dropPosition = playerPos + (dropDirection * Mathf.Min((mousePos - playerPos).Length(), maxDropDistance));
+
 		var newItemDrop = itemDropScene.Instantiate() as ItemDrop;
-		newItemDrop.GlobalPosition = GetGlobalMousePosition();
+		newItemDrop.GlobalPosition = dropPosition;
 		newItemDrop.SetItemName(itemName);
 		GetTree().Root.CallDeferred("add_child", newItemDrop);
 	}

@@ -140,7 +140,7 @@ public partial class EquippedItemsManager : Node
                 }
             }
         }
-        GD.Print(uniqueEffects);
+        // GD.Print(uniqueEffects);
         return uniqueEffects;
     }
 

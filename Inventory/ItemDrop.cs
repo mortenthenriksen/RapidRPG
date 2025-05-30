@@ -10,7 +10,7 @@ public partial class ItemDrop : CharacterBody2D
     public string itemName;
     private Node InventoryLogic;
     private Dave player = null;
-    private Label itemNameLabel;
+    public Label itemNameLabel;
     private AudioStreamPlayer2D audioStreamPlayer2D;
     private Dictionary itemDataDict;
     private Dictionary itemDataDictValue;
@@ -67,7 +67,30 @@ public partial class ItemDrop : CharacterBody2D
         }
     }
 
-    public string WeightedItemDrop() 
+    public void HighlightLabel()
+    {
+        // Add outline effect to the label
+        itemNameLabel.LabelSettings = new LabelSettings
+        {
+            OutlineSize = 4,
+            OutlineColor = Colors.Black,
+            Font = itemNameLabel.LabelSettings?.Font,
+            FontSize = itemNameLabel.LabelSettings?.FontSize ?? 16
+        };
+    }
+
+    public void UnhighlightLabel()
+    {
+        // Remove outline effect
+        itemNameLabel.LabelSettings = new LabelSettings
+        {
+            OutlineSize = 0,
+            Font = itemNameLabel.LabelSettings?.Font,
+            FontSize = itemNameLabel.LabelSettings?.FontSize ?? 16
+        };
+    }
+
+    public string WeightedItemDrop()
     {
         var itemDropName = weightedItemDrops.GetItem();
         UpdateItem(itemDropName);

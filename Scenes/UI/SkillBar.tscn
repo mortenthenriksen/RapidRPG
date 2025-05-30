@@ -39,7 +39,7 @@ metadata/_edit_vertical_guides_ = [279.0, -43.0]
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 514.0
-offset_bottom = 88.0
+offset_bottom = 73.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -48,7 +48,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxHealth"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(57, 0)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -57,7 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxHealth"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_n8xoi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gwwux")
@@ -66,10 +66,10 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxHealth/HealthBar"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-offset_right = 67.0
-offset_bottom = 70.0
+offset_right = 57.0
+offset_bottom = 57.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p4ajh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
@@ -79,10 +79,9 @@ alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 4
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 20)
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -90,7 +89,7 @@ text = "RMB"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 20)
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -98,7 +97,7 @@ text = "LMB"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 20)
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -106,7 +105,7 @@ text = "Q"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 20)
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -114,7 +113,7 @@ text = "SPACE"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 20)
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -125,93 +124,96 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 67.0
-offset_bottom = 67.0
-scale = Vector2(0.75, 0.75)
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 74.0
+offset_bottom = 78.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_gtcds")
 
 [node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel2"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 2.0
-offset_right = 67.0
-offset_bottom = 66.0
-scale = Vector2(0.75, 0.75)
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 74.0
+offset_bottom = 71.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_gsqlp")
 
 [node name="Panel3" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 
 [node name="TextureRectSpecial" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel3"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 65.0
-offset_bottom = 66.0
-scale = Vector2(0.75, 0.75)
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 74.0
+offset_bottom = 75.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_jkibh")
 
 [node name="CooldownSpecialLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel3"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 49.0
-offset_bottom = 49.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 39.0
+offset_bottom = 39.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel4" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 
 [node name="TextureRectDash" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel4"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 2.0
-offset_right = 67.0
-offset_bottom = 66.0
-scale = Vector2(0.75, 0.75)
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 76.0
+offset_bottom = 75.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_hug4t")
 
 [node name="CooldownDashLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel4"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 2.0
+offset_left = 1.0
 offset_top = 2.0
-offset_right = 49.0
-offset_bottom = 48.0
+offset_right = 40.0
+offset_bottom = 40.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel5" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 
 [node name="TeleportTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel5"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 62.0
-offset_bottom = 63.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 53.0
+offset_bottom = 51.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_o75yq")
 
@@ -219,7 +221,7 @@ texture = ExtResource("6_o75yq")
 layout_mode = 2
 
 [node name="RageLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxRage"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(57, 0)
 layout_mode = 2
 theme = ExtResource("2_2bod6")
 theme_override_font_sizes/font_size = 16
@@ -228,7 +230,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RageBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxRage"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_n8xoi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vmeuh")
@@ -237,8 +239,8 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxRage/RageBar"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-offset_right = 70.0
-offset_bottom = 70.0
+offset_right = 57.0
+offset_bottom = 57.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p4ajh")
